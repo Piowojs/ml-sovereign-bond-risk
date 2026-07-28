@@ -8,3 +8,5 @@ PyPortfolioOpt
 shap
 xgboost
 wbdata
+requests
+pyyaml

@@ -1,0 +1,20 @@
+# Central hyperparameter file for the thesis pipeline (per CLAUDE.md: never
+# hardcode a hyperparameter in code — it belongs here so it can feed the
+# sensitivity analysis in thesis §5.5). Sections are added as each stage
+# starts needing tunable parameters; macro_acquisition is the first.
+
+macro_acquisition:
+  start_date: "2005-01-01"
+  end_date: "2025-12-31"
+  # Publication lag: how long after a period ends its value could actually
+  # be used at a rebalancing date without look-ahead bias. See CLAUDE.md
+  # bias-prevention rules (World Bank / IMF WEO lags are typically 3-6
+  # months) and the vintage-data caveat documented there.
+  lag_months_world_bank: 6
+  lag_months_imf_weo: 6
+  lag_days_fred: 1
+  # Coverage cells (country x series, % non-missing over the sample period)
+  # below this are flagged in the coverage report and logged as warnings.
+  coverage_warning_threshold: 0.5
+  output_dir: "data/raw/macro"
+  cache_dir: "data/raw/macro/_cache"
