@@ -1,0 +1,10 @@
+lseg-data
+pandas
+numpy
+scikit-learn
+scipy
+hdbscan
+PyPortfolioOpt
+shap
+xgboost
+wbdata
