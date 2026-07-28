@@ -1,0 +1,42 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Edit(src/**)",
+            "command": "if ! python3 test_lag_rules.py; then echo \"test_lag_rules.py FAILED after a src/ change - bias-prevention check (macro lag / walk-forward leakage) did not pass. Review before continuing.\" >&2; exit 2; fi",
+            "timeout": 120,
+            "statusMessage": "Running test_lag_rules.py..."
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Write(src/**)",
+            "command": "if ! python3 test_lag_rules.py; then echo \"test_lag_rules.py FAILED after a src/ change - bias-prevention check (macro lag / walk-forward leakage) did not pass. Review before continuing.\" >&2; exit 2; fi",
+            "timeout": 120,
+            "statusMessage": "Running test_lag_rules.py..."
+          }
+        ]
+      },
+      {
+        "matcher": "NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "NotebookEdit(src/**)",
+            "command": "if ! python3 test_lag_rules.py; then echo \"test_lag_rules.py FAILED after a src/ change - bias-prevention check (macro lag / walk-forward leakage) did not pass. Review before continuing.\" >&2; exit 2; fi",
+            "timeout": 120,
+            "statusMessage": "Running test_lag_rules.py..."
+          }
+        ]
+      }
+    ]
+  }
+}
