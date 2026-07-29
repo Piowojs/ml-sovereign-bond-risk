@@ -19,6 +19,10 @@ import yaml
 REPO_ROOT = Path(__file__).resolve().parent
 MACRO_CSV = REPO_ROOT / "data" / "raw" / "macro" / "macro_fundamentals.csv"
 PARAMS_YAML = REPO_ROOT / "configs" / "params.yaml"
+FEATURE_MATRIX_PARQUETS = {
+    "core": REPO_ROOT / "data" / "processed" / "stage1_feature_matrix_core.parquet",
+    "extended": REPO_ROOT / "data" / "processed" / "stage1_feature_matrix_extended.parquet",
+}
 
 
 def _add_months(d: date, months: int) -> date:
@@ -90,10 +94,36 @@ def test_macro_fred_available_date_respects_lag_days():
     )
 
 
+def test_feature_matrix_macro_available_date_never_exceeds_rebal_date():
+    """Stage 1 feature matrix (core + extended tiers): no row's macro data
+    may have available_date after the quarter it's used in -- this is the
+    as-of join's core invariant (src/stage1_clustering/build_feature_matrix.py),
+    tracked per row via asof_max_available_date."""
+    any_present = False
+    for tier, path in FEATURE_MATRIX_PARQUETS.items():
+        if not path.exists():
+            print(f"SKIP: {path} does not exist yet")
+            continue
+        any_present = True
+        df = pd.read_parquet(path)
+        violations = df[
+            df["asof_max_available_date"].notna()
+            & (df["asof_max_available_date"] > df["rebal_date"])
+        ]
+        assert violations.empty, (
+            f"[{tier}] {len(violations)} row(s) have asof_max_available_date after "
+            f"rebal_date, e.g.:\n{violations.head()}"
+        )
+        assert df["data_asof_ok"].all(), f"[{tier}] found row(s) with data_asof_ok=False"
+    if not any_present:
+        return
+
+
 CHECKS = [
     test_macro_available_date_never_precedes_period_date,
     test_macro_available_date_respects_configured_publication_lag,
     test_macro_fred_available_date_respects_lag_days,
+    test_feature_matrix_macro_available_date_never_exceeds_rebal_date,
 ]
 
 

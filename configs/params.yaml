@@ -18,3 +18,16 @@ macro_acquisition:
   coverage_warning_threshold: 0.5
   output_dir: "data/raw/macro"
   cache_dir: "data/raw/macro/_cache"
+
+# Stage 1: country x quarter feature matrix (src/stage1_clustering/build_feature_matrix.py).
+stage1_feature_matrix:
+  start_date: "2005-01-01"
+  end_date: "2025-12-31"
+  # Extended tier = DM + EM countries whose MOD_DURTN/CONVEXITY non-null
+  # coverage (over the country's full raw bond history) meets this
+  # threshold. Gated on duration/convexity, not CDS, because INT_CDS is
+  # essentially DM-only in the raw pull (see CLAUDE.md). Candidate for the
+  # thesis's §5.5 sensitivity sweep (0.6/0.7/0.8) once Stage 1 clustering
+  # results exist.
+  extended_tier_min_duration_convexity_coverage: 0.7
+  output_dir: "data/processed"

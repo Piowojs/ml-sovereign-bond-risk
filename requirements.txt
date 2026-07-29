@@ -10,3 +10,4 @@ xgboost
 wbdata
 requests
 pyyaml
+pyarrow
