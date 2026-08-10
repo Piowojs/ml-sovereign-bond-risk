@@ -31,3 +31,86 @@ stage1_feature_matrix:
   # results exist.
   extended_tier_min_duration_convexity_coverage: 0.7
   output_dir: "data/processed"
+
+# Stage 1: unsupervised sovereign risk classification (thesis Sec 4.2,
+# src/stage1_clustering/algorithm_comparison.py + build_risk_labels.py).
+# Reads the feature matrices this stage's build_feature_matrix.py already
+# produced. See CLAUDE.md "Stage 1 clustering" for the full writeup of why
+# these choices were made (feature set, imputation, tier mapping).
+stage1_clustering:
+  # Feature set used for clustering, per thesis Sec 3.3's declared groups
+  # -- specifically the "Stage" column of the Group C table, which scopes
+  # VIX and DXY to Stage 2 only (global risk appetite / EM funding
+  # pressure -- time-series signals for return prediction) and marks only
+  # curve_slope and us_10y level as "1 & 2". vix/dxy_proxy are
+  # deliberately excluded here, not just an oversight fixed later: they
+  # were tried in an early version of this feature set and produced a
+  # concrete failure mode worth recording -- since global features are
+  # identical across all 44 countries within a given quarter (zero
+  # within-quarter/cross-sectional variance, all their variance is
+  # across time), a pooled full-sample fit let them dominate the distance
+  # metric and collapse entire quarters into a single risk tier
+  # regardless of country (e.g. 2008-2015 had zero countries in
+  # core-eligible; 2023/2025 had zero in excluded/satellite) -- a
+  # global-regime artifact, not country risk differentiation. Restricting
+  # to the thesis's actual Stage-1-scoped Group C features (us_10y,
+  # curve_slope) both matches the spec and substantially reduces this
+  # effect -- see CLAUDE.md "Stage 1 clustering" for the full writeup and
+  # the residual version of this effect that persists even after the fix.
+  # us_2y is also excluded -- already fully captured by curve_slope
+  # (= us_10y - us_2y); including both would double-count that signal.
+  core_features:
+    - yield_spread_bps
+    - debt_gdp
+    - fiscal_bal_gdp
+    - current_acct_gdp
+    - fx_reserves_mo
+    - cpi_inflation
+    - real_gdp_growth
+    - political_stability
+    - us_10y
+    - curve_slope
+  # Extended tier adds duration/convexity. cds_5y is deliberately excluded
+  # from the clustering feature vector (not just left sparse) -- at 82%
+  # missing (see CLAUDE.md), a clustering feature that's four-fifths
+  # median-imputed contributes near-zero real signal and mostly imputation
+  # noise; it stays in the parquet for inspection but is never fed to
+  # KMeans/GMM/HDBSCAN.
+  extended_additional_features:
+    - mod_duration
+    - convexity
+  # A country-quarter row needs at least this fraction of its tier's
+  # feature columns actually observed (non-imputed) to receive a real
+  # cluster label; below this it gets risk_label="insufficient_data"
+  # rather than a label built mostly from imputed values. This is what
+  # correctly suppresses labeling in 2005-2006, before macro fundamentals
+  # are publishable yet (see CLAUDE.md's macro publication-lag section).
+  min_observed_feature_frac: 0.5
+  # Minimum training-window rows required (as a multiple of k) before the
+  # walk-forward labeler will fit a model at all -- guards the earliest
+  # quarters, where even the countries above the observed-feature
+  # threshold don't yet give KMeans/GMM enough rows to fit meaningfully.
+  min_training_rows_per_k: 15
+  kmeans_gmm_k_range: [2, 3, 4, 5, 6, 7, 8]
+  # HDBSCAN has no k parameter; swept as a fraction of the analysis
+  # sample size instead (min_cluster_size = frac * n_rows, floored at 10).
+  hdbscan_min_cluster_size_fracs: [0.01, 0.02, 0.05]
+  random_state: 42
+  # Filled in by algorithm_comparison.py's findings -- see CLAUDE.md
+  # "Stage 1 clustering" for the justification, not just a K-Means default.
+  chosen_algorithm: "kmeans"
+  chosen_tier: "core"
+  chosen_k: 3
+  output_dir: "data/processed"
+
+# Ratings ingestion (src/data_acquisition/ingest_ratings.py, issue #3).
+# Consolidates manually-collected rating-action files -- see that script's
+# docstring for why this is manual rather than a scripted pull.
+ratings_ingestion:
+  raw_dir: "data/raw/ratings/manual"
+  output_path: "data/processed/ratings_panel.csv"
+  # Rating actions are same-day public announcements (agency press
+  # releases), unlike World Bank/IMF's multi-month lag for periodic macro
+  # releases -- available_date = date, always. Asserted by test_lag_rules.py.
+  lag_days: 0
+  valid_agencies: ["S&P", "Moody's", "Fitch"]

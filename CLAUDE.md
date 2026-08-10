@@ -13,11 +13,22 @@ Full thesis outline (chapters, methodology, hypotheses, exact data sources per
 chapter): @docs/thesis_outline_sovereign.md — consult it when naming outputs,
 writing docstrings, or checking that code maps to the right thesis section.
 
+For a chronological log of what's been done, key decisions and their
+rationale, and open items (distinct from this file's operational focus),
+see `state.md` at the repo root — check it for the fuller narrative behind
+any settled fact summarized here.
+
 ## Current state of the repo
 This is an early-stage scaffold, not a working pipeline yet:
 - `src/stage1_clustering/build_feature_matrix.py` builds the country x
-  quarter feature matrix consumed by (not-yet-built) Stage 1 clustering —
-  see "Stage 1 feature matrix" below for full details. `stage2_signal/`,
+  quarter feature matrix — see "Stage 1 feature matrix" below for full
+  details. The actual clustering step now exists too:
+  `src/stage1_clustering/clustering_utils.py` (shared primitives),
+  `algorithm_comparison.py` (§4.2.1-4.2.3, diagnostic), and
+  `build_risk_labels.py` (§4.2.5, walk-forward-safe production labels) —
+  see "Stage 1 clustering" below for full details, including a
+  methodologically important finding (VIX/DXY had to be dropped from the
+  Stage 1 feature set — see that section). `stage2_signal/`,
   `stage3_portfolio/`, `stage4_evaluation/` are still empty.
 - `notebooks/` is empty. `configs/` now has two files (see "Macro data
   acquisition" below for how they got created):
@@ -32,9 +43,12 @@ This is an early-stage scaffold, not a working pipeline yet:
     the 44-country exclusion list.
   - `configs/params.yaml` — the central hyperparameter file. Sections:
     `macro_acquisition` (date range, per-source publication lag, coverage
-    threshold) and `stage1_feature_matrix` (date range, extended-tier
-    duration/convexity coverage threshold). Add new sections here as later
-    stages need tunable parameters — never hardcode a hyperparameter in code.
+    threshold), `stage1_feature_matrix` (date range, extended-tier
+    duration/convexity coverage threshold), `stage1_clustering` (feature
+    set, imputation threshold, k range, chosen algorithm/tier/k — see
+    "Stage 1 clustering" below), and `ratings_ingestion`. Add new sections
+    here as later stages need tunable parameters — never hardcode a
+    hyperparameter in code.
 - `test_lag_rules.py` has real bias-prevention assertions (previously a
   placeholder) covering both the macro pull (`available_date` vs.
   `period_date`/publication lag) and the Stage 1 feature matrix (no row's
@@ -69,6 +83,10 @@ This is an early-stage scaffold, not a working pipeline yet:
     session happens.
 - `src/data_acquisition/macro_pull.py` pulls World Bank / IMF WEO / FRED
   macro data — see "Macro data acquisition" below for full details.
+- `src/data_acquisition/ingest_ratings.py` consolidates manually-collected
+  sovereign rating-action files into `data/processed/ratings_panel.csv` —
+  see "Ratings data acquisition" below for full details, including why
+  this is a manual-file ingestion pipeline rather than a scripted pull.
 - `data/raw/` has pulled data for `bonds/`, `ratings/`, `macro/`, and an
   empty `cds/` (CDS pull did not succeed / was not run). `data/logs/pull_log.txt`
   / `missing.txt` (Refinitiv) and `macro_pull_log.txt` / `macro_missing.txt`
@@ -91,9 +109,28 @@ linter config, no packaging file). What exists today:
   — reads `data/raw/bonds/` and `data/raw/macro/macro_fundamentals.csv`,
   writes both parquet tiers to `data/processed/` and prints per-tier
   diagnostics (row/country counts, per-column missingness, as-of-join drops).
+- Consolidate ratings: `python src/data_acquisition/ingest_ratings.py` —
+  reads whatever manually-collected per-country files exist in
+  `data/raw/ratings/manual/`, writes `data/processed/ratings_panel.csv`,
+  and logs coverage against the 44-country universe. No API/desktop app
+  involved; safe to re-run any time as more countries' files are added.
+- Run the Stage 1 algorithm comparison (diagnostic, full-sample —
+  §4.2.1-4.2.3): `python src/stage1_clustering/algorithm_comparison.py`
+  — writes `data/processed/stage1_algorithm_comparison.csv`,
+  `stage1_dmem_disagreements.csv`, `stage1_dmem_ari_by_quarter.csv`.
+  Requires `scikit-learn` and `hdbscan` (in `requirements.txt`).
+- Build the Stage 1 walk-forward risk labels (production, §4.2.5):
+  `python src/stage1_clustering/build_risk_labels.py` — reads the chosen
+  algorithm/tier/k from `configs/params.yaml: stage1_clustering`, writes
+  `data/processed/stage1_risk_labels.parquet`. Run
+  `algorithm_comparison.py` first if changing the chosen combo — see
+  "Stage 1 clustering" below.
 - Run `test_lag_rules.py` after any change touching data loading, feature
   construction, clustering inputs, or backtesting logic —
   this is the project's core correctness check (see Bias-prevention rules).
+  Includes a truncation-invariance leakage test for the Stage 1 walk-forward
+  labeler (re-running it on a truncated panel and diffing against the
+  full-panel output) — see "Stage 1 clustering" below.
 
 ## Repo structure — pipeline isomorphism
 Folder layout mirrors the thesis chapters/stages 1:1. Key rules:
@@ -226,6 +263,59 @@ writing to `data/raw/macro/macro_fundamentals.csv` (tidy long format:
   gaps. `macro_pull.py` retries each request up to 3x with backoff before
   giving up and logging a genuine miss.
 
+## Ratings data acquisition (issue #3 — settled facts)
+Real sovereign rating history (not just a current snapshot) is required for
+thesis §4.2.3/§4.2.4 and RQ1/H1 (does the ML risk score deteriorate ahead
+of agency downgrades?). `TR.IssuerRating` (Refinitiv) is a confirmed dead
+end for this — SDate/EDate are silently ignored and it only ever returns
+the current snapshot, under our licence. Free public alternatives were
+evaluated as automatable replacements (2026-08-10) and rejected:
+- **Damodaran's country risk dataset** (NYU Stern, `ctryprem.xlsx`) is a
+  current-snapshot table only (no historical time series at all) —
+  useful only as an independent point-in-time cross-check, never as a
+  pipeline input.
+- **Trading Economics** exposes historical ratings only behind its paid
+  API tier; the free website shows current ratings only.
+- **countryeconomy.com** aggregates dated rating-action history (date,
+  agency, letter rating, outlook) reaching back to the 1990s for many
+  countries — the best free source of actual dated actions found, but
+  it's a third-party aggregator (not a primary agency source), coverage
+  depth varies a lot by agency and by country, and its Terms of Use
+  should be checked before any bulk/automated extraction.
+
+Given that, `src/data_acquisition/ingest_ratings.py` is deliberately **not**
+a scraper or API pull. It's a normalizer: it reads whatever per-country
+rating-history files have already been manually collected — transcribed
+from countryeconomy.com, or from S&P/Moody's/Fitch investor-relations and
+press-release pages — from `data/raw/ratings/manual/<Country>.csv` (see
+`_TEMPLATE.csv` there for the exact format: `date,agency,rating,outlook,
+action,source`), and writes one consolidated table to
+`data/processed/ratings_panel.csv`. It's designed to be run incrementally
+as files land one country at a time — no raw file yet for a country just
+means it's absent from the output, not an error.
+- `rating_numeric` uses the same ordinal `RATING_MAP` as the dead
+  `eikon_sovereign_pull_deprecated.py` (copied over, since the mapping
+  itself doesn't depend on how the ratings were pulled).
+- `action` (upgrade/downgrade/affirm/initial) is inferred automatically,
+  chronologically per country+agency, from the change in `rating_numeric`,
+  whenever the raw file leaves it blank; an explicit value in the raw file
+  (including non-inferable ones like "outlook change") is always kept as-is.
+- **Zero publication lag, by design**: `available_date = date` for every
+  row — rating actions are same-day public announcements (agency press
+  releases / RNS filings), unlike World Bank/IMF's multi-month lag for
+  periodic macro releases. Configured at `configs/params.yaml:
+  ratings_ingestion.lag_days` (0) and asserted by `test_lag_rules.py`.
+- Existing `data/raw/ratings/*.csv` files (the header-only stubs from the
+  never-recovered original pull, see "Data acquisition status" above) are
+  untouched by this script — it only reads `data/raw/ratings/manual/` and
+  writes `data/processed/`, never `data/raw/` itself.
+- **Status as of 2026-08-10**: pipeline built and verified against a
+  synthetic test file (mapping, action inference, and coverage logging all
+  confirmed correct); zero real countries' data collected yet. Manually
+  collecting and transcribing per-country files for the 44-country
+  universe is open, user-side work — see `state.md` for the full log and
+  issue #3 for tracking.
+
 ## Stage 1 feature matrix (country x quarter — settled facts)
 `src/stage1_clustering/build_feature_matrix.py` builds two wide, country x
 quarter-end panels for the 44-country universe over **2005-2025**, writing
@@ -313,14 +403,185 @@ pull is still an open gap" below.
     averaging behave differently from raw daily coverage; `mod_duration`/
     `convexity` are 12.2% missing (early quarters before a country's bond
     history starts, e.g. Turkey 2010, Zambia 2012).
-- **Ratings pull is still an open gap.** Every `data/raw/ratings/*.csv` is
-  just a header + one blank-value row — the real S&P/Moody's/Fitch website
-  pull described in "Data acquisition status" above never happened. No
-  `ratings_panel` table exists yet; both Stage 1 tiers simply exclude
-  ratings, as the thesis design requires (ratings are a Stage 1 validation
-  target — §4.2.3/§4.2.4 — not a clustering input). Tracked as a follow-up
-  GitHub issue, blocking for those sections and for RQ1/H1 (the
-  ratings-lead/lag validation depends on real ratings history).
+- **Real ratings data is still an open gap, but the pipeline is now built.**
+  Every `data/raw/ratings/*.csv` is still just a header + one blank-value
+  row — the real S&P/Moody's/Fitch website pull described in "Data
+  acquisition status" above never happened, and no free API offers
+  automatable history (see "Ratings data acquisition" above). What's
+  changed: `src/data_acquisition/ingest_ratings.py` can now consolidate
+  manually-collected per-country rating-action files into a real
+  `ratings_panel` table the moment they're dropped into
+  `data/raw/ratings/manual/`; today that table has 0 rows since no country
+  has been transcribed yet. Both Stage 1 tiers correctly continue to
+  exclude ratings regardless (ratings are a Stage 1 validation target —
+  §4.2.3/§4.2.4 — not a clustering input). Tracked in issue #3, blocking
+  for those sections and for RQ1/H1 (the ratings-lead/lag validation
+  depends on real ratings history) until enough countries are collected.
+
+## Stage 1 clustering (thesis §4.2.1-4.2.3, §4.2.5 — settled facts)
+Built on top of the feature matrices above. Two genuinely separate
+pipelines share primitives in `src/stage1_clustering/clustering_utils.py`
+but must not be conflated:
+- `algorithm_comparison.py` (§4.2.1-4.2.3) fits **once on the full
+  2005-2025 panel, pooled across all quarters** — diagnostic/descriptive
+  only, used to pick an algorithm/tier/k and to examine DM/EM
+  disagreements. **Not point-in-time safe** — a model fit on the whole
+  sample implicitly "knows" about 2025 when scoring a 2008 row — so its
+  output must never feed Stage 3/4.
+- `build_risk_labels.py` (§4.2.5) is the actual production pipeline: at
+  every rebalancing date it refits the chosen model from scratch using
+  only rows with `rebal_date <= that date` (expanding window, same
+  principle as the macro publication-lag rule elsewhere in this repo),
+  then predicts that quarter's labels. This is what's safe to feed
+  downstream, and what `test_lag_rules.py`'s truncation-invariance check
+  (see below) verifies.
+
+**Feature set — and a methodologically important correction.** Per thesis
+§3.3's Group C table, only `curve_slope` and `us_10y` are scoped to Stage
+1 ("1 & 2"); VIX and DXY are scoped to Stage 2 only ("2"). An early
+version of this pipeline included `vix`/`dxy_proxy` in the Stage 1
+feature set anyway, and it produced a concrete, diagnosable failure: since
+global features are identical across all 44 countries within a given
+quarter (all their variance is *across time*, none of it *across
+countries*), the pooled full-sample fit let them dominate the distance
+metric and collapsed entire quarters into a single risk tier regardless
+of country — e.g. 2008-2015 had **zero** countries in `core-eligible`
+across the whole period, and 2023/2025 had **zero** in
+`excluded`/`satellite-candidate`. That's a global-regime artifact, not
+country risk differentiation, and it's the opposite of what Stage 1 is
+supposed to produce. Restricting the feature set to what §3.3 actually
+specifies (dropping `vix`/`dxy_proxy`) fixed this: full-sample ARI vs
+DM/EM rose from 0.258 to 0.377 (KMeans, core, k=3) and every year in the
+sample now has a genuine mix of all three tiers. A **residual, weaker**
+version of the same effect persists even after the fix (`core-eligible`
+is genuinely 0 for several consecutive quarters in 2009-2017 in the
+walk-forward output — see below), because `us_10y`/`curve_slope` are
+still global-only features and the thesis's own spec keeps them in Stage
+1; flagged as a candidate robustness check for §5.5, not fixed further
+without a methodology-level decision to override the thesis's declared
+feature groups. Final Stage 1 clustering feature set (`configs/params.yaml:
+stage1_clustering.core_features`, extended tier adds `mod_duration` +
+`convexity`): `yield_spread_bps`, the 7 macro fundamentals (`debt_gdp`,
+`fiscal_bal_gdp`, `current_acct_gdp`, `fx_reserves_mo`, `cpi_inflation`,
+`real_gdp_growth`, `political_stability`), `us_10y`, `curve_slope`.
+`us_2y` is also excluded (redundant with `curve_slope`). `cds_5y` is
+excluded from the extended tier's clustering features (kept in the
+parquet, just not fed to the model) — at 82% missing, a feature that's
+four-fifths imputed contributes mostly noise, not signal.
+
+**Missing data handling.** A country-quarter row needs at least
+`min_observed_feature_frac` (0.5) of its tier's features actually observed
+(non-imputed) to get a real label; below that it's `insufficient_data`
+rather than a label built mostly from imputation. Remaining gaps are
+filled by **training-window-only median imputation** (never test-window
+statistics — see Bias-prevention rules below). This has a specific,
+worth-knowing consequence: 7 EM countries have **zero** `yield_spread_bps`
+coverage ever (Chile, Peru, Morocco, Kazakhstan, Nigeria, Sri Lanka,
+Zambia — see "Stage 1 feature matrix" above), so their spread column is
+always the training-window median, and their cluster assignment is
+effectively driven entirely by macro fundamentals + global factors, never
+their own market-priced risk.
+
+**Algorithm/k selection (§4.2.1-4.2.2) — actual numbers, not assumption.**
+Ran K-Means and GMM for k=2..8 (silhouette, BIC, AIC — KMeans's BIC/AIC
+use the standard spherical-Gaussian approximation, since KMeans has no
+native likelihood) and HDBSCAN swept at `min_cluster_size` = 1%/2%/5% of
+the analysis sample, on both CORE and EXTENDED tiers (6 combos total; full
+numbers in `data/processed/stage1_algorithm_comparison.csv`). Findings:
+- **HDBSCAN is not usable on this feature set at any density threshold
+  tried.** At 2%/5% min_cluster_size it finds **zero** clusters (100%
+  noise). At 1% (`min_cluster_size=35`) it "succeeds" with a deceptively
+  high silhouette (0.33, the best of any combo) but ARI vs DM/EM of just
+  0.018 (near-random) — inspecting the actual clusters shows why: one
+  giant catch-all cluster (3,153 of 3,476 rows), a tiny 62-row cluster
+  that's 100% DM (an extreme low-yield outlier pocket, not a risk tier),
+  and 261 noise points scattered across both DM and EM. It isolates a
+  density outlier, not an interpretable risk stratification. This is a
+  clean instance of thesis §4.2.1's own caveat about HDBSCAN cutting both
+  ways: robust to outliers, but here that means it collapses everything
+  *except* the outliers into one undifferentiated mass.
+- **GMM underperforms K-Means at essentially every k on both tiers** —
+  e.g. core k=3: GMM ARI 0.296 / silhouette 0.115 vs K-Means ARI 0.377 /
+  silhouette 0.136. GMM's elliptical-cluster flexibility doesn't pay off
+  here; its BIC/AIC also don't show a clean elbow at k=3.
+- **k=3 is not the silhouette-maximizing choice for K-Means** (silhouette
+  is essentially flat across k=2..8, 0.13-0.17, no real elbow — the
+  clusters are not that well separated at any k, itself a citable finding
+  for §4.2.1/§6.1: sovereign risk doesn't form tight, well-separated
+  clusters in this feature space). **k=2 has the highest raw ARI**
+  (0.554, core) but is structurally unusable for §4.2.5's 3-tier output —
+  by construction it never populates the `excluded` middle tier at all,
+  collapsing the framework into a binary DM/EM lookalike with none of the
+  "too uncertain for either sleeve" middle case the thesis output spec
+  requires. **Among the options that actually support a 3-tier output,
+  k=3 K-Means/core is the best combination of ARI (0.377, the highest of
+  any k=3 combo across both algorithms and tiers) and silhouette
+  (statistically indistinguishable from K-Means/core's k=2/4/5/8, all
+  0.13-0.17)** — chosen on that basis, not by defaulting to K-Means for
+  convenience. EXTENDED tier performs comparably (k=3: ARI 0.358,
+  silhouette 0.152) but covers only 41 of 44 countries for no material
+  gain — CORE is preferred so downstream stages get full universe
+  coverage. `configs/params.yaml: stage1_clustering.chosen_algorithm/
+  chosen_tier/chosen_k` = `kmeans`/`core`/`3`.
+
+**DM/EM validation and disagreements (§4.2.3).** Overall full-sample ARI
+0.377 (chosen combo); per-quarter ARI ranges 0.007-0.688, mean 0.381
+(`data/processed/stage1_dmem_ari_by_quarter.csv`) — confirms the panel
+*is* quarter-structured and validation must be (and is) computed
+per-rebalancing-date, not once on the whole sample. The disagreement list
+(`data/processed/stage1_dmem_disagreements.csv`, 1,139 rows) reproduces
+exactly the kind of boundary case thesis §4.2.3 expects: Poland, Chile,
+Czech Republic, South Africa, Malaysia, Vietnam, and Kazakhstan appear
+repeatedly in `core-eligible` (the "stable EM" case §4.2.3 names by name),
+while Greece, Italy, Japan, Portugal, and the UK appear repeatedly in
+`satellite-candidate` — including as early as 2006, **before** the
+2010-2012 crisis, which is a genuinely interesting early-warning signal
+worth pursuing in §6.1/§6.4 once ratings data exists to test it formally
+against actual downgrade timing (§4.2.4, still blocked — see below).
+
+**Walk-forward output (§4.2.5).** `data/processed/stage1_risk_labels.parquet`
+— one row per (country, rebal_date) with `risk_label` (`core-eligible` /
+`excluded` / `satellite-candidate` / `insufficient_data`),
+`raw_cluster_label`, and diagnostic columns (`n_features_observed`,
+`training_window_start/end/n_rows`). HDBSCAN noise points and any
+predicted label unseen in a given date's training fit are both mapped to
+`excluded` — an intentional semantic fit (§4.2.5 defines `excluded` as
+"too uncertain for either sleeve," which is exactly what a density-noise
+or unseen-cluster point is), not an approximation. `insufficient_data`
+is correctly 100% of 2005 and most of 2006 (before macro fundamentals are
+publishable at all — see Macro data acquisition's publication-lag
+section) and 0% from 2007 onward. Label counts: `excluded` 1,529,
+`satellite-candidate` 1,239, `core-eligible` 664, `insufficient_data`
+264. The residual regime-sensitivity flagged above shows up here as
+`core-eligible` being 0 for several consecutive quarters spanning
+2009-2017 — plausibly a real signal (in a sustained global low-rate/crisis
+era, no country may look unambiguously low-risk relative to the model's
+learned notion of "calm regime"), but flagged rather than asserted, since
+it's confounded with the known residual global-feature effect.
+
+**§4.2.4 (lead/lag vs. ratings) is intentionally not built.** It's
+blocked on real ratings data (issue #3, 0/44 countries collected as of
+this writing — see "Ratings data acquisition" above). The expected
+interface is stubbed at `src/stage1_clustering/ratings_leadlag_stub.py`
+(`compute_lead_lag()`, raises `NotImplementedError`) with the full
+expected input/output schema documented in its docstring, including a
+flagged follow-up: the paired t-test thesis §1.5/H1 describes needs a
+*continuous* risk score, not just the categorical `risk_label`, so
+`build_risk_labels.py` will need a scoring extension (e.g. distance to
+the nearest low-risk centroid) before §4.2.4 can actually run — not solved
+now, since there's nothing to validate it against yet.
+
+**Leakage check.** `test_lag_rules.py` has two Stage-1-clustering-specific
+checks: a structural check that every row's `training_window_end` equals
+its own `rebal_date` (never later), and a real truncation-invariance
+check — it re-runs `build_risk_labels.label_panel()` on the feature matrix
+truncated to a mid-sample cutoff date and asserts the labels for dates
+<= cutoff are byte-identical to the full-panel run's stored output. Since
+K-Means is refit fresh at every date from only `rebal_date <= date` rows
+with a fixed `random_state`, any future-data leak (via imputation stats,
+scaling stats, or the cluster fit itself) would change the truncated run's
+labels — an exact match is therefore the right bar, not a tolerance, and
+both checks currently pass.
 
 ## Bias-prevention rules (the thesis's core methodological concern)
 - Run `test_lag_rules.py` after any change touching data loading, feature
