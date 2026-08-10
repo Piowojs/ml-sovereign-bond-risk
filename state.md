@@ -19,7 +19,7 @@ after the fact from memory.
 
 | Item | Blocks | Whose action | Status |
 |---|---|---|---|
-| Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcription from countryeconomy.com / agency IR pages) | Not started — pipeline ready, 0/44 countries collected |
+| Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcription from TheGlobalEconomy.com — primary, see 2026-08-10 source-switch entry — with countryeconomy.com as fallback and agency IR pages for gaps). See state.md's transcription priority list below for suggested sequencing. | Not started — pipeline ready, 0/44 countries collected |
 | §4.2.4 lead/lag analysis (`ratings_leadlag_stub.py`) | §4.2.4, RQ1/H1 | Blocked on the ratings item above; also needs `build_risk_labels.py` extended to emit a continuous risk score, not just the categorical tier (see CLAUDE.md "Stage 1 clustering") | Interface stubbed, not implemented |
 | Residual global-regime sensitivity in Stage 1 clustering (`core-eligible` = 0 for several consecutive quarters, 2009-2017) | §5.5 candidate robustness check; not blocking Stage 3/4 | Open — see CLAUDE.md "Stage 1 clustering" for the full diagnosis (us_10y/curve_slope are global-only features, thesis §3.3 keeps them in Stage 1 regardless) | Documented, not fixed further without a methodology-level call to override the thesis's own feature-group spec |
 | Execution-verify `bond_data_pull_reconstructed.py` (does it actually run/chunk/return data as designed) | Appendix A reproducibility only — not blocking, since existing bond data already feeds Stage 1 | User (requires a session on the university-library Windows PC with Refinitiv Workspace) | Not started |
@@ -29,7 +29,123 @@ after the fact from memory.
 
 ---
 
+## Ratings transcription priority (for issue #3)
+
+Suggested sequencing for manually transcribing `data/raw/ratings/manual/<Country>.csv`
+files, ranked by how much a country is likely to contribute to H1's
+lead/lag test — countries with real rating changes during 2005–2025
+matter; countries that sat at one rating the whole window contribute
+little. Based on general knowledge of major sovereign rating events, not
+yet verified against the actual transcribed data.
+
+- **Tier 1 (do first — explicit crisis case studies named in the thesis
+  outline itself)**: Greece, Turkey, Portugal, Zambia, Sri Lanka.
+- **Tier 2 (high value — sharp multi-notch moves)**: Italy, Spain, South
+  Africa, Brazil, Colombia, Egypt, Pakistan, Nigeria.
+- **Tier 3 (moderate — real notches, plus two "even safe sovereigns
+  react" DM cases)**: United States, United Kingdom, France, Hungary,
+  Romania, China, Kenya, Indonesia, Philippines, Vietnam, Mexico,
+  Kazakhstan, Japan.
+- **Tier 4 (lower value — mostly stable, do later)**: Poland, India, Peru,
+  Czech Republic, Thailand, Chile, Malaysia, Morocco, Belgium, Austria.
+- **Tier 5 (lowest value — essentially flat the whole window, do last or
+  skip under time pressure)**: Germany, Netherlands, Finland, Norway,
+  Sweden, Switzerland, Canada, Australia.
+
+Tier 1 + Tier 2 (13 countries) covers every default/restructuring event
+and every crisis case study the thesis outline names explicitly — the
+highest-leverage stopping point for a first pass at H1 if the full 44
+isn't feasible before a deadline.
+
+---
+
 ## Chronological log
+
+### 2026-08-10 — Ratings manual source switched to TheGlobalEconomy.com; schema gains `outlook`
+**What**: Before any country was actually transcribed against
+countryeconomy.com (the source picked in the previous ratings-sourcing
+session, see the entry below this one), inspecting its actual page
+structure surfaced a disqualifying problem: each country page renders
+**four independent chronological rating lists** (Long-term Foreign
+Currency, Long-term Local Currency, Short-term Foreign Currency,
+Short-term Local Currency) side by side in one HTML table, aligned by
+row-index, not by shared date. On Greece's page, the row pairing
+`2022-04-22 BB+ (Stable)` (Foreign Currency) with `2025-04-18 BBB` (Local
+Currency) is actually two unrelated actions three years apart — reading
+it row-aligned would silently corrupt the transcription. Only the
+Long-term/Foreign-Currency column pair is relevant to our USD-denominated
+universe, so using this source safely requires deliberately ignoring
+three of its four columns — a real, easy-to-miss transcription-error
+risk, not a hypothetical one. It also sometimes leaves the rating cell
+blank on outlook-only-change rows, forcing error-prone inference from the
+row above.
+
+**Switched to TheGlobalEconomy.com as primary** instead: flat,
+single-list, multi-agency tables (`agency | rating | outlook | date`),
+every row's rating cell populated even when only outlook changed — a
+near-exact structural match to the manual CSV schema, with none of
+countryeconomy.com's column-misalignment risk. countryeconomy.com is
+retained as a fallback only, for countries/periods TheGlobalEconomy.com
+doesn't cover, with the column-alignment caveat kept firmly documented
+(now in `ingest_ratings.py`'s module docstring and in CLAUDE.md) so it
+isn't rediscovered from scratch on a future country.
+
+**Two structural consequences of the switch, both handled in
+`ingest_ratings.py`**:
+- **Scope exclusion**: TheGlobalEconomy.com's tables include a 4th
+  agency, Scope, alongside S&P/Moody's/Fitch. Out of scope for the
+  thesis and for `RATING_MAP` — dropped during transcription, and
+  `VALID_AGENCIES` rejects it defensively if one slips through (verified:
+  a synthetic Scope row raised `ValueError` as expected).
+- **Month-only date precision**: TheGlobalEconomy.com gives month/year
+  only (e.g. `5/2026`), not exact day. Convention: 1st-of-month as
+  `date`, `source` annotated `(month-precision)`. Confirmed this does
+  *not* create an edge case in `test_lag_rules.py`'s zero-lag assertion —
+  `available_date` is always derived as `date` verbatim inside
+  `build_ratings_panel()`, so the check is tautologically satisfied
+  regardless of the date's precision; it was only ever asserting
+  `available_date == date`, never validating precision. The real risk
+  is elsewhere: the *same* real-world action transcribed once from an
+  exact-day source and once from a month-precision source would look like
+  two distinct nearby rows rather than one. Added
+  `_warn_possible_duplicate_actions()` — flags same
+  country+agency+rating_numeric rows less than 35 days apart as a
+  logged warning (not a hard failure) for manual review. Verified against
+  a synthetic Greece file with a 13-day-apart same-rating pair (one row
+  dated via the month-precision convention, one via an exact day) — the
+  warning fired correctly, and the file was otherwise unaffected (both
+  rows kept, correctly inferred as `affirm` of each other).
+
+**Schema change: `outlook` is now an output column**, not just an input
+used internally to help infer `action`. It had been silently dropped from
+`ratings_panel.csv` in the first version of this script despite being
+accepted in the raw-file format. Reasoning: outlook deterioration (e.g.
+Stable → Negative with no letter-grade change) often precedes an actual
+downgrade by months — a plausible leading-indicator signal beyond
+letter-grade actions alone. Thesis §1.5/§4.2.4's formal H1 test is
+defined against letter-grade downgrades specifically, so capturing
+outlook isn't required for that test to run, but the marginal
+transcription cost is ~zero (the value is already being read off the same
+row), so it's captured now rather than retrofitted later. `action`
+inference was extended to match: an unchanged rating with a changed
+`outlook` now infers `outlook_change` instead of collapsing into
+`affirm` — verified against the same synthetic Greece file (a
+Negative→Stable outlook move with no rating change correctly produced
+`outlook_change`, and a subsequent unchanged row correctly produced
+`affirm`).
+
+**Also added to this entry**: a country-transcription priority list (see
+"Ratings transcription priority" section above) ranking the 44-country
+universe by expected rating-change density in 2005–2025, so manual
+transcription work can start with the countries most likely to actually
+move H1's lead/lag test rather than proceeding alphabetically.
+
+**Status**: still 0/44 countries collected — this was schema/pipeline
+hardening ahead of transcription starting, not transcription itself. All
+changes verified with synthetic test files only (created, exercised, then
+deleted — `data/processed/ratings_panel.csv` is back to 0 rows).
+
+Commit: (pending, this session) · Issue: #3
 
 ### 2026-08-10 — Stage 1 unsupervised sovereign risk classification built (§4.2.1-4.2.3, §4.2.5)
 **What**: Built the actual clustering step on top of the Stage 1 feature

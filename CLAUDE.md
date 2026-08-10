@@ -276,30 +276,80 @@ evaluated as automatable replacements (2026-08-10) and rejected:
   pipeline input.
 - **Trading Economics** exposes historical ratings only behind its paid
   API tier; the free website shows current ratings only.
-- **countryeconomy.com** aggregates dated rating-action history (date,
-  agency, letter rating, outlook) reaching back to the 1990s for many
-  countries — the best free source of actual dated actions found, but
-  it's a third-party aggregator (not a primary agency source), coverage
-  depth varies a lot by agency and by country, and its Terms of Use
-  should be checked before any bulk/automated extraction.
+
+**Primary manual source: TheGlobalEconomy.com, not countryeconomy.com**
+(switched 2026-08-10, before any country was transcribed against either).
+countryeconomy.com was the original pick — real dated rating-action
+history back to the 1990s for many countries — but it turned out to have
+a structural trap: each country page lays out **four independent
+chronological lists** (Long-term Foreign Currency, Long-term Local
+Currency, Short-term Foreign Currency, Short-term Local Currency) side by
+side in one HTML table, positioned by row-index, not by shared date.
+Adjacent columns on the same visual row are frequently different,
+unrelated dates — confirmed on Greece's page, where the row showing
+`2022-04-22 BB+ (Stable)` in the Foreign Currency column pairs visually
+with `2025-04-18 BBB` in the Local Currency column, a different action
+three years apart. Only the Long-term/Foreign-Currency pair matters for
+our USD-denominated universe — the other three columns must be ignored
+entirely, not read row-aligned, a real transcription-error risk if
+missed. It also sometimes leaves the rating cell blank on an
+outlook-only-change row, forcing inference from the row above.
+TheGlobalEconomy.com's per-country tables are flat, single-list,
+multi-agency (`agency | rating | outlook | date`), and every row carries
+an explicit rating value even when only the outlook changed — no
+blank-cell inference needed, a much closer structural match to our manual
+CSV schema. countryeconomy.com is now a fallback only, used with the
+column-alignment caveat above kept firmly in mind. Both remain
+third-party aggregators, not primary agency sources — cite them as such.
+- **Scope** is a 4th agency TheGlobalEconomy.com's tables include
+  alongside S&P/Moody's/Fitch. Out of scope for this thesis and for
+  `RATING_MAP` — drop Scope rows during transcription; `ingest_ratings.py`
+  rejects them defensively if one slips through.
+- **Date precision**: TheGlobalEconomy.com gives month/year precision
+  only (e.g. `5/2026`), not exact day. Convention: use the 1st of the
+  month as `date`, and append `(month-precision)` to `source` for
+  traceability. Coarser than exact-day, but still well within thesis
+  §4.5.1's quarterly walk-forward fold granularity, so H1's quarter-level
+  lead/lag windows lose no real resolution. This does **not** interact
+  with `test_lag_rules.py`'s zero-lag assertion — `available_date` is
+  always set equal to whatever `date` value is in the raw file, so that
+  check passes trivially regardless of precision (it was only ever
+  checking `available_date == date`, never validating precision itself).
+  The real risk from mixing precisions is a phantom near-duplicate: the
+  same real-world action transcribed once from an exact-day source and
+  once from a month-precision source looks like two distinct nearby rows.
+  `ingest_ratings.py`'s `_warn_possible_duplicate_actions` flags same
+  country+agency+rating_numeric pairs less than 35 days apart for manual
+  review rather than silently double-counting them.
 
 Given that, `src/data_acquisition/ingest_ratings.py` is deliberately **not**
 a scraper or API pull. It's a normalizer: it reads whatever per-country
 rating-history files have already been manually collected — transcribed
-from countryeconomy.com, or from S&P/Moody's/Fitch investor-relations and
-press-release pages — from `data/raw/ratings/manual/<Country>.csv` (see
-`_TEMPLATE.csv` there for the exact format: `date,agency,rating,outlook,
-action,source`), and writes one consolidated table to
-`data/processed/ratings_panel.csv`. It's designed to be run incrementally
-as files land one country at a time — no raw file yet for a country just
-means it's absent from the output, not an error.
+from TheGlobalEconomy.com (primary), countryeconomy.com (fallback, mind
+the column-alignment caveat above), or S&P/Moody's/Fitch
+investor-relations and press-release pages — from
+`data/raw/ratings/manual/<Country>.csv` (see `_TEMPLATE.csv` there for the
+exact format: `date,agency,rating,outlook,action,source`), and writes one
+consolidated table to `data/processed/ratings_panel.csv`. It's designed to
+be run incrementally as files land one country at a time — no raw file
+yet for a country just means it's absent from the output, not an error.
 - `rating_numeric` uses the same ordinal `RATING_MAP` as the dead
   `eikon_sovereign_pull_deprecated.py` (copied over, since the mapping
   itself doesn't depend on how the ratings were pulled).
-- `action` (upgrade/downgrade/affirm/initial) is inferred automatically,
-  chronologically per country+agency, from the change in `rating_numeric`,
-  whenever the raw file leaves it blank; an explicit value in the raw file
-  (including non-inferable ones like "outlook change") is always kept as-is.
+- `outlook` is carried through to the output panel as its own column, not
+  just used internally — outlook deterioration (e.g. Stable → Negative,
+  no letter-grade change) can precede an actual downgrade by months, a
+  potential leading-indicator signal beyond letter-grade actions alone.
+  Thesis §1.5/§4.2.4's formal H1 test is defined against letter-grade
+  downgrades specifically, so this isn't required for that test, but was
+  captured now — marginal transcription cost ~zero — rather than
+  retrofitted later if a future analysis wants it.
+- `action` (upgrade/downgrade/outlook_change/affirm/initial) is inferred
+  automatically, chronologically per country+agency, whenever the raw
+  file leaves it blank: a `rating_numeric` change gives
+  upgrade/downgrade; an unchanged rating with a changed `outlook` gives
+  `outlook_change` (rather than collapsing it into `affirm`); otherwise
+  `affirm`. An explicit value in the raw file is always kept as-is.
 - **Zero publication lag, by design**: `available_date = date` for every
   row — rating actions are same-day public announcements (agency press
   releases / RNS filings), unlike World Bank/IMF's multi-month lag for
@@ -309,11 +359,13 @@ means it's absent from the output, not an error.
   never-recovered original pull, see "Data acquisition status" above) are
   untouched by this script — it only reads `data/raw/ratings/manual/` and
   writes `data/processed/`, never `data/raw/` itself.
-- **Status as of 2026-08-10**: pipeline built and verified against a
-  synthetic test file (mapping, action inference, and coverage logging all
+- **Status as of 2026-08-10**: pipeline built and verified against
+  synthetic test files (mapping, action/outlook_change inference,
+  duplicate-action detection, Scope rejection, and coverage logging all
   confirmed correct); zero real countries' data collected yet. Manually
   collecting and transcribing per-country files for the 44-country
-  universe is open, user-side work — see `state.md` for the full log and
+  universe is open, user-side work — see `state.md` for the full log,
+  including a priority order for which countries to transcribe first, and
   issue #3 for tracking.
 
 ## Stage 1 feature matrix (country x quarter — settled facts)
