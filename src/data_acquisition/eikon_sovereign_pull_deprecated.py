@@ -1,6 +1,27 @@
 """
-eikon_sovereign_pull.py
-=======================
+eikon_sovereign_pull_deprecated.py  [DEPRECATED — DO NOT RUN]
+===============================================================
+*** This script did NOT produce the data in data/raw/bonds/. ***
+
+It drives the old `eikon` desktop package (fields CLOSE/YIELD/YLDSPD/
+MDURATION), which is incompatible with the current Refinitiv Workspace
+setup and was abandoned. The raw bond CSVs on disk instead carry RDP/EDP
+field mnemonics (MID_PRICE, BMK_SPD, MOD_DURTN, ZSPREAD, INT_CDS, ...) that
+this script never requests — confirmed by a structural diff between this
+file's field list and the actual on-disk columns (2026-08-10).
+
+The real pull was run from an untracked script (`data_pull.py`) on a
+university-library Windows machine, using `lseg-data` against RDP/EDP
+endpoints. That original script could not be recovered. Its replacement —
+a design-level reconstruction, structurally verified against the on-disk
+data but NOT execution-verified — lives at
+`src/data_acquisition/bond_data_pull_reconstructed.py`. Use that file, not
+this one, for any future re-pull. This file is kept only for historical
+reference (see CLAUDE.md "Data acquisition status").
+
+ORIGINAL DOCSTRING BELOW (retained as-is, describes the abandoned `eikon`
+approach — do not follow these instructions)
+------------------------------------------------------------------------
 Pulls all Refinitiv Eikon data required for the sovereign bond thesis:
   - Bond prices, YTM, yield spread, duration, convexity
   - 5-year sovereign CDS spreads (USD)

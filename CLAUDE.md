@@ -25,9 +25,11 @@ This is an early-stage scaffold, not a working pipeline yet:
     sovereign universe (name, ISO2/ISO3, DM/EM classification, Refinitiv
     RICs, and the excluded-country list with reasons). Any script needing
     the country list should read this rather than hardcoding a second copy.
-    Note `eikon_sovereign_pull.py`'s own `UNIVERSE` dict (53 countries, no
-    exclusion filtering) predates this file and should be reconciled with
-    it when that script is eventually rewritten against `lseg-data`.
+    Note `eikon_sovereign_pull_deprecated.py`'s own `UNIVERSE` dict (53
+    countries, no exclusion filtering) predates this file; that script is
+    dead (see below) and was never reconciled with it — a non-issue now
+    since `bond_data_pull_reconstructed.py`'s `UNIVERSE` already matches
+    the 44-country exclusion list.
   - `configs/params.yaml` — the central hyperparameter file. Sections:
     `macro_acquisition` (date range, per-source publication lag, coverage
     threshold) and `stage1_feature_matrix` (date range, extended-tier
@@ -43,12 +45,28 @@ This is an early-stage scaffold, not a working pipeline yet:
   updated separately). All data pulls and the Stage 1 feature matrix use
   `2005-01-01`–`2025-12-31`; treat this as the authoritative range for any
   later stage.
-- `src/data_acquisition/eikon_sovereign_pull.py` is a **legacy/inconsistent**
-  script: it imports and drives the old `eikon` package, but the settled
-  decision (see below, and `requirements.txt`) is to use `lseg-data` instead
-  — `eikon` is incompatible with the current Refinitiv Workspace setup. Don't
-  treat this file as the current data-pull approach without checking with the
-  user first; it likely needs a rewrite against `lseg-data` rather than reuse.
+- **Bond data provenance is now resolved** (2026-08-10): the raw CSVs in
+  `data/raw/bonds/` were never produced by `eikon_sovereign_pull_deprecated.py`
+  (it requests a non-overlapping field set via the old `eikon` package —
+  confirmed by diffing its field list against the actual on-disk columns).
+  The real pull ran as an untracked script, `data_pull.py`, on a
+  university-library Windows PC, already using `lseg-data` against RDP/EDP
+  endpoints (confirmed via `data/logs/pull_log.txt`'s 2026-06-08 traceback,
+  which shows the real file path and RDP endpoint URLs hit). That original
+  script could not be recovered. It has been replaced by
+  `src/data_acquisition/bond_data_pull_reconstructed.py` — a design-level
+  reconstruction, **structurally verified against the on-disk data but not
+  execution-verified** (see its docstring for the full verification note,
+  including one flagged mismatch on YLDTOMAT licence scope). The old
+  `eikon`-based script is kept only for historical reference, renamed to
+  `eikon_sovereign_pull_deprecated.py` with a docstring banner — don't run
+  it or treat it as the current approach.
+  - **Standing constraint**: this environment has no Refinitiv Workspace /
+    `lseg-data` access. Live execution-level verification of
+    `bond_data_pull_reconstructed.py` (does it actually run, chunk, and
+    return data as expected) requires the university library PC and cannot
+    happen here. Treat the script as unverified-by-execution until that
+    session happens.
 - `src/data_acquisition/macro_pull.py` pulls World Bank / IMF WEO / FRED
   macro data — see "Macro data acquisition" below for full details.
 - `data/raw/` has pulled data for `bonds/`, `ratings/`, `macro/`, and an
@@ -60,8 +78,11 @@ This is an early-stage scaffold, not a working pipeline yet:
 No build, lint, or test tooling is configured yet (no pytest config, no
 linter config, no packaging file). What exists today:
 - Install dependencies: `pip install -r requirements.txt`
-- Run the (legacy, see above) data pull: `python src/data_acquisition/eikon_sovereign_pull.py`
-  — requires the Eikon desktop app open and logged in on the same machine.
+- Bond data pull: `python src/data_acquisition/bond_data_pull_reconstructed.py`
+  — requires Refinitiv Workspace open and logged in on the same machine
+  (university library PC only; not runnable from this environment). Not yet
+  execution-verified — see "Current state" above. The old
+  `eikon_sovereign_pull_deprecated.py` is dead; do not run it.
 - Run the macro data pull: `python src/data_acquisition/macro_pull.py`
   (`--refresh` to bypass the cache and re-fetch everything). No API keys or
   desktop apps required — World Bank, IMF DataMapper, and FRED's CSV
@@ -86,15 +107,27 @@ Folder layout mirrors the thesis chapters/stages 1:1. Key rules:
 
 ## Data acquisition status (settled facts — do not re-derive)
 - Use `lseg-data`, NOT `eikon` — `eikon` is incompatible with Refinitiv
-  Workspace. (See "Current state" above: the one existing pull script still
-  uses `eikon` and needs to be reconciled with this decision.)
+  Workspace. The real pull already used `lseg-data`/RDP endpoints (see
+  "Current state" above); only the now-dead `eikon_sovereign_pull_deprecated.py`
+  in this repo used the old `eikon` package, and it never produced any data
+  on disk.
 - App key must be generated via "EDP API," not "Eikon Data API".
 - Bond data pulled via `XX10YT=RR` benchmark RICs.
 - DM countries return rich field sets; EM countries typically return only
   `MID_PRICE` and `BMK_SPD` — column-renaming logic must be adaptive, never
   hardcoded, or it breaks silently on EM tickers.
-- `YLDTOMAT` (yield to maturity) is licence-blocked for all non-US
-  countries — source YTM from IMF WEO / World Bank instead.
+- `YLDTOMAT` (yield to maturity) is present only for the 5 countries in the
+  `full_dm` coverage tier — Germany, Japan, Switzerland, United Kingdom,
+  United States — populated at 98.5–100%. It is absent (not sparse — the
+  column itself does not exist) for all other 39 countries, including
+  unambiguous DM sovereigns such as Australia, Canada, France, and Italy.
+  This is not a DM-vs-EM split; it is a licence/entitlement boundary that
+  happens to coincide with the pre-existing `full_dm` tier definition. The
+  previously documented claim that YLDTOMAT is "US-only" was incorrect and
+  is superseded by this finding (full 44-country coverage check, 2026-08-10).
+  Downstream code must continue to check column presence per country rather
+  than assuming YLDTOMAT availability from DM/EM status alone. For the other
+  39 countries, source YTM from IMF WEO / World Bank instead.
 - CDS is not available as a standalone series; `INT_CDS` is only accessible
   on DM benchmark RICs.
 - `TR.IssuerRating` returns only a current snapshot, not a historical
@@ -102,12 +135,23 @@ Folder layout mirrors the thesis chapters/stages 1:1. Key rules:
   websites.
 - Universe exclusions (structural licence constraints, not bugs): Russia
   (permissions block); Argentina, Ecuador, Panama, Dominican Republic, Qatar,
-  Saudi Arabia, UAE, Ukraine (no benchmark RICs). Note this contradicts the
-  older `UNIVERSE` dict in `eikon_sovereign_pull.py`, which still includes
-  several of these — that dict predates the exclusion decision.
+  Saudi Arabia, UAE, Ukraine (no benchmark RICs). The dead
+  `eikon_sovereign_pull_deprecated.py`'s `UNIVERSE` dict still includes
+  several of these (predates the exclusion decision) — ignore it;
+  `bond_data_pull_reconstructed.py`'s `UNIVERSE` already reflects the
+  exclusions and matches `configs/universe.yaml`.
 - EM data sparsity is a structural constraint of the university licence, not
   a script error — thesis sections 1.4, 3.2, 3.3, 3.4, 4.2.1, 6.6, and
   Appendix B need to reflect this framing.
+- **Bond/CDS/ratings pull provenance**: the raw data in `data/raw/bonds/`
+  and `data/raw/ratings/` came from an untracked script (`data_pull.py`, run
+  2026-06-08 on a university-library Windows PC) that could not be
+  recovered. `bond_data_pull_reconstructed.py` is a structurally-verified,
+  execution-unverified reconstruction — see "Current state" above and the
+  script's own docstring for the full verification note. No further bond
+  pull is needed before Stage 2 (existing data already feeds Stage 1
+  successfully); the open item is reproducibility documentation for
+  Appendix A, not missing data.
 
 ## Macro data acquisition (World Bank / IMF WEO / FRED — settled facts)
 `src/data_acquisition/macro_pull.py` pulls all macro/fundamental and
