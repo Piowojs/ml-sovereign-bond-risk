@@ -28,6 +28,7 @@ after the fact from memory.
 | Stage 2 (`src/stage2_signal/`) built — see 2026-08-11 chronological entries below | §4.3, RQ2/H2 | — | **Done.** H2 not rejected (LASSO mean IC +0.076 but p=0.205, doesn't clear the p<0.05 bar). Two follow-up diagnostics (2026-08-11) tested whether this is a power problem — both point away from that reading (AUC collapses to ~0.50 on 4.4x the observations); see CLAUDE.md "Stage 2 signal" for the full picture and the "this specification, not this universe" distinction that should carry into §6.2/§7.4. |
 | No coupon-rate/cashflow field exists anywhere in the raw bond pull — Stage 2's "total return" is a documented price-return proxy, not true coupon-inclusive total return | §4.3.2, Appendix B | Structural licence/data limitation (generic benchmark composite RICs, not individual bond issues) — not fixable without different source data | Documented and flagged per-row (`has_income_component`), not silently approximated — see CLAUDE.md "Stage 2 signal" |
 | Stage 2 EM satellite population is small-N by construction (median 4-8 countries/quarter, EM rows in only 65/84 quarters) | §4.3.3/§4.3.4 result reliability | Inherited from Stage 1's clustering output — would require revisiting Stage 1's residual global-regime sensitivity (already an open item above) to change | Documented as a first-order caveat on every Stage 2 result. **Update (2026-08-11 diagnostics)**: the small-N caveat still applies to *precision* of the estimate, but two diagnostics found no evidence it's suppressing a real signal — see the Stage 2 row above. |
+| **PRE-REGISTERED, not yet run**: H2 multi-horizon robustness check — same Stage 2 population/features/fixed hyperparameters, target return horizon swapped to monthly (30d) and semi-annual (182d) alongside the existing quarterly (~91d), IC + AUC to be reported for **all three regardless of outcome** | §2.8 (Harvey/Liu/Zhu multiple-testing standard), §5.5, §6.2/§7.4 framing of H2 | — | **Committed to before running** (this row + the chronological entry below), specifically so the p<0.05 bar for whichever horizon(s) clear it can't be read as the result of an undisclosed search across horizons. Quarterly was chosen originally to match rebalancing frequency, not from theory about where predictability should appear — §2.4's factor literature documents fixed-income momentum/carry effects across 1-12 month horizons, motivating the check. |
 | Stage 3/4 (`stage3_portfolio/`, `stage4_evaluation/`) not started | Everything downstream of Stage 2 | — | Not started — Stage 1 and Stage 2 are now fully built; this is the next major phase |
 
 ---
@@ -85,6 +86,62 @@ isn't feasible before a deadline.
 ---
 
 ## Chronological log
+
+### 2026-08-11 — PRE-REGISTRATION: H2 multi-horizon robustness check (committed before running)
+**This entry is written and committed before the check below it is run or
+its results are known.** The commit timestamp/hash on this entry is the
+audit trail that the protocol below was fixed in advance, not adjusted
+after seeing which horizon(s), if any, clear H2's bar — the standard
+thesis §2.8 (Harvey, Liu & Zhu, 2016) argues for on multiple testing in
+financial ML, applied here to our own testing rather than only cited
+against the literature.
+
+**Motivation**: Stage 2's target return horizon (thesis §4.3.2, "excess
+total return ... in the subsequent quarter") was set to match the
+pipeline's quarterly rebalancing frequency (thesis §4.4.3's base case),
+not derived from any theoretical claim about which horizon sovereign
+return predictability should appear at. Thesis §2.4's factor literature
+(Ilmanen 1995; Koijen, Moskowitz, Pedersen & Vrugt 2018 on carry;
+Asness, Moskowitz & Pedersen 2013) documents fixed-income
+momentum/carry effects across a 1-12 month range, not specifically at
+~3 months — so it's a legitimate open question whether Stage 2's
+already-built quarterly-horizon result (mean IC +0.076, p=0.205 -- not
+significant; AUC 0.560) would look different at a shorter or longer
+horizon.
+
+**Protocol, fixed now**:
+- Three horizons: monthly (30 calendar days forward), quarterly (the
+  existing ~91-day/next-rebalancing-date target, reused as-is from
+  `stage2_signal_panel.parquet` -- not recomputed), semi-annual (182
+  days forward).
+- **Same population** at all three horizons: the identical (country,
+  rebal_date) rows already in the quarterly panel (Stage 1's EM
+  `satellite-candidate` cross-sections) -- only the forward-return
+  window changes, not the observation calendar (which stays quarterly;
+  this is not a re-run of Stage 1 at monthly/semi-annual frequency).
+- **Same features** at all three horizons -- reused unchanged from the
+  existing panel (features are as-of `rebal_date`, horizon-independent
+  by construction).
+- **Same model specification** at all three horizons -- identical LASSO/
+  Random Forest/XGBoost hyperparameters as the production Stage 2
+  pipeline (`configs/params.yaml: stage2_signal`), explicitly NOT
+  re-tuned per horizon, so any IC/AUC difference reflects the horizon,
+  not a better-fit model.
+- **All three results will be reported, unconditionally.** If exactly
+  one horizon clears IC>0.05 and p<0.05, that will be reported as "1 of
+  3 pre-registered horizons clears H2's bar" (with the appropriate
+  multiple-testing caveat), not as "H2 holds at horizon X" in isolation.
+  If none clear it, that's reported too, consistent with how the
+  quarterly-only result and the two power-vs-absence diagnostics were
+  already reported without adjustment.
+
+Not yet run as of this commit. See the next chronological entry (above,
+since newest-first) for results.
+
+Commit: (pending, docs-only) · issue #5 (already closed) — pre-registration
+only, precedes the check
+
+---
 
 ### 2026-08-11 — Stage 2 power-vs-absence diagnostics: two exploratory runs, not part of the tracked pipeline
 **What**: Immediately after Stage 2's build (entry below — read that one

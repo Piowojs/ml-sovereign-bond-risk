@@ -202,6 +202,24 @@ stage2_signal:
   chosen_model_regression: "lasso"
   output_dir: "data/processed"
 
+# Stage 2 H2 multi-horizon robustness check (thesis Sec 2.4, 2.8 --
+# pre-registered 2026-08-11, see state.md, before this was run). Tests
+# whether the quarterly-horizon target (chosen to match rebalancing
+# frequency, not from theory about where predictability should appear)
+# is masking a stronger signal at a shorter or longer horizon. Fixed
+# BEFORE running: same satellite-candidate population and features as the
+# quarterly panel (only the forward-return window changes), same model
+# hyperparameters as stage2_signal above (no re-tuning per horizon). All
+# three horizons are reported unconditionally, per thesis Sec 2.8
+# (Harvey, Liu & Zhu) applied to our own testing.
+stage2_multi_horizon_robustness:
+  horizons_days: {monthly: 30, quarterly: 91, semi_annual: 182}
+  # quarterly reuses stage2_signal_panel.parquet's existing target as-is
+  # (the real next-rebalancing-date price, not a 91-day daily lookup) --
+  # only monthly/semi_annual use a forward as-of daily-price lookup.
+  forward_asof_tolerance_days: 10
+  output_dir: "data/processed"
+
 # Ratings ingestion (src/data_acquisition/ingest_ratings.py, issue #3).
 # Consolidates manually-collected rating-action files -- see that script's
 # docstring for why this is manual rather than a scripted pull.
