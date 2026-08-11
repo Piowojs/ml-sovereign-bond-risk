@@ -152,7 +152,7 @@ choice was a plausible alternative explanation for the null and this
 check closes it off, at least for the monthly-to-semi-annual range and
 this fixed model specification.
 
-Commit: (pending) · issue #5 (already closed) — results of the
+Commit: `9f8e99f` · issue #5 (already closed) — results of the
 pre-registered check below
 
 ---
