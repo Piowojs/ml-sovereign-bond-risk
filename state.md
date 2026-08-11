@@ -28,7 +28,7 @@ after the fact from memory.
 | Stage 2 (`src/stage2_signal/`) built — see 2026-08-11 chronological entries below | §4.3, RQ2/H2 | — | **Done.** H2 not rejected (LASSO mean IC +0.076 but p=0.205, doesn't clear the p<0.05 bar). Two follow-up diagnostics (2026-08-11) tested whether this is a power problem — both point away from that reading (AUC collapses to ~0.50 on 4.4x the observations); see CLAUDE.md "Stage 2 signal" for the full picture and the "this specification, not this universe" distinction that should carry into §6.2/§7.4. |
 | No coupon-rate/cashflow field exists anywhere in the raw bond pull — Stage 2's "total return" is a documented price-return proxy, not true coupon-inclusive total return | §4.3.2, Appendix B | Structural licence/data limitation (generic benchmark composite RICs, not individual bond issues) — not fixable without different source data | Documented and flagged per-row (`has_income_component`), not silently approximated — see CLAUDE.md "Stage 2 signal" |
 | Stage 2 EM satellite population is small-N by construction (median 4-8 countries/quarter, EM rows in only 65/84 quarters) | §4.3.3/§4.3.4 result reliability | Inherited from Stage 1's clustering output — would require revisiting Stage 1's residual global-regime sensitivity (already an open item above) to change | Documented as a first-order caveat on every Stage 2 result. **Update (2026-08-11 diagnostics)**: the small-N caveat still applies to *precision* of the estimate, but two diagnostics found no evidence it's suppressing a real signal — see the Stage 2 row above. |
-| **PRE-REGISTERED, not yet run**: H2 multi-horizon robustness check — same Stage 2 population/features/fixed hyperparameters, target return horizon swapped to monthly (30d) and semi-annual (182d) alongside the existing quarterly (~91d), IC + AUC to be reported for **all three regardless of outcome** | §2.8 (Harvey/Liu/Zhu multiple-testing standard), §5.5, §6.2/§7.4 framing of H2 | — | **Committed to before running** (this row + the chronological entry below), specifically so the p<0.05 bar for whichever horizon(s) clear it can't be read as the result of an undisclosed search across horizons. Quarterly was chosen originally to match rebalancing frequency, not from theory about where predictability should appear — §2.4's factor literature documents fixed-income momentum/carry effects across 1-12 month horizons, motivating the check. |
+| H2 multi-horizon robustness check (pre-registered 2026-08-11, run 2026-08-11) — monthly (30d) / quarterly (~91d) / semi-annual (182d), 3 models x 2 framings = 18 combinations | §2.8 (Harvey/Liu/Zhu multiple-testing standard), §5.5, §6.2/§7.4 framing of H2 | — | **Done. 0 of 9 regression combinations clear H2's bar** (IC>0.05 and p<0.05) — not even before any multiple-testing correction, so correction only reinforces the null, doesn't change it. Best regression IC is still quarterly/LASSO (+0.076, p=0.205); monthly is ~flat (+0.001, p=0.495); semi-annual goes negative (-0.049, p=0.714). One genuinely interesting, NOT pre-specified-as-a-bar observation: monthly/LASSO classification AUC=0.617, the highest AUC anywhere in Stage 2's investigation (vs quarterly 0.560, semi-annual 0.467 — below chance) — flagged for §7.4 as suggestive, unvalidated (H2's formal test is the IC/regression framing only, no significance test was pre-specified for AUC), not promoted into a conclusion. See CLAUDE.md "Stage 2 signal" and `data/processed/stage2_multi_horizon_robustness_summary.csv`. |
 | Stage 3/4 (`stage3_portfolio/`, `stage4_evaluation/`) not started | Everything downstream of Stage 2 | — | Not started — Stage 1 and Stage 2 are now fully built; this is the next major phase |
 
 ---
@@ -86,6 +86,76 @@ isn't feasible before a deadline.
 ---
 
 ## Chronological log
+
+### 2026-08-11 — H2 multi-horizon robustness check: results (0 of 9 regression combinations clear the bar)
+**What**: Ran the protocol pre-registered and committed in the entry
+directly below this one (`354afdb`/`99d118e`, both preceding this run).
+`src/stage2_signal/multi_horizon_robustness.py` reuses the exact
+satellite-candidate population and feature columns already in
+`stage2_signal_panel.parquet`, recomputes only the target return for
+monthly (30d) and semi-annual (182d) horizons via a new forward as-of
+daily-price lookup (`stage2_utils.forward_price_asof`), reuses the
+existing quarterly target as-is, and runs the identical, NOT re-tuned
+LASSO/Random Forest/XGBoost walk-forward comparison
+(`model_comparison.run_walk_forward`, imported directly rather than
+reimplemented) at all three. Population size is stable across horizons
+(monthly 265 / quarterly 274 / semi-annual 263 target-realized rows out
+of 554), so differences below reflect the horizon, not a smaller sample.
+
+**Full results** (`data/processed/stage2_multi_horizon_robustness_summary.csv`,
+all 18 horizon x model x framing combinations, all reported per the
+pre-registered commitment):
+
+| Horizon | Model | Regression mean IC | one-sided p | Classification AUC |
+|---|---|---|---|---|
+| Monthly | lasso | +0.0015 | 0.495 | 0.617 |
+| Monthly | random_forest | -0.0235 | 0.606 | 0.590 |
+| Monthly | xgboost | -0.0422 | 0.682 | 0.600 |
+| Quarterly | lasso | +0.0758 | 0.205 | 0.560 |
+| Quarterly | random_forest | -0.1675 | 0.965 | 0.546 |
+| Quarterly | xgboost | -0.2613 | 1.000 | 0.550 |
+| Semi-annual | lasso | -0.0487 | 0.714 | 0.467 |
+| Semi-annual | random_forest | -0.0226 | 0.589 | 0.496 |
+| Semi-annual | xgboost | -0.1410 | 0.940 | 0.442 |
+
+**H2 bar (IC>0.05 and p<0.05, thesis §1.5) -- 0 of 9 regression
+combinations clear it.** Quarterly/LASSO remains the closest (already
+reported: +0.076, p=0.205). Monthly is essentially flat (+0.0015,
+p=0.495) rather than stronger, and semi-annual actually turns negative
+(-0.049, p=0.714) with an AUC (0.467) below chance. Since none of the 9
+regression tests reach significance even before any multiple-testing
+adjustment, the Harvey/Liu/Zhu (thesis §2.8) correction that would be
+needed if something *had* looked significant across this 9-test family
+isn't the operative issue here -- the finding is a clean, uncorrected
+null across the whole pre-registered family, which is a *stronger*, not
+weaker, form of "H2 not rejected" than the single-horizon quarterly
+result alone.
+
+**One flagged, non-bar observation**: monthly/LASSO's classification AUC
+(0.617) is the highest AUC value seen anywhere across Stage 2's full
+investigation (quarterly 0.560; the full-EM-universe power diagnostic's
+best was ~0.50). This is genuinely interesting but explicitly **not**
+promoted into a claim here: thesis §1.5's H2 test is defined via the
+regression/IC framing only -- no significance threshold was ever
+pre-specified for AUC, and with 9 model x horizon combinations now in
+play, treating one AUC number as a finding without a matching
+significance test and multiple-testing accounting would be exactly the
+kind of post-hoc mining §2.8 warns against. Recorded as a lead for §7.4
+future work (a monthly-horizon classification-only follow-up would need
+its own pre-registration), not folded into the H2 conclusion.
+
+**Bottom line for §6.2/§7.4**: "this specification doesn't recover a
+premium" (already the conclusion from the earlier power-vs-absence
+diagnostics) now generalizes across three pre-registered horizons, not
+just the one originally built to match rebalancing frequency -- horizon
+choice was a plausible alternative explanation for the null and this
+check closes it off, at least for the monthly-to-semi-annual range and
+this fixed model specification.
+
+Commit: (pending) · issue #5 (already closed) — results of the
+pre-registered check below
+
+---
 
 ### 2026-08-11 — PRE-REGISTRATION: H2 multi-horizon robustness check (committed before running)
 **This entry is written and committed before the check below it is run or

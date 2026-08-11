@@ -109,6 +109,26 @@ def asof_lookback(daily: pd.Series, target_date: pd.Timestamp, lookback_days: in
     return float(window.iloc[-1])
 
 
+def forward_price_asof(daily: pd.Series, anchor_date: pd.Timestamp, horizon_days: int,
+                        tolerance_days: int) -> float:
+    """Value of `daily` at the latest available date <= (anchor_date +
+    horizon_days), but no earlier than (anchor_date + horizon_days -
+    tolerance_days) -- the forward-looking counterpart to asof_lookback,
+    used only for constructing HISTORICAL targets (multi_horizon_
+    robustness.py), never for a live feature: this looks *ahead* of
+    anchor_date, which is only valid because anchor_date is itself in the
+    past relative to when this function runs, and the resulting target is
+    never fed back in as a feature for any date <= its own realization."""
+    if daily.empty:
+        return float("nan")
+    target = anchor_date + pd.Timedelta(days=horizon_days)
+    floor = target - pd.Timedelta(days=tolerance_days)
+    window = daily[(daily.index <= target) & (daily.index >= floor)]
+    if window.empty:
+        return float("nan")
+    return float(window.iloc[-1])
+
+
 def rolling_zscore_asof(daily: pd.Series, target_date: pd.Timestamp, window_days: int) -> float:
     """(current - trailing mean) / trailing std over `window_days` ending at
     (and including) target_date -- uses only data with date <= target_date,

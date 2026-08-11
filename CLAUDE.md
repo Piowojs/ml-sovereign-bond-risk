@@ -33,8 +33,10 @@ This is an early-stage scaffold, not a working pipeline yet:
   (§4.3.2 target construction + §3.3 Stage-2-scoped features),
   `model_comparison.py` (§4.3.3 walk-forward LASSO/RF/XGBoost comparison,
   diagnostic), `build_return_signals.py` (§4.3.5 walk-forward-safe
-  production signal + top-N output), and `feature_importance.py` (§4.3.4
-  SHAP) — see "Stage 2 signal" below for full details, including a real
+  production signal + top-N output), `feature_importance.py` (§4.3.4
+  SHAP), and `multi_horizon_robustness.py` (§2.4/§2.8 pre-registered
+  robustness check across monthly/quarterly/semi-annual return horizons)
+  — see "Stage 2 signal" below for full details, including a real
   data gap discovered before building (no coupon/cashflow field exists
   anywhere in the raw bond pull) and its documented, flagged workaround.
   `stage3_portfolio/`, `stage4_evaluation/` are still empty.
@@ -167,6 +169,13 @@ linter config, no packaging file). What exists today:
   `python src/stage2_signal/feature_importance.py` — writes
   `data/processed/stage2_shap_importance.csv`. Full-sample diagnostic fit,
   not a walk-forward output — see "Stage 2 signal" below.
+- Run the H2 multi-horizon robustness check (§2.4, §2.8 — pre-registered,
+  see "Stage 2 signal" below and `state.md`):
+  `python src/stage2_signal/multi_horizon_robustness.py` — writes
+  `data/processed/stage2_multi_horizon_robustness.csv` (per-fold) and
+  `stage2_multi_horizon_robustness_summary.csv`. Reuses
+  `stage2_signal_panel.parquet`; rerun `build_stage2_panel.py` first if
+  Stage 1's risk labels change.
 - Run `test_lag_rules.py` after any change touching data loading, feature
   construction, clustering inputs, or backtesting logic —
   this is the project's core correctness check (see Bias-prevention rules).
@@ -938,6 +947,56 @@ premium, not a general claim that no premium is recoverable by any
 specification. That distinction should carry through directly into how
 §6.2 and §7.4 (future work — richer market features, re-tuned
 hyperparameters, alternative EM universes) characterize the result.
+
+**H2 multi-horizon robustness check (§2.4, §2.8) — pre-registered, run,
+0 of 9 regression combinations clear the bar.** The quarterly target
+horizon was originally chosen to match rebalancing frequency (§4.4.3),
+not derived from theory about where sovereign return predictability
+should appear — §2.4's factor literature (Ilmanen 1995; Koijen et al.
+2018; Asness, Moskowitz & Pedersen 2013) spans 1-12 months. Committed to
+the protocol in `state.md` (dated, committed *before* running, so the
+result can't be read as a post-hoc search) then ran
+`src/stage2_signal/multi_horizon_robustness.py`: same satellite-candidate
+population and features, same fixed model hyperparameters (no re-tuning),
+target horizon swapped to monthly (30d) and semi-annual (182d) alongside
+the existing quarterly (~91d, reused as-is). All three reported
+unconditionally, per §2.8 (Harvey, Liu & Zhu) applied to Stage 2's own
+testing:
+
+| Horizon | Model | Regression mean IC | one-sided p | Classification AUC |
+|---|---|---|---|---|
+| Monthly | lasso | +0.0015 | 0.495 | 0.617 |
+| Monthly | random_forest | -0.0235 | 0.606 | 0.590 |
+| Monthly | xgboost | -0.0422 | 0.682 | 0.600 |
+| Quarterly | lasso | +0.0758 | 0.205 | 0.560 |
+| Quarterly | random_forest | -0.1675 | 0.965 | 0.546 |
+| Quarterly | xgboost | -0.2613 | 1.000 | 0.550 |
+| Semi-annual | lasso | -0.0487 | 0.714 | 0.467 |
+| Semi-annual | random_forest | -0.0226 | 0.589 | 0.496 |
+| Semi-annual | xgboost | -0.1410 | 0.940 | 0.442 |
+
+**0 of 9 regression combinations clear H2's bar** (IC>0.05 and p<0.05) —
+quarterly/LASSO remains the closest (+0.076, p=0.205); monthly is
+essentially flat (+0.0015, p=0.495) rather than stronger; semi-annual
+turns negative (-0.049, p=0.714) with AUC (0.467) below chance. Since
+none of the 9 tests reach significance even *before* any multiple-testing
+correction, Harvey/Liu/Zhu-style correction (needed when something looks
+significant across a family of tests and you must ask if it's real)
+isn't the operative concern here — this is a clean, uncorrected null
+across the whole pre-registered family, a *stronger* form of "H2 not
+rejected" than the single-horizon result alone, and it closes off horizon
+choice as an alternative explanation for the quarterly null.
+
+**One flagged, deliberately not-promoted observation**: monthly/LASSO's
+classification AUC (0.617) is the highest AUC seen anywhere in Stage 2's
+full investigation (quarterly 0.560; the full-EM-universe power
+diagnostic's best was ~0.50). Recorded as a §7.4 future-work lead, not
+folded into the H2 conclusion — thesis §1.5's H2 test is defined via the
+regression/IC framing only, no significance threshold was ever
+pre-specified for AUC, and with 9 combinations now in play, treating one
+unvalidated AUC number as a finding would be exactly the kind of
+post-hoc mining §2.8 warns against. A monthly-horizon,
+classification-specific follow-up would need its own pre-registration.
 
 **Output (§4.3.5).** `data/processed/stage2_return_signals.parquet` — one
 row per (country, rebal_date) with `predicted_excess_return` (continuous,
