@@ -19,7 +19,7 @@ after the fact from memory.
 
 | Item | Blocks | Whose action | Status |
 |---|---|---|---|
-| Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10/2026-08-11 reconciliation entries below; agency IR pages for gaps neither source covers). See the transcription priority list below for sequencing. | **In progress — 2/44 (Greece, Turkey) done**, both reconciled via `reconcile_ratings_sources.py` (172 + 170 = 342 rows, 3 conflicts total found and resolved). 42 to go, continuing with the rest of Tier 1. |
+| Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10/2026-08-11 reconciliation entries below; agency IR pages for gaps neither source covers). See the transcription priority list below for sequencing. **Reminder for multi-word countries**: pass the underscore form (`Sri_Lanka`, not `Sri Lanka`) as the script's `country` argument — it's used verbatim as the output filename and must match `configs/universe.yaml`'s `name.replace(" ", "_")` for `ingest_ratings.py`'s coverage check to recognize it (caught once on Sri Lanka, fixed before anything downstream ran on the wrong filename). | **In progress — 3/44 (Greece, Turkey, Sri Lanka) done**, all reconciled via `reconcile_ratings_sources.py` (172 + 170 + 118 = 460 rows, 3 conflicts total found and resolved, all on Greece/Turkey). 41 to go, continuing with the rest of Tier 1. |
 | §4.2.4 lead/lag analysis (`ratings_leadlag_stub.py`) | §4.2.4, RQ1/H1 | Blocked on the ratings item above; also needs `build_risk_labels.py` extended to emit a continuous risk score, not just the categorical tier (see CLAUDE.md "Stage 1 clustering") | Interface stubbed, not implemented |
 | Residual global-regime sensitivity in Stage 1 clustering (`core-eligible` = 0 for several consecutive quarters, 2009-2017) | §5.5 candidate robustness check; not blocking Stage 3/4 | Open — see CLAUDE.md "Stage 1 clustering" for the full diagnosis (us_10y/curve_slope are global-only features, thesis §3.3 keeps them in Stage 1 regardless) | Documented, not fixed further without a methodology-level call to override the thesis's own feature-group spec |
 | Execution-verify `bond_data_pull_reconstructed.py` (does it actually run/chunk/return data as designed) | Appendix A reproducibility only — not blocking, since existing bond data already feeds Stage 1 | User (requires a session on the university-library Windows PC with Refinitiv Workspace) | Not started |
@@ -40,7 +40,7 @@ yet verified against the actual transcribed data.
 
 - **Tier 1 (do first — explicit crisis case studies named in the thesis
   outline itself)**: ~~Greece~~ (done, 2026-08-10), ~~Turkey~~ (done,
-  2026-08-11), Portugal, Zambia, Sri Lanka.
+  2026-08-11), ~~Sri Lanka~~ (done, 2026-08-11), Portugal, Zambia.
 - **Tier 2 (high value — sharp multi-notch moves)**: Italy, Spain, South
   Africa, Brazil, Colombia, Egypt, Pakistan, Nigeria.
 - **Tier 3 (moderate — real notches, plus two "even safe sovereigns
@@ -61,6 +61,102 @@ isn't feasible before a deadline.
 ---
 
 ## Chronological log
+
+### 2026-08-11 — Sri Lanka reconciled: three more edge cases (NR rating, (P) prefix, month-boundary blind spot), zero conflicts
+**What**: Sri Lanka run through `reconcile_ratings_sources.py` as-is
+(same two-sheet workbook format as Greece/Turkey). Zero genuine
+cross-source conflicts -- a first, after Greece's 1 and Turkey's 2 -- but
+three new structural findings, two of them real bugs (not false
+positives like Turkey's duplicate-warning noise):
+
+1. **GE used a not-rated/withdrawn token as the rating itself, not just
+   the outlook.** A literal GE row: `S&P, rating="NR", outlook="NR",
+   2019-04`. Crashed the run outright (`_validate_ratings_mappable`
+   correctly refused to invent a numeric position for "not rated" on the
+   ordinal scale) -- a loud failure, not a silent one, but still blocking.
+   Fixed with `_drop_not_rated()`: rows are dropped only when the
+   *rating* field itself is a not-rated token (`NOT_RATED_TOKENS`,
+   currently just `NR`), with a warning naming the row. Deliberately
+   scoped to the rating field only -- several of Sri Lanka's Fitch rows
+   legitimately carry `outlook="NR"` (a real rating, just no outlook
+   given) and are untouched by this filter, which only inspects `rating`.
+2. **The `(P)`-provisional-prefix quirk the user flagged in advance**
+   (CE's Moody's ratings sometimes read `(P)B1`, a leading qualifier
+   meaning "provisional," not an outlook -- unlike point 2's *trailing*
+   `(Outlook)` pattern) turned out not to appear in this file (manually
+   pre-cleaned before transcription, as the user noted), so it wasn't
+   exercised on real data. Implemented anyway per the user's explicit
+   ask, since it's a documented recurring risk for future countries, not
+   a hypothetical: `PROVISIONAL_PREFIX_RE` strips the prefix in
+   `_clean_rating_outlook` and folds a `(provisional)` note into `source`
+   rather than leaving `(P)B1` to fail `RATING_MAP` lookup. Verified
+   against a synthetic `(P)B1` input (`_clean_rating_outlook` output:
+   rating `B1`, source `... (provisional)`, `rating_numeric` 14) before
+   touching real data.
+3. **A genuine cross-month-boundary duplicate, structurally invisible to
+   the reconciliation script itself.** CE has one Fitch row, `CCC`, dated
+   2020-11-27 (exact day); GE has one Fitch row, `CCC`, dated 2020-12-01
+   (month-precision) -- almost certainly the same real action, 4 days
+   apart, straddling a month boundary. Because
+   `reconcile_ratings_sources.py` buckets matching candidates by calendar
+   month, these two rows were never even compared against each other --
+   each landed in its own month's bucket as an "only one source has it"
+   addition, so both survived into the merged output as two rows.
+   `ingest_ratings.py`'s duplicate-action warning caught it downstream,
+   exactly the case it exists for. Deliberately **not** fixed by widening
+   the matching window across month boundaries -- that risks the opposite
+   failure (silently conflating two genuinely distinct actions that
+   happen to fall a few days apart on either side of a boundary), which
+   is a worse outcome than one redundant `affirm` row surviving with a
+   visible warning attached. Documented in the reconciliation script's
+   docstring as a known, accepted limitation, not an open bug.
+
+**Default-designation behavior, directly checked per the user's specific
+ask**: Sri Lanka's 2022 default was a single SD (S&P, 2022-04-25) and a
+single RD (Fitch, 2022-05-19) in CE, each preceded by an ordinary
+graduated descent through lower ratings (S&P: CCC -> CC -> SD; Fitch: CC
+-> C -> RD) -- i.e. CE represents the prolonged distress as a normal
+sequence of downgrades terminating in one default flag per agency, not as
+multiple SD/RD-type designations. This matches Greece's pattern (one
+default flag per agency) even though the real-world restructuring
+dragged on for over two years. GE showed the same systematic gap seen on
+Greece, but *more severe*: GE has zero rows at all for S&P or Fitch
+between Jan 2022 and Dec 2024 respectively (S&P: Jan 2022 -> Sep 2025
+directly; Fitch: Jun 2021 -> Dec 2024 directly) -- a multi-year
+blackout spanning the entire distressed/default/restructuring window for
+both agencies, not just a missing single-date row at the SD/RD moment
+itself. Required no code change (the existing default-designation
+override and general union-of-months policy already handle this
+correctly), but strengthens the case for treating GE as structurally
+unreliable around any default/restructuring episode, worth keeping in
+mind for Zambia (still pending, also a 2020 default).
+
+**Also caught, an operational mistake of my own**: first invocation used
+`"Sri Lanka"` (with a space) as the script's country argument, producing
+`Sri Lanka.csv` -- which doesn't match `configs/universe.yaml`'s
+`Sri_Lanka` (underscore) naming convention that `ingest_ratings.py`'s
+coverage check keys off. Caught before anything downstream ran against
+the wrong filename; re-ran with `Sri_Lanka`. Noted in the Open Items table
+above as a reminder for future multi-word countries (Czech Republic,
+South Africa, United Kingdom, United States).
+
+**Verified**: 118 reconciled rows in `Sri_Lanka.csv`; combined with
+Greece and Turkey, 460 rows run through `ingest_ratings.py` with exactly
+the one expected duplicate-action warning (the month-boundary case above)
+and no others; `test_lag_rules.py` passes 7/7. Greece and Turkey re-run
+as regression checks -- both unaffected by all three new fixes (172/1
+resolved and 170/2 resolved, unchanged).
+
+**Running tally after 3 of 44 countries**: 7 reconciliation-logic edge
+cases found across Greece/Turkey/Sri Lanka (2 false-positive-matching
+bugs fixed on Greece, 1 exact-duplicate bug fixed on Turkey, 2 real bugs
+fixed on Sri Lanka [NR rating, (P)-prefix handling], 1 accepted
+structural limitation documented on Sri Lanka [month-boundary blind
+spot], 1 of my own operational mistakes caught [country-argument
+naming]). 3 genuine cross-source conflicts found total (Greece 1, Turkey
+2), zero on Sri Lanka.
+
+Commit: (pending, this session) · Issue: #3
 
 ### 2026-08-11 — Turkey reconciled: a fourth reconciliation edge case found and fixed, two conflicts resolved via primary-source research
 **What**: Turkey transcribed against both GE and CE (same two-sheet

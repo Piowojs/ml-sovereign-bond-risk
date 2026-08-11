@@ -375,29 +375,41 @@ yet for a country just means it's absent from the output, not an error.
   `data/raw/ratings/manual/<Country>.csv` this script reads, applying an
   explicit, documented priority policy rather than silently picking a
   source: CE's default-designation rows (SD/RD/D) always win, since GE
-  systematically omits them; CE's embedded-outlook and blank-rating
-  (watch/under-review) quirks are cleaned up before comparison;
-  byte-for-byte duplicate rows within a single source are dropped before
-  any matching; agreeing (agency, month) rows from both sources collapse
-  into one row preferring CE's exact date; genuinely disagreeing rows are
-  written to `_reconciliation/<Country>_conflicts.csv`, never
-  auto-resolved, and only enter the merged output once a matching row
-  appears in `_reconciliation/<Country>_resolutions.csv` recording which
-  source was chosen, at what confidence, and why. See that script's
-  docstring for the full policy and `state.md` for the worked Greece and
-  Turkey examples (four matching-logic edge cases the real data caught
-  across the two countries, and how each was fixed).
+  systematically omits them; not-rated/withdrawn tokens (e.g. `NR`) in
+  the *rating* field are dropped rather than crashing an unmappable
+  `RATING_MAP` lookup; CE's embedded-outlook, leading `(P)`-provisional
+  prefix, and blank-rating (watch/under-review) quirks are cleaned up
+  before comparison; byte-for-byte duplicate rows within a single source
+  are dropped before any matching; agreeing (agency, month) rows from
+  both sources collapse into one row preferring CE's exact date;
+  genuinely disagreeing rows are written to
+  `_reconciliation/<Country>_conflicts.csv`, never auto-resolved, and
+  only enter the merged output once a matching row appears in
+  `_reconciliation/<Country>_resolutions.csv` recording which source was
+  chosen, at what confidence, and why. **Known, accepted limitation**:
+  matching buckets by calendar month means a same-action pair straddling
+  a month boundary (CE's exact late-month date vs GE's 1st-of-*next*-
+  month rounding) won't be caught as a match — found on Sri Lanka
+  (Fitch, Nov 27 CE vs Dec 1 GE, same rating) and surfaced instead by
+  `ingest_ratings.py`'s downstream duplicate-action warning, which is
+  the accepted safety net for this gap rather than a bug to chase with
+  riskier cross-month matching. See that script's docstring for the full
+  policy and `state.md` for the worked Greece/Turkey/Sri Lanka examples
+  (six matching-logic edge cases the real data caught across the three
+  countries, and how each was handled).
 - **Status as of 2026-08-11**: pipeline built and verified against
   synthetic test files (mapping, action/outlook_change inference,
   duplicate-action detection, Scope rejection, and coverage logging all
-  confirmed correct); **2/44 countries collected — Greece and Turkey**,
-  both reconciled from GE + CE via `reconcile_ratings_sources.py` (172 +
-  170 = 342 rows; 3 genuine cross-source conflicts found and resolved
-  total — Greece's 1 via screenshot cross-check, Turkey's 2 via
-  primary-source research at differing confidence levels, all recorded in
-  each country's `_reconciliation/<Country>_resolutions.csv`). Manually
-  collecting and transcribing the remaining 42 per-country files is open,
-  user-side work — see `state.md` for the full log, including a priority
+  confirmed correct); **3/44 countries collected — Greece, Turkey, Sri
+  Lanka**, all reconciled from GE + CE via `reconcile_ratings_sources.py`
+  (172 + 170 + 118 = 460 rows; 3 genuine cross-source conflicts found and
+  resolved total, all on Greece/Turkey — Sri Lanka had zero conflicts;
+  Sri Lanka's 2022 default sequence confirmed the same GE
+  default-designation gap seen on Greece, extending across the *entire*
+  2022-2024 distressed/restructuring window for S&P and Fitch, not just
+  the SD/RD moment itself). Manually collecting and transcribing the
+  remaining 41 per-country files is open, user-side work — see `state.md`
+  for the full log, including a priority
   order for which countries to transcribe next, and issue #3 for
   tracking.
 

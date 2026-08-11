@@ -37,6 +37,26 @@ between them that a naive "pick a primary source" merge would get wrong:
    each source before any cross-source matching runs, so it only ever
    removes true transcription duplicates, never two genuinely close but
    distinct actions (which always differ in at least date).
+5. **GE can use a "not rated"/withdrawn token as the *rating itself*, not
+   just as an outlook.** Found on Sri Lanka: a literal GE row with
+   `rating="NR"` (S&P, 2019-04) -- distinct from the many GE rows that
+   legitimately carry `outlook="NR"` (rating still a real letter grade,
+   just no outlook given, e.g. several of Sri Lanka's Fitch rows). "Not
+   rated" isn't a point on the ordinal `RATING_MAP` scale -- it means the
+   agency withdrew coverage, not that the country is worse than D -- so
+   `_drop_not_rated` removes rows where the *rating* field (never
+   outlook) matches a token in `NOT_RATED_TOKENS` (currently just `NR`),
+   with a loud warning, before anything tries to map it to a number and
+   crashes.
+6. **CE prefixes some Moody's ratings with `(P)`** (e.g. `(P)B1`) to mark
+   a provisional rating -- a rating qualifier, not an outlook, and a
+   *leading* prefix, unlike point 2's trailing `(Outlook)` pattern.
+   `PROVISIONAL_PREFIX_RE` strips it in `_clean_rating_outlook` and
+   folds a `(provisional)` note into the row's `source` field instead of
+   leaving it stuck to the rating string where it would fail
+   `RATING_MAP` lookup. Not yet exercised by a merged row (Sri Lanka's
+   transcription had already been manually pre-cleaned of this pattern
+   before reconciliation), but verified against a synthetic input.
 
 Given all that, the merge policy for non-conflicting (agency, month)
 buckets is: union of both sources' months; where only one source has a
@@ -105,7 +125,19 @@ DEFAULT_CE_SHEET = "country economy"
 # doesn't (see module docstring, point 1).
 DEFAULT_DESIGNATIONS = {"SD", "RD", "D"}
 
+# "Not rated"/withdrawn tokens seen in the rating field itself (found on
+# Sri Lanka: GE has a literal S&P row with rating="NR", not just as an
+# outlook value). Not a point on the ordinal scale, so unmappable --
+# extend this set if another token (e.g. "WD") shows up on a future
+# country (see module docstring, point 5).
+NOT_RATED_TOKENS = {"NR"}
+
 EMBEDDED_OUTLOOK_RE = re.compile(r"^(?P<rating>.*?)\s*\((?P<outlook>[^)]+)\)\s*$")
+# CE's Moody's provisional-rating prefix, e.g. "(P)B1" -- (P) means
+# "provisional", not an outlook, and it's a *leading* prefix, unlike
+# EMBEDDED_OUTLOOK_RE's trailing "(Outlook)" pattern (see module
+# docstring, point 6).
+PROVISIONAL_PREFIX_RE = re.compile(r"^\(P\)\s*(?P<rating>.+)$", re.IGNORECASE)
 
 
 def _rating_numeric(rating) -> int | None:
@@ -163,10 +195,36 @@ def _load_sheet(xlsx_path: Path, sheet_name: str, source_label: str) -> pd.DataF
     return df.reset_index(drop=True)
 
 
+def _drop_not_rated(df: pd.DataFrame, source_label: str) -> pd.DataFrame:
+    """Drop rows whose *rating* field (not outlook) is a not-rated/
+    withdrawn token (see NOT_RATED_TOKENS). Found on Sri Lanka: GE had a
+    literal S&P row with rating="NR" -- "not rated" isn't a point on the
+    ordinal RATING_MAP scale (it means the agency withdrew coverage, not
+    that the country is worse than D), so it can't be given a
+    rating_numeric without inventing a meaningless value. Dropped with a
+    loud warning rather than crashing the whole reconciliation run on an
+    unmappable rating. Does NOT touch "NR" appearing as an *outlook*
+    value (e.g. GE's Fitch rows carry outlook="NR" meaning "no outlook
+    given" -- a legitimate, if uninformative, outlook string, left as-is)."""
+    is_nr = df["rating"].apply(lambda r: pd.notna(r) and str(r).strip().upper() in NOT_RATED_TOKENS)
+    n = int(is_nr.sum())
+    if n:
+        first = df[is_nr].iloc[0]
+        logging.warning(
+            f"{source_label}: dropped {n} row(s) with a not-rated/withdrawn rating token "
+            f"(e.g. {first['agency']} on {first['date'].date()}) -- not a point on the "
+            f"ordinal scale, so not representable as rating_numeric"
+        )
+    return df[~is_nr].reset_index(drop=True)
+
+
 def _clean_rating_outlook(df: pd.DataFrame) -> pd.DataFrame:
-    """Trim whitespace on rating/outlook, and strip an outlook embedded in
-    the rating field (e.g. "BBB (Positive)") out into the outlook column
-    when outlook itself is otherwise blank."""
+    """Trim whitespace on rating/outlook; strip a leading "(P)" (Moody's
+    provisional-rating prefix, e.g. "(P)B1") into a "(provisional)" note
+    on `source` rather than leaving it stuck to the rating string; and
+    strip a trailing outlook embedded in the rating field (e.g.
+    "BBB (Positive)") out into the outlook column when outlook itself is
+    otherwise blank."""
     df = df.copy()
 
     def _strip(v):
@@ -177,17 +235,25 @@ def _clean_rating_outlook(df: pd.DataFrame) -> pd.DataFrame:
 
     def _extract(row):
         rating = row["rating"]
+        source = row["source"]
         if pd.isna(rating):
-            return rating, row["outlook"]
-        m = EMBEDDED_OUTLOOK_RE.match(str(rating))
+            return rating, row["outlook"], source
+
+        rating = str(rating)
+        m_prov = PROVISIONAL_PREFIX_RE.match(rating)
+        if m_prov:
+            rating = m_prov.group("rating").strip()
+            source = f"{source} (provisional)" if pd.notna(source) else "(provisional)"
+
+        m = EMBEDDED_OUTLOOK_RE.match(rating)
         if not m:
-            return rating, row["outlook"]
+            return rating, row["outlook"], source
         extracted_rating = m.group("rating").strip()
         extracted_outlook = m.group("outlook").strip()
         outlook = row["outlook"] if pd.notna(row["outlook"]) else extracted_outlook
-        return extracted_rating, outlook
+        return extracted_rating, outlook, source
 
-    df[["rating", "outlook"]] = df.apply(lambda r: pd.Series(_extract(r)), axis=1)
+    df[["rating", "outlook", "source"]] = df.apply(lambda r: pd.Series(_extract(r)), axis=1)
     return df
 
 
@@ -271,6 +337,9 @@ def _load_resolutions(path: Path) -> pd.DataFrame:
 
 
 def reconcile(ge_df: pd.DataFrame, ce_df: pd.DataFrame, resolutions_df: pd.DataFrame):
+    ge_df = _drop_not_rated(ge_df, "GE")
+    ce_df = _drop_not_rated(ce_df, "CE")
+
     ge_df = _clean_rating_outlook(ge_df)
     ce_df = _clean_rating_outlook(ce_df)
 
