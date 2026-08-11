@@ -138,8 +138,8 @@ horizon.
 Not yet run as of this commit. See the next chronological entry (above,
 since newest-first) for results.
 
-Commit: (pending, docs-only) · issue #5 (already closed) — pre-registration
-only, precedes the check
+Commit: `354afdb` · issue #5 (already closed) — pre-registration only,
+precedes the check
 
 ---
 
