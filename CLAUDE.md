@@ -376,22 +376,27 @@ yet for a country just means it's absent from the output, not an error.
   explicit, documented priority policy rather than silently picking a
   source: CE's default-designation rows (SD/RD/D) always win, since GE
   systematically omits them; CE's embedded-outlook and blank-rating
-  (watch/under-review) quirks are cleaned up before comparison; agreeing
-  (agency, month) rows from both sources collapse into one row preferring
-  CE's exact date; genuinely disagreeing rows are written to
-  `_reconciliation/<Country>_conflicts.csv`, never auto-resolved, and
-  only enter the merged output once a matching row appears in
-  `_reconciliation/<Country>_resolutions.csv` recording which source was
-  chosen and why. See that script's docstring for the full policy and
-  `state.md` for the worked Greece example (including two matching-logic
-  bugs the real data caught and how they were fixed).
-- **Status as of 2026-08-10**: pipeline built and verified against
+  (watch/under-review) quirks are cleaned up before comparison;
+  byte-for-byte duplicate rows within a single source are dropped before
+  any matching; agreeing (agency, month) rows from both sources collapse
+  into one row preferring CE's exact date; genuinely disagreeing rows are
+  written to `_reconciliation/<Country>_conflicts.csv`, never
+  auto-resolved, and only enter the merged output once a matching row
+  appears in `_reconciliation/<Country>_resolutions.csv` recording which
+  source was chosen, at what confidence, and why. See that script's
+  docstring for the full policy and `state.md` for the worked Greece and
+  Turkey examples (four matching-logic edge cases the real data caught
+  across the two countries, and how each was fixed).
+- **Status as of 2026-08-11**: pipeline built and verified against
   synthetic test files (mapping, action/outlook_change inference,
   duplicate-action detection, Scope rejection, and coverage logging all
-  confirmed correct); **1/44 countries collected — Greece**, reconciled
-  from both GE and CE sources via `reconcile_ratings_sources.py` (172
-  rows, one genuine cross-source conflict found and resolved). Manually
-  collecting and transcribing the remaining 43 per-country files is open,
+  confirmed correct); **2/44 countries collected — Greece and Turkey**,
+  both reconciled from GE + CE via `reconcile_ratings_sources.py` (172 +
+  170 = 342 rows; 3 genuine cross-source conflicts found and resolved
+  total — Greece's 1 via screenshot cross-check, Turkey's 2 via
+  primary-source research at differing confidence levels, all recorded in
+  each country's `_reconciliation/<Country>_resolutions.csv`). Manually
+  collecting and transcribing the remaining 42 per-country files is open,
   user-side work — see `state.md` for the full log, including a priority
   order for which countries to transcribe next, and issue #3 for
   tracking.

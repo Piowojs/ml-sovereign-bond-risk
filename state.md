@@ -15,11 +15,11 @@ after the fact from memory.
 
 ---
 
-## Open items (as of 2026-08-10)
+## Open items (as of 2026-08-11)
 
 | Item | Blocks | Whose action | Status |
 |---|---|---|---|
-| Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10 reconciliation entry below; agency IR pages for gaps neither source covers). See the transcription priority list below for sequencing. | **In progress — 1/44 (Greece) done**, reconciled via `reconcile_ratings_sources.py` (172 rows, 1 conflict found and resolved). 43 to go, starting with the rest of Tier 1. |
+| Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10/2026-08-11 reconciliation entries below; agency IR pages for gaps neither source covers). See the transcription priority list below for sequencing. | **In progress — 2/44 (Greece, Turkey) done**, both reconciled via `reconcile_ratings_sources.py` (172 + 170 = 342 rows, 3 conflicts total found and resolved). 42 to go, continuing with the rest of Tier 1. |
 | §4.2.4 lead/lag analysis (`ratings_leadlag_stub.py`) | §4.2.4, RQ1/H1 | Blocked on the ratings item above; also needs `build_risk_labels.py` extended to emit a continuous risk score, not just the categorical tier (see CLAUDE.md "Stage 1 clustering") | Interface stubbed, not implemented |
 | Residual global-regime sensitivity in Stage 1 clustering (`core-eligible` = 0 for several consecutive quarters, 2009-2017) | §5.5 candidate robustness check; not blocking Stage 3/4 | Open — see CLAUDE.md "Stage 1 clustering" for the full diagnosis (us_10y/curve_slope are global-only features, thesis §3.3 keeps them in Stage 1 regardless) | Documented, not fixed further without a methodology-level call to override the thesis's own feature-group spec |
 | Execution-verify `bond_data_pull_reconstructed.py` (does it actually run/chunk/return data as designed) | Appendix A reproducibility only — not blocking, since existing bond data already feeds Stage 1 | User (requires a session on the university-library Windows PC with Refinitiv Workspace) | Not started |
@@ -39,8 +39,8 @@ little. Based on general knowledge of major sovereign rating events, not
 yet verified against the actual transcribed data.
 
 - **Tier 1 (do first — explicit crisis case studies named in the thesis
-  outline itself)**: ~~Greece~~ (done, 2026-08-10), Turkey, Portugal,
-  Zambia, Sri Lanka.
+  outline itself)**: ~~Greece~~ (done, 2026-08-10), ~~Turkey~~ (done,
+  2026-08-11), Portugal, Zambia, Sri Lanka.
 - **Tier 2 (high value — sharp multi-notch moves)**: Italy, Spain, South
   Africa, Brazil, Colombia, Egypt, Pakistan, Nigeria.
 - **Tier 3 (moderate — real notches, plus two "even safe sovereigns
@@ -61,6 +61,66 @@ isn't feasible before a deadline.
 ---
 
 ## Chronological log
+
+### 2026-08-11 — Turkey reconciled: a fourth reconciliation edge case found and fixed, two conflicts resolved via primary-source research
+**What**: Turkey transcribed against both GE and CE (same two-sheet
+workbook format as Greece) and run through
+`reconcile_ratings_sources.py` as-is, no changes expected going in. It
+surfaced a genuinely new problem Greece hadn't: **GE's raw sheet had the
+exact same row transcribed twice** -- `Fitch, BB-, Stable, 2020-02-01`,
+byte-for-byte identical, appearing twice (there were actually two such
+duplicate pairs in total, not just the one first spotted). This is a
+copy-paste duplicate within a single source, not a cross-source
+precision mismatch. Left alone, the extra copy survived cross-source
+matching as a spurious "addition" once its twin had already been paired
+against a CE row, and then tripped `ingest_ratings.py`'s duplicate-action
+warning as a downstream symptom -- the warning was doing its job
+correctly (flagging something that deserved a look), but the actual fix
+belonged upstream. Added `_drop_exact_duplicates()` to
+`reconcile_ratings_sources.py` -- drops byte-for-byte duplicate rows
+(same agency/rating/outlook/date) within each source before any
+cross-source matching, documented as the module docstring's 4th policy
+point. Re-ran Greece as a regression check: unaffected (still 172 rows,
+1 resolved conflict, zero duplicates found there) -- confirms the fix is
+narrowly targeted, not something that happens to change results for
+sources without this problem.
+
+**Two genuine cross-source conflicts found, both resolved via primary-source
+research** (not inferred or guessed, and not auto-resolved by the
+script):
+- **Moody's, Dec 2015**: GE said `Ba3/Negative`, CE said `Baa3/Negative`
+  -- a 3-notch difference crossing the investment-grade line. Resolved to
+  CE (Baa3) at **high confidence**: multiple sources (Reuters/Business
+  Standard, Sept 2016) confirm Moody's downgraded Turkey *from Baa3* to
+  Ba1 in September 2016, post-coup -- directly inconsistent with GE's
+  claim that Turkey was already at Ba3 nine months earlier.
+- **Moody's, Feb 2005**: GE said `Ba3/Positive`, CE said `B1/Positive`.
+  Resolved to CE (B1) at **moderate-good confidence**: dated bracketing
+  points confirm Moody's held Turkey at Ba3 in Nov 1999 and at B1 by Nov
+  2008, consistent with a downgrade during/after the 2001 financial
+  crisis persisting through the mid-2000s -- but no source was found
+  dated specifically to Feb 2005, so this is trajectory inference, not a
+  direct primary-source hit the way the Dec 2015 case and Greece's April
+  2021 case were. The confidence distinction is recorded verbatim in
+  `_reconciliation/Turkey_resolutions.csv`'s `note` field and carries
+  through into the merged row's `source` field, so a future reader of
+  `Turkey.csv` doesn't have to guess how solid each resolved conflict is.
+
+**Verified**: 170 reconciled rows in `Turkey.csv` (168 before the two
+conflicts were folded in); combined with Greece, 342 rows run cleanly
+through `ingest_ratings.py` into `ratings_panel.csv` with zero warnings;
+`test_lag_rules.py` passes 7/7.
+
+**Running tally after 2 of 44 countries**: 4 reconciliation edge cases
+found and fixed so far (Greece: over-strict outlook comparison,
+over-broad duplicate-warning heuristic; Turkey: exact in-source
+duplicates), plus one policy point that hasn't needed a fix yet
+(default-designation override, exercised cleanly on Greece's SD/RD
+events, not yet re-exercised on Turkey since Turkey's history in this
+workbook didn't include any). Two genuine cross-source conflicts found on
+Turkey, both resolved.
+
+Commit: (pending, this session) · Issue: #3
 
 ### 2026-08-10 — Greece: first country reconciled (GE + CE), reconcile_ratings_sources.py built
 **What**: Greece transcribed against both TheGlobalEconomy.com (GE) and

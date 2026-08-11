@@ -3,9 +3,8 @@ transcriptions for one country into data/raw/ratings/manual/<Country>.csv
 (issue #3).
 
 Why this exists: cross-referencing both sources for the same country
-(first done for Greece, 2026-08-10) surfaced three structural
-disagreements between them that a naive "pick a primary source" merge
-would get wrong:
+(first done for Greece, 2026-08-10) surfaced structural disagreements
+between them that a naive "pick a primary source" merge would get wrong:
 
 1. **CE captures default-designation events that GE systematically omits.**
    For Greece, S&P's Feb 2012 and Dec 2012 SD, and Fitch's March 2012 RD,
@@ -26,6 +25,18 @@ would get wrong:
    agency within the same source, not dropped or left null. Applied
    independently per source (GE and CE are never cross-filled from each
    other).
+4. **A single source can contain an exact-duplicate row.** Found on
+   Turkey: GE's raw sheet had the byte-for-byte identical row (Fitch,
+   BB-, Stable, 2020-02-01) transcribed twice -- a copy-paste duplicate
+   in the source workbook, not a second real action. Left alone, the
+   extra copy survives cross-source matching as a spurious "addition"
+   once its twin has already been paired against the other source, and
+   then gets flagged by ingest_ratings.py's duplicate-action warning --
+   a symptom, not the actual bug. `_drop_exact_duplicates` removes
+   byte-for-byte duplicates (same agency/rating/outlook/date) within
+   each source before any cross-source matching runs, so it only ever
+   removes true transcription duplicates, never two genuinely close but
+   distinct actions (which always differ in at least date).
 
 Given all that, the merge policy for non-conflicting (agency, month)
 buckets is: union of both sources' months; where only one source has a
@@ -211,6 +222,31 @@ def _forward_fill_rating(df: pd.DataFrame, source_label: str) -> pd.DataFrame:
     return pd.DataFrame(kept).reset_index(drop=True) if kept else df.iloc[0:0]
 
 
+def _drop_exact_duplicates(df: pd.DataFrame, source_label: str) -> pd.DataFrame:
+    """Drop byte-for-byte duplicate rows (same agency/rating/outlook/date)
+    within a single source. Found on Turkey: TheGlobalEconomy's raw sheet
+    had the identical row (Fitch, BB-, Stable, 2020-02-01) transcribed
+    twice -- a copy-paste duplicate in the source workbook, not a second
+    real action and not a cross-source precision mismatch (the thing
+    ingest_ratings.py's duplicate-action warning targets). Left
+    undeduplicated, the extra copy survives matching as a spurious
+    unmatched "addition" once its twin has already been paired against
+    the other source. Applied per-source, before any cross-source
+    matching, so it only ever removes true transcription duplicates, not
+    two genuinely close-but-distinct actions (which always differ in at
+    least date)."""
+    before = len(df)
+    df = df.drop_duplicates(subset=["agency", "rating", "outlook", "date"]).reset_index(drop=True)
+    n_dropped = before - len(df)
+    if n_dropped:
+        logging.warning(
+            f"{source_label}: dropped {n_dropped} exact-duplicate row(s) "
+            f"(identical agency/rating/outlook/date) -- likely a copy-paste "
+            f"duplicate in the source sheet, not a genuine second action"
+        )
+    return df
+
+
 def _validate_ratings_mappable(df: pd.DataFrame, label: str) -> None:
     unmapped = df.loc[df["rating"].apply(lambda r: _rating_numeric(r) is None), "rating"]
     if not unmapped.empty:
@@ -237,6 +273,9 @@ def _load_resolutions(path: Path) -> pd.DataFrame:
 def reconcile(ge_df: pd.DataFrame, ce_df: pd.DataFrame, resolutions_df: pd.DataFrame):
     ge_df = _clean_rating_outlook(ge_df)
     ce_df = _clean_rating_outlook(ce_df)
+
+    ge_df = _drop_exact_duplicates(ge_df, "GE")
+    ce_df = _drop_exact_duplicates(ce_df, "CE")
 
     # Point 1: CE default-designation rows are always kept, never paired
     # against GE (which has nothing to compare them to).
