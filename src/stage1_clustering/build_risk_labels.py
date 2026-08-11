@@ -3,7 +3,10 @@ point-in-time-correct production pipeline. Assigns every sovereign, at
 every rebalancing date, one of: core-eligible (low risk), excluded
 (moderate risk / too uncertain), satellite-candidate (high risk), or
 insufficient_data (too few observed features / too little training
-history to fit a meaningful model yet).
+history to fit a meaningful model yet). Also emits a continuous
+`risk_score` column (see `_continuous_risk_score` below) -- added
+specifically to unblock Sec 4.2.4's lead/lag test, which needs a numeric
+score to average and paired-t-test, not just the categorical tier.
 
 This is deliberately a *separate* pipeline from algorithm_comparison.py's
 full-sample diagnostic fit -- see clustering_utils.py's module docstring.
@@ -80,6 +83,41 @@ def _predict(algorithm: str, model, X_apply: np.ndarray) -> np.ndarray:
     return pred
 
 
+def _continuous_risk_score(algorithm: str, model, X_apply: np.ndarray, rank_of: dict,
+                            n_ranked: int) -> np.ndarray:
+    """A continuous, walk-forward-safe risk score in [0, 1]: 0 = sitting
+    exactly on the lowest-risk (rank-0) cluster centroid, 1 = sitting
+    exactly on the highest-risk (rank-(n-1)) centroid. Defined as
+    d_low / (d_low + d_high), the normalized position along the
+    low-risk-to-high-risk axis in standardized feature space -- chosen
+    over raw distance so the score isn't sensitive to how much the
+    training window's overall feature spread has grown by a given date
+    (an expanding window's absolute distances aren't comparable across
+    very different training-window sizes; the *relative* position
+    between the two extreme centroids is more stable).
+
+    Only implemented for K-Means (the chosen production algorithm -- see
+    configs/params.yaml: stage1_clustering.chosen_algorithm), which is
+    the only one of the three with both a native `.transform()` giving
+    per-point distance to every centroid and non-degenerate centroids to
+    begin with. Returns all-NaN for gmm/hdbscan rather than a strained
+    substitute -- if either becomes the chosen algorithm this needs a
+    real extension (GMM: e.g. negative log-density under the two extreme
+    components; HDBSCAN: no centroid concept at all), not a guess.
+    """
+    if algorithm != "kmeans" or n_ranked < 2:
+        return np.full(len(X_apply), np.nan)
+    low_label = next(lbl for lbl, r in rank_of.items() if r == 0)
+    high_label = next(lbl for lbl, r in rank_of.items() if r == n_ranked - 1)
+    distances = model.transform(X_apply)  # (n_apply, k): distance to each centroid
+    d_low = distances[:, low_label]
+    d_high = distances[:, high_label]
+    denom = d_low + d_high
+    with np.errstate(invalid="ignore", divide="ignore"):
+        score = np.where(denom > 0, d_low / denom, 0.5)
+    return score
+
+
 def label_panel(df: pd.DataFrame, feature_cols: list[str], params: dict, algorithm: str,
                  k, random_state: int, tier: str) -> pd.DataFrame:
     """Pure function: no file I/O. Given the full (already lag-safe)
@@ -109,6 +147,7 @@ def label_panel(df: pd.DataFrame, feature_cols: list[str], params: dict, algorit
         if len(train_df) < min_rows_required:
             out["raw_cluster_label"] = np.nan
             out["risk_label"] = INSUFFICIENT_DATA_LABEL
+            out["risk_score"] = np.nan
             out_frames.append(out)
             continue
 
@@ -122,13 +161,16 @@ def label_panel(df: pd.DataFrame, feature_cols: list[str], params: dict, algorit
 
         raw_labels = pd.Series(index=apply_df.index, dtype=object)
         risk_labels = pd.Series(index=apply_df.index, dtype=object)
+        risk_scores = pd.Series(index=apply_df.index, dtype=float)
 
         sufficient_apply = apply_df[apply_df["_sufficient"]]
         if len(sufficient_apply):
             X_apply = transform_apply(imputer, scaler, sufficient_apply, feature_cols)
             pred = _predict(algorithm, model, X_apply)
-            for idx, lbl in zip(sufficient_apply.index, pred):
+            scores = _continuous_risk_score(algorithm, model, X_apply, rank_of, n_ranked)
+            for idx, lbl, score in zip(sufficient_apply.index, pred, scores):
                 raw_labels[idx] = lbl
+                risk_scores[idx] = score
                 if noise_label is not None and lbl == noise_label:
                     risk_labels[idx] = "excluded"
                 elif lbl in rank_of:
@@ -145,9 +187,11 @@ def label_panel(df: pd.DataFrame, feature_cols: list[str], params: dict, algorit
         for idx in insufficient_apply.index:
             raw_labels[idx] = np.nan
             risk_labels[idx] = INSUFFICIENT_DATA_LABEL
+            risk_scores[idx] = np.nan
 
         out["raw_cluster_label"] = raw_labels.values
         out["risk_label"] = risk_labels.values
+        out["risk_score"] = risk_scores.values
         out_frames.append(out)
 
     return pd.concat(out_frames, ignore_index=True)

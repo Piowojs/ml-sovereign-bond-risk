@@ -46,7 +46,27 @@ yet verified against the actual transcribed data.
   2026-08-11), ~~Sri Lanka~~ (done, 2026-08-11), ~~Portugal~~ (done,
   2026-08-11), ~~Zambia~~ (done, 2026-08-11). **All 5 of 5 complete.**
 - **Tier 2 (high value — sharp multi-notch moves)**: Italy, Spain, South
-  Africa, Brazil, Colombia, Egypt, Pakistan, Nigeria.
+  Africa, Brazil, Colombia, Egypt, Pakistan, Nigeria. **Sequencing within
+  Tier 2 revised 2026-08-11 based on the lead/lag pilot's actual open
+  question** (see the pilot's chronological entry below) — transcribe in
+  this order, not the list order above:
+  1. **South Africa, Brazil, Colombia first** — non-Eurozone,
+     fiscal-deterioration-driven downgrade histories. These are the pair
+     that actually tests the open question the pilot raised: does the
+     lead/lag mechanism generalize beyond Eurozone-style crises (like
+     Greece/Portugal), or is it specific to that crisis shape?
+  2. **Egypt, Pakistan, Nigeria second** — currency/commodity-driven
+     downgrade histories, the other half of the open question: do these
+     fail like Turkey (also currency/political-risk-driven), or was
+     Turkey's null idiosyncratic?
+  3. **Italy, Spain last within Tier 2** — deprioritized for *this*
+     question specifically, not dropped: both are Eurozone-crisis cases
+     structurally similar to Greece/Portugal (same 2010-2012 shock, same
+     debt/fiscal-driven deterioration shape), so they're likely to
+     confirm what's already been observed rather than test it. Still
+     valuable for other reasons (both are thesis-named DM stress cases,
+     §2.3/§6.4) — just not the next-highest-information transcription
+     targets for H1's generalization question.
 - **Tier 3 (moderate — real notches, plus two "even safe sovereigns
   react" DM cases)**: United States, United Kingdom, France, Hungary,
   Romania, China, Kenya, Indonesia, Philippines, Vietnam, Mexico,
@@ -226,12 +246,33 @@ honest read.
 
 **Bottom line for prioritization**: not a clean "yes, continue
 transcription" nor a clean "no, don't bother" -- it's a real, 2-of-5
-significant, 1-of-5 borderline, 2-of-5 null result. Worth continuing
-Tier 2 (Italy, Spain, South Africa, Brazil, Colombia, Egypt, Pakistan,
-Nigeria -- see the transcription priority list above) to get more sharp-
-crisis cases like Italy/Spain into the sample before drawing a stronger
-conclusion, rather than either stopping or fully committing to all 39
-remaining countries on this evidence alone.
+significant, 1-of-5 borderline, 2-of-5 null result. Worth continuing Tier
+2, but **not** by transcribing it in its original listed order --
+revised 2026-08-11 (see the transcription priority list above for the
+full reasoning): Italy/Spain are Eurozone-crisis cases structurally like
+Greece/Portugal and would likely just confirm the existing positive
+result rather than test anything new. The pilot's actual open question is
+whether the mechanism is Eurozone-crisis-specific or general, and that
+needs two different comparison groups: South Africa/Brazil/Colombia
+(non-Eurozone, fiscal-deterioration-driven -- do these behave like
+Greece, or like Turkey?) and Egypt/Pakistan/Nigeria (currency/commodity-
+driven -- do these fail like Turkey, or was Turkey's null idiosyncratic?).
+Italy/Spain moved to the end of Tier 2 for this specific purpose (still
+valuable for other reasons, just not the next-highest-information
+transcription targets for H1's generalization question).
+
+**Re-run the pilot incrementally, not only at the end of Tier 2**:
+`src/stage1_clustering/ratings_leadlag_stub.py` should be re-run after
+each pair of newly-transcribed Tier 2 countries lands (i.e. after South
+Africa+Brazil, then +Colombia, then +Egypt+Pakistan, then +Nigeria --
+roughly every 2 countries, not batched to all 8), so the fiscal-
+deterioration-vs-currency/commodity split becomes visible incrementally
+rather than as one late verdict. Concretely: after `ingest_ratings.py`
+picks up each new country's manual file, rerun
+`build_risk_labels.py` only if the underlying feature matrix or Stage 1
+config changed (it currently doesn't depend on ratings, so this is
+usually unnecessary) and always rerun `ratings_leadlag_stub.py` to
+regenerate `stage1_leadlag_pilot_events.csv` and the per-country table.
 
 **Explicitly not a §5.1 result**: 5 countries, chosen because they're the
 highest-signal cases (Tier 1 = "explicit crisis case studies named in the
