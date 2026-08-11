@@ -142,8 +142,8 @@ date up to a mid-panel cutoff (not just the cutoff date itself) — the
 exact gap the task flagged as having been a real bug caught and fixed in
 Stage 1's equivalent test, deliberately not repeated here.
 
-Commit: (pending) · issue #5 (Stage 2 signal) — references #2, #4 as
-predecessors
+Commit: `fee1d1e` · issue #5 (Stage 2 signal) closed by this work —
+references #2, #4 as predecessors
 
 ---
 
