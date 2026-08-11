@@ -62,6 +62,55 @@ isn't feasible before a deadline.
 
 ## Chronological log
 
+### 2026-08-11 — Pre-Portugal check-in surfaced a real bug: outlook-only rating cells ("(Negative)", no letter grade)
+**What**: Before handing off Portugal, the user asked a direct
+confirmation question -- does `reconcile_ratings_sources.py` already
+handle CE's `LETTER_GRADE (Outlook)` pattern (e.g. `B2 (Stable)`) *and*
+its `(Outlook)`-only variant (e.g. `(Negative)`, no letter grade), so
+they could stop manually pre-splitting the rating column by hand for
+every remaining country? Checked empirically rather than answering from
+memory of the code, since exactly this kind of edge case had bitten
+before (the NR/`(P)` bugs, both found by reading actual behavior, not by
+assuming the docstring was still accurate). Confirmed:
+- `B2 (Stable)` -- **worked correctly already** (point 2's
+  `EMBEDDED_OUTLOOK_RE`, in place since Greece).
+- `(Negative)` alone -- **broken**, and not just "unhandled." The regex
+  still matches (an empty rating group before the parens), so
+  `_clean_rating_outlook` returned rating `""` -- not `NA`. Since
+  `pd.notna("")` is `True`, this empty string slipped straight past
+  `_forward_fill_rating`'s blank-detection: it was treated as if it were
+  a real rating, which both failed `RATING_MAP` lookup on its own *and*
+  overwrote `last_rating` with `""` for that agency group, so the
+  *next* row -- even a genuinely blank one that should have forward-filled
+  correctly to the last real rating -- also came out `""`. Reproduced
+  with a synthetic 3-row case (letter+outlook, outlook-only, then a
+  truly blank row) before touching the code: pre-fix, the third row's
+  rating was corrupted to `""` too and the whole run crashed at
+  `_validate_ratings_mappable` with `unmapped rating value(s) ['']`.
+
+**Fix**: in `_clean_rating_outlook`'s regex-extraction step, an empty
+extracted rating is now converted to true `NA` rather than left as `""`,
+so it flows into the *existing* forward-fill path (point 3's policy,
+in place since Greece) instead of masquerading as data. Documented as
+policy point 7 in the script's docstring, framed correctly as "the same
+outlook-only case point 3 already handles for a blank cell, just spelled
+differently by CE" -- not a new category of quirk, a gap in how an
+existing one was implemented.
+
+**Verified**: re-ran Greece, Turkey, and Sri Lanka as regression checks
+-- identical row and conflict counts to before (172/1, 170/2, 118/0),
+confirming none of the three real files actually hit this pattern (a run
+would have crashed already if they had). Combined 460 rows still pass
+cleanly through `ingest_ratings.py` with only the one expected
+(month-boundary) warning; `test_lag_rules.py` 7/7.
+
+**Answer given to the user**: yes, both patterns are now handled
+generically in the pipeline -- safe to stop manually pre-splitting CE's
+rating column from Portugal onward and paste the raw combined text
+straight into the `rating` column, leaving `outlook` blank.
+
+Commit: (pending, this session) · Issue: #3
+
 ### 2026-08-11 — Sri Lanka reconciled: three more edge cases (NR rating, (P) prefix, month-boundary blind spot), zero conflicts
 **What**: Sri Lanka run through `reconcile_ratings_sources.py` as-is
 (same two-sheet workbook format as Greece/Turkey). Zero genuine

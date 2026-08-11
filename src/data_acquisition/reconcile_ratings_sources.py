@@ -57,6 +57,23 @@ between them that a naive "pick a primary source" merge would get wrong:
    `RATING_MAP` lookup. Not yet exercised by a merged row (Sri Lanka's
    transcription had already been manually pre-cleaned of this pattern
    before reconciliation), but verified against a synthetic input.
+7. **A rating cell that's *only* a parenthetical outlook, with no letter
+   grade** (e.g. `(Negative)`, as opposed to point 2's `BBB (Positive)`)
+   is a legitimate CE pattern -- the same "outlook-only" case point 3
+   handles when the cell is fully blank, just spelled differently. Point
+   2's regex still matches it (an empty rating group before the parens),
+   but the empty-string result is a real bug, not a no-op: `pd.notna("")`
+   is `True`, so an unconverted `""` slips past point 3's blank-detection
+   in `_forward_fill_rating` -- it gets treated as if it were a real
+   rating, which both fails `RATING_MAP` lookup itself *and* corrupts
+   `last_rating` for every subsequent row in that agency's group, turning
+   what should have forward-filled correctly into more `""` values. Fixed
+   in `_clean_rating_outlook`: an empty extracted rating is converted to
+   true `NA`, so it flows into point 3's existing forward-fill path
+   instead of silently masquerading as data. Caught before landing on
+   real data -- verified against a synthetic 3-row case (letter+outlook,
+   outlook-only, then a genuinely blank row) showing the cascading
+   corruption pre-fix and the correct forward-fill chain post-fix.
 
 Given all that, the merge policy for non-conflicting (agency, month)
 buckets is: union of both sources' months; where only one source has a
@@ -251,6 +268,16 @@ def _clean_rating_outlook(df: pd.DataFrame) -> pd.DataFrame:
         extracted_rating = m.group("rating").strip()
         extracted_outlook = m.group("outlook").strip()
         outlook = row["outlook"] if pd.notna(row["outlook"]) else extracted_outlook
+        # A cell that's *only* a parenthetical outlook (e.g. "(Negative)",
+        # no letter grade before it) matches with an empty rating group --
+        # must become true NaN, not "". pd.notna("") is True, so an empty
+        # string would silently skip _forward_fill_rating's blank-detection
+        # (treating "" as a real rating and even overwriting last_rating
+        # with it, corrupting the fill for every row after it) and then
+        # crash _validate_ratings_mappable on an unmappable "" instead of
+        # forward-filling correctly.
+        if not extracted_rating:
+            extracted_rating = pd.NA
         return extracted_rating, outlook, source
 
     df[["rating", "outlook", "source"]] = df.apply(lambda r: pd.Series(_extract(r)), axis=1)

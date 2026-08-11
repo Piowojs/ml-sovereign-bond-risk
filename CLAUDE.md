@@ -377,12 +377,15 @@ yet for a country just means it's absent from the output, not an error.
   source: CE's default-designation rows (SD/RD/D) always win, since GE
   systematically omits them; not-rated/withdrawn tokens (e.g. `NR`) in
   the *rating* field are dropped rather than crashing an unmappable
-  `RATING_MAP` lookup; CE's embedded-outlook, leading `(P)`-provisional
-  prefix, and blank-rating (watch/under-review) quirks are cleaned up
-  before comparison; byte-for-byte duplicate rows within a single source
-  are dropped before any matching; agreeing (agency, month) rows from
-  both sources collapse into one row preferring CE's exact date;
-  genuinely disagreeing rows are written to
+  `RATING_MAP` lookup; CE's embedded-outlook (both the `BBB (Positive)`
+  trailing form and the letter-grade-less `(Negative)` form — the latter
+  must become true `NA`, not `""`, or it silently corrupts forward-fill
+  for every later row in that agency's group), leading
+  `(P)`-provisional prefix, and blank-rating (watch/under-review) quirks
+  are all cleaned up before comparison; byte-for-byte duplicate rows
+  within a single source are dropped before any matching; agreeing
+  (agency, month) rows from both sources collapse into one row preferring
+  CE's exact date; genuinely disagreeing rows are written to
   `_reconciliation/<Country>_conflicts.csv`, never auto-resolved, and
   only enter the merged output once a matching row appears in
   `_reconciliation/<Country>_resolutions.csv` recording which source was
@@ -395,7 +398,7 @@ yet for a country just means it's absent from the output, not an error.
   the accepted safety net for this gap rather than a bug to chase with
   riskier cross-month matching. See that script's docstring for the full
   policy and `state.md` for the worked Greece/Turkey/Sri Lanka examples
-  (six matching-logic edge cases the real data caught across the three
+  (seven matching-logic edge cases the real data caught across the three
   countries, and how each was handled).
 - **Status as of 2026-08-11**: pipeline built and verified against
   synthetic test files (mapping, action/outlook_change inference,
