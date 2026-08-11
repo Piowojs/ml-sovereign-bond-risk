@@ -151,8 +151,8 @@ at least moved AUC off of chance; it didn't. CLAUDE.md's "Stage 2 signal"
 section has been rewritten to carry this fuller picture rather than the
 original single-sentence hedge.
 
-Commit: (pending, docs-only) · issue #5 (already closed) — informational
-follow-up, no code/pipeline changes
+Commit: `efcbbd1` · issue #5 (already closed) — informational follow-up,
+no code/pipeline changes
 
 ---
 
