@@ -375,43 +375,54 @@ yet for a country just means it's absent from the output, not an error.
   `data/raw/ratings/manual/<Country>.csv` this script reads, applying an
   explicit, documented priority policy rather than silently picking a
   source: CE's default-designation rows (SD/RD/D) always win, since GE
-  systematically omits them; not-rated/withdrawn tokens (e.g. `NR`) in
-  the *rating* field are dropped rather than crashing an unmappable
-  `RATING_MAP` lookup; CE's embedded-outlook (both the `BBB (Positive)`
-  trailing form and the letter-grade-less `(Negative)` form — the latter
-  must become true `NA`, not `""`, or it silently corrupts forward-fill
-  for every later row in that agency's group), leading
-  `(P)`-provisional prefix, and blank-rating (watch/under-review) quirks
-  are all cleaned up before comparison; byte-for-byte duplicate rows
-  within a single source are dropped before any matching; agreeing
-  (agency, month) rows from both sources collapse into one row preferring
-  CE's exact date; genuinely disagreeing rows are written to
-  `_reconciliation/<Country>_conflicts.csv`, never auto-resolved, and
-  only enter the merged output once a matching row appears in
-  `_reconciliation/<Country>_resolutions.csv` recording which source was
-  chosen, at what confidence, and why. **Known, accepted limitation**:
-  matching buckets by calendar month means a same-action pair straddling
-  a month boundary (CE's exact late-month date vs GE's 1st-of-*next*-
-  month rounding) won't be caught as a match — found on Sri Lanka
-  (Fitch, Nov 27 CE vs Dec 1 GE, same rating) and surfaced instead by
-  `ingest_ratings.py`'s downstream duplicate-action warning, which is
+  systematically omits them; not-rated/withdrawn tokens (e.g. `NR`) and
+  Moody's short-term-scale tokens (e.g. `NP`, a different scale from
+  `RATING_MAP`'s long-term one) in the *rating* field are dropped rather
+  than crashing an unmappable lookup; CE's embedded-outlook (both the
+  `BBB (Positive)` trailing form and the letter-grade-less `(Negative)`
+  form — the latter must become true `NA`, not `""`, or it silently
+  corrupts forward-fill for every later row in that agency's group),
+  leading `(P)`-provisional prefix, and blank-rating (watch/under-review)
+  quirks are all cleaned up before comparison; byte-for-byte duplicate
+  rows within a single source are dropped before any matching; a watch/
+  under-review qualifier present on only one side (e.g. GE `Negative
+  watch` vs CE plain `Negative`) is treated as an information asymmetry,
+  not a disagreement — the ratings still have to agree, but the more
+  specific watch-qualified wording wins the merge regardless of which
+  source had it; agreeing (agency, month) rows from both sources collapse
+  into one row preferring CE's exact date; genuinely disagreeing rows are
+  written to `_reconciliation/<Country>_conflicts.csv`, never
+  auto-resolved, and only enter the merged output once a matching row
+  appears in `_reconciliation/<Country>_resolutions.csv` recording which
+  source was chosen, at what confidence, and why. **Known, accepted
+  limitation**: matching buckets by calendar month means a same-action
+  pair straddling a month boundary (CE's exact late-month date vs GE's
+  1st-of-*next*-month rounding) won't be caught as a match — found on Sri
+  Lanka (Fitch, Nov 27 CE vs Dec 1 GE, same rating) and surfaced instead
+  by `ingest_ratings.py`'s downstream duplicate-action warning, which is
   the accepted safety net for this gap rather than a bug to chase with
   riskier cross-month matching. See that script's docstring for the full
-  policy and `state.md` for the worked Greece/Turkey/Sri Lanka examples
-  (seven matching-logic edge cases the real data caught across the three
-  countries, and how each was handled).
+  policy and `state.md` for the worked Greece/Turkey/Sri Lanka/Portugal
+  examples (nine matching-logic policy points the real data drove across
+  the four countries, and how each was handled).
 - **Status as of 2026-08-11**: pipeline built and verified against
   synthetic test files (mapping, action/outlook_change inference,
   duplicate-action detection, Scope rejection, and coverage logging all
-  confirmed correct); **3/44 countries collected — Greece, Turkey, Sri
-  Lanka**, all reconciled from GE + CE via `reconcile_ratings_sources.py`
-  (172 + 170 + 118 = 460 rows; 3 genuine cross-source conflicts found and
-  resolved total, all on Greece/Turkey — Sri Lanka had zero conflicts;
+  confirmed correct); **4/44 countries collected — Greece, Turkey, Sri
+  Lanka, Portugal**, all reconciled from GE + CE via
+  `reconcile_ratings_sources.py` (172 + 170 + 118 + 108 = 568 rows; 3
+  genuine cross-source conflicts found and resolved total, all on
+  Greece/Turkey — Sri Lanka and Portugal both had zero after the
+  watch-qualifier-asymmetry policy folded in Portugal's original 2;
   Sri Lanka's 2022 default sequence confirmed the same GE
   default-designation gap seen on Greece, extending across the *entire*
   2022-2024 distressed/restructuring window for S&P and Fitch, not just
-  the SD/RD moment itself). Manually collecting and transcribing the
-  remaining 41 per-country files is open, user-side work — see `state.md`
+  the SD/RD moment itself; Portugal, as expected for a bailout rather
+  than a default, had zero SD/RD/D designations and no GE blackout
+  pattern in 2011-2014 — confirming the blackout is specifically tied to
+  default events, not crisis periods generally). This closes 4 of 5 Tier
+  1 countries — Zambia remains. Manually collecting and transcribing the
+  remaining 40 per-country files is open, user-side work — see `state.md`
   for the full log, including a priority
   order for which countries to transcribe next, and issue #3 for
   tracking.

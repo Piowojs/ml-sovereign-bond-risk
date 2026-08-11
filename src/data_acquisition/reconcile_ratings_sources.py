@@ -74,6 +74,34 @@ between them that a naive "pick a primary source" merge would get wrong:
    real data -- verified against a synthetic 3-row case (letter+outlook,
    outlook-only, then a genuinely blank row) showing the cascading
    corruption pre-fix and the correct forward-fill chain post-fix.
+8. **CE can interleave Moody's short-term-scale ratings into the same
+   column as long-term ones.** Found on Portugal: a literal Moody's row
+   with `rating="NP"` ("Not Prime") sitting between two ordinary
+   long-term `Ba3` entries, no outlook. `NP`/`P-1`/`P-2`/`P-3` are
+   Moody's short-term issuer-rating scale -- a different scale entirely
+   from the long-term scale `RATING_MAP` is built on, not a
+   missing/withdrawn rating like point 5's `NR`. `_drop_short_term_scale`
+   removes rows on `SHORT_TERM_SCALE_TOKENS` before anything tries to
+   map them, with a warning distinguishing this from the `NR` case even
+   though the handling (drop, don't forward-fill from or to it) is
+   identical.
+9. **A watch/under-review qualifier present on only one side is an
+   information asymmetry, not a disagreement.** Found on Portugal, S&P
+   2011-12 and 2013-09: GE said `BBB-/Negative watch` and `BB/Negative
+   watch`, CE said the plain `BBB-/Negative` and `BB/Negative` for the
+   same rating and month -- GE evidently tracks formal CreditWatch/
+   under-review placements that CE's site doesn't surface at all, not two
+   aggregators disagreeing about direction. Policy: when the ratings
+   agree and stripping any watch/review qualifier from both outlooks
+   (`_strip_watch_qualifier`) leaves the same non-empty base direction,
+   `_outlook_eq` treats them as agreeing -- and when merging, the
+   *watch-qualified* wording wins regardless of which source it came
+   from (`_prefer_outlook`), keeping the exact-day date from whichever
+   source has it per the general date-preference rule above. `"Under
+   Review"` alone (no direction word to compare) still does *not* count
+   as agreeing with a bare directional outlook this way -- point 3's
+   both-sides-mention-watch/review rule is what covers that case, and
+   this point deliberately doesn't widen it further.
 
 Given all that, the merge policy for non-conflicting (agency, month)
 buckets is: union of both sources' months; where only one source has a
@@ -149,6 +177,15 @@ DEFAULT_DESIGNATIONS = {"SD", "RD", "D"}
 # country (see module docstring, point 5).
 NOT_RATED_TOKENS = {"NR"}
 
+# Moody's short-term rating scale (Prime-1/2/3, Not Prime) -- a different
+# scale from the long-term issuer ratings RATING_MAP is built on, not a
+# missing/withdrawn rating. Found on Portugal: CE has a literal
+# Moody's row with rating="NP" (2013-07-26, no outlook, sitting between
+# two ordinary long-term Ba3 entries) -- CE's page evidently interleaves
+# short-term-scale actions into the same column as long-term ones. See
+# module docstring, point 8.
+SHORT_TERM_SCALE_TOKENS = {"NP", "P-1", "P-2", "P-3", "P1", "P2", "P3"}
+
 EMBEDDED_OUTLOOK_RE = re.compile(r"^(?P<rating>.*?)\s*\((?P<outlook>[^)]+)\)\s*$")
 # CE's Moody's provisional-rating prefix, e.g. "(P)B1" -- (P) means
 # "provisional", not an outlook, and it's a *leading* prefix, unlike
@@ -164,6 +201,15 @@ def _rating_numeric(rating) -> int | None:
 
 
 _WATCH_TOKENS = ("watch", "review")
+_WATCH_TOKEN_RE = re.compile(r"\b(under\s+review|watch|review)\b", re.IGNORECASE)
+
+
+def _strip_watch_qualifier(s: str) -> str:
+    """Remove a watch/under-review qualifier from an outlook string,
+    leaving just the base direction (e.g. "Negative watch" -> "Negative").
+    Returns "" if the string is entirely a watch descriptor with no
+    direction word of its own (e.g. "Under Review")."""
+    return re.sub(r"\s+", " ", _WATCH_TOKEN_RE.sub("", s)).strip()
 
 
 def _outlook_eq(a, b) -> bool:
@@ -178,9 +224,22 @@ def _outlook_eq(a, b) -> bool:
     the "just a precision/formatting difference" case the module
     docstring's merge policy says should NOT be flagged -- so: blank on
     either side agrees with anything, and any pair where both sides
-    mention "watch"/"review" agrees regardless of exact wording. Anything
-    else (e.g. "Stable" vs "Positive", both non-blank, neither a
-    watch/review state) is a genuine disagreement."""
+    mention "watch"/"review" agrees regardless of exact wording.
+
+    A third case, found on Portugal (see module docstring, point 9): one
+    side has a watch/review qualifier and the other has only the plain
+    base direction -- e.g. GE "Negative watch" vs CE "Negative". This
+    isn't a disagreement, it's an information asymmetry (GE tracks formal
+    CreditWatch/under-review placements that CE's site apparently
+    doesn't), so it agrees too whenever stripping the qualifier from both
+    sides leaves the same non-empty base direction. "Under Review" alone
+    (no direction word) does NOT count as agreeing with a plain
+    directional outlook this way -- there's no direction to compare, so
+    that stays governed by the both-sides-mention-watch/review rule above.
+
+    Anything else (e.g. "Stable" vs "Positive", both non-blank, neither a
+    watch/review state, no shared base direction) is a genuine
+    disagreement."""
     a = "" if pd.isna(a) else str(a).strip().lower()
     b = "" if pd.isna(b) else str(b).strip().lower()
     if a == "" or b == "":
@@ -189,7 +248,28 @@ def _outlook_eq(a, b) -> bool:
         return True
     if any(tok in a for tok in _WATCH_TOKENS) and any(tok in b for tok in _WATCH_TOKENS):
         return True
+    a_base, b_base = _strip_watch_qualifier(a), _strip_watch_qualifier(b)
+    if a_base and b_base and a_base == b_base:
+        return True
     return False
+
+
+def _prefer_outlook(primary, secondary):
+    """Pick which outlook wording survives into a merged row. Prefers
+    `primary` (the row whose date is used -- see the merge policy below)
+    when populated, EXCEPT when the two are the same base direction (per
+    _outlook_eq's watch-qualifier equivalence) and only `secondary`
+    carries the watch/review qualifier -- then the more specific wording
+    wins regardless of which source it came from (module docstring,
+    point 9): an asymmetric watch designation is real information, not
+    noise to discard just because it happened to be on the
+    lower-priority side."""
+    def _has_watch(v):
+        return pd.notna(v) and any(tok in str(v).lower() for tok in _WATCH_TOKENS)
+
+    if _has_watch(secondary) and not _has_watch(primary):
+        return secondary
+    return primary if pd.notna(primary) else secondary
 
 
 def _load_sheet(xlsx_path: Path, sheet_name: str, source_label: str) -> pd.DataFrame:
@@ -233,6 +313,27 @@ def _drop_not_rated(df: pd.DataFrame, source_label: str) -> pd.DataFrame:
             f"ordinal scale, so not representable as rating_numeric"
         )
     return df[~is_nr].reset_index(drop=True)
+
+
+def _drop_short_term_scale(df: pd.DataFrame, source_label: str) -> pd.DataFrame:
+    """Drop rows whose rating is on Moody's short-term scale (see
+    SHORT_TERM_SCALE_TOKENS). Found on Portugal: CE has a literal
+    Moody's row with rating="NP" sitting between two ordinary long-term
+    entries -- a different scale from RATING_MAP's long-term issuer
+    ratings, not a missing or withdrawn one, so it's just as unmappable
+    as NR but for a different reason (worth distinguishing in the
+    warning message, even though the handling -- drop, warn, don't
+    forward-fill from or to it -- is identical)."""
+    is_st = df["rating"].apply(lambda r: pd.notna(r) and str(r).strip().upper() in SHORT_TERM_SCALE_TOKENS)
+    n = int(is_st.sum())
+    if n:
+        first = df[is_st].iloc[0]
+        logging.warning(
+            f"{source_label}: dropped {n} row(s) with a Moody's short-term-scale rating "
+            f"(e.g. {first['agency']} on {first['date'].date()}) -- different scale from "
+            f"RATING_MAP's long-term issuer ratings, so not representable as rating_numeric"
+        )
+    return df[~is_st].reset_index(drop=True)
 
 
 def _clean_rating_outlook(df: pd.DataFrame) -> pd.DataFrame:
@@ -367,6 +468,9 @@ def reconcile(ge_df: pd.DataFrame, ce_df: pd.DataFrame, resolutions_df: pd.DataF
     ge_df = _drop_not_rated(ge_df, "GE")
     ce_df = _drop_not_rated(ce_df, "CE")
 
+    ge_df = _drop_short_term_scale(ge_df, "GE")
+    ce_df = _drop_short_term_scale(ce_df, "CE")
+
     ge_df = _clean_rating_outlook(ge_df)
     ce_df = _clean_rating_outlook(ce_df)
 
@@ -429,12 +533,15 @@ def reconcile(ge_df: pd.DataFrame, ce_df: pd.DataFrame, resolutions_df: pd.DataF
                 if match_idx is not None:
                     matched_ce_idx.add(match_idx)
                     c = ce_bucket[match_idx]
-                    # _outlook_eq treats a blank side as agreeing with anything, so
-                    # "matched" doesn't mean both sides said the same thing -- prefer
-                    # whichever side actually has a value (CE first) rather than
-                    # blindly taking CE's, which could be the blank one and silently
-                    # drop real information GE captured (e.g. CE blank vs GE "Stable").
-                    outlook = c["outlook"] if pd.notna(c["outlook"]) else g["outlook"]
+                    # _outlook_eq treats a blank side, or a watch-qualifier-only
+                    # difference, as agreeing -- "matched" doesn't mean both sides
+                    # said the exact same thing. _prefer_outlook picks CE's wording
+                    # when populated (so a genuinely blank CE side doesn't silently
+                    # drop GE's real value), except when only the *other* side
+                    # carries a watch/review qualifier on the same base direction,
+                    # in which case the more specific wording wins regardless of
+                    # source (module docstring, point 9).
+                    outlook = _prefer_outlook(c["outlook"], g["outlook"])
                     merged_rows.append(
                         {
                             "date": c["date"],

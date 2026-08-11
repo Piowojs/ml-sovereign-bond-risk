@@ -19,7 +19,7 @@ after the fact from memory.
 
 | Item | Blocks | Whose action | Status |
 |---|---|---|---|
-| Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10/2026-08-11 reconciliation entries below; agency IR pages for gaps neither source covers). See the transcription priority list below for sequencing. **Reminder for multi-word countries**: pass the underscore form (`Sri_Lanka`, not `Sri Lanka`) as the script's `country` argument — it's used verbatim as the output filename and must match `configs/universe.yaml`'s `name.replace(" ", "_")` for `ingest_ratings.py`'s coverage check to recognize it (caught once on Sri Lanka, fixed before anything downstream ran on the wrong filename). | **In progress — 3/44 (Greece, Turkey, Sri Lanka) done**, all reconciled via `reconcile_ratings_sources.py` (172 + 170 + 118 = 460 rows, 3 conflicts total found and resolved, all on Greece/Turkey). 41 to go, continuing with the rest of Tier 1. |
+| Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10/2026-08-11 reconciliation entries below; agency IR pages for gaps neither source covers). See the transcription priority list below for sequencing — only Zambia left in Tier 1. **Reminder for multi-word countries**: pass the underscore form (`Sri_Lanka`, not `Sri Lanka`) as the script's `country` argument — it's used verbatim as the output filename and must match `configs/universe.yaml`'s `name.replace(" ", "_")` for `ingest_ratings.py`'s coverage check to recognize it (caught once on Sri Lanka, fixed before anything downstream ran on the wrong filename). **CE raw-paste reminder**: as of the pre-Portugal fix, both `LETTER_GRADE (Outlook)` and letter-grade-less `(Outlook)`-only CE cells are handled automatically — paste CE's raw combined rating+outlook text straight into the `rating` column and leave `outlook` blank, no manual pre-splitting needed. | **In progress — 4/44 (Greece, Turkey, Sri Lanka, Portugal) done**, all reconciled via `reconcile_ratings_sources.py` (172 + 170 + 118 + 108 = 568 rows, 3 conflicts total found and resolved, all on Greece/Turkey). 40 to go — Zambia closes out Tier 1. |
 | §4.2.4 lead/lag analysis (`ratings_leadlag_stub.py`) | §4.2.4, RQ1/H1 | Blocked on the ratings item above; also needs `build_risk_labels.py` extended to emit a continuous risk score, not just the categorical tier (see CLAUDE.md "Stage 1 clustering") | Interface stubbed, not implemented |
 | Residual global-regime sensitivity in Stage 1 clustering (`core-eligible` = 0 for several consecutive quarters, 2009-2017) | §5.5 candidate robustness check; not blocking Stage 3/4 | Open — see CLAUDE.md "Stage 1 clustering" for the full diagnosis (us_10y/curve_slope are global-only features, thesis §3.3 keeps them in Stage 1 regardless) | Documented, not fixed further without a methodology-level call to override the thesis's own feature-group spec |
 | Execution-verify `bond_data_pull_reconstructed.py` (does it actually run/chunk/return data as designed) | Appendix A reproducibility only — not blocking, since existing bond data already feeds Stage 1 | User (requires a session on the university-library Windows PC with Refinitiv Workspace) | Not started |
@@ -40,7 +40,8 @@ yet verified against the actual transcribed data.
 
 - **Tier 1 (do first — explicit crisis case studies named in the thesis
   outline itself)**: ~~Greece~~ (done, 2026-08-10), ~~Turkey~~ (done,
-  2026-08-11), ~~Sri Lanka~~ (done, 2026-08-11), Portugal, Zambia.
+  2026-08-11), ~~Sri Lanka~~ (done, 2026-08-11), ~~Portugal~~ (done,
+  2026-08-11), Zambia.
 - **Tier 2 (high value — sharp multi-notch moves)**: Italy, Spain, South
   Africa, Brazil, Colombia, Egypt, Pakistan, Nigeria.
 - **Tier 3 (moderate — real notches, plus two "even safe sovereigns
@@ -61,6 +62,83 @@ isn't feasible before a deadline.
 ---
 
 ## Chronological log
+
+### 2026-08-11 — Portugal reconciled: Moody's short-term scale (NP), and a new standing policy for asymmetric watch qualifiers
+**What**: Portugal run through `reconcile_ratings_sources.py` as-is
+(fourth of five Tier 1 countries; Zambia is the last one left). Confirmed
+no SD/RD/D anywhere in either source -- matching the expectation that
+Portugal's 2011 crisis was a bailout, not a default, unlike Greece and
+Sri Lanka. Also confirmed no GE multi-year blackout across 2011-2014 for
+any agency (largest per-agency gap ~9-14 months, nowhere near Sri
+Lanka's 3.5-year void) -- together with the Sri Lanka/Greece findings,
+this narrows the earlier "GE systematically omits default-designation
+periods" observation to something more precise: the blackout tracks
+*default events specifically*, not sovereign crises in general. A
+country can have a severe multi-year crisis (Portugal's bailout/
+austerity years) with continuous GE coverage throughout, as long as it
+never crosses into an actual default/restructuring.
+
+**One new bug, structurally similar to Sri Lanka's `NR` but a different
+root cause**: a CE row with `rating="NP"` (Moody's, 2013-07-26, no
+outlook) crashed `RATING_MAP` lookup. `NP` ("Not Prime") is Moody's
+**short-term** issuer-rating scale (Prime-1/2/3, Not Prime) -- an
+entirely different scale from the long-term one `RATING_MAP` is built
+on, not a missing/withdrawn rating like Sri Lanka's `NR`. CE's page
+evidently interleaves short-term-scale actions into the same column as
+long-term ones. Fixed with a new `_drop_short_term_scale()` step
+(`SHORT_TERM_SCALE_TOKENS = {"NP","P-1","P-2","P-3","P1","P2","P3"}`),
+documented as policy point 8, deliberately kept as a separate function
+and warning message from `_drop_not_rated` even though the mechanical
+handling is identical (drop, warn, don't forward-fill from or to it) --
+worth being honest in the code about *why* a row is unmappable, not just
+that it is. Verified the fix also corrected a real downstream
+correctness issue, not just the crash: pre-fix, the CE row after `NP`
+(2013-11-08, blank rating) would have forward-filled from the bogus
+`NP` value; post-fix it correctly forward-fills to `Ba3`, the last real
+long-term rating.
+
+**New standing policy (point 9), requested by the user after reviewing
+Portugal's 2 conflicts**: both were S&P, same rating on both sides, with
+GE saying e.g. `Negative watch` and CE saying plain `Negative` -- an
+*asymmetric* watch qualifier, not a disagreement about direction. The
+user's read: GE tracks formal CreditWatch/under-review placements that
+CE's site apparently doesn't surface at all, so this is an information
+asymmetry to fold in automatically, not something to keep asking about
+country after country. Implemented as a **standing rule**, not a
+one-off resolution: `_outlook_eq` now also treats two outlooks as
+agreeing when stripping any watch/review qualifier from both
+(`_strip_watch_qualifier`) leaves the same non-empty base direction, and
+`_prefer_outlook` (new helper, replaces the old inline "prefer CE's
+outlook if populated" ternary in the merge step) keeps the
+watch-qualified wording specifically, regardless of which source had it
+-- the exact date still comes from CE per the pre-existing date-
+preference rule. Deliberately scoped narrowly: `"Under Review"` alone
+(no direction word) still does *not* count as matching a bare directional
+outlook -- that remains governed by the pre-existing point-3 rule (both
+sides mention watch/review), unchanged. Verified with synthetic
+before-and-after checks on both Portugal cases plus every pre-existing
+`_outlook_eq` regression case (both-watch, blank-side, genuine conflict,
+watch-with-no-direction) -- all unchanged except the two new true
+positives. Applying the rule folded both of Portugal's conflicts in
+automatically (no manual resolutions.csv entry needed for either) --
+`Portugal_conflicts.csv` went from 2 OPEN to 0 rows, and the reconciled
+row count went from 106 to 108 as the previously-excluded conflict pairs
+became normal merged rows.
+
+**Verified**: 108 reconciled rows in `Portugal.csv`, zero conflicts.
+Greece, Turkey, and Sri Lanka re-run as regression checks -- all three
+identical to before (172/1, 170/2, 118/0), confirming policy 9 doesn't
+change any already-settled case. Combined 568 rows pass through
+`ingest_ratings.py` with only the one known (Sri Lanka month-boundary)
+warning; `test_lag_rules.py` 7/7.
+
+**Closes 4 of 5 Tier 1 countries.** Zambia remains -- the last Tier 1
+default/restructuring case (2020), expected to exercise the
+default-designation and possibly the GE-blackout findings again, this
+time on a different agency mix and a different restructuring timeline
+than Sri Lanka's.
+
+Commit: (pending, this session) · Issue: #3
 
 ### 2026-08-11 — Pre-Portugal check-in surfaced a real bug: outlook-only rating cells ("(Negative)", no letter grade)
 **What**: Before handing off Portugal, the user asked a direct
