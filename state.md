@@ -25,9 +25,9 @@ after the fact from memory.
 | Execution-verify `bond_data_pull_reconstructed.py` (does it actually run/chunk/return data as designed) | Appendix A reproducibility only — not blocking, since existing bond data already feeds Stage 1 | User (requires a session on the university-library Windows PC with Refinitiv Workspace) | Not started |
 | CDS data (`data/raw/cds/`) never successfully pulled | Nothing currently — Stage 1 extended tier gates on duration/convexity, not CDS (see CLAUDE.md) | Would also require the library-PC session if pursued | Open, not currently prioritized |
 | `docs/thesis_outline_sovereign.md` §1.4 still says "2005–2023"; actual pipeline uses 2005–2025 | Consistency of the written thesis, not the code | User (thesis text edit) | Open, tracked separately from code |
-| Stage 2 (`src/stage2_signal/`) built — see 2026-08-11 chronological entry below | §4.3, RQ2/H2 | — | **Done.** H2 not rejected (LASSO mean IC +0.076 but p=0.205, doesn't clear the p<0.05 bar) — a genuine, non-forced empirical result, not a pipeline gap. |
+| Stage 2 (`src/stage2_signal/`) built — see 2026-08-11 chronological entries below | §4.3, RQ2/H2 | — | **Done.** H2 not rejected (LASSO mean IC +0.076 but p=0.205, doesn't clear the p<0.05 bar). Two follow-up diagnostics (2026-08-11) tested whether this is a power problem — both point away from that reading (AUC collapses to ~0.50 on 4.4x the observations); see CLAUDE.md "Stage 2 signal" for the full picture and the "this specification, not this universe" distinction that should carry into §6.2/§7.4. |
 | No coupon-rate/cashflow field exists anywhere in the raw bond pull — Stage 2's "total return" is a documented price-return proxy, not true coupon-inclusive total return | §4.3.2, Appendix B | Structural licence/data limitation (generic benchmark composite RICs, not individual bond issues) — not fixable without different source data | Documented and flagged per-row (`has_income_component`), not silently approximated — see CLAUDE.md "Stage 2 signal" |
-| Stage 2 EM satellite population is small-N by construction (median 4-8 countries/quarter, EM rows in only 65/84 quarters) | §4.3.3/§4.3.4 result reliability | Inherited from Stage 1's clustering output — would require revisiting Stage 1's residual global-regime sensitivity (already an open item above) to change | Documented as a first-order caveat on every Stage 2 result, not a footnote |
+| Stage 2 EM satellite population is small-N by construction (median 4-8 countries/quarter, EM rows in only 65/84 quarters) | §4.3.3/§4.3.4 result reliability | Inherited from Stage 1's clustering output — would require revisiting Stage 1's residual global-regime sensitivity (already an open item above) to change | Documented as a first-order caveat on every Stage 2 result. **Update (2026-08-11 diagnostics)**: the small-N caveat still applies to *precision* of the estimate, but two diagnostics found no evidence it's suppressing a real signal — see the Stage 2 row above. |
 | Stage 3/4 (`stage3_portfolio/`, `stage4_evaluation/`) not started | Everything downstream of Stage 2 | — | Not started — Stage 1 and Stage 2 are now fully built; this is the next major phase |
 
 ---
@@ -85,6 +85,76 @@ isn't feasible before a deadline.
 ---
 
 ## Chronological log
+
+### 2026-08-11 — Stage 2 power-vs-absence diagnostics: two exploratory runs, not part of the tracked pipeline
+**What**: Immediately after Stage 2's build (entry below — read that one
+first), ran two scratch diagnostics to answer one question before H2's
+result gets written up: is the weak AUC (0.560) / non-significant IC
+(+0.076, p=0.205) a **statistical-power problem** (Stage 1's
+`satellite-candidate` gate leaves too few EM rows per quarter, median
+4-8, to detect a real premium) or an **absence of premium** this
+specification can find? Both scripts live only in the session scratchpad
+(not committed) — they reuse `stage2_utils` primitives and the identical
+production feature set/hyperparameters (deliberately no re-tuning), so
+the finding is scoped to "this specification," not a general claim.
+
+**Diagnostic 1 — full 26-country EM universe**, not gated by Stage 1's
+`satellite-candidate` tier: 72 walk-forward folds, ~14-15 names/quarter
+median, 1,100 pooled test observations (4.4x the real pipeline's 251). If
+the null were a power problem, this should show a materially stronger
+signal. It doesn't: LASSO regression mean IC goes **negative** (-0.092,
+one-sided p=0.941 — wrong-signed relative to H2), Random Forest also
+negative (-0.027), XGBoost weakly positive but non-significant (+0.019,
+p=0.292). Classification AUC for all three models collapses to
+**0.48-0.50** — indistinguishable from chance, despite 4.4x the data.
+This breaks the pipeline's own logical chain deliberately (thesis
+§4.4.1's satellite sleeve is explicitly gated on Stage 1's output; this
+diagnostic isn't a candidate replacement for that design) — it's a probe,
+not a pipeline change.
+
+**Diagnostic 2 — split the real pipeline's existing 52 folds by quarter
+population size** (`n_test`, already stored in
+`stage2_model_comparison.csv` — no re-fitting). Better-populated quarters
+do not show a stronger signal: `n_test>=8` (8 folds, 99 obs) gives mean
+IC **-0.004** vs the full sample's +0.076; `n_test>=15` (2 folds, 38 obs)
+gives +0.085 — no clean monotonic strengthening with population size.
+(These sub-splits are only 2-8 folds each, limited standalone power — the
+*direction*, not the magnitude, is the informative part.)
+
+**Reading**: both diagnostics point away from "insufficient power" and
+toward "this specification doesn't recover a detectable premium" — a
+narrower, more defensible claim than "no EM excess-return premium
+exists." The AUC-to-~0.50 collapse on 4.4x the observations is the single
+strongest piece of evidence, since it's less sensitive than the IC
+numbers to the one real confound diagnostic 1 introduces: scoring the
+full EM universe isn't a clean "same population, more data" scale-up, it
+also dilutes toward calmer, lower-dispersion EM countries Stage 1 never
+flags as high-risk — so a weaker IC there is *consistent with* a power
+story without fully ruling it out on composition grounds alone.
+**Because neither the feature set nor the hyperparameters were re-tuned
+for the different population**, the honest scope of this finding is "this
+feature set + these three fixed-hyperparameter models don't recover a
+premium here" — not "no premium is recoverable by any specification."
+That distinction should carry directly into how §6.2 (does a premium
+exist / what drives it) and §7.4 (future work) characterize the result —
+richer market-based features, re-tuned hyperparameters per population, or
+an alternative EM universe definition are all still open, untested
+alternatives, not ruled out by this pilot.
+
+**This also revises the SHAP caveat from the build entry below**: that
+entry hedged the "macro fundamentals dominate, market signals shrink to
+zero" SHAP result as "plausibly just a data-richness artifact" of
+market-feature missingness. These two diagnostics undercut that hedge —
+if it were purely a richness artifact, the full-universe diagnostic
+(same feature set, same richness limitation, just more rows) should have
+at least moved AUC off of chance; it didn't. CLAUDE.md's "Stage 2 signal"
+section has been rewritten to carry this fuller picture rather than the
+original single-sentence hedge.
+
+Commit: (pending, docs-only) · issue #5 (already closed) — informational
+follow-up, no code/pipeline changes
+
+---
 
 ### 2026-08-11 — Stage 2 (compensated EM sovereign risk identification) built
 **What**: `src/stage2_signal/` built end to end — `stage2_utils.py`

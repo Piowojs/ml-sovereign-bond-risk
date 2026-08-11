@@ -877,15 +877,67 @@ features survive shrinkage: `cpi_inflation`, `fiscal_bal_gdp`,
 `real_gdp_growth`** — all macro fundamentals. Every market-based feature
 (`yield_spread_bps`, momentum, `carry`, `spread_zscore_52w`) and every
 global factor (`us_10y`, `curve_slope`, `vix`, `dxy_proxy`) is shrunk to
-exactly zero. **Read this together with the population-size finding
-above, not in isolation**: market-based features are 49-64% missing in
-this population versus 0% for the macro fundamentals, so their
-median-imputed, mostly-constant columns give LASSO little to work with —
-the clean "macro fundamentals dominate" result is plausibly a
-data-richness artifact of this university licence pull, not proof that
-market signals carry no genuine EM return information. Flagged explicitly
-in `feature_importance.py`'s own output (a printed caveat line) precisely
-so this isn't cited in §6.2 as a clean result without the caveat attached.
+exactly zero. `feature_importance.py`'s own output carries a printed
+caveat line flagging that market-based features are 49-64% missing in
+this population versus 0% for the macro fundamentals — **that hedge
+("plausibly just a data-richness artifact") does not stand unqualified**;
+see the two diagnostics immediately below, run specifically to test it,
+which point the other way.
+
+**Two diagnostics on the power-vs-absence question (2026-08-11,
+exploratory, not part of the tracked pipeline).** The natural objection to
+every result above — the weak AUC (0.560), the IC that misses H2's p<0.05
+bar (p=0.205), and the SHAP result — is that Stage 1's
+`satellite-candidate` gate leaves too few rows per quarter (median 4-8) to
+detect a real premium, i.e. a statistical-power problem rather than an
+absence of one. Two scratch diagnostics (not committed — exploratory
+scripts only, reusing `stage2_utils` primitives and the identical feature
+set/model config, no re-tuning) tested this directly:
+1. **Split the real pipeline's existing 52 walk-forward folds by quarter
+   population size** (`n_test`, already stored per fold in
+   `stage2_model_comparison.csv` — no re-fitting needed). Better-populated
+   quarters do NOT show a stronger signal: `n_test>=8` (8 folds, 99 pooled
+   obs) gives mean IC **-0.004** vs the full sample's +0.076; `n_test>=15`
+   (2 folds, 38 obs) gives +0.085, no clean monotonic strengthening with
+   population size. (These sub-splits are themselves only 2-8 folds, so
+   limited standalone power — the direction, not the magnitude, is the
+   informative part.)
+2. **Re-ran the identical target/feature construction and LASSO/RF/XGBoost
+   models on all 26 EM countries at every rebalancing date**, not gated by
+   Stage 1's `satellite-candidate` tier — 72 folds, ~14-15 names/quarter
+   median, 1,100 pooled test observations (4.4x the real pipeline's 251).
+   If the null were a power problem, this should show a materially
+   stronger signal. It does not: LASSO regression mean IC goes **negative**
+   (-0.092, one-sided p=0.941 — the opposite direction from H2), Random
+   Forest also negative (-0.027), XGBoost weakly positive but
+   non-significant (+0.019, p=0.292). Classification AUC for all three
+   models collapses to **0.48-0.50** — indistinguishable from chance,
+   despite 4.4x the observations. This AUC collapse is the single
+   strongest piece of evidence here, since composition (see caveat below)
+   affects IC's sign/magnitude more plausibly than it affects a
+   classifier's discriminative power dropping to a coin flip.
+
+**Reading, and what it does and doesn't establish**: both diagnostics
+point away from "insufficient power" and toward "this specification
+doesn't recover a detectable premium" — a narrower and more defensible
+claim than "no EM excess-return premium exists." The satellite-only
+pipeline's +0.076 IC is more parsimoniously read as noise in a small,
+high-risk-skewed subsample than as a real effect masked by low power.
+**Composition caveat (diagnostic 1 specifically)**: scoring the full EM
+universe isn't a clean "same population, more data" scale-up — it also
+dilutes toward calmer, lower-dispersion EM countries Stage 1 never flags
+as high-risk, so a weaker IC there is *consistent with* a power story
+without fully ruling it out on population-composition grounds alone. The
+AUC-to-0.50 result is less vulnerable to this composition objection than
+the IC numbers are. **Also record explicitly**: both diagnostics reused
+the production feature set and fixed hyperparameters (including LASSO's
+`alpha=0.01`) with no re-tuning for the different population size/
+composition — so precisely calibrated, this is evidence that *this*
+feature set + these three fixed-hyperparameter models don't recover a
+premium, not a general claim that no premium is recoverable by any
+specification. That distinction should carry through directly into how
+§6.2 and §7.4 (future work — richer market features, re-tuned
+hyperparameters, alternative EM universes) characterize the result.
 
 **Output (§4.3.5).** `data/processed/stage2_return_signals.parquet` — one
 row per (country, rebal_date) with `predicted_excess_return` (continuous,
