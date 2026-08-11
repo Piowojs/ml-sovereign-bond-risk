@@ -19,7 +19,7 @@ after the fact from memory.
 
 | Item | Blocks | Whose action | Status |
 |---|---|---|---|
-| Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcription from TheGlobalEconomy.com — primary, see 2026-08-10 source-switch entry — with countryeconomy.com as fallback and agency IR pages for gaps). See state.md's transcription priority list below for suggested sequencing. | Not started — pipeline ready, 0/44 countries collected |
+| Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10 reconciliation entry below; agency IR pages for gaps neither source covers). See the transcription priority list below for sequencing. | **In progress — 1/44 (Greece) done**, reconciled via `reconcile_ratings_sources.py` (172 rows, 1 conflict found and resolved). 43 to go, starting with the rest of Tier 1. |
 | §4.2.4 lead/lag analysis (`ratings_leadlag_stub.py`) | §4.2.4, RQ1/H1 | Blocked on the ratings item above; also needs `build_risk_labels.py` extended to emit a continuous risk score, not just the categorical tier (see CLAUDE.md "Stage 1 clustering") | Interface stubbed, not implemented |
 | Residual global-regime sensitivity in Stage 1 clustering (`core-eligible` = 0 for several consecutive quarters, 2009-2017) | §5.5 candidate robustness check; not blocking Stage 3/4 | Open — see CLAUDE.md "Stage 1 clustering" for the full diagnosis (us_10y/curve_slope are global-only features, thesis §3.3 keeps them in Stage 1 regardless) | Documented, not fixed further without a methodology-level call to override the thesis's own feature-group spec |
 | Execution-verify `bond_data_pull_reconstructed.py` (does it actually run/chunk/return data as designed) | Appendix A reproducibility only — not blocking, since existing bond data already feeds Stage 1 | User (requires a session on the university-library Windows PC with Refinitiv Workspace) | Not started |
@@ -39,7 +39,8 @@ little. Based on general knowledge of major sovereign rating events, not
 yet verified against the actual transcribed data.
 
 - **Tier 1 (do first — explicit crisis case studies named in the thesis
-  outline itself)**: Greece, Turkey, Portugal, Zambia, Sri Lanka.
+  outline itself)**: ~~Greece~~ (done, 2026-08-10), Turkey, Portugal,
+  Zambia, Sri Lanka.
 - **Tier 2 (high value — sharp multi-notch moves)**: Italy, Spain, South
   Africa, Brazil, Colombia, Egypt, Pakistan, Nigeria.
 - **Tier 3 (moderate — real notches, plus two "even safe sovereigns
@@ -60,6 +61,95 @@ isn't feasible before a deadline.
 ---
 
 ## Chronological log
+
+### 2026-08-10 — Greece: first country reconciled (GE + CE), reconcile_ratings_sources.py built
+**What**: Greece transcribed against both TheGlobalEconomy.com (GE) and
+countryeconomy.com (CE), as two sheets of one workbook, and
+cross-referenced -- the first time both sources were compared directly
+for the same country rather than picking one. This surfaced three
+structural disagreements a naive single-source pick would have gotten
+wrong, all now encoded as an explicit, documented policy in the new
+`src/data_acquisition/reconcile_ratings_sources.py`:
+
+1. **CE captures default-designation events GE omits entirely.** For
+   Greece: S&P's Feb 2012 and Dec 2012 SD, and Fitch's March 2012 RD, are
+   in CE and absent from GE -- not sparse, absent. Policy: CE's
+   default-designation rows (SD/RD/D) are always kept, never treated as a
+   conflict candidate (GE has nothing to compare them against).
+2. **CE sometimes embeds outlook text inside the rating field** (e.g.
+   `BBB (Positive)`) and leaves the rating field blank on
+   watch/under-review rows. Both cleaned before comparison: embedded
+   outlook extracted (when the outlook column is itself blank), and blank
+   ratings forward-filled from the most recent non-null rating for that
+   agency within the same source.
+3. **A real cross-source conflict**: April 2021, S&P -- GE says BB-
+   /Stable, CE says BB/Positive. Confirmed via cross-check against the
+   original screenshot: CE was correct. This is exactly the case the
+   script's conflict-resolution mechanism is for -- it does not silently
+   pick a side; it writes both to `<Country>_conflicts.csv` and only
+   folds a resolution into the merged output once a matching row exists
+   in `<Country>_resolutions.csv`, so the resolution and its rationale
+   are on record, not just applied invisibly.
+
+**Two bugs the real data caught, both fixed and re-verified before the
+output was presented**:
+- **Outlook comparison was too strict.** The first version of the
+  reconciliation script's "do these rows agree" check used exact string
+  equality on outlook, which produced 11 false-positive conflicts --
+  every one of them had the *same rating* on both sides, differing only
+  in outlook wording (CE simply left outlook blank in several cases; in
+  others, GE said "Negative watch" where CE said "Under Review" -- the
+  same review-status, described differently by each aggregator). Fixed
+  by loosening `_outlook_eq`: a blank side agrees with anything, and any
+  pair where both sides mention "watch"/"review" agrees regardless of
+  exact wording -- documented in the function's docstring as a
+  deliberate, non-obvious rule, not silent. This also fixed a real data
+  loss: those 11 pairs (22 rows) had been excluded from the merged output
+  entirely under the old logic, since unresolved conflicts don't make it
+  into the merged file -- after the fix, they correctly collapse into 11
+  merged rows (161 -> 172 total).
+- **`ingest_ratings.py`'s existing duplicate-action warning fired on
+  legitimate data, not just real duplicates.** Running the reconciled
+  Greece.csv through `ingest_ratings.py` produced ~25 warnings, almost
+  all Fitch, all from 2013-2014 -- CE turned out to re-affirm Greece's
+  Fitch rating every 1-4 weeks with no change throughout that period
+  (genuine dense surveillance reporting during the crisis, not a
+  transcription artifact). The original warning logic (same rating within
+  35 days = suspicious) couldn't tell that apart from an actual
+  mixed-precision duplicate. Narrowed to only fire when exactly one side
+  of the pair is an *unconfirmed* month-precision row (a GE row with no
+  CE corroboration) -- the specific failure mode it was built for --
+  which correctly silences the crisis-era CE cadence while still catching
+  genuine GE/CE precision mismatches. Re-running after the fix: 0
+  warnings on Greece's 172 rows.
+
+**Reconciliation policy in one place** (also in the script's docstring):
+union of both sources' months; a source-only month is used as-is; an
+agreeing month collapses to one row preferring CE's exact date; a
+disagreeing month is a conflict, never auto-resolved. Every merged row's
+`source` field carries how it got there (e.g. "countryeconomy.com
+(confirmed by theglobaleconomy.com (month-precision))",
+"countryeconomy.com (default designation; theglobaleconomy.com omits
+this event)", "countryeconomy.com (conflict resolved: ...)") -- fully
+auditable without cross-referencing the conflicts file.
+
+**Verified**: `data/raw/ratings/manual/Greece.csv` (172 rows) runs
+cleanly through `ingest_ratings.py` into `data/processed/ratings_panel.csv`
+with zero warnings; `test_lag_rules.py` passes 7/7, including the ratings
+zero-lag check now validating real (not skipped) data for the first time.
+
+**Reusability for the remaining 43 countries**: the same workflow applies
+unchanged -- transcribe both sources into a two-sheet workbook, run
+`reconcile_ratings_sources.py <Country> --xlsx <path>`, review
+`_reconciliation/<Country>_conflicts.csv`, fill in
+`_reconciliation/<Country>_resolutions.csv` for anything genuinely
+disagreeing, re-run. `outlook`-wording variation and CE's blank-rating
+watch rows should need no manual intervention going forward (both handled
+generically, not Greece-specific); default-designation coverage and
+dense-affirm periods should also just work the same way for other
+default/restructuring-heavy Tier 1 countries (Zambia, Sri Lanka).
+
+Commit: (pending, this session) · Issue: #3
 
 ### 2026-08-10 — Ratings manual source switched to TheGlobalEconomy.com; schema gains `outlook`
 **What**: Before any country was actually transcribed against

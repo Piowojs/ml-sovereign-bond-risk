@@ -87,6 +87,10 @@ This is an early-stage scaffold, not a working pipeline yet:
   sovereign rating-action files into `data/processed/ratings_panel.csv` —
   see "Ratings data acquisition" below for full details, including why
   this is a manual-file ingestion pipeline rather than a scripted pull.
+  `src/data_acquisition/reconcile_ratings_sources.py` runs first when a
+  country has both GE and CE transcriptions (recommended going forward),
+  merging them under a documented priority policy before
+  `ingest_ratings.py` ever sees the file.
 - `data/raw/` has pulled data for `bonds/`, `ratings/`, `macro/`, and an
   empty `cds/` (CDS pull did not succeed / was not run). `data/logs/pull_log.txt`
   / `missing.txt` (Refinitiv) and `macro_pull_log.txt` / `macro_missing.txt`
@@ -109,6 +113,13 @@ linter config, no packaging file). What exists today:
   — reads `data/raw/bonds/` and `data/raw/macro/macro_fundamentals.csv`,
   writes both parquet tiers to `data/processed/` and prints per-tier
   diagnostics (row/country counts, per-column missingness, as-of-join drops).
+- Reconcile a country's two ratings sources (when both GE and CE were
+  transcribed): `python src/data_acquisition/reconcile_ratings_sources.py
+  <Country> --xlsx <path to two-sheet workbook>` — writes
+  `data/raw/ratings/manual/<Country>.csv` and
+  `_reconciliation/<Country>_conflicts.csv`. Re-run after adding rows to
+  `_reconciliation/<Country>_resolutions.csv` to fold resolved conflicts
+  into the merged file.
 - Consolidate ratings: `python src/data_acquisition/ingest_ratings.py` —
   reads whatever manually-collected per-country files exist in
   `data/raw/ratings/manual/`, writes `data/processed/ratings_panel.csv`,
@@ -359,14 +370,31 @@ yet for a country just means it's absent from the output, not an error.
   never-recovered original pull, see "Data acquisition status" above) are
   untouched by this script — it only reads `data/raw/ratings/manual/` and
   writes `data/processed/`, never `data/raw/` itself.
+- **`src/data_acquisition/reconcile_ratings_sources.py`** merges a
+  country's GE and CE transcriptions (two sheets of one .xlsx) into the
+  `data/raw/ratings/manual/<Country>.csv` this script reads, applying an
+  explicit, documented priority policy rather than silently picking a
+  source: CE's default-designation rows (SD/RD/D) always win, since GE
+  systematically omits them; CE's embedded-outlook and blank-rating
+  (watch/under-review) quirks are cleaned up before comparison; agreeing
+  (agency, month) rows from both sources collapse into one row preferring
+  CE's exact date; genuinely disagreeing rows are written to
+  `_reconciliation/<Country>_conflicts.csv`, never auto-resolved, and
+  only enter the merged output once a matching row appears in
+  `_reconciliation/<Country>_resolutions.csv` recording which source was
+  chosen and why. See that script's docstring for the full policy and
+  `state.md` for the worked Greece example (including two matching-logic
+  bugs the real data caught and how they were fixed).
 - **Status as of 2026-08-10**: pipeline built and verified against
   synthetic test files (mapping, action/outlook_change inference,
   duplicate-action detection, Scope rejection, and coverage logging all
-  confirmed correct); zero real countries' data collected yet. Manually
-  collecting and transcribing per-country files for the 44-country
-  universe is open, user-side work — see `state.md` for the full log,
-  including a priority order for which countries to transcribe first, and
-  issue #3 for tracking.
+  confirmed correct); **1/44 countries collected — Greece**, reconciled
+  from both GE and CE sources via `reconcile_ratings_sources.py` (172
+  rows, one genuine cross-source conflict found and resolved). Manually
+  collecting and transcribing the remaining 43 per-country files is open,
+  user-side work — see `state.md` for the full log, including a priority
+  order for which countries to transcribe next, and issue #3 for
+  tracking.
 
 ## Stage 1 feature matrix (country x quarter — settled facts)
 `src/stage1_clustering/build_feature_matrix.py` builds two wide, country x

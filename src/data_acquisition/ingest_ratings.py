@@ -82,6 +82,14 @@ incrementally: countries with no raw file yet are simply absent from the
 output, not an error, so partial coverage can land over time as files are
 added.
 
+For a country where both GE and CE were transcribed (the recommended
+approach going forward, since cross-referencing Greece surfaced real,
+non-overlapping coverage in each -- see below), don't hand-merge them:
+run reconcile_ratings_sources.py first, which applies a documented
+priority policy (CE wins for default designations, conflicts get flagged
+not silently resolved) and writes the <Country>.csv this script then
+picks up.
+
 `outlook` is carried through to the output panel as its own column, not
 just used internally to help infer `action` -- outlook deterioration
 (e.g. Stable -> Negative with no letter-grade change) often precedes an
@@ -239,19 +247,37 @@ def _fill_missing_actions(df: pd.DataFrame) -> pd.DataFrame:
     return pd.concat(filled_groups, ignore_index=True)
 
 
+def _is_month_precision_only(source) -> bool:
+    """True only for a row whose date is actually imprecise -- rounded to
+    the 1st of its month, straight from a month-precision source with no
+    exact-day corroboration. Rows produced by
+    reconcile_ratings_sources.py's cross-source matching always carry an
+    exact CE date even when a GE month-precision row helped confirm it
+    (their source string reads "... (confirmed by ... month-precision
+    ...)"), so those don't count as imprecise -- only an unconfirmed,
+    still-just-GE row does."""
+    s = str(source)
+    return "(month-precision)" in s and "confirmed by" not in s
+
+
 def _warn_possible_duplicate_actions(
     panel: pd.DataFrame, window_days: int = DUPLICATE_ACTION_WINDOW_DAYS
 ) -> None:
-    """Flag same country+agency+rating_numeric rows that land within
-    window_days of each other -- a likely symptom of one real-world action
-    transcribed twice from sources with different date precision (an
-    exact-day source and a "1st of month" source both describing the same
-    action), rather than two genuine reviews days apart. Real agency
-    review cycles are typically ~12 months apart, so two same-rating rows
-    this close is worth a human look. Logged as a warning, not a hard
-    error -- kept advisory since a few genuinely-close actions are
-    possible (e.g. a downgrade quickly followed by a separately-dated
-    watch/outlook entry) and shouldn't block a build."""
+    """Flag same country+agency+rating_numeric rows within window_days of
+    each other where exactly one side is an unconfirmed month-precision
+    row (see _is_month_precision_only) -- the actual mixed-precision
+    duplicate risk this guards against: one real action transcribed once
+    from an exact-day source and once from a "1st of month" source.
+    Deliberately does NOT fire on two same-precision rows close together
+    (e.g. two exact-day CE rows a few weeks apart) -- on real data
+    (Greece), that pattern turned out to be legitimate dense surveillance
+    reporting during the 2013-2014 crisis (CE re-affirmed Fitch's rating
+    every 1-4 weeks with no change), not duplicates; an earlier version of
+    this check fired on every one of those ~25 pairs, which would have
+    buried the one warning that actually mattered under noise. Logged as
+    a warning, not a hard error -- kept advisory since a few genuinely
+    mixed-precision-and-close actions are possible and shouldn't block a
+    build."""
     for (country, agency), group in panel.groupby(["country", "agency"], sort=False):
         group = group.sort_values("date")
         dates = group["date"].tolist()
@@ -259,15 +285,19 @@ def _warn_possible_duplicate_actions(
         sources = group["source"].tolist()
         for i in range(1, len(dates)):
             gap_days = (dates[i] - dates[i - 1]).days
-            if numerics[i] == numerics[i - 1] and 0 < gap_days <= window_days:
-                logging.warning(
-                    f"Possible duplicate action: {country}/{agency} has two rows at "
-                    f"rating_numeric={numerics[i]} only {gap_days} day(s) apart "
-                    f"({dates[i - 1].date()} [{sources[i - 1]}] and "
-                    f"{dates[i].date()} [{sources[i]}]) -- check whether this is "
-                    f"one real action transcribed from two differently-precise "
-                    f"sources rather than two genuine reviews"
-                )
+            if numerics[i] != numerics[i - 1] or not (0 < gap_days <= window_days):
+                continue
+            if _is_month_precision_only(sources[i]) == _is_month_precision_only(sources[i - 1]):
+                continue
+            logging.warning(
+                f"Possible duplicate action: {country}/{agency} has two rows at "
+                f"rating_numeric={numerics[i]} only {gap_days} day(s) apart, one "
+                f"unconfirmed month-precision and one exact-day "
+                f"({dates[i - 1].date()} [{sources[i - 1]}] and "
+                f"{dates[i].date()} [{sources[i]}]) -- check whether this is "
+                f"one real action transcribed from two differently-precise "
+                f"sources rather than two genuine reviews"
+            )
 
 
 def build_ratings_panel(raw_dir: Path = RAW_DIR) -> pd.DataFrame:

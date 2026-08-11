@@ -1,1 +1,173 @@
 country,agency,date,rating,rating_numeric,outlook,action,source,available_date
+Greece,Fitch,1995-11-13,BBB-,10,,initial,countryeconomy.com,1995-11-13
+Greece,Fitch,1997-06-04,BBB,9,,upgrade,countryeconomy.com,1997-06-04
+Greece,Fitch,1999-08-10,BBB,9,Positive,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),1999-08-10
+Greece,Fitch,1999-10-25,BBB+,8,,upgrade,countryeconomy.com,1999-10-25
+Greece,Fitch,2000-03-13,BBB+,8,Positive,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2000-03-13
+Greece,Fitch,2000-07-27,A-,7,,upgrade,countryeconomy.com,2000-07-27
+Greece,Fitch,2000-09-21,A-,7,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2000-09-21
+Greece,Fitch,2001-06-20,A,6,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2001-06-20
+Greece,Fitch,2002-10-23,A,6,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2002-10-23
+Greece,Fitch,2003-10-20,A+,5,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2003-10-20
+Greece,Fitch,2004-09-28,A+,5,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2004-09-28
+Greece,Fitch,2004-12-16,A,6,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2004-12-16
+Greece,Fitch,2007-03-05,A,6,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2007-03-05
+Greece,Fitch,2008-10-20,A,6,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2008-10-20
+Greece,Fitch,2009-05-12,A,6,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2009-05-12
+Greece,Fitch,2009-10-22,A-,7,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2009-10-22
+Greece,Fitch,2009-12-08,BBB+,8,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2009-12-08
+Greece,Fitch,2010-04-09,BBB-,10,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2010-04-09
+Greece,Fitch,2010-12-21,BBB-,10,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2010-12-21
+Greece,Fitch,2011-01-14,BB+,11,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2011-01-14
+Greece,Fitch,2011-05-20,B+,14,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2011-05-20
+Greece,Fitch,2011-07-13,CCC,18,,downgrade,countryeconomy.com,2011-07-13
+Greece,Fitch,2011-10-26,CCC,18,,affirm,countryeconomy.com,2011-10-26
+Greece,Fitch,2011-12-28,CCC,18,,affirm,countryeconomy.com,2011-12-28
+Greece,Fitch,2012-02-22,C,21,,downgrade,countryeconomy.com,2012-02-22
+Greece,Fitch,2012-03-09,RD,22,,downgrade,countryeconomy.com (default designation; theglobaleconomy.com omits this event),2012-03-09
+Greece,Fitch,2012-03-14,B-,16,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2012-03-14
+Greece,Fitch,2012-05-17,CCC,18,,downgrade,countryeconomy.com,2012-05-17
+Greece,Fitch,2013-03-01,CCC,18,,affirm,countryeconomy.com,2013-03-01
+Greece,Fitch,2013-03-26,CCC,18,,affirm,countryeconomy.com,2013-03-26
+Greece,Fitch,2013-05-14,B-,16,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-05-14
+Greece,Fitch,2013-06-07,B-,16,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-06-07
+Greece,Fitch,2013-06-24,B-,16,Stable,affirm,countryeconomy.com,2013-06-24
+Greece,Fitch,2013-07-29,B-,16,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-07-29
+Greece,Fitch,2013-08-30,B-,16,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-08-30
+Greece,Fitch,2013-10-01,B-,16,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-10-01
+Greece,Fitch,2013-11-28,B-,16,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-11-28
+Greece,Fitch,2013-12-05,B-,16,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-12-05
+Greece,Fitch,2013-12-27,B-,16,Stable,affirm,countryeconomy.com,2013-12-27
+Greece,Fitch,2014-01-24,B-,16,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-01-24
+Greece,Fitch,2014-01-31,B-,16,Stable,affirm,countryeconomy.com,2014-01-31
+Greece,Fitch,2014-02-26,B-,16,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-02-26
+Greece,Fitch,2014-03-28,B-,16,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-03-28
+Greece,Fitch,2014-04-02,B-,16,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-04-02
+Greece,Fitch,2014-04-11,B-,16,Stable,affirm,countryeconomy.com,2014-04-11
+Greece,Fitch,2014-04-15,B-,16,Stable,affirm,countryeconomy.com,2014-04-15
+Greece,Fitch,2014-05-06,B-,16,Stable,affirm,countryeconomy.com,2014-05-06
+Greece,Fitch,2014-05-23,B,15,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-05-23
+Greece,Fitch,2014-06-10,B,15,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-06-10
+Greece,Fitch,2014-06-17,B,15,Stable,affirm,countryeconomy.com,2014-06-17
+Greece,Fitch,2014-07-17,B,15,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-07-17
+Greece,Fitch,2014-08-04,B,15,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-08-04
+Greece,Fitch,2014-08-12,B,15,Stable,affirm,countryeconomy.com,2014-08-12
+Greece,Fitch,2014-08-19,B,15,Stable,affirm,countryeconomy.com,2014-08-19
+Greece,Fitch,2014-09-03,B,15,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-09-03
+Greece,Fitch,2014-09-16,B,15,Stable,affirm,countryeconomy.com,2014-09-16
+Greece,Fitch,2014-10-15,B,15,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-10-15
+Greece,Fitch,2014-11-21,B,15,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-11-21
+Greece,Fitch,2015-03-27,CCC,18,,downgrade,countryeconomy.com,2015-03-27
+Greece,Fitch,2015-05-15,CCC,18,,affirm,countryeconomy.com,2015-05-15
+Greece,Fitch,2015-06-30,CC,20,,downgrade,countryeconomy.com,2015-06-30
+Greece,Fitch,2015-08-18,CCC,18,,upgrade,countryeconomy.com,2015-08-18
+Greece,Fitch,2015-11-13,CCC,18,,affirm,countryeconomy.com,2015-11-13
+Greece,Fitch,2016-03-11,CCC,18,,affirm,countryeconomy.com,2016-03-11
+Greece,Fitch,2016-07-22,CCC,18,,affirm,countryeconomy.com,2016-07-22
+Greece,Fitch,2016-09-02,CCC,18,,affirm,countryeconomy.com,2016-09-02
+Greece,Fitch,2017-02-24,CCC,18,,affirm,countryeconomy.com,2017-02-24
+Greece,Fitch,2017-08-18,B-,16,Positive,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2017-08-18
+Greece,Fitch,2018-02-16,B,15,Positive,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2018-02-16
+Greece,Fitch,2018-08-10,BB-,13,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2018-08-10
+Greece,Fitch,2019-02-08,BB-,13,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2019-02-08
+Greece,Fitch,2019-08-02,BB-,13,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2019-08-02
+Greece,Fitch,2020-01-24,BB,12,,upgrade,countryeconomy.com,2020-01-24
+Greece,Fitch,2020-04-23,BB,12,,affirm,countryeconomy.com,2020-04-23
+Greece,Fitch,2020-07-01,BB,12,Stable,affirm,theglobaleconomy.com (month-precision),2020-07-01
+Greece,Fitch,2021-01-01,BB,12,Stable,affirm,theglobaleconomy.com (month-precision),2021-01-01
+Greece,Fitch,2021-07-01,BB,12,Stable,affirm,theglobaleconomy.com (month-precision),2021-07-01
+Greece,Fitch,2022-01-01,BB,12,Positive,outlook_change,theglobaleconomy.com (month-precision),2022-01-01
+Greece,Fitch,2022-07-01,BB,12,Positive,affirm,theglobaleconomy.com (month-precision),2022-07-01
+Greece,Fitch,2022-10-01,BB,12,Positive,affirm,theglobaleconomy.com (month-precision),2022-10-01
+Greece,Fitch,2023-01-27,BB+,11,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2023-01-27
+Greece,Fitch,2023-06-01,BB+,11,Stable,affirm,theglobaleconomy.com (month-precision),2023-06-01
+Greece,Fitch,2023-12-01,BBB-,10,Stable,upgrade,theglobaleconomy.com (month-precision),2023-12-01
+Greece,Fitch,2024-11-01,BBB-,10,Stable,affirm,theglobaleconomy.com (month-precision),2024-11-01
+Greece,Fitch,2025-05-01,BBB-,10,Positive,outlook_change,theglobaleconomy.com (month-precision),2025-05-01
+Greece,Fitch,2025-11-01,BBB,9,Stable,upgrade,theglobaleconomy.com (month-precision),2025-11-01
+Greece,Fitch,2026-05-01,BBB,9,Stable,affirm,theglobaleconomy.com (month-precision),2026-05-01
+Greece,Moody's,1990-07-19,Baa1,8,Stable,initial,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),1990-07-19
+Greece,Moody's,1994-05-24,Baa3,10,,downgrade,countryeconomy.com,1994-05-24
+Greece,Moody's,1996-11-01,Baa3,10,Positive watch,outlook_change,theglobaleconomy.com (month-precision),1996-11-01
+Greece,Moody's,1996-12-23,Baa1,8,,upgrade,countryeconomy.com,1996-12-23
+Greece,Moody's,1998-02-01,Baa1,8,Negative watch,outlook_change,theglobaleconomy.com (month-precision),1998-02-01
+Greece,Moody's,1999-07-14,A2,6,,upgrade,countryeconomy.com,1999-07-14
+Greece,Moody's,2002-11-04,A1,5,,upgrade,countryeconomy.com,2002-11-04
+Greece,Moody's,2003-11-15,A1,5,Stable,outlook_change,countryeconomy.com,2003-11-15
+Greece,Moody's,2007-01-11,A1,5,Positive,outlook_change,countryeconomy.com,2007-01-11
+Greece,Moody's,2009-02-25,A1,5,Stable,outlook_change,countryeconomy.com,2009-02-25
+Greece,Moody's,2009-10-29,A1,5,Under Review,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2009-10-29
+Greece,Moody's,2009-12-22,A2,6,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2009-12-22
+Greece,Moody's,2010-04-22,A3,7,Under Review,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2010-04-22
+Greece,Moody's,2010-06-14,Ba1,11,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2010-06-14
+Greece,Moody's,2010-12-16,Ba1,11,Under Review,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2010-12-16
+Greece,Moody's,2011-03-07,B1,14,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2011-03-07
+Greece,Moody's,2011-05-09,B1,14,Under Review,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2011-05-09
+Greece,Moody's,2011-06-01,Caa1,17,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2011-06-01
+Greece,Moody's,2011-07-25,Ca,20,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2011-07-25
+Greece,Moody's,2012-03-02,C,21,,downgrade,countryeconomy.com,2012-03-02
+Greece,Moody's,2013-11-29,Caa3,19,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-11-29
+Greece,Moody's,2014-08-01,Caa1,17,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-08-01
+Greece,Moody's,2015-02-06,Caa1,17,Under Review,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-02-06
+Greece,Moody's,2015-04-29,Caa2,18,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-04-29
+Greece,Moody's,2015-07-01,Caa3,19,Under Review,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-07-01
+Greece,Moody's,2015-09-25,Caa3,19,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-09-25
+Greece,Moody's,2016-10-14,Caa3,19,Stable,affirm,countryeconomy.com,2016-10-14
+Greece,Moody's,2017-06-23,Caa2,18,Positive,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2017-06-23
+Greece,Moody's,2018-02-21,B3,16,Positive,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2018-02-21
+Greece,Moody's,2019-03-01,B1,14,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2019-03-01
+Greece,Moody's,2020-11-06,Ba3,13,Stable,upgrade,countryeconomy.com,2020-11-06
+Greece,Moody's,2022-09-16,Ba3,13,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2022-09-16
+Greece,Moody's,2023-03-17,Ba3,13,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2023-03-17
+Greece,Moody's,2023-09-15,Ba1,11,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2023-09-15
+Greece,Moody's,2024-09-13,Ba1,11,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2024-09-13
+Greece,Moody's,2025-03-14,Baa3,10,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2025-03-14
+Greece,S&P,1989-06-01,BBB,9,Stable,initial,theglobaleconomy.com (month-precision),1989-06-01
+Greece,S&P,1990-03-01,BBB,9,Negative,outlook_change,theglobaleconomy.com (month-precision),1990-03-01
+Greece,S&P,1990-07-01,BBB-,10,Stable,downgrade,theglobaleconomy.com (month-precision),1990-07-01
+Greece,S&P,1993-01-01,BBB-,10,Positive,outlook_change,theglobaleconomy.com (month-precision),1993-01-01
+Greece,S&P,1994-03-01,BBB-,10,Stable,outlook_change,theglobaleconomy.com (month-precision),1994-03-01
+Greece,S&P,1997-03-01,BBB-,10,Positive,outlook_change,theglobaleconomy.com (month-precision),1997-03-01
+Greece,S&P,1998-11-01,BBB,9,Positive,upgrade,theglobaleconomy.com (month-precision),1998-11-01
+Greece,S&P,1999-11-01,A-,7,Positive,upgrade,theglobaleconomy.com (month-precision),1999-11-01
+Greece,S&P,2001-03-01,A,6,Positive,upgrade,theglobaleconomy.com (month-precision),2001-03-01
+Greece,S&P,2003-10-01,A+,5,Stable,upgrade,theglobaleconomy.com (month-precision),2003-10-01
+Greece,S&P,2004-09-01,A+,5,Negative,outlook_change,theglobaleconomy.com (month-precision),2004-09-01
+Greece,S&P,2004-11-01,A,6,Stable,downgrade,theglobaleconomy.com (month-precision),2004-11-01
+Greece,S&P,2005-11-01,A,6,Stable,affirm,theglobaleconomy.com (month-precision),2005-11-01
+Greece,S&P,2009-01-01,A,6,Negative watch,outlook_change,theglobaleconomy.com (month-precision),2009-01-01
+Greece,S&P,2009-01-01,A-,7,Stable,downgrade,theglobaleconomy.com (month-precision),2009-01-01
+Greece,S&P,2009-12-01,BBB+,8,Negative watch,downgrade,theglobaleconomy.com (month-precision),2009-12-01
+Greece,S&P,2009-12-01,A-,7,Negative watch,upgrade,theglobaleconomy.com (month-precision),2009-12-01
+Greece,S&P,2010-03-01,BBB+,8,Negative,downgrade,theglobaleconomy.com (month-precision),2010-03-01
+Greece,S&P,2010-04-01,BB+,11,Negative,downgrade,theglobaleconomy.com (month-precision),2010-04-01
+Greece,S&P,2010-12-01,BB+,11,Negative watch,outlook_change,theglobaleconomy.com (month-precision),2010-12-01
+Greece,S&P,2011-03-01,BB-,13,Negative watch,downgrade,theglobaleconomy.com (month-precision),2011-03-01
+Greece,S&P,2011-05-01,B,15,Negative watch,downgrade,theglobaleconomy.com (month-precision),2011-05-01
+Greece,S&P,2011-06-01,CCC,18,Negative,downgrade,theglobaleconomy.com (month-precision),2011-06-01
+Greece,S&P,2011-07-27,CC,20,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2011-07-27
+Greece,S&P,2012-02-27,SD,22,,downgrade,countryeconomy.com (default designation; theglobaleconomy.com omits this event),2012-02-27
+Greece,S&P,2012-05-02,CCC,18,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2012-05-02
+Greece,S&P,2012-08-07,CCC,18,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2012-08-07
+Greece,S&P,2012-12-05,SD,22,,downgrade,countryeconomy.com (default designation; theglobaleconomy.com omits this event),2012-12-05
+Greece,S&P,2012-12-18,B-,16,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2012-12-18
+Greece,S&P,2014-09-12,B,15,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-09-12
+Greece,S&P,2015-01-01,B,15,Negative watch,outlook_change,theglobaleconomy.com (month-precision),2015-01-01
+Greece,S&P,2015-02-06,B-,16,Negative watch,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-02-06
+Greece,S&P,2015-04-15,CCC+,17,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-04-15
+Greece,S&P,2015-06-10,CCC,18,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-06-10
+Greece,S&P,2015-06-29,CCC-,19,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-06-29
+Greece,S&P,2015-07-21,CCC+,17,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-07-21
+Greece,S&P,2016-01-22,B-,16,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2016-01-22
+Greece,S&P,2017-07-21,B-,16,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2017-07-21
+Greece,S&P,2018-01-19,B,15,Positive,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2018-01-19
+Greece,S&P,2018-06-25,B+,14,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2018-06-25
+Greece,S&P,2018-07-20,B+,14,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2018-07-20
+Greece,S&P,2019-10-25,BB-,13,Positive,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2019-10-25
+Greece,S&P,2020-04-24,BB-,13,Stable,outlook_change,countryeconomy.com,2020-04-24
+Greece,S&P,2021-04-23,BB,12,Positive,upgrade,"countryeconomy.com (conflict resolved: User cross-checked against the original screenshot; CE's BB/Positive confirmed correct, GE's BB-/Stable was wrong)",2021-04-23
+Greece,S&P,2022-04-22,BB+,11,Stable,upgrade,countryeconomy.com,2022-04-22
+Greece,S&P,2023-04-21,BB+,11,Positive,outlook_change,countryeconomy.com,2023-04-21
+Greece,S&P,2023-10-20,BBB-,10,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2023-10-20
+Greece,S&P,2024-04-19,BBB-,10,Positive,outlook_change,countryeconomy.com,2024-04-19
+Greece,S&P,2025-04-18,BBB,9,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2025-04-18
