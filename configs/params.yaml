@@ -103,6 +103,105 @@ stage1_clustering:
   chosen_k: 3
   output_dir: "data/processed"
 
+# Stage 2: compensated EM sovereign risk identification (thesis Sec 4.3,
+# src/stage2_signal/). Operates only on the subset of Stage 1's output
+# (data/processed/stage1_risk_labels.parquet) with dm_em_flag == "EM" and
+# risk_label == "satellite-candidate" at each rebal_date -- per thesis
+# Sec 4.4.1's sleeve definition and Ch.1's framing ("compensated EM
+# sovereign risk"), never the occasional DM rows that land in
+# satellite-candidate under Stage 1's known residual global-feature
+# regime artifact (see CLAUDE.md "Stage 1 clustering").
+stage2_signal:
+  start_date: "2005-01-01"
+  end_date: "2025-12-31"
+  # Risk-free leg for the excess-return target (thesis Sec 4.3.2): the
+  # 3-month US T-bill, added to macro_pull.py's FRED_SERIES for this stage
+  # (issue #5) -- was not previously pulled anywhere in the repo.
+  risk_free_series: "us_3m_tbill_yield"
+  risk_free_country_tag: "United States"
+  # Bond price series priority for total-return construction, highest
+  # first. DIRTY_PRC embeds accrued interest (closest available proxy to
+  # true total return, since no explicit coupon-rate/cashflow field exists
+  # anywhere in the raw pull -- see CLAUDE.md "Stage 2 signal" for the full
+  # gap writeup). CLEAN_PRC/MID_PRICE are pure price series (no income
+  # component -- flagged per row via has_income_component, not silently
+  # treated as equivalent). synthetic_mid/BID are the last-resort fallback
+  # for the 2 countries (Kazakhstan, Morocco) with no MID_PRICE/CLEAN_PRC
+  # column at all.
+  price_field_priority: ["DIRTY_PRC", "CLEAN_PRC", "MID_PRICE", "synthetic_mid", "BID"]
+  # Momentum lookback windows (thesis Sec 3.3 Group A: "1m/3m/12m return
+  # momentum", Stage-2-scoped only) and the as-of tolerance (days) allowed
+  # when looking back that many calendar days for a priced observation --
+  # wider than macro's as-of tolerance since bond prices are daily, not
+  # quarterly.
+  momentum_lookback_days: {mom_1m: 30, mom_3m: 91, mom_12m: 365}
+  momentum_asof_tolerance_days: 10
+  # Trailing window for the 52-week spread z-score (thesis Sec 3.3 Group A).
+  spread_zscore_window_days: 364
+  # A country-quarter row needs at least this fraction of the *model*
+  # feature columns (below) actually observed (non-imputed) to get a real
+  # signal; below that it's flagged insufficient_data, same principle as
+  # Stage 1's min_observed_feature_frac.
+  min_observed_feature_frac: 0.5
+  # Minimum expanding-window training rows (with realized targets) before
+  # the walk-forward pipeline will fit a model at all. Sample sizes here
+  # are small by construction -- Stage 1's satellite-candidate tier has EM
+  # rows in only 65 of 84 quarters, median 4 / mean 8.5 EM countries per
+  # quarter (data/processed/stage1_risk_labels.parquet) -- so this is
+  # deliberately low relative to Stage 1's threshold (15x k).
+  min_training_rows: 20
+  # Final Stage 2 feature set, per thesis Sec 3.3's Group A/B/C "Stage"
+  # column filtered to entries marked "2" or "1 & 2" (not "1" only) --
+  # deliberately narrower than reusing Stage 1's whole feature list, the
+  # same discipline Stage 1 applied when it dropped vix/dxy_proxy for being
+  # wrongly scoped in. Notably excludes, despite being Stage-1-available:
+  # mod_duration/convexity (Group A, "1" only), current_acct_gdp/
+  # fx_reserves_mo/political_stability (Group B, "1" only).
+  model_features:
+    - yield_spread_bps      # Group A, "1 & 2"
+    - mom_1m                # Group A, "2"
+    - mom_3m                # Group A, "2"
+    - mom_12m                # Group A, "2"
+    - carry                 # Group A, "2"
+    - spread_zscore_52w     # Group A, "2"
+    - debt_gdp              # Group B, "1 & 2"
+    - fiscal_bal_gdp        # Group B, "1 & 2"
+    - cpi_inflation         # Group B, "1 & 2"
+    - real_gdp_growth       # Group B, "1 & 2"
+    - us_10y                # Group C, "1 & 2"
+    - curve_slope           # Group C, "1 & 2"
+    - vix                   # Group C, "2"
+    - dxy_proxy              # Group C, "2"
+  # cds_5y and cds_bond_basis are computed and kept in the output panel for
+  # inspection but deliberately excluded from model_features above -- CDS
+  # (INT_CDS) is essentially DM-only in the raw pull (see CLAUDE.md), so
+  # among the EM satellite universe both columns are almost entirely null;
+  # same reasoning Stage 1 used to exclude cds_5y from its clustering
+  # feature vector.
+  random_state: 42
+  lasso_alpha: 0.01
+  logistic_C: 1.0
+  rf_n_estimators: 200
+  rf_max_depth: 4
+  xgb_n_estimators: 200
+  xgb_max_depth: 3
+  xgb_learning_rate: 0.05
+  # Sensitivity levels for the top-N satellite sleeve selection (thesis
+  # Sec 4.3.5), all built rather than one hardcoded choice.
+  top_n_options: [5, 10, 15]
+  # Filled in by model_comparison.py's walk-forward results (thesis
+  # Sec 4.3.3) -- see CLAUDE.md "Stage 2 signal" for the full writeup.
+  # LASSO won BOTH framings: classification AUC 0.560 (vs RF 0.546, XGB
+  # 0.550) and regression mean IC +0.076 (vs RF -0.168, XGB -0.261,
+  # actually negative) across 52 walk-forward folds -- driven by the small
+  # per-fold sample size (median ~4-8 EM satellite-candidate countries per
+  # quarter) letting Random Forest/XGBoost overfit each refit while LASSO's
+  # linear regularization generalizes better. Not a Stage-1-style default;
+  # the more flexible models measurably lost here.
+  chosen_model_classification: "lasso_logistic"
+  chosen_model_regression: "lasso"
+  output_dir: "data/processed"
+
 # Ratings ingestion (src/data_acquisition/ingest_ratings.py, issue #3).
 # Consolidates manually-collected rating-action files -- see that script's
 # docstring for why this is manual rather than a scripted pull.

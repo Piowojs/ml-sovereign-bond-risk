@@ -52,6 +52,11 @@ IMF_WEO_FALLBACK = {
 FRED_SERIES = {
     "us_10y_yield": ("DGS10", "United States"),
     "us_2y_yield": ("DGS2", "United States"),
+    # 3-Month Treasury Constant Maturity Rate -- the risk-free leg for Stage
+    # 2's excess-return target (thesis Sec 4.3.2: "excess total return ...
+    # over the 3-month US T-bill"). Added for Stage 2 (issue #5); key-free
+    # like every other FRED series here, same daily/1-day-lag treatment.
+    "us_3m_tbill_yield": ("DGS3MO", "United States"),
     "vix": ("VIXCLS", "GLOBAL"),
     "usd_index_broad_proxy": ("DTWEXBGS", "GLOBAL"),
 }

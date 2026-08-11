@@ -1,0 +1,15 @@
+feature,mean_abs_shap,lasso_coef,group
+cpi_inflation,0.006123161500339302,0.008210639658878834,macro_fundamental
+fiscal_bal_gdp,0.003877982746671062,0.00516836034246357,macro_fundamental
+real_gdp_growth,0.003482441795681554,0.004321475880193371,macro_fundamental
+mom_3m,0.0,-0.0,market
+yield_spread_bps,0.0,0.0,market
+mom_1m,0.0,-0.0,market
+spread_zscore_52w,0.0,0.0,market
+carry,0.0,0.0,market
+mom_12m,0.0,0.0,market
+debt_gdp,0.0,0.0,macro_fundamental
+us_10y,0.0,-0.0,global_factor
+curve_slope,0.0,0.0,global_factor
+vix,0.0,0.0,global_factor
+dxy_proxy,0.0,-0.0,global_factor

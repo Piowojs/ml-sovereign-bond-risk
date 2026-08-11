@@ -28,7 +28,15 @@ This is an early-stage scaffold, not a working pipeline yet:
   `build_risk_labels.py` (§4.2.5, walk-forward-safe production labels) —
   see "Stage 1 clustering" below for full details, including a
   methodologically important finding (VIX/DXY had to be dropped from the
-  Stage 1 feature set — see that section). `stage2_signal/`,
+  Stage 1 feature set — see that section). `stage2_signal/` is now built
+  too — `stage2_utils.py` (shared primitives), `build_stage2_panel.py`
+  (§4.3.2 target construction + §3.3 Stage-2-scoped features),
+  `model_comparison.py` (§4.3.3 walk-forward LASSO/RF/XGBoost comparison,
+  diagnostic), `build_return_signals.py` (§4.3.5 walk-forward-safe
+  production signal + top-N output), and `feature_importance.py` (§4.3.4
+  SHAP) — see "Stage 2 signal" below for full details, including a real
+  data gap discovered before building (no coupon/cashflow field exists
+  anywhere in the raw bond pull) and its documented, flagged workaround.
   `stage3_portfolio/`, `stage4_evaluation/` are still empty.
 - `notebooks/` is empty. `configs/` now has two files (see "Macro data
   acquisition" below for how they got created):
@@ -46,9 +54,11 @@ This is an early-stage scaffold, not a working pipeline yet:
     threshold), `stage1_feature_matrix` (date range, extended-tier
     duration/convexity coverage threshold), `stage1_clustering` (feature
     set, imputation threshold, k range, chosen algorithm/tier/k — see
-    "Stage 1 clustering" below), and `ratings_ingestion`. Add new sections
-    here as later stages need tunable parameters — never hardcode a
-    hyperparameter in code.
+    "Stage 1 clustering" below), `stage2_signal` (target/feature
+    construction params, model feature set, model hyperparameters, chosen
+    model per framing — see "Stage 2 signal" below), and
+    `ratings_ingestion`. Add new sections here as later stages need
+    tunable parameters — never hardcode a hyperparameter in code.
 - `test_lag_rules.py` has real bias-prevention assertions (previously a
   placeholder) covering both the macro pull (`available_date` vs.
   `period_date`/publication lag) and the Stage 1 feature matrix (no row's
@@ -136,12 +146,35 @@ linter config, no packaging file). What exists today:
   `data/processed/stage1_risk_labels.parquet`. Run
   `algorithm_comparison.py` first if changing the chosen combo — see
   "Stage 1 clustering" below.
+- Build the Stage 2 target + feature panel (§4.3.2, §3.3 Stage-2-scoped
+  features): `python src/stage2_signal/build_stage2_panel.py` — reads
+  `data/processed/stage1_risk_labels.parquet` (EM satellite-candidate
+  rows) and `stage1_feature_matrix_core.parquet`, plus the raw
+  `data/raw/bonds/*.csv` files directly for price/momentum/carry/spread
+  z-score, writes `data/processed/stage2_signal_panel.parquet`. Run this
+  first whenever Stage 1's risk labels change.
+- Run the Stage 2 model comparison (diagnostic, walk-forward — §4.3.3):
+  `python src/stage2_signal/model_comparison.py` — writes
+  `data/processed/stage2_model_comparison.csv` (per-fold) and
+  `stage2_model_comparison_summary.csv`. See "Stage 2 signal" below for
+  why LASSO was chosen over Random Forest/XGBoost for both framings.
+- Build the Stage 2 walk-forward return signals (production, §4.3.5):
+  `python src/stage2_signal/build_return_signals.py` — reads the chosen
+  models from `configs/params.yaml: stage2_signal`, writes
+  `data/processed/stage2_return_signals.parquet` (includes `top_5`/
+  `top_10`/`top_15` selection flags per rebalancing date).
+- Compute Stage 2 SHAP feature importance (§4.3.4):
+  `python src/stage2_signal/feature_importance.py` — writes
+  `data/processed/stage2_shap_importance.csv`. Full-sample diagnostic fit,
+  not a walk-forward output — see "Stage 2 signal" below.
 - Run `test_lag_rules.py` after any change touching data loading, feature
   construction, clustering inputs, or backtesting logic —
   this is the project's core correctness check (see Bias-prevention rules).
   Includes a truncation-invariance leakage test for the Stage 1 walk-forward
   labeler (re-running it on a truncated panel and diffing against the
-  full-panel output) — see "Stage 1 clustering" below.
+  full-panel output) — see "Stage 1 clustering" below — and an analogous
+  pair of Stage 2 checks (structural + truncation-invariance, checked
+  across many rebalancing dates) — see "Stage 2 signal" below.
 
 ## Repo structure — pipeline isomorphism
 Folder layout mirrors the thesis chapters/stages 1:1. Key rules:
@@ -716,6 +749,175 @@ with a fixed `random_state`, any future-data leak (via imputation stats,
 scaling stats, or the cluster fit itself) would change the truncated run's
 labels — an exact match is therefore the right bar, not a tolerance, and
 both checks currently pass.
+
+## Stage 2 signal (thesis §4.3.1-4.3.5 — settled facts)
+Built on `src/stage2_signal/`. Operates only on the EM subset of Stage 1's
+`satellite-candidate` output (`dm_em_flag == "EM" and risk_label ==
+"satellite-candidate"` in `stage1_risk_labels.parquet`) — deliberately
+excludes the occasional DM row that lands in `satellite-candidate` under
+Stage 1's documented residual global-feature regime artifact (see "Stage 1
+clustering" above), since Stage 2 is scoped to the EM universe per thesis
+Ch.1/§4.4.1.
+
+**Data gap confirmed before building, not assumed away.** No explicit
+coupon-rate/cashflow field exists anywhere in the raw bond pull (11 fields
+total — confirmed against `bond_data_pull_reconstructed.py`'s own field
+list) — the bond CSVs are generic benchmark composites (`XX10YT=RR` RICs),
+not individual fixed-coupon issues with a cashflow schedule. Thesis
+§4.3.2's "excess total return (price return + coupon)" is therefore **not
+constructible as a true coupon-inclusive total return**. What's built
+instead, flagged per row rather than silently presented as equivalent
+(`price_field_used`, `has_income_component` columns in
+`stage2_signal_panel.parquet`):
+- Where `DIRTY_PRC` (embeds accrued interest) is available, its
+  quarter-over-quarter return is the closest available proxy to total
+  return — `has_income_component=True`. 231/554 rows.
+- Where only `CLEAN_PRC`, `MID_PRICE`, or a BID/ASK-derived synthetic mid
+  is available, the return is a pure price-return proxy with **no income
+  component at all** — `has_income_component=False`. 323/554 rows. This
+  understates true total return, more severely for higher-coupon
+  (typically higher-risk) EM sovereigns — a real, structural bias worth
+  citing in Appendix B alongside the ZSPREAD-vs-swap-curve caveat.
+- Price field priority (`configs/params.yaml:
+  stage2_signal.price_field_priority`): `DIRTY_PRC > CLEAN_PRC >
+  MID_PRICE > synthetic_mid ((BID+ASK)/2) > BID`. The last two fallbacks
+  exist specifically for Kazakhstan and Morocco, the 2 EM countries with
+  no `MID_PRICE`/`CLEAN_PRC` column at all (both have BID at ~99-100%,
+  ASK at 74-100%) — without this fallback those 2 of 26 EM countries would
+  be excluded from Stage 2 entirely; with it, all 26 get a price-based
+  target.
+- **Also confirmed missing before this build**: no 3-month US T-bill
+  series (needed for the "excess ... over the 3-month US T-bill" risk-free
+  leg) was pulled anywhere in the repo. Closed by adding `DGS3MO` to
+  `macro_pull.py`'s `FRED_SERIES` (key-free, same pattern as every other
+  FRED series — see "Macro data acquisition" above), not approximated
+  from `us_10y`/`us_2y`.
+
+**Feature set is deliberately narrower than reusing Stage 1's whole
+feature list** — filtered to thesis §3.3's Group A/B/C table entries
+marked Stage "2" or "1 & 2", not "1" only, the same discipline Stage 1
+applied when it dropped `vix`/`dxy_proxy`. `configs/params.yaml:
+stage2_signal.model_features` (14 features): `yield_spread_bps`, `mom_1m`/
+`mom_3m`/`mom_12m` (price-return momentum, computed from daily prices via
+a bounded as-of lookback so a gap in a country's price history never
+silently reaches back further than intended), `carry` (proxy yield —
+`us_10y + yield_spread_bps/100`, since real YTM is DM-only, see "Data
+acquisition status" — minus the 3m T-bill; a documented approximation),
+`spread_zscore_52w` (trailing 52-week z-score of daily `ZSPREAD`),
+`debt_gdp`, `fiscal_bal_gdp`, `cpi_inflation`, `real_gdp_growth`, `us_10y`,
+`curve_slope`, `vix`, `dxy_proxy`. Notably **excludes**, despite being
+available in Stage 1's parquet: `mod_duration`/`convexity` (Group A, "1"
+only), `current_acct_gdp`/`fx_reserves_mo`/`political_stability` (Group B,
+"1" only). `cds_5y` and `cds_bond_basis` are computed and kept in the
+output panel for inspection but excluded from `model_features` — `INT_CDS`
+is essentially DM-only (see "Data acquisition status"), so both columns
+are ~99% missing within the EM satellite population specifically (worse
+than the ~82% missing seen in Stage 1's broader extended-tier check),
+same reasoning Stage 1 used to exclude `cds_5y` from clustering.
+
+**Population size is the binding constraint, not feature richness.**
+Confirmed before going deep on any one algorithm, per the standing
+instruction to check this early: Stage 1's `satellite-candidate` tier has
+EM rows in only 65 of 84 quarters, median 4 / mean 8.5 countries per
+quarter (`stage1_risk_labels.parquet`) — a small-N walk-forward setting by
+construction, not a large backtest. Within that population, market-based
+features are 49-64% missing (worst: `carry` 63.5%, `spread_zscore_52w`
+61.0%, `yield_spread_bps` 60.5% — driven by the same ZSPREAD-sparse EM
+countries flagged in "Stage 1 feature matrix" skewing disproportionately
+into the highest-risk tier) versus 0% for the 4 macro fundamentals. Model
+quality is therefore bounded by sample size and market-feature sparsity,
+not by an absence of a feature-construction path — the pipeline is real
+and leakage-safe, but small-N noise is a first-order caveat on every
+result below, not a footnote.
+
+**Model selection (§4.3.3) — actual walk-forward results, not assumption.**
+`model_comparison.py` refits LASSO / Random Forest / XGBoost at every
+rebalancing date (classification framing: L1-penalized logistic
+regression as LASSO's classification analogue; regression framing: LASSO
+proper) using only rows whose target is already realized as of that date,
+then evaluates pooled out-of-sample predictions across 52 folds (of 65
+quarters — the rest don't clear `min_training_rows=20` or the
+sufficient-feature-coverage bar):
+
+| Framing | Model | Metric | Value |
+|---|---|---|---|
+| Classification | lasso_logistic | AUC | **0.560** |
+| Classification | random_forest | AUC | 0.546 |
+| Classification | xgboost | AUC | 0.550 |
+| Regression | lasso | mean IC | **+0.076** (t=0.83, one-sided p=0.205) |
+| Regression | random_forest | mean IC | -0.168 (negative) |
+| Regression | xgboost | mean IC | -0.261 (negative) |
+
+**LASSO wins both framings** — not a Stage-1-style default choice, the
+more flexible models measurably lost. Read this as a small-sample effect,
+not evidence that non-linear structure doesn't exist in EM returns: with
+median ~4-8 test rows per fold, Random Forest/XGBoost overfit each
+per-quarter refit (mean IC goes *negative*, worse than a naive constant
+prediction) while LASSO's linear regularization generalizes better under
+low-N conditions — the same "simpler model wins" pattern as Stage 1's GMM/
+HDBSCAN underperforming K-Means, for an analogous reason (the fancier
+model's flexibility becomes a liability, not an asset, given what the data
+can actually support). Per H2's own stated bar (thesis §1.5: IC > 0.05
+*and* p < 0.05), **H2 is not rejected by this result** — mean IC (0.076)
+clears the economic-significance threshold but p=0.205 does not clear the
+statistical-significance one. Reported as a genuine, non-forced empirical
+finding, not adjusted to fit the hypothesis. `configs/params.yaml:
+stage2_signal.chosen_model_classification/chosen_model_regression` =
+`lasso_logistic`/`lasso`.
+
+**Feature importance (§4.3.4) — SHAP, with an important caveat.**
+`feature_importance.py` fits the chosen LASSO regression model on the full
+target-realized sample (274 rows) as a diagnostic (not a walk-forward
+output — same "diagnostic vs production" split as Stage 1's
+`algorithm_comparison.py` vs `build_risk_labels.py`). At LASSO's
+configured `alpha=0.01` (confirmed close to the cross-validated optimum,
+`LassoCV` selects `alpha≈0.0075` and produces the same sparsity pattern —
+not an artifact of an arbitrarily strong fixed penalty), **only 3 of 14
+features survive shrinkage: `cpi_inflation`, `fiscal_bal_gdp`,
+`real_gdp_growth`** — all macro fundamentals. Every market-based feature
+(`yield_spread_bps`, momentum, `carry`, `spread_zscore_52w`) and every
+global factor (`us_10y`, `curve_slope`, `vix`, `dxy_proxy`) is shrunk to
+exactly zero. **Read this together with the population-size finding
+above, not in isolation**: market-based features are 49-64% missing in
+this population versus 0% for the macro fundamentals, so their
+median-imputed, mostly-constant columns give LASSO little to work with —
+the clean "macro fundamentals dominate" result is plausibly a
+data-richness artifact of this university licence pull, not proof that
+market signals carry no genuine EM return information. Flagged explicitly
+in `feature_importance.py`'s own output (a printed caveat line) precisely
+so this isn't cited in §6.2 as a clean result without the caveat attached.
+
+**Output (§4.3.5).** `data/processed/stage2_return_signals.parquet` — one
+row per (country, rebal_date) with `predicted_excess_return` (continuous,
+the primary ranking signal), `predicted_prob_positive` (classification
+framing, secondary diagnostic), `rank_within_date`, and `top_5`/`top_10`/
+`top_15` boolean selection flags (`configs/params.yaml:
+stage2_signal.top_n_options`) — all three sensitivity levels built, not
+one hardcoded N. `signal_status` is `"scored"` (483/554 rows, 57/65
+quarters) or `"insufficient_data"` (mirrors Stage 1's label, same
+semantic: too little realized-target training history yet). A quarter can
+have fewer scored countries than a given N (e.g. the final quarter,
+2025-12-31, has only 2 EM satellite-candidates) — `n_scored_within_date`
+records this so a downstream consumer never silently assumes a full N.
+
+**Leakage check — Stage-2-specific, one quarter stricter than Stage 1's.**
+Because the target itself is a forward `(t, t+1]` return, a row is
+eligible for training a model used to predict at date `t` only if BOTH its
+features are knowable by `t` (inherited from Stage 1's already lag-safe
+inputs) **and** its target is already realized (`target_period_end <=
+t`) — `stage2_utils.build_expanding_train_mask`. `test_lag_rules.py` has
+three Stage-2 checks: a structural check that `target_period_end` is
+always exactly one quarter after `rebal_date`, a structural check that
+`training_window_max_target_period_end` (recorded per output row) never
+exceeds that row's own `rebal_date`, and a real truncation-invariance
+check mirroring Stage 1's — re-running `build_return_signals.score_panel()`
+on the panel truncated to a mid-sample cutoff (quarter 50 of 65) and
+asserting predictions for **every** date <= cutoff (not just the cutoff
+itself — the exact gap Stage 1's equivalent test's docstring flags as a
+real one caught and fixed there) are identical to the full-panel run.
+LASSO/L1-logistic are deterministic given a fixed `random_state`, so an
+exact match (via `np.isclose(..., equal_nan=True)` to handle NaN-vs-NaN
+positions) is the right bar. All three checks currently pass.
 
 ## Bias-prevention rules (the thesis's core methodological concern)
 - Run `test_lag_rules.py` after any change touching data loading, feature

@@ -1,0 +1,7 @@
+framing,model,n_folds,n_pooled_obs,auc,mean_ic,ic_t_stat,ic_one_sided_p
+classification,lasso_logistic,52,251.0,0.5595053095053095,,,
+classification,random_forest,52,251.0,0.5455192955192956,,,
+classification,xgboost,52,251.0,0.5502784252784253,,,
+regression,lasso,52,,,0.07580139159086527,0.8340089835927473,0.2049660502801881
+regression,random_forest,52,,,-0.16751096224780432,-1.8660805669825222,0.9649030750869305
+regression,xgboost,52,,,-0.2613317692265061,-3.61994254922974,0.9995505568910658
