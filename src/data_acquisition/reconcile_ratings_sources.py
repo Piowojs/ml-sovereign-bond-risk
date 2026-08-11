@@ -102,6 +102,27 @@ between them that a naive "pick a primary source" merge would get wrong:
    as agreeing with a bare directional outlook this way -- point 3's
    both-sides-mention-watch/review rule is what covers that case, and
    this point deliberately doesn't widen it further.
+10. **An agency can be entirely absent from one source and that's fine --
+    but a malformed rating string in the surviving source still isn't.**
+    Found on Zambia: CE has zero Moody's rows at all (confirmed via
+    screenshot -- not a scraping gap, Moody's coverage for Zambia simply
+    isn't on that page), so GE is Zambia's sole Moody's source. This
+    needed no code change -- the general union-of-months policy already
+    handles an agency with zero rows in one source gracefully (it's just
+    every month being a GE-only addition). What *did* need a fix: one GE
+    Moody's row had `rating="Ca-"`, which isn't a valid notch --
+    confirmed against Moody's own rating-scale documentation that
+    long-term modifiers (1/2/3) only apply Aaa through Caa3; Ca and C
+    take no modifier at all. Sitting between a real `Caa2` and a real
+    `Ca` a couple of years later, `Ca-` reads as a transcription/
+    formatting artifact for `Ca`, not a distinct grade -- confirmed with
+    the user before touching `RATING_MAP`, rather than guessed. Added as
+    an alias (`"Ca-": 20`, same value as `"Ca"`) directly in
+    `ingest_ratings.py`'s `RATING_MAP`, consistent with how that dict
+    already aliases multiple real notations (e.g. `"AAA"`/`"Aaa"`) to one
+    ordinal value -- the raw string `Ca-` is left as transcribed in the
+    output CSV (not rewritten to `Ca`), only the numeric mapping is
+    fixed, since that's the narrower, explicitly-requested change.
 
 Given all that, the merge policy for non-conflicting (agency, month)
 buckets is: union of both sources' months; where only one source has a

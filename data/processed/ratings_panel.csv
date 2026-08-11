@@ -567,3 +567,48 @@ Turkey,S&P,2023-09-29,B,15,Stable,outlook_change,countryeconomy.com (confirmed b
 Turkey,S&P,2023-11-30,B,15,Positive,outlook_change,countryeconomy.com,2023-11-30
 Turkey,S&P,2024-05-03,B+,14,Positive,upgrade,countryeconomy.com,2024-05-03
 Turkey,S&P,2024-11-01,BB-,13,Stable,upgrade,countryeconomy.com,2024-11-01
+Zambia,Fitch,2011-03-02,B+,14,Stable,initial,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2011-03-02
+Zambia,Fitch,2012-03-01,B+,14,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2012-03-01
+Zambia,Fitch,2013-02-22,B+,14,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-02-22
+Zambia,Fitch,2013-10-28,B,15,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-10-28
+Zambia,Fitch,2014-03-21,B,15,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-03-21
+Zambia,Fitch,2014-04-08,B,15,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-04-08
+Zambia,Fitch,2014-09-19,B,15,,affirm,countryeconomy.com,2014-09-19
+Zambia,Fitch,2015-03-13,B,15,,affirm,countryeconomy.com,2015-03-13
+Zambia,Fitch,2015-08-21,B,15,,affirm,countryeconomy.com,2015-08-21
+Zambia,Fitch,2016-02-24,B,15,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2016-02-24
+Zambia,Fitch,2016-07-22,B,15,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2016-07-22
+Zambia,Fitch,2017-02-20,B,15,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2017-02-20
+Zambia,Fitch,2017-11-27,B,15,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2017-11-27
+Zambia,Fitch,2018-07-26,B,15,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2018-07-26
+Zambia,Fitch,2018-10-11,B-,16,Developing,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2018-10-11
+Zambia,Fitch,2019-06-27,CCC,18,Developing,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2019-06-27
+Zambia,Fitch,2019-12-20,CCC,18,Developing,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2019-12-20
+Zambia,Fitch,2020-04-16,CC,20,,downgrade,countryeconomy.com,2020-04-16
+Zambia,Fitch,2020-09-24,C,21,NR,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2020-09-24
+Zambia,Fitch,2020-11-18,RD,22,,downgrade,countryeconomy.com (default designation; theglobaleconomy.com omits this event),2020-11-18
+Zambia,Fitch,2023-12-01,CCC+,17,NR,upgrade,theglobaleconomy.com (month-precision),2023-12-01
+Zambia,Fitch,2024-12-01,RD,22,NR,downgrade,theglobaleconomy.com (month-precision),2024-12-01
+Zambia,Fitch,2025-11-01,B-,16,Stable,upgrade,theglobaleconomy.com (month-precision),2025-11-01
+Zambia,Moody's,2012-11-01,B1,14,Stable,initial,theglobaleconomy.com (month-precision),2012-11-01
+Zambia,Moody's,2015-05-01,B1,14,Negative,outlook_change,theglobaleconomy.com (month-precision),2015-05-01
+Zambia,Moody's,2015-09-01,B2,15,Stable,downgrade,theglobaleconomy.com (month-precision),2015-09-01
+Zambia,Moody's,2016-04-01,B3,16,Negative,downgrade,theglobaleconomy.com (month-precision),2016-04-01
+Zambia,Moody's,2018-01-01,B3,16,Negative,affirm,theglobaleconomy.com (month-precision),2018-01-01
+Zambia,Moody's,2018-07-01,Caa1,17,Stable,downgrade,theglobaleconomy.com (month-precision),2018-07-01
+Zambia,Moody's,2019-05-01,Caa2,18,Negative,downgrade,theglobaleconomy.com (month-precision),2019-05-01
+Zambia,Moody's,2020-04-01,Ca-,20,Stable,downgrade,theglobaleconomy.com (month-precision),2020-04-01
+Zambia,Moody's,2020-09-01,CCC-,19,Negative,upgrade,theglobaleconomy.com (month-precision),2020-09-01
+Zambia,Moody's,2022-11-01,Ca,20,Stable,downgrade,theglobaleconomy.com (month-precision),2022-11-01
+Zambia,Moody's,2025-04-01,Caa2,18,Positive,upgrade,theglobaleconomy.com (month-precision),2025-04-01
+Zambia,S&P,2011-03-22,B+,14,Stable,initial,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2011-03-22
+Zambia,S&P,2013-10-25,B+,14,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-10-25
+Zambia,S&P,2015-07-01,B,15,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-07-01
+Zambia,S&P,2016-03-18,B,15,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2016-03-18
+Zambia,S&P,2017-08-25,B,15,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2017-08-25
+Zambia,S&P,2018-08-24,B-,16,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2018-08-24
+Zambia,S&P,2019-02-22,B-,16,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2019-02-22
+Zambia,S&P,2019-08-23,CCC+,17,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2019-08-23
+Zambia,S&P,2020-02-21,CCC,18,Negative,downgrade,countryeconomy.com,2020-02-21
+Zambia,S&P,2020-10-21,SD,22,,downgrade,countryeconomy.com (default designation; theglobaleconomy.com omits this event),2020-10-21
+Zambia,S&P,2025-11-21,CCC+,17,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2025-11-21

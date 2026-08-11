@@ -389,42 +389,65 @@ yet for a country just means it's absent from the output, not an error.
   watch` vs CE plain `Negative`) is treated as an information asymmetry,
   not a disagreement — the ratings still have to agree, but the more
   specific watch-qualified wording wins the merge regardless of which
-  source had it; agreeing (agency, month) rows from both sources collapse
-  into one row preferring CE's exact date; genuinely disagreeing rows are
-  written to `_reconciliation/<Country>_conflicts.csv`, never
-  auto-resolved, and only enter the merged output once a matching row
-  appears in `_reconciliation/<Country>_resolutions.csv` recording which
-  source was chosen, at what confidence, and why. **Known, accepted
-  limitation**: matching buckets by calendar month means a same-action
-  pair straddling a month boundary (CE's exact late-month date vs GE's
-  1st-of-*next*-month rounding) won't be caught as a match — found on Sri
-  Lanka (Fitch, Nov 27 CE vs Dec 1 GE, same rating) and surfaced instead
-  by `ingest_ratings.py`'s downstream duplicate-action warning, which is
-  the accepted safety net for this gap rather than a bug to chase with
+  source had it; an agency entirely absent from one source (e.g. CE has
+  zero Moody's rows for Zambia — confirmed genuine, not a scraping gap)
+  needs no special handling, it's just every month becoming a
+  single-source addition via the general union-of-months policy below;
+  agreeing (agency, month) rows from both sources collapse into one row
+  preferring CE's exact date; genuinely disagreeing rows are written to
+  `_reconciliation/<Country>_conflicts.csv`, never auto-resolved, and
+  only enter the merged output once a matching row appears in
+  `_reconciliation/<Country>_resolutions.csv` recording which source was
+  chosen, at what confidence, and why. **Known, accepted limitation**:
+  matching buckets by calendar month means a same-action pair straddling
+  a month boundary (CE's exact late-month date vs GE's 1st-of-*next*-
+  month rounding) won't be caught as a match — found on Sri Lanka (Fitch,
+  Nov 27 CE vs Dec 1 GE, same rating) and surfaced instead by
+  `ingest_ratings.py`'s downstream duplicate-action warning, which is the
+  accepted safety net for this gap rather than a bug to chase with
   riskier cross-month matching. See that script's docstring for the full
-  policy and `state.md` for the worked Greece/Turkey/Sri Lanka/Portugal
-  examples (nine matching-logic policy points the real data drove across
-  the four countries, and how each was handled).
+  policy and `state.md` for the worked Greece/Turkey/Sri Lanka/Portugal/
+  Zambia examples (ten matching-logic policy points the real data drove
+  across all five, and how each was handled).
+- **`RATING_MAP` (in `ingest_ratings.py`, imported by
+  `reconcile_ratings_sources.py`) carries one confirmed transcription-
+  artifact alias**: `"Ca-"` → 20, same value as `"Ca"`. Moody's own
+  rating-scale documentation confirms long-term modifiers (1/2/3) only
+  apply Aaa through Caa3 — Ca and C take no modifier at all, so `Ca-`
+  found on a Zambia GE row (2020-04, right in the default window) isn't a
+  real notch. Confirmed with the user before adding it, not guessed. The
+  raw string `Ca-` is left as-is in `Zambia.csv` (only the numeric
+  mapping is aliased, not the transcribed text rewritten).
 - **Status as of 2026-08-11**: pipeline built and verified against
   synthetic test files (mapping, action/outlook_change inference,
   duplicate-action detection, Scope rejection, and coverage logging all
-  confirmed correct); **4/44 countries collected — Greece, Turkey, Sri
-  Lanka, Portugal**, all reconciled from GE + CE via
-  `reconcile_ratings_sources.py` (172 + 170 + 118 + 108 = 568 rows; 3
-  genuine cross-source conflicts found and resolved total, all on
-  Greece/Turkey — Sri Lanka and Portugal both had zero after the
-  watch-qualifier-asymmetry policy folded in Portugal's original 2;
-  Sri Lanka's 2022 default sequence confirmed the same GE
+  confirmed correct); **5/44 countries collected — Greece, Turkey, Sri
+  Lanka, Portugal, Zambia**, all reconciled from GE + CE via
+  `reconcile_ratings_sources.py` (172 + 170 + 118 + 108 + 45 = 613 rows;
+  3 genuine cross-source conflicts found and resolved total, all on
+  Greece/Turkey — Sri Lanka, Portugal, and Zambia each had zero, Portugal
+  only after the watch-qualifier-asymmetry policy folded its original 2
+  in). Sri Lanka's 2022 default sequence confirmed the same GE
   default-designation gap seen on Greece, extending across the *entire*
   2022-2024 distressed/restructuring window for S&P and Fitch, not just
   the SD/RD moment itself; Portugal, as expected for a bailout rather
   than a default, had zero SD/RD/D designations and no GE blackout
   pattern in 2011-2014 — confirming the blackout is specifically tied to
-  default events, not crisis periods generally). This closes 4 of 5 Tier
-  1 countries — Zambia remains. Manually collecting and transcribing the
-  remaining 40 per-country files is open, user-side work — see `state.md`
-  for the full log, including a priority
-  order for which countries to transcribe next, and issue #3 for
+  default events, not crisis periods generally. **Zambia extended both
+  findings further**: CE captured a single SD (S&P) and single RD
+  (Fitch) as expected, but Fitch's GE row also shows a *second* RD nearly
+  4 years later (2024-12, outlook `NR`) — plausibly reflecting that
+  Zambia's own debt restructuring didn't formally close until 2024, with
+  Fitch conventionally holding an issuer in RD until a distressed
+  exchange fully completes (a B-/Stable exit rating follows in Nov 2025).
+  GE's blackout was *more* severe than Sri Lanka's for one agency: S&P's
+  GE gap runs 2019-08 → 2025-11, over 6 years, versus Fitch's ~3 years —
+  the blackout isn't a fixed duration, it appears to track how long each
+  specific agency actually kept the issuer in distressed/default status.
+  This closes all 5 of 5 Tier 1 countries. Manually collecting and
+  transcribing the remaining 39 per-country files (starting with Tier 2)
+  is open, user-side work — see `state.md` for the full log, including a
+  priority order for which countries to transcribe next, and issue #3 for
   tracking.
 
 ## Stage 1 feature matrix (country x quarter — settled facts)

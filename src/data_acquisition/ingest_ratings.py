@@ -146,6 +146,15 @@ RATING_MAP = {
     "CCC": 18, "Caa2": 18,
     "CCC-": 19, "Caa3": 19,
     "CC": 20, "Ca": 20,
+    # "Ca-" is not a real Moody's notch -- confirmed against Moody's own
+    # scale documentation (2026-08-11, Zambia): long-term modifiers
+    # (1/2/3) only apply Aaa through Caa3; Ca and C are unmodified. Found
+    # as a literal GE row for Zambia (2020-04, right in the default
+    # window) -- a transcription/formatting artifact for "Ca", not a
+    # distinct grade. Aliased here rather than corrected in the source
+    # string, consistent with how RATING_MAP already aliases multiple
+    # real notations (e.g. "AAA"/"Aaa") to one ordinal value.
+    "Ca-": 20,
     "C": 21,
     "D": 22, "SD": 22, "RD": 22,
 }
