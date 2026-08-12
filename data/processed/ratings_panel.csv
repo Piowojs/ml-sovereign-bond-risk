@@ -136,6 +136,100 @@ Brazil,S&P,2025-09-01,BB,12,NR,outlook_change,theglobaleconomy.com (month-precis
 Brazil,S&P,2025-11-01,BB,12,NR,affirm,theglobaleconomy.com (month-precision),2025-11-01
 Brazil,S&P,2026-02-01,BB,12,NR,affirm,theglobaleconomy.com (month-precision),2026-02-01
 Brazil,S&P,2026-04-01,BB,12,NR,affirm,theglobaleconomy.com (month-precision),2026-04-01
+Colombia,Fitch,1994-08-10,BBB,9,,initial,countryeconomy.com,1994-08-10
+Colombia,Fitch,1998-03-20,BBB,9,,affirm,countryeconomy.com,1998-03-20
+Colombia,Fitch,1999-09-01,BBB-,10,,downgrade,countryeconomy.com,1999-09-01
+Colombia,Fitch,2000-03-17,BB+,11,,downgrade,countryeconomy.com,2000-03-17
+Colombia,Fitch,2000-09-21,BB+,11,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2000-09-21
+Colombia,Fitch,2000-10-24,BB+,11,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2000-10-24
+Colombia,Fitch,2002-01-10,BB,12,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2002-01-10
+Colombia,Fitch,2002-08-29,BB,12,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2002-08-29
+Colombia,Fitch,2004-05-03,BB,12,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2004-05-03
+Colombia,Fitch,2006-06-05,BB,12,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2006-06-05
+Colombia,Fitch,2007-06-21,BB+,11,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2007-06-21
+Colombia,Fitch,2010-10-21,BB+,11,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2010-10-21
+Colombia,Fitch,2011-06-22,BBB-,10,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2011-06-22
+Colombia,Fitch,2011-07-06,BBB-,10,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2011-07-06
+Colombia,Fitch,2012-06-19,BBB-,10,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2012-06-19
+Colombia,Fitch,2013-03-06,BBB-,10,,affirm,countryeconomy.com,2013-03-06
+Colombia,Fitch,2013-09-25,BBB-,10,,affirm,countryeconomy.com,2013-09-25
+Colombia,Fitch,2013-12-10,BBB,9,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-12-10
+Colombia,Fitch,2014-01-31,BBB,9,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-01-31
+Colombia,Fitch,2014-08-21,BBB,9,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-08-21
+Colombia,Fitch,2014-11-20,BBB,9,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-11-20
+Colombia,Fitch,2015-05-22,BBB,9,,affirm,countryeconomy.com,2015-05-22
+Colombia,Fitch,2015-12-15,BBB,9,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-12-15
+Colombia,Fitch,2016-07-22,BBB,9,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2016-07-22
+Colombia,Fitch,2017-03-10,BBB,9,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2017-03-10
+Colombia,Fitch,2017-10-26,BBB,9,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2017-10-26
+Colombia,Fitch,2018-05-09,BBB,9,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2018-05-09
+Colombia,Fitch,2018-11-14,BBB,9,,affirm,countryeconomy.com,2018-11-14
+Colombia,Fitch,2019-05-23,BBB,9,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2019-05-23
+Colombia,Fitch,2019-11-20,BBB,9,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2019-11-20
+Colombia,Fitch,2020-03-01,BBB-,10,Negative,downgrade,theglobaleconomy.com (month-precision),2020-03-01
+Colombia,Fitch,2020-04-01,BBB-,10,Negative,affirm,countryeconomy.com,2020-04-01
+Colombia,Fitch,2020-11-01,BBB-,10,Negative,affirm,theglobaleconomy.com (month-precision),2020-11-01
+Colombia,Fitch,2021-07-01,BB+,11,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2021-07-01
+Colombia,Fitch,2021-12-01,BB+,11,Stable,affirm,theglobaleconomy.com (month-precision),2021-12-01
+Colombia,Fitch,2022-06-01,BB+,11,Stable,affirm,theglobaleconomy.com (month-precision),2022-06-01
+Colombia,Fitch,2022-12-01,BB+,11,Stable,affirm,theglobaleconomy.com (month-precision),2022-12-01
+Colombia,Fitch,2023-06-01,BB+,11,Stable,affirm,theglobaleconomy.com (month-precision),2023-06-01
+Colombia,Fitch,2023-12-01,BB+,11,Stable,affirm,theglobaleconomy.com (month-precision),2023-12-01
+Colombia,Fitch,2024-07-01,BB+,11,Stable,affirm,theglobaleconomy.com (month-precision),2024-07-01
+Colombia,Fitch,2024-11-01,BB+,11,Stable,affirm,theglobaleconomy.com (month-precision),2024-11-01
+Colombia,Fitch,2025-03-01,BB+,11,Negative,outlook_change,theglobaleconomy.com (month-precision),2025-03-01
+Colombia,Fitch,2025-12-01,BB,12,Stable,downgrade,theglobaleconomy.com (month-precision),2025-12-01
+Colombia,Moody's,1993-08-04,Ba1,11,,initial,countryeconomy.com,1993-08-04
+Colombia,Moody's,1995-09-19,Baa3,10,,upgrade,countryeconomy.com,1995-09-19
+Colombia,Moody's,1998-12-01,Baa3,10,Negative,affirm,theglobaleconomy.com (month-precision),1998-12-01
+Colombia,Moody's,1999-08-11,Ba2,12,,downgrade,countryeconomy.com,1999-08-11
+Colombia,Moody's,2002-03-01,Ba2,12,Negative,affirm,theglobaleconomy.com (month-precision),2002-03-01
+Colombia,Moody's,2003-11-15,Ba2,12,Negative,affirm,countryeconomy.com,2003-11-15
+Colombia,Moody's,2006-03-09,Ba2,12,Under Review,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2006-03-09
+Colombia,Moody's,2006-06-29,Ba2,12,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2006-06-29
+Colombia,Moody's,2007-06-25,Ba2,12,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2007-06-25
+Colombia,Moody's,2008-06-19,Ba1,11,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2008-06-19
+Colombia,Moody's,2010-09-09,Ba1,11,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2010-09-09
+Colombia,Moody's,2011-05-31,Baa3,10,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2011-05-31
+Colombia,Moody's,2013-07-08,Baa3,10,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-07-08
+Colombia,Moody's,2014-07-28,Baa2,9,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-07-28
+Colombia,Moody's,2016-05-26,Baa2,9,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2016-05-26
+Colombia,Moody's,2018-02-22,Baa2,9,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2018-02-22
+Colombia,Moody's,2019-05-23,Baa2,9,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2019-05-23
+Colombia,Moody's,2020-12-03,Baa2,9,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2020-12-03
+Colombia,Moody's,2021-10-06,Baa2,9,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2021-10-06
+Colombia,Moody's,2023-06-08,Baa2,9,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2023-06-08
+Colombia,Moody's,2024-06-27,Baa2,9,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2024-06-27
+Colombia,Moody's,2025-06-26,Baa3,10,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2025-06-26
+Colombia,S&P,1993-06-01,BBB-,10,Stable,initial,theglobaleconomy.com (month-precision),1993-06-01
+Colombia,S&P,1994-09-01,BBB-,10,Positive,outlook_change,theglobaleconomy.com (month-precision),1994-09-01
+Colombia,S&P,1995-08-01,BBB-,10,Positive,affirm,theglobaleconomy.com (month-precision),1995-08-01
+Colombia,S&P,1997-10-01,BBB-,10,Stable,outlook_change,theglobaleconomy.com (month-precision),1997-10-01
+Colombia,S&P,1998-05-01,BBB-,10,Stable,affirm,theglobaleconomy.com (month-precision),1998-05-01
+Colombia,S&P,1999-06-01,BBB-,10,Negative,outlook_change,theglobaleconomy.com (month-precision),1999-06-01
+Colombia,S&P,1999-09-01,BB+,11,Stable,downgrade,theglobaleconomy.com (month-precision),1999-09-01
+Colombia,S&P,2000-04-01,BB+,11,Negative,outlook_change,theglobaleconomy.com (month-precision),2000-04-01
+Colombia,S&P,2000-05-01,BB,12,Negative,downgrade,theglobaleconomy.com (month-precision),2000-05-01
+Colombia,S&P,2003-07-01,BB,12,Stable,outlook_change,theglobaleconomy.com (month-precision),2003-07-01
+Colombia,S&P,2005-11-01,BB,12,Stable,affirm,theglobaleconomy.com (month-precision),2005-11-01
+Colombia,S&P,2006-02-01,BB,12,Positive,outlook_change,theglobaleconomy.com (month-precision),2006-02-01
+Colombia,S&P,2007-03-01,BB+,11,Stable,upgrade,theglobaleconomy.com (month-precision),2007-03-01
+Colombia,S&P,2010-07-01,BB+,11,Positive,outlook_change,theglobaleconomy.com (month-precision),2010-07-01
+Colombia,S&P,2011-03-16,BBB-,10,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2011-03-16
+Colombia,S&P,2012-08-15,BBB-,10,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2012-08-15
+Colombia,S&P,2013-04-24,BBB,9,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-04-24
+Colombia,S&P,2016-02-16,BBB,9,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2016-02-16
+Colombia,S&P,2017-12-11,BBB-,10,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2017-12-11
+Colombia,S&P,2020-01-01,BBB-,10,Developing,outlook_change,theglobaleconomy.com (month-precision),2020-01-01
+Colombia,S&P,2020-03-26,BBB-,10,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2020-03-26
+Colombia,S&P,2021-05-19,BB+,11,Stable,downgrade,countryeconomy.com,2021-05-19
+Colombia,S&P,2024-01-18,BB+,11,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2024-01-18
+Colombia,S&P,2025-04-01,BB+,11,NR,outlook_change,theglobaleconomy.com (month-precision),2025-04-01
+Colombia,S&P,2025-06-26,BB,12,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2025-06-26
+Colombia,S&P,2025-12-01,BB,12,NR,outlook_change,theglobaleconomy.com (month-precision),2025-12-01
+Colombia,S&P,2026-01-01,BB,12,NR,affirm,theglobaleconomy.com (month-precision),2026-01-01
+Colombia,S&P,2026-02-01,BB,12,NR,affirm,theglobaleconomy.com (month-precision),2026-02-01
+Colombia,S&P,2026-04-08,BB-,13,Stable,downgrade,countryeconomy.com,2026-04-08
 Greece,Fitch,1995-11-13,BBB-,10,,initial,countryeconomy.com,1995-11-13
 Greece,Fitch,1997-06-04,BBB,9,,upgrade,countryeconomy.com,1997-06-04
 Greece,Fitch,1999-08-10,BBB,9,Positive,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),1999-08-10
@@ -859,7 +953,7 @@ Zambia,Fitch,2018-10-11,B-,16,Developing,downgrade,countryeconomy.com (confirmed
 Zambia,Fitch,2019-06-27,CCC,18,Developing,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2019-06-27
 Zambia,Fitch,2019-12-20,CCC,18,Developing,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2019-12-20
 Zambia,Fitch,2020-04-16,CC,20,,downgrade,countryeconomy.com,2020-04-16
-Zambia,Fitch,2020-09-24,C,21,NR,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2020-09-24
+Zambia,Fitch,2020-09-24,C,21,,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2020-09-24
 Zambia,Fitch,2020-11-18,RD,22,,downgrade,countryeconomy.com (default designation; theglobaleconomy.com omits this event),2020-11-18
 Zambia,Fitch,2023-12-01,CCC+,17,NR,upgrade,theglobaleconomy.com (month-precision),2023-12-01
 Zambia,Fitch,2024-12-01,RD,22,NR,downgrade,theglobaleconomy.com (month-precision),2024-12-01

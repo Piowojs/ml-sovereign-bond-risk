@@ -449,8 +449,9 @@ yet for a country just means it's absent from the output, not an error.
   accepted safety net for this gap rather than a bug to chase with
   riskier cross-month matching. See that script's docstring for the full
   policy and `state.md` for the worked Greece/Turkey/Sri Lanka/Portugal/
-  Zambia examples (ten matching-logic policy points the real data drove
-  across all five, and how each was handled).
+  Zambia/South Africa/Brazil/Colombia examples (eleven matching-logic
+  policy points the real data drove across all eight, and how each was
+  handled).
 - **`RATING_MAP` (in `ingest_ratings.py`, imported by
   `reconcile_ratings_sources.py`) carries one confirmed transcription-
   artifact alias**: `"Ca-"` → 20, same value as `"Ca"`. Moody's own
@@ -513,15 +514,31 @@ yet for a country just means it's absent from the output, not an error.
   outlook; Brazil carried forward the same agency's own prior outlook
   instead of picking up an outlook-only revision). Turkey's original case
   (a rating-level error) remains a separate, unexplained outlier under
-  this revised characterization. Standing hypothesis now: **GE is
-  reliable on letter ratings, unreliable on outlook-only updates** — see
+  this revised characterization. Standing hypothesis: **GE is reliable
+  on letter ratings, unreliable on outlook-only updates** — see
   `state.md`'s "GE factual-error tracking" section for the full table and
-  rationale, watched for confirmation across the rest of Tier 2. Manually
-  collecting and transcribing the remaining 37 per-country files
-  (Colombia next, then Egypt/Pakistan/Nigeria/Italy/Spain) is open,
-  user-side work — see `state.md` for the full log, including the
-  priority order and the GE factual-error tracking table, and issue #3
-  for tracking.
+  rationale. **Colombia (third Tier 2 country, completing the
+  fiscal-deterioration/non-Eurozone trio, 2026-08-12)** added an 8th: 94
+  rows, the pre-2021 IG period and 2021 downgrade sequence confirmed with
+  no gaps — S&P first into junk, Fitch ~2 months later, and **Moody's
+  held Baa2 continuously through 2021**, a partial (2-of-3) rather than
+  universal loss of investment grade, only reaching junk itself in June
+  2025. No SD/RD/D, as expected. Its one candidate conflict (S&P
+  2025-06, GE outlook `NR` vs CE `Negative`) drove a new permanent
+  policy rather than a one-off resolution: `NR` recurs as a GE outlook
+  value often enough (8 of 33 GE S&P rows in this file) to be a
+  convention meaning "no outlook tracked," not a directional assertion
+  — `_outlook_eq`/`_prefer_outlook` now treat an outlook-field `NR` as
+  equivalent to blank, explicitly kept separate in the docstring from a
+  *rating*-field `NR` (still withdrawn coverage, still dropped outright).
+  Applying the policy dissolved Colombia's conflict automatically. **Not
+  counted as a third GE factual-error case** — South Africa/Brazil were
+  GE asserting something wrong, this was GE asserting nothing at all; the
+  hypothesis stays at 2 confirmed cases, untested by Colombia either way.
+  Manually collecting and transcribing the remaining 36 per-country files
+  (Egypt next, then Pakistan/Nigeria/Italy/Spain) is open, user-side
+  work — see `state.md` for the full log, including the priority order
+  and the GE factual-error tracking table, and issue #3 for tracking.
 
 ## Stage 1 feature matrix (country x quarter — settled facts)
 `src/stage1_clustering/build_feature_matrix.py` builds two wide, country x

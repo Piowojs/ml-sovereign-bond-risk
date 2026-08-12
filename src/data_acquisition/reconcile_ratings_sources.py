@@ -123,6 +123,36 @@ between them that a naive "pick a primary source" merge would get wrong:
     ordinal value -- the raw string `Ca-` is left as transcribed in the
     output CSV (not rewritten to `Ca`), only the numeric mapping is
     fixed, since that's the narrower, explicitly-requested change.
+11. **An "NR" *outlook* value means "no outlook tracked," not a
+    directional assertion.** Found on Colombia: 8 of 33 GE S&P rows
+    carry `outlook="NR"` -- frequent enough to be a convention, not a
+    one-off. `_normalize_outlook` treats it as absent, the same category
+    as a blank cell (point 3), in both `_outlook_eq` (an `NR` outlook
+    can't disagree with anything, since it isn't asserting a direction)
+    and `_prefer_outlook` (a real value from either source always wins
+    over `NR`; if both sides are `NR`, the merged outlook is blank, not
+    the literal string `"NR"`). This resolved Colombia's one conflict
+    (S&P, 2025-06: GE `NR` vs CE `Negative`) automatically, with no
+    resolutions.csv entry needed, once the policy was in place -- CE's
+    real value simply wins, exactly like a blank-vs-populated case
+    always has.
+
+    **Deliberately not conflated with point 5's `NR` handling**: that's
+    the *rating* field, where `NR` means the agency's coverage was
+    withdrawn and the row is dropped outright by `_drop_not_rated`,
+    upstream of everything else in this module. This point is the
+    *outlook* field, where `NR` means something categorically different
+    (no outlook currently published for an otherwise-real rating) and
+    the row is kept -- only the outlook comparison treats it as absent.
+    Same token, two fields, two unrelated meanings; keep them separate.
+
+    **Not folded into the GE factual-error tracking table** (see
+    state.md): South Africa and Brazil were GE *asserting* a wrong
+    outlook; an `NR` outlook is GE *declining to assert one* -- a
+    different failure mode, arguably not an error at all. The "reliable
+    on ratings, unreliable on outlook-only updates" hypothesis there
+    remains at 2 confirmed cases; Colombia neither confirms nor
+    disconfirms it.
 
 Given all that, the merge policy for non-conflicting (agency, month)
 buckets is: union of both sources' months; where only one source has a
@@ -233,6 +263,29 @@ def _strip_watch_qualifier(s: str) -> str:
     return re.sub(r"\s+", " ", _WATCH_TOKEN_RE.sub("", s)).strip()
 
 
+def _normalize_outlook(v):
+    """Treat an "NR" *outlook* value as absent, same as a blank cell --
+    found recurring on Colombia (8 of 33 GE S&P rows carry
+    outlook="NR"), a convention meaning "no outlook currently tracked,"
+    not a directional assertion that could contradict CE's real value
+    (module docstring, point 11). Returns None for blank/NR, else the
+    stripped string (original casing preserved).
+
+    Deliberately scoped to the outlook field only -- "NR" in the
+    *rating* field still means not-rated/withdrawn (NOT_RATED_TOKENS,
+    point 5) and stays handled entirely by `_drop_not_rated`, upstream of
+    this function and upstream of `_clean_rating_outlook`. The two must
+    not be conflated: a rating-field NR row is dropped outright (it
+    can't be given a rating_numeric at all), while an outlook-field NR
+    is kept -- only the outlook comparison ignores it."""
+    if pd.isna(v):
+        return None
+    v = str(v).strip()
+    if not v or v.upper() == "NR":
+        return None
+    return v
+
+
 def _outlook_eq(a, b) -> bool:
     """Outlook "agreement" is deliberately looser than exact string
     equality -- on real data (Greece), an exact-match rule flagged 11
@@ -244,8 +297,10 @@ def _outlook_eq(a, b) -> bool:
     differently ("Negative watch" vs "Under Review"). Both patterns are
     the "just a precision/formatting difference" case the module
     docstring's merge policy says should NOT be flagged -- so: blank on
-    either side agrees with anything, and any pair where both sides
-    mention "watch"/"review" agrees regardless of exact wording.
+    either side agrees with anything (as does an "NR" outlook, per
+    `_normalize_outlook` -- same category as a blank cell, not a
+    directional value that could disagree), and any pair where both
+    sides mention "watch"/"review" agrees regardless of exact wording.
 
     A third case, found on Portugal (see module docstring, point 9): one
     side has a watch/review qualifier and the other has only the plain
@@ -261,8 +316,9 @@ def _outlook_eq(a, b) -> bool:
     Anything else (e.g. "Stable" vs "Positive", both non-blank, neither a
     watch/review state, no shared base direction) is a genuine
     disagreement."""
-    a = "" if pd.isna(a) else str(a).strip().lower()
-    b = "" if pd.isna(b) else str(b).strip().lower()
+    a_norm, b_norm = _normalize_outlook(a), _normalize_outlook(b)
+    a = "" if a_norm is None else a_norm.lower()
+    b = "" if b_norm is None else b_norm.lower()
     if a == "" or b == "":
         return True
     if a == b:
@@ -284,13 +340,25 @@ def _prefer_outlook(primary, secondary):
     wins regardless of which source it came from (module docstring,
     point 9): an asymmetric watch designation is real information, not
     noise to discard just because it happened to be on the
-    lower-priority side."""
+    lower-priority side.
+
+    "Populated" here means `_normalize_outlook` sees a real value --
+    an "NR" outlook (point 11) is treated as absent, same as blank, so
+    it never wins over a real value regardless of which side it's on,
+    and this returns None (not the literal string "NR") if both sides
+    are absent, consistent with how a genuinely blank pair already
+    flows to an empty string at the call site."""
     def _has_watch(v):
-        return pd.notna(v) and any(tok in str(v).lower() for tok in _WATCH_TOKENS)
+        v = _normalize_outlook(v)
+        return v is not None and any(tok in v.lower() for tok in _WATCH_TOKENS)
 
     if _has_watch(secondary) and not _has_watch(primary):
         return secondary
-    return primary if pd.notna(primary) else secondary
+    if _normalize_outlook(primary) is not None:
+        return primary
+    if _normalize_outlook(secondary) is not None:
+        return secondary
+    return None
 
 
 def _load_sheet(xlsx_path: Path, sheet_name: str, source_label: str) -> pd.DataFrame:

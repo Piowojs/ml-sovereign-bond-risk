@@ -19,7 +19,7 @@ after the fact from memory.
 
 | Item | Blocks | Whose action | Status |
 |---|---|---|---|
-| Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10/2026-08-11 reconciliation entries below; agency IR pages for gaps neither source covers). **Tier 1 fully done — continue with Tier 2**, see the transcription priority list below. **Reminder for multi-word countries**: pass the underscore form (`Sri_Lanka`, not `Sri Lanka`) as the script's `country` argument — it's used verbatim as the output filename and must match `configs/universe.yaml`'s `name.replace(" ", "_")` for `ingest_ratings.py`'s coverage check to recognize it (caught once on Sri Lanka, fixed before anything downstream ran on the wrong filename). **CE raw-paste reminder**: as of the pre-Portugal fix, both `LETTER_GRADE (Outlook)` and letter-grade-less `(Outlook)`-only CE cells are handled automatically — paste CE's raw combined rating+outlook text straight into the `rating` column and leave `outlook` blank, no manual pre-splitting needed. | **In progress — 7/44 (Greece, Turkey, Sri Lanka, Portugal, Zambia, South Africa, Brazil) done**, all reconciled via `reconcile_ratings_sources.py` (172 + 170 + 118 + 108 + 45 + 137 + 137 = 887 rows, 5 conflicts total found and resolved — Greece 1, Turkey 2, South Africa 1, Brazil 1). South Africa + Brazil complete the first Tier 2 pair (fiscal-deterioration, non-Eurozone) — see the lead/lag pilot re-run below. 37 to go — Colombia next in that same group, then Egypt/Pakistan/Nigeria (see GE factual-error tracking section below for a data-quality thread now running alongside the transcription itself). |
+| Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10/2026-08-11 reconciliation entries below; agency IR pages for gaps neither source covers). **Tier 1 fully done — continue with Tier 2**, see the transcription priority list below. **Reminder for multi-word countries**: pass the underscore form (`Sri_Lanka`, not `Sri Lanka`) as the script's `country` argument — it's used verbatim as the output filename and must match `configs/universe.yaml`'s `name.replace(" ", "_")` for `ingest_ratings.py`'s coverage check to recognize it (caught once on Sri Lanka, fixed before anything downstream ran on the wrong filename). **CE raw-paste reminder**: as of the pre-Portugal fix, both `LETTER_GRADE (Outlook)` and letter-grade-less `(Outlook)`-only CE cells are handled automatically — paste CE's raw combined rating+outlook text straight into the `rating` column and leave `outlook` blank, no manual pre-splitting needed. | **In progress — 8/44 (Greece, Turkey, Sri Lanka, Portugal, Zambia, South Africa, Brazil, Colombia) done**, all reconciled via `reconcile_ratings_sources.py` (172 + 170 + 118 + 108 + 45 + 137 + 137 + 94 = 981 rows, 5 conflicts total found and resolved — Greece 1, Turkey 2, South Africa 1, Brazil 1; Colombia's one candidate conflict dissolved automatically under the new NR-outlook policy, no resolution needed). Colombia completes the fiscal-deterioration/non-Eurozone trio with South Africa and Brazil — see the 8-country lead/lag pilot re-run below. 36 to go — Egypt next (currency/commodity-driven group), then Pakistan/Nigeria/Italy/Spain (see GE factual-error tracking section below for the data-quality thread, still at 2 confirmed cases). |
 | §4.2.4 lead/lag analysis (`ratings_leadlag_stub.py`) | §4.2.4, RQ1/H1 | Full-universe version still blocked on the remaining 37 countries' ratings transcription | **7-country pilot re-run 2026-08-12 (South Africa + Brazil added) — still mixed, and the new pair splits rather than confirming or refuting generalization.** Greece p=0.00017, Portugal p=0.010, **South Africa p=0.020** (all clear p<0.05, positive direction); Sri Lanka borderline p=0.052; Turkey p=0.77 and **Brazil p=0.97** show no effect — Brazil's `mean_diff` is actually *negative* (only 10% of its 10 testable events show an increase). South Africa has full event coverage (15/15 testable); Brazil's 9 excluded events are pre-2005, before the panel window starts, not a data gap. Pooled (still non-independent, not a real test): p=0.00016, 70% of events show an increase. Not citable as a §5.1 result — 7 countries, still a selected high-signal subset. See the 2026-08-12 chronological entry below for the fuller read on what the South Africa/Brazil split does and doesn't tell us about generalization beyond Eurozone-style crises. |
 | Residual global-regime sensitivity in Stage 1 clustering (`core-eligible` = 0 for several consecutive quarters, 2009-2017) | §5.5 candidate robustness check; not blocking Stage 3/4 | Open — see CLAUDE.md "Stage 1 clustering" for the full diagnosis (us_10y/curve_slope are global-only features, thesis §3.3 keeps them in Stage 1 regardless) | Documented, not fixed further without a methodology-level call to override the thesis's own feature-group spec |
 | Execution-verify `bond_data_pull_reconstructed.py` (does it actually run/chunk/return data as designed) | Appendix A reproducibility only — not blocking, since existing bond data already feeds Stage 1 | User (requires a session on the university-library Windows PC with Refinitiv Workspace) | Not started |
@@ -125,19 +125,100 @@ isn't folded into this pattern; it stays open as a separate, unexplained
 case unless a similar rating-level error recurs.
 
 If this "reliable on rating levels, unreliable on outlook-only updates"
-characterization continues to hold as more Tier 2 countries land
-(Colombia, Egypt, Pakistan, Nigeria, Italy, Spain remaining), it becomes
-a clean, describable, and reasonably well-evidenced source-reliability
-limitation for the thesis's data-quality discussion (Appendix B
-candidate): **trust GE's letter ratings; verify its outlooks against CE
-or a primary source, especially on outlook-only actions with no
-accompanying rating change.** Watch specifically for outlook-only
-conflicts (rating agrees, outlook doesn't, no watch-qualifier asymmetry)
-going forward — that's the exact shape both confirmed cases took.
+characterization continues to hold as more Tier 2 countries land (Egypt,
+Pakistan, Nigeria, Italy, Spain remaining), it becomes a clean,
+describable, and reasonably well-evidenced source-reliability limitation
+for the thesis's data-quality discussion (Appendix B candidate): **trust
+GE's letter ratings; verify its outlooks against CE or a primary source,
+especially on outlook-only actions with no accompanying rating change.**
+Watch specifically for outlook-only conflicts (rating agrees, outlook
+doesn't, no watch-qualifier asymmetry) going forward — that's the exact
+shape both confirmed cases took.
+
+**Still at 2 confirmed cases after Colombia (2026-08-12) — deliberately
+not a 3rd data point.** Colombia's one candidate conflict (S&P, 2025-06:
+GE outlook `NR` vs CE `Negative`) looked superficially like the same
+shape (rating agrees, outlook differs) but isn't the same phenomenon:
+GE was *declining to assert* an outlook (a recurring convention — 8 of
+33 GE S&P rows in that file carry `outlook="NR"`), not *asserting a
+wrong one* the way South Africa and Brazil did. Confirmed by checking
+how frequent `NR` was in that file before concluding anything — a single
+occurrence might have been a one-off error, but 8 of 33 rules that out.
+Encoded as a permanent reconciliation policy (module docstring point 11:
+`NR` in the outlook field is treated as absent, same as blank), not
+folded into this tracking table. The hypothesis remains open, unmoved by
+Colombia either way — the next genuine test is whatever Egypt, Pakistan,
+Nigeria, Italy, or Spain surface.
 
 ---
 
 ## Chronological log
+
+### 2026-08-12 — Colombia reconciled: tie-breaker for the fiscal-deterioration trio, new NR-outlook policy
+**What**: Colombia -- third of Tier 2, the tie-breaker within the
+fiscal-deterioration/non-Eurozone group after South Africa (positive
+lead/lag signal) and Brazil (null). No new reconciliation-logic edge
+case in the sense of a bug -- the one conflict it produced turned into a
+genuine, permanent policy addition instead.
+
+**Trajectory, confirmed per the specific scrutiny requested**: pre-2021
+investment-grade period is dense with no gaps in either source. The 2021
+crossing is a clean, tight, single boundary event -- **S&P first** into
+junk (BB+, 2021-05-19), **Fitch follows** about two months later (BB+,
+2021-07) -- and critically, **Moody's held Baa2 continuously through
+2021** (Baa2/Negative Dec 2020 -> Baa2/Stable Oct 2021), only crossing
+into junk much later, June 2025 (Baa3). So this was a **partial**, not
+universal, loss of investment grade in 2021 -- 2 of 3 agencies, not all
+3 -- a real structural difference from Greece/Portugal/South
+Africa/Brazil, all of which eventually lost IG across all three
+agencies. Confirmed **no** SD/RD/D anywhere, as expected.
+
+**One conflict, resolved by a new permanent policy rather than a
+one-off resolutions.csv entry**: S&P, 2025-06 -- GE's outlook was the
+literal string `NR`, CE's was `Negative`, same rating (`BB`). Before
+treating this like South Africa/Brazil's "GE asserted something wrong"
+cases, checked how often GE uses `NR` as an outlook in this file: 8 of
+33 GE S&P rows -- frequent enough to be a convention ("no outlook
+currently tracked"), not a one-off error. The user's call: encode `NR`
+in the *outlook* field as equivalent to blank in `_outlook_eq` and
+`_prefer_outlook`, explicitly and permanently distinguished in the
+module docstring (point 11) from `NR` in the *rating* field (which still
+means withdrawn coverage and is dropped outright by `_drop_not_rated`,
+point 5) -- same token, two fields, two unrelated meanings, kept
+deliberately unconflated. Verified with synthetic tests covering both
+directions (GE-side NR, CE-side NR) and the both-NR edge case (must
+yield blank, not the literal string `"NR"`) before touching real data.
+Applied the policy, re-ran Colombia: the conflict **dissolved
+automatically** -- CE's `Negative` won, no resolutions.csv entry needed,
+exactly as predicted before implementing anything.
+
+**GE factual-error hypothesis: explicitly NOT extended by this case**
+(see the "GE factual-error tracking" section above, now with a dedicated
+note on this). South Africa and Brazil were GE *asserting* an
+incorrect outlook; Colombia was GE *declining to assert one at all* --
+a different failure mode, arguably not an error in the same sense. Kept
+out of the tracking table on purpose, per the user's explicit
+instruction not to count it as a third data point. The hypothesis
+remains at 2 confirmed cases, untested by Colombia in either direction.
+
+**Verified**: 94 reconciled rows in `Colombia.csv` (93 before the NR
+policy resolved the one conflict, +1 after). All seven prior countries
+re-run as regression checks -- unchanged (172/1, 170/2, 118/0, 108/0,
+45/0, 137/1, 137/1) -- confirming the `_outlook_eq`/`_prefer_outlook`
+change is correctly scoped and doesn't touch any already-settled case.
+Verified specifically with synthetic tests that every existing
+`_outlook_eq` behavior (watch-qualifier equivalence, blank-agrees-with-
+anything, genuine conflicts staying conflicts) is unaffected, since this
+change touches genuinely shared code paths every country's reconciliation
+runs through. Combined 981 rows pass through `ingest_ratings.py` with
+only the three already-known duplicate-action warnings (Sri Lanka,
+South Africa, and a new Colombia/Fitch instance of the same category,
+31 days apart); `test_lag_rules.py` 10/10.
+
+**Completes the fiscal-deterioration/non-Eurozone trio.** Lead/lag pilot
+re-run (8 countries) follows immediately below.
+
+Commit: (pending, this session) · Issue: #3
 
 ### 2026-08-12 — Lead/lag pilot re-run at 7 countries: South Africa/Brazil split, doesn't resolve the generalization question
 **What**: `ratings_leadlag_stub.py` re-run with `ratings_panel.csv` now
