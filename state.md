@@ -20,7 +20,7 @@ after the fact from memory.
 | Item | Blocks | Whose action | Status |
 |---|---|---|---|
 | Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10/2026-08-11 reconciliation entries below; agency IR pages for gaps neither source covers). **Tier 1 fully done — continue with Tier 2**, see the transcription priority list below. **Reminder for multi-word countries**: pass the underscore form (`Sri_Lanka`, not `Sri Lanka`) as the script's `country` argument — it's used verbatim as the output filename and must match `configs/universe.yaml`'s `name.replace(" ", "_")` for `ingest_ratings.py`'s coverage check to recognize it (caught once on Sri Lanka, fixed before anything downstream ran on the wrong filename). **CE raw-paste reminder**: as of the pre-Portugal fix, both `LETTER_GRADE (Outlook)` and letter-grade-less `(Outlook)`-only CE cells are handled automatically — paste CE's raw combined rating+outlook text straight into the `rating` column and leave `outlook` blank, no manual pre-splitting needed. | **In progress — 10/44 (Greece, Turkey, Sri Lanka, Portugal, Zambia, South Africa, Brazil, Colombia, Egypt, Pakistan) done**, all reconciled via `reconcile_ratings_sources.py` (172 + 170 + 118 + 108 + 45 + 137 + 137 + 94 + 138 + 84 = 1,203 rows, 5 conflicts total found and resolved — Greece 1, Turkey 2, South Africa 1, Brazil 1; Colombia, Egypt, and Pakistan all reconciled without a resolutions.csv entry). Pakistan completes the second of three currency/commodity-driven countries the 2026-08-12 pre-registration (Refs #4) predicts should come back null on the lead/lag pilot — 10-country pilot re-run follows below, read directly against that prediction. 34 to go — Nigeria next (closes the currency/commodity trio), then Italy/Spain (see GE factual-error tracking section below for the data-quality thread, still at 2 confirmed cases — Egypt and Pakistan both had zero conflicts, so no test either way from either). |
-| §4.2.4 lead/lag analysis (`ratings_leadlag_stub.py`) | §4.2.4, RQ1/H1 | Full-universe version still blocked on the remaining 36 countries' ratings transcription | **8-country pilot re-run 2026-08-12 (Colombia added) — Colombia doesn't cleanly resolve the tie-break, but leans toward Brazil being the outlier.** Greece p=0.00017, Portugal p=0.010, South Africa p=0.020 (clear p<0.05, positive); Sri Lanka p=0.052, **Colombia p=0.062** (both borderline-positive, same direction and shape as South Africa, just underpowered at n=7); Turkey p=0.77, **Brazil p=0.97** (clean nulls, Brazil's `mean_diff` actually negative). 2 of 3 fiscal-deterioration countries now lean positive. Colombia: 7/15 events testable (7 pre-2005, 1 post-panel-end excluded — not a data gap). Pooled (still non-independent, not a real test): p=0.0000936, 70.1% of events show an increase. Not citable as a §5.1 result — 8 countries, still a selected high-signal subset. See the 2026-08-12 chronological entry below for the full reasoning. |
+| §4.2.4 lead/lag analysis (`ratings_leadlag_stub.py`) | §4.2.4, RQ1/H1 | Full-universe version still blocked on the remaining 34 countries' ratings transcription | **10-country pilot re-run 2026-08-12 (Egypt + Pakistan added) — first re-run evaluated against a pre-registered prediction (`d23fd6e`), not just reported after the fact. Neither falsifies it.** Egypt p=0.776 (clean null, as predicted). **Pakistan p=0.080** — doesn't clear p<0.05, but the positive `mean_diff` is driven entirely by 3 non-independent events in the 2008 crisis cluster; only 38.5% of its 13 events show an increase, and the 2022-23 episode (the one most representative of "currency/commodity-driven") is cleanly negative — a more supportive read for the prediction than the raw p-value alone suggests. Nigeria remains the decisive third data point, still to come. Pooled (still non-independent, not a real test): p=0.00022, 64.5% of events show an increase. Not citable as a §5.1 result — 10 countries, still a selected high-signal subset. See the 2026-08-12 chronological entry below for the full reasoning, including a speculative (not yet a finding) observation about crisis-onset-vs-recurrence timing. |
 | Residual global-regime sensitivity in Stage 1 clustering (`core-eligible` = 0 for several consecutive quarters, 2009-2017) | §5.5 candidate robustness check; not blocking Stage 3/4 | Open — see CLAUDE.md "Stage 1 clustering" for the full diagnosis (us_10y/curve_slope are global-only features, thesis §3.3 keeps them in Stage 1 regardless) | Documented, not fixed further without a methodology-level call to override the thesis's own feature-group spec |
 | Execution-verify `bond_data_pull_reconstructed.py` (does it actually run/chunk/return data as designed) | Appendix A reproducibility only — not blocking, since existing bond data already feeds Stage 1 | User (requires a session on the university-library Windows PC with Refinitiv Workspace) | Not started |
 | CDS data (`data/raw/cds/`) never successfully pulled | Nothing currently — Stage 1 extended tier gates on duration/convexity, not CDS (see CLAUDE.md) | Would also require the library-PC session if pursued | Open, not currently prioritized |
@@ -212,6 +212,90 @@ prediction (`d23fd6e`)**: see the next chronological entry immediately
 below.
 
 Commit: (pending, this session) · Issue: #3
+
+### 2026-08-12 — Lead/lag pilot re-run at 10 countries: read against the pre-registered prediction (`d23fd6e`) -- neither Egypt nor Pakistan falsifies it, but Pakistan needs unpacking, not just a p-value
+**What**: `ratings_leadlag_stub.py` re-run with `ratings_panel.csv` now
+covering 10 countries (the prior 8 plus Egypt and Pakistan). This is the
+first pilot re-run explicitly evaluated against a pre-registered
+prediction rather than assessed after the fact -- the prediction
+(`d23fd6e`, committed before either country was reconciled) said Egypt
+and Pakistan should both come back null or near-null, and that any one
+clearing p<0.05 positive would mean the explanation needs revising.
+
+**Results**:
+
+| country | n_events_tested | mean_diff | % events with increase | p (one-sided) |
+|---|---|---|---|---|
+| Greece | 34 | +0.0208 | 76.5% | 0.00017 |
+| Portugal | 16 | +0.0374 | 93.8% | 0.010 |
+| South Africa | 15 | +0.0074 | 80.0% | 0.020 |
+| Sri Lanka | 19 | +0.0210 | 78.9% | 0.052 |
+| Colombia | 7 | +0.0094 | 71.4% | 0.062 |
+| **Pakistan** | **13** | **+0.0312** | **38.5%** | **0.080** |
+| Turkey | 15 | -0.0032 | 53.3% | 0.771 |
+| **Egypt** | **22** | **-0.0058** | **45.5%** | **0.776** |
+| Brazil | 10 | -0.0163 | 10.0% | 0.973 |
+| Zambia | 18 | -0.0006 | 66.7% | 0.536 |
+
+Pooled (still non-independent, not a real test): p=0.00022, 64.5% of all
+169 tested events show an increase.
+
+**Against the prediction, literally**: neither Egypt (p=0.776) nor
+Pakistan (p=0.080) clears p<0.05, so the prediction is **not falsified**
+by either country. That's the headline result the pre-registration asked
+for, reported as committed to regardless of outcome.
+
+**Pakistan needs unpacking, not just the p-value** -- this is the more
+interesting finding of the two, and taking it at face value (p=0.080,
+"near-miss, roughly consistent with null") would miss something real.
+Pakistan's `mean_diff` is positive, but only 38.5% of its 13 events show
+an increase -- *below half* -- meaning the positive mean is being pulled
+up by a small number of large outliers while most individual events go
+the other way. Checking the event-level detail explains why: three large
+positive diffs (+0.136, +0.112, +0.112) all cluster in the 2008 crisis
+window (May-Oct 2008, the run-up to Pakistan's first near-default, S&P
+`CCC`/`CCC+` by Nov-Dec 2008) -- one crisis episode, non-independent
+events sharing overlapping near/baseline windows. Every *other* Pakistan
+downgrade -- 2012, 2018-19, and critically **2022-23 (the balance-of-
+payments crisis, the episode most archetypally "currency/commodity-
+driven," the exact category this prediction is about)** -- shows a
+small **negative** diff (-0.02 to -0.04). So the honest read is not "Pakistan
+is a near-miss for a positive effect" -- it's "Pakistan's one older,
+partially fiscal-flavored crisis (2008) shows a positive signal, and its
+newest, most representative currency-crisis episode shows none at all,
+consistent with (if anything, more supportive of) the pre-registered
+prediction than the raw p-value alone suggests." A reader who only saw
+"p=0.080" without this breakdown would draw a weaker or even backwards
+conclusion.
+
+**Egypt's within-country pattern shows something similar, worth noting
+for future countries even though the aggregate result is unambiguous**:
+the 2011 Arab Spring *onset* downgrades show small positive diffs
+(+0.039, +0.027), but downgrades later in the same broader episode
+(2012-2013) and the entire 2022-24 episode are negative. Aggregate p=0.776
+is a clean null regardless, so this doesn't change Egypt's read -- but
+combined with Pakistan's pattern, there's a speculative, NOT yet a
+finding, observation worth flagging for whoever reads this later: the
+positive signal (where it appears at all) seems concentrated in the
+*acute onset* of a crisis type a country hasn't been through before,
+and weaker or absent on a country's Nth recurrence of a similar stress
+pattern -- plausible if agencies/markets have less to be "surprised" by
+once a playbook is established, but this is pattern-matching across two
+countries' event tables, not a tested hypothesis. Not promoted beyond
+this note.
+
+**Event coverage**: Egypt 22/23 testable (1 excluded, pre-2005); Pakistan
+13/21 testable (8 excluded, all pre-2005 except none post-panel) --
+neither exclusion pattern reflects a coverage gap in either country's
+`.csv`, consistent with every prior truncation check in this file.
+
+**Nigeria remains the decisive third data point** the pre-registration
+committed to reporting regardless of outcome -- two null/near-null
+results don't confirm the hypothesis on their own (that would need the
+full trio, and even then this is 10-of-44 countries, not a §5.1 result),
+but nothing so far contradicts it either.
+
+Commit: (pending, this session) · Issue: #4
 
 ### 2026-08-12 — Egypt reconciled: first currency/commodity-driven country, zero conflicts, three stress episodes confirmed
 **What**: Egypt -- first of the currency/commodity-driven trio
