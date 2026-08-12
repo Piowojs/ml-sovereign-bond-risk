@@ -246,6 +246,51 @@ starting with the 11-country re-run below (Nigeria) and going forward.
 
 ## Chronological log
 
+### 2026-08-12 — PRE-REGISTRATION: Italy/Spain lead/lag prediction (committed before either is reconciled)
+**This entry is written and committed before Italy or Spain's ratings
+data has been reconciled, and before `ratings_leadlag_stub.py` has been
+re-run on either.** The commit timestamp/hash is the audit trail that
+the prediction below was fixed in advance -- same discipline as the
+currency/commodity trio's pre-registration (`d23fd6e`) and the Stage 2
+multi-horizon protocol.
+
+**The prediction**: Italy and Spain are Eurozone sovereign debt crisis
+cases structurally similar to Greece and Portugal, both of which cleared
+p<0.05 positive. Under the current working explanation (positive
+lead/lag signal appears when downgrades follow visible, persistent
+macro-fundamental deterioration), **both should show positive-direction
+signal**, with **Spain more likely to clear cleanly than Italy** --
+Spain's 2010-2012 deterioration was sharper and more fiscally driven,
+while Italy's downgrades were more entangled with political instability
+and a long-standing, not newly-deteriorating, debt stock. **If either
+comes back a clean negative-direction null, the explanation needs
+revising.**
+
+**Explicitly recorded: this is a confirmatory test, not a discriminating
+one, and carries less evidentiary weight than the currency/commodity
+trio did.** Greece, Portugal, Italy, and Spain are four draws from one
+correlated event (the Eurozone sovereign debt crisis, roughly the same
+years, overlapping macro and market conditions), not four independent
+tests of the working explanation -- unlike the trio, which tested the
+explanation against three structurally *different* crisis types
+(political/currency shock, commodity-linked distress, and this trio's
+own internal split on already-priced/entangled deterioration). A
+positive result here is consistent with the explanation but doesn't
+extend it to new territory the way a currency/commodity-trio positive
+would have; a negative result would still be a real problem for the
+explanation, since it's specifically predicted to hold in exactly this
+kind of case.
+
+**Both will be reported regardless of outcome.**
+
+Not yet run as of this commit. See later chronological entries (above,
+since newest-first) for results as each country lands.
+
+Commit: (pending, this session) · Issue: #4 — pre-registration only,
+precedes the check
+
+---
+
 ### 2026-08-12 — Nigeria reconciled: third and decisive currency/commodity-driven country, zero conflicts (3rd straight), second CE-missing-agency case
 **What**: Nigeria -- third and decisive leg of the pre-registered
 trio (`d23fd6e`). Flagged in advance by the user: CE has zero Moody's
