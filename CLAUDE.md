@@ -585,7 +585,23 @@ yet for a country just means it's absent from the output, not an error.
   remaining 33 per-country files (Italy, then Spain, close out Tier 2) is
   open, user-side work — see `state.md` for the full log, including the
   priority order and the GE factual-error / CE coverage-gap tracking
-  tables, and issue #3 for tracking.
+  tables, and issue #3 for tracking. **Italy (first of the Eurozone pair
+  closing Tier 2, 2026-08-12)** added a 12th: 132 rows, **zero
+  conflicts**, no SD/RD/D, full 3-agency CE coverage (unremarkable for a
+  DM country, but consistent with the coverage-gap hypothesis), and —
+  the more interesting result — **never crossed the IG/junk boundary**
+  despite downgrade density comparable to the fiscal-deterioration
+  group's crisis periods (five Moody's notches in ~13 months during
+  2011-12 alone), bottoming at the lowest investment-grade rung on both
+  Fitch (`BBB-`) and Moody's (`Baa3`) without ever going lower. That
+  combination — high turbulence, no crossing, no conflict — is
+  specifically consistent with the boundary-crossing-specific version of
+  the GE/CE conflict hypothesis, not just "lots of activity causes
+  conflicts." Reconciled under a new pre-registration (`12f9a3e`)
+  predicting both Italy and Spain should show positive-direction
+  lead/lag signal, explicitly recorded as a confirmatory (not
+  discriminating) test since Greece/Portugal/Italy/Spain are four draws
+  from one correlated Eurozone-crisis event.
 
 ## Stage 1 feature matrix (country x quarter — settled facts)
 `src/stage1_clustering/build_feature_matrix.py` builds two wide, country x
