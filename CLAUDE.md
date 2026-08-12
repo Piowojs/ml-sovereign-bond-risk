@@ -581,27 +581,35 @@ yet for a country just means it's absent from the output, not an error.
   fiscal-deterioration-group country having at least one conflict) is
   now also tracked as its own open question — see `state.md`'s GE
   factual-error tracking section for the untested hypothesis (IG-
-  boundary-crossing frequency). Manually collecting and transcribing the
-  remaining 33 per-country files (Italy, then Spain, close out Tier 2) is
-  open, user-side work — see `state.md` for the full log, including the
-  priority order and the GE factual-error / CE coverage-gap tracking
-  tables, and issue #3 for tracking. **Italy (first of the Eurozone pair
-  closing Tier 2, 2026-08-12)** added a 12th: 132 rows, **zero
-  conflicts**, no SD/RD/D, full 3-agency CE coverage (unremarkable for a
-  DM country, but consistent with the coverage-gap hypothesis), and —
-  the more interesting result — **never crossed the IG/junk boundary**
-  despite downgrade density comparable to the fiscal-deterioration
-  group's crisis periods (five Moody's notches in ~13 months during
-  2011-12 alone), bottoming at the lowest investment-grade rung on both
-  Fitch (`BBB-`) and Moody's (`Baa3`) without ever going lower. That
-  combination — high turbulence, no crossing, no conflict — is
-  specifically consistent with the boundary-crossing-specific version of
-  the GE/CE conflict hypothesis, not just "lots of activity causes
-  conflicts." Reconciled under a new pre-registration (`12f9a3e`)
-  predicting both Italy and Spain should show positive-direction
-  lead/lag signal, explicitly recorded as a confirmatory (not
+  boundary-crossing frequency). **Italy and Spain (the Eurozone pair
+  closing Tier 2, 2026-08-12)** added a 12th and 13th, both reconciled
+  under a pre-registration (`12f9a3e`) predicting positive-direction
+  lead/lag signal for both, explicitly a confirmatory (not
   discriminating) test since Greece/Portugal/Italy/Spain are four draws
-  from one correlated Eurozone-crisis event.
+  from one correlated Eurozone-crisis event: Italy (132 rows) and Spain
+  (110 rows) both had **zero conflicts**, full 3-agency CE coverage, no
+  SD/RD/D, and — despite severe downgrade activity (Italy: 5 Moody's
+  notches in ~13 months, 2011-12; Spain: ~8 Moody's notches, 2010-12,
+  even sharper) — **neither ever crossed the IG/junk boundary**, both
+  bottoming at the lowest investment-grade rung and no lower. Checked
+  systematically across all 13 countries reconciled so far (not by
+  recollection — an earlier unscoped check wrongly flagged Egypt as a
+  crosser using pre-2005 history before being corrected), the
+  IG-boundary-crossing hypothesis now shows a **perfect 13-for-13
+  split**: every one of 6 crossers (Greece, Turkey, Portugal, South
+  Africa, Brazil, Colombia) produced at least one GE/CE conflict; every
+  one of 7 non-crossers (Sri Lanka, Zambia, Egypt, Pakistan, Nigeria,
+  Italy, Spain) produced zero. Explicitly flagged as striking but not
+  yet a settled causal claim — see `state.md`'s GE factual-error tracking
+  section for the full table and an important caveat surfaced while
+  checking it: a likely Sri Lanka transcription error (`S&P, A,
+  2007-01-23` — Sri Lanka was never remotely A-rated), flagged and held
+  for the user's decision, not silently fixed. This closes Tier 2 (13 of
+  the thesis-priority countries). Manually collecting and transcribing
+  the remaining 31 per-country files (starting Tier 3) is open,
+  user-side work — see `state.md` for the full log, including the
+  priority order and the GE factual-error / CE coverage-gap tracking
+  tables, and issue #3 for tracking.
 
 ## Stage 1 feature matrix (country x quarter — settled facts)
 `src/stage1_clustering/build_feature_matrix.py` builds two wide, country x

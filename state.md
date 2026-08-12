@@ -19,7 +19,7 @@ after the fact from memory.
 
 | Item | Blocks | Whose action | Status |
 |---|---|---|---|
-| Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10/2026-08-11 reconciliation entries below; agency IR pages for gaps neither source covers). **Tier 1 fully done — continue with Tier 2**, see the transcription priority list below. **Reminder for multi-word countries**: pass the underscore form (`Sri_Lanka`, not `Sri Lanka`) as the script's `country` argument — it's used verbatim as the output filename and must match `configs/universe.yaml`'s `name.replace(" ", "_")` for `ingest_ratings.py`'s coverage check to recognize it (caught once on Sri Lanka, fixed before anything downstream ran on the wrong filename). **CE raw-paste reminder**: as of the pre-Portugal fix, both `LETTER_GRADE (Outlook)` and letter-grade-less `(Outlook)`-only CE cells are handled automatically — paste CE's raw combined rating+outlook text straight into the `rating` column and leave `outlook` blank, no manual pre-splitting needed. | **In progress — 12/44 (Greece, Turkey, Sri Lanka, Portugal, Zambia, South Africa, Brazil, Colombia, Egypt, Pakistan, Nigeria, Italy) done**, all reconciled via `reconcile_ratings_sources.py` (172 + 170 + 118 + 108 + 45 + 137 + 137 + 94 + 138 + 84 + 67 + 132 = 1,402 rows, 5 conflicts total found and resolved — Greece 1, Turkey 2, South Africa 1, Brazil 1; Colombia, Egypt, Pakistan, Nigeria, and Italy all reconciled without a resolutions.csv entry). Italy opens the Tier-2-closing Eurozone pair (Spain to follow) under a new pre-registration (`12f9a3e`) predicting both should show positive-direction lead/lag signal. Italy had zero conflicts and full 3-agency CE coverage (both notable against the two open hypotheses in the tracking sections below — see those for the full read). 32 to go — Spain next, closing Tier 2 entirely. |
+| Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10/2026-08-11 reconciliation entries below; agency IR pages for gaps neither source covers). **Tier 1 fully done — continue with Tier 2**, see the transcription priority list below. **Reminder for multi-word countries**: pass the underscore form (`Sri_Lanka`, not `Sri Lanka`) as the script's `country` argument — it's used verbatim as the output filename and must match `configs/universe.yaml`'s `name.replace(" ", "_")` for `ingest_ratings.py`'s coverage check to recognize it (caught once on Sri Lanka, fixed before anything downstream ran on the wrong filename). **CE raw-paste reminder**: as of the pre-Portugal fix, both `LETTER_GRADE (Outlook)` and letter-grade-less `(Outlook)`-only CE cells are handled automatically — paste CE's raw combined rating+outlook text straight into the `rating` column and leave `outlook` blank, no manual pre-splitting needed. | **In progress — 13/44 (Greece, Turkey, Sri Lanka, Portugal, Zambia, South Africa, Brazil, Colombia, Egypt, Pakistan, Nigeria, Italy, Spain) done — Tier 2 fully complete**, all reconciled via `reconcile_ratings_sources.py` (172 + 170 + 118 + 108 + 45 + 137 + 137 + 94 + 138 + 84 + 67 + 132 + 110 = 1,512 rows, 5 conflicts total found and resolved — Greece 1, Turkey 2, South Africa 1, Brazil 1; Colombia, Egypt, Pakistan, Nigeria, Italy, and Spain all reconciled without a resolutions.csv entry). Italy and Spain both reconciled under a pre-registration (`12f9a3e`) predicting positive-direction lead/lag signal for both; both had zero conflicts, full 3-agency CE coverage, and — checked systematically across all 13 countries reconciled so far — neither crossed the IG/junk boundary, which now shows a **perfect 13-for-13 split** with the GE/CE conflict hypothesis (every IG-boundary-crosser produced a conflict, every non-crosser didn't) — see the GE factual-error tracking section below for the full table and an important caveat (a likely Sri Lanka transcription error, flagged not fixed). 31 to go — starting Tier 3. |
 | §4.2.4 lead/lag analysis (`ratings_leadlag_stub.py`) | §4.2.4, RQ1/H1 | Full-universe version still blocked on the remaining 33 countries' ratings transcription | **11-country pilot re-run 2026-08-12 (Nigeria added) — pre-registered trio (`d23fd6e`) now complete: Egypt, Pakistan, Nigeria all null or near-null, prediction not falsified.** Egypt p=0.776, Pakistan p=0.080 (positive mean driven by a non-independent 2008 cluster, majority of events negative), **Nigeria p=0.478** (clean, unremarkable null — mean≈0, 53.8% agreement, no hidden story). Nigeria-specific checks per explicit request: single-sourced (GE-only) Moody's events excluded → p=0.324, still null, and the single-sourced events pull the mean *down* not up, so single-sourcing isn't inflating a false result on the decisive leg. Turkey and Zambia also decomposed this round (per the new standing rule below) — both confirm their existing null reads rather than revealing anything hidden. Pooled (still non-independent, not a real test): p=0.00026, 63.7% of events show an increase. Not citable as a §5.1 result — 11 countries, still a selected high-signal subset. Trio surviving a real test isn't proof the underlying explanation is right, only that it wasn't falsified. Italy/Spain (remaining Tier 2, Eurozone-crisis cases) are the next natural check. See the 2026-08-12 "Lead/lag pilot re-run at 11 countries" chronological entry for full reasoning, and the "Lead/lag pilot decomposition principle" section for the new standing rule. |
 | Residual global-regime sensitivity in Stage 1 clustering (`core-eligible` = 0 for several consecutive quarters, 2009-2017) | §5.5 candidate robustness check; not blocking Stage 3/4 | Open — see CLAUDE.md "Stage 1 clustering" for the full diagnosis (us_10y/curve_slope are global-only features, thesis §3.3 keeps them in Stage 1 regardless) | Documented, not fixed further without a methodology-level call to override the thesis's own feature-group spec |
 | Execution-verify `bond_data_pull_reconstructed.py` (does it actually run/chunk/return data as designed) | Appendix A reproducibility only — not blocking, since existing bond data already feeds Stage 1 | User (requires a session on the university-library Windows PC with Refinitiv Workspace) | Not started |
@@ -180,16 +180,59 @@ crisis periods — yet **never actually crossed the IG/junk boundary**
 (bottomed out at Fitch `BBB-`/Moody's `Baa3`, the lowest investment-grade
 notch, multiple times, but never into junk) and had **zero conflicts**.
 This matters because it distinguishes two different versions of the
-hypothesis that Egypt/Pakistan/Nigeria's flat, low-activity histories
-couldn't: a "general downgrade turbulence" version (which Italy would
+hypothesis: a "general downgrade turbulence" version (which Italy would
 contradict — lots of activity, no conflict) versus the original
 "boundary-crossing specifically" version (which Italy is consistent
-with — no crossing, no conflict, regardless of how much activity
-surrounded the non-crossing). Since Italy stayed on the IG side
-throughout, it doesn't provide a crossing-with-conflict test case
-either (that would need a country that crosses *and* is checked for
-conflicts) — Spain is the next candidate, since it did cross into the
-lower end of the same crisis window structurally.
+with).
+
+**Spain (2026-08-12) turned out to be a second non-crosser, not the
+crossing-with-conflict test case initially expected.** Correcting an
+assumption made in the Italy entry above: Spain, like Italy, **never
+crossed the IG/junk boundary** either — its worst points are Moody's
+`Baa3` and S&P `BBB-` (2012-13, during the banking-sector bailout
+period), the same bottom investment-grade rung Italy touched, despite an
+even sharper collapse (Moody's alone fell roughly eight notches, `Aaa`
+to `Baa3`, between mid-2010 and mid-2012). Zero conflicts, full 3-agency
+CE coverage, no SD/RD/D — all as expected, and all consistent with (not
+yet a new test of) the crossing-specific hypothesis.
+
+**Full pattern across all 13 countries reconciled so far, checked
+systematically rather than by recollection (2005-2025 scope, since an
+unscoped first pass wrongly flagged Egypt as a crosser using pre-2005
+history)**:
+
+| Crossed IG boundary within 2005-2025? | Countries | Ever produced a GE/CE conflict? |
+|---|---|---|
+| Yes (6) | Greece, Turkey, Portugal, South Africa, Brazil, Colombia | **6 of 6** — every one, including Portugal and Colombia, whose original candidate conflicts are now auto-resolved by policies introduced *because of* their cases (watch-qualifier asymmetry, NR-outlook), so today's conflicts.csv shows 0 for them but a real disagreement did occur historically |
+| No (7) | Sri Lanka, Zambia, Egypt, Pakistan, Nigeria, Italy, Spain | **0 of 7** |
+
+**This is a perfect 13-for-13 split in the current sample** — worth
+taking seriously as a working hypothesis for the thesis's data-quality
+discussion, but explicitly *not* yet a settled causal claim: 13
+countries, reconciled in an order chosen for thesis relevance (Tier 1/2
+priority), not to test this specific hypothesis, and "crossing the IG
+boundary" could easily be a proxy for something else correlated with it
+(e.g. crossing events tend to draw denser, more compressed multi-agency
+news coverage that's inherently harder for any aggregator to transcribe
+consistently) rather than a direct cause. Worth checking explicitly on
+each remaining country rather than assumed to hold.
+
+**Side discovery while running this check, unrelated to Italy/Spain
+specifically, flagged and NOT fixed**: Sri Lanka's `Sri_Lanka.csv` has
+one row -- `S&P, A, (blank outlook), 2007-01-23`, sourced from CE --
+that is very likely a transcription error, not real history. It sits
+isolated (no GE row to compare against, so it never triggered a
+conflict), has a blank outlook, and is historically implausible (Sri
+Lanka has never been remotely A-rated; Fitch shows `BB-` for the same
+period). Excluding that one row, Sri Lanka's actual best rating in
+2005-2025 is `BB-` (Fitch, Dec 2005) -- meaning Sri Lanka never crossed
+the IG boundary either, consistent with the general historical
+understanding of Sri Lanka as a persistently junk-rated frontier
+sovereign until its 2022 default. Left as-is in `Sri_Lanka.csv` pending
+the user's decision on whether to verify and correct it -- not touched
+by this session, since it falls outside the Italy/Spain scope and every
+prior data anomaly in this project has been held for confirmation before
+any value was changed.
 
 ---
 
@@ -238,18 +281,19 @@ country's CE sheet for agency coverage before reconciling, the way the
 user did for Nigeria) once a few more countries land, rather than
 continuing to rely on stumbling into it per-country.
 
-**Italy (2026-08-12) checked explicitly and shows full 3-agency CE
-coverage** (Fitch, S&P, and Moody's all present in both sheets),
-consistent with the "frontier/lower-rated sovereigns specifically"
-framing — Italy is investment-grade-throughout and developed-market, and
-has none of Zambia's or Nigeria's coverage gaps. Not new disconfirming
-or confirming evidence on its own (a DM country having full coverage was
-the expected, unremarkable case, not a test of the hypothesis the way a
-third frontier/lower-rated country would be) — but worth recording as
-the absence of an anomaly where none was predicted, keeping the running
-count clean: 2 of 2 lower-rated/frontier countries checked so far show
-the gap (Zambia, Nigeria), 0 of the DM countries checked show it
-(Italy; Spain to be checked next).
+**Italy and Spain (2026-08-12) both checked explicitly and show full
+3-agency CE coverage** (Fitch, S&P, and Moody's all present in both
+sheets, for both countries), consistent with the "frontier/lower-rated
+sovereigns specifically" framing — both are investment-grade-throughout
+and developed-market, with none of Zambia's or Nigeria's coverage gaps.
+Not new disconfirming or confirming evidence on their own (a DM country
+having full coverage was the expected, unremarkable case, not a test of
+the hypothesis the way a third frontier/lower-rated country would be) —
+but keeps the running count clean: 2 of 2 lower-rated/frontier countries
+checked so far show the gap (Zambia, Nigeria), 0 of 2 DM countries
+checked show it (Italy, Spain). Tier 2 is now complete; the next real
+test of this hypothesis is whichever Tier 3/4/5 country turns out to be
+frontier/lower-rated.
 
 ---
 
@@ -278,6 +322,69 @@ starting with the 11-country re-run below (Nigeria) and going forward.
 ---
 
 ## Chronological log
+
+### 2026-08-12 — Spain reconciled: closes Tier 2, corrects an assumption, and completes a perfect 13-for-13 boundary-crossing pattern
+**What**: Spain -- second of the Eurozone pair, closes Tier 2 entirely
+(13 of the thesis-priority countries now done). No new
+reconciliation-logic edge case -- all forward-fills and drops are
+already-known categories.
+
+**Trajectory, confirmed per the specific scrutiny requested**: 2010-2012
+is a severe collapse -- Moody's alone fell roughly eight notches (`Aaa`
+-> `Baa3`) between mid-2010 and mid-2012, densely covered by both
+sources, including the 2012 banking-sector bailout period specifically
+(S&P/Fitch both down to their lowest points in 2012). The 2014-2019
+recovery is equally well captured -- a clear, gradual climb back from
+`BBB`/`Baa2` to `A-`/`A` by 2018-2019, matching the well-known recovery
+narrative. Confirmed **no** SD/RD/D anywhere, as expected.
+
+**Correcting an assumption from the Italy entry**: that entry speculated
+Spain would be "the crossing-with-conflict test case... since it did
+cross into the lower end of the same crisis window structurally." That
+assumption was wrong. Checking the actual data: Spain's worst points are
+Moody's `Baa3` and S&P `BBB-` -- the exact same bottom investment-grade
+rung Italy touched. **Spain never crossed the IG/junk boundary either**,
+despite a sharper collapse than Italy's. Zero conflicts, full 3-agency
+CE coverage, exactly as the non-crossing pattern would predict --
+worth explicitly noting the correction rather than quietly dropping the
+earlier wrong claim, since getting this kind of thing right by checking
+rather than assuming is the entire point of the tracking sections.
+
+**This completes a systematic, corrected check across all 13 countries
+reconciled so far (see the GE factual-error tracking section above for
+the full table): every one of the 6 countries that crossed the IG/junk
+boundary within 2005-2025 produced at least one GE/CE conflict; every
+one of the 7 that didn't produced zero.** A perfect 13-for-13 split.
+Explicitly flagged as a striking pattern worth taking seriously for the
+thesis's data-quality discussion, not yet a settled causal claim -- 13
+countries in a thesis-relevance-ordered (not hypothesis-testing-ordered)
+sample, and "IG-boundary-crossing" could be a proxy for something else
+correlated with it rather than a direct cause.
+
+**Side discovery while running this systematic check, unrelated to
+Italy/Spain, flagged and explicitly NOT fixed**: `Sri_Lanka.csv` has one
+row -- CE-sourced, `S&P, A, 2007-01-23`, blank outlook -- that's very
+likely a transcription error (isolated, no GE row to compare against so
+it never surfaced as a conflict, and historically implausible; Sri Lanka
+has never been remotely A-rated). Excluding it, Sri Lanka's real best
+rating in 2005-2025 is `BB-` (junk), meaning it never crossed the IG
+boundary either -- consistent with its known history as a persistently
+junk-rated frontier sovereign until its 2022 default, and consistent
+with (not contradicting) the 13-for-13 pattern once corrected. Held for
+the user's decision on whether to verify and fix -- outside this
+session's scope and consistent with how every prior anomaly in this
+project has been handled (flag, don't silently change).
+
+**Verified**: 110 reconciled rows in `Spain.csv`. All twelve prior
+countries re-run as regression checks -- unchanged. Combined 1,512 rows
+pass through `ingest_ratings.py` with only the now-seven known-category
+duplicate-action warnings; `test_lag_rules.py` 10/10.
+
+**13-country lead/lag pilot re-run, evaluated against both
+pre-registrations (`d23fd6e` and `12f9a3e`)**: next chronological entry
+immediately below.
+
+Commit: (pending, this session) · Issue: #3
 
 ### 2026-08-12 — Italy reconciled: first of the Eurozone pair, zero conflicts, full CE coverage, never crossed IG boundary despite severe turbulence
 **What**: Italy -- first of the Eurozone-crisis pair (Spain closes
