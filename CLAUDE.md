@@ -561,12 +561,31 @@ yet for a country just means it's absent from the output, not an error.
   in 2016 replicates during Pakistan's 2019 EFF arrangement (ratings hold
   or outlooks improve rather than deteriorate further), though over a
   much shorter window than Egypt's ~3-year plateau — a second data point
-  toward a real, repeatable pattern, not confirmed as one yet. Manually
-  collecting and transcribing the remaining 34 per-country files (Nigeria
-  next, closing the currency/commodity trio, then Italy/Spain) is open,
-  user-side work — see `state.md` for the full log, including the
-  priority order and the GE factual-error tracking table, and issue #3
-  for tracking.
+  toward a real, repeatable pattern, not confirmed as one yet. **Nigeria
+  (third and decisive currency/commodity-driven country, 2026-08-12)**
+  added an 11th: 67 rows, **zero conflicts — a third straight**, no
+  SD/RD/D, and all three oil-price-driven windows (2015-16 collapse,
+  2020 COVID+oil, 2023 naira devaluation) confirmed present with no
+  gaps — 2023 shows the same IMF-programme-flat-rating shape as Egypt/
+  Pakistan despite (as far as could be determined without independent
+  verification) no comparable formal IMF arrangement, suggesting the
+  pattern may track credible policy reform generally rather than IMF
+  engagement specifically. Also the **second country (after Zambia)**
+  where CE has zero rows for an entire agency (Moody's) that GE covers —
+  confirmed to flow through cleanly with no code change, same as Zambia
+  — now tracked in a new `state.md` section ("CE agency-coverage gap
+  tracking") watching whether this recurs for other frontier/lower-rated
+  sovereigns, which would mean CE can't be treated as a uniform primary
+  source across the full universe for Chapter 3's purposes. Three
+  straight zero-conflict countries in this group (vs. every
+  fiscal-deterioration-group country having at least one conflict) is
+  now also tracked as its own open question — see `state.md`'s GE
+  factual-error tracking section for the untested hypothesis (IG-
+  boundary-crossing frequency). Manually collecting and transcribing the
+  remaining 33 per-country files (Italy, then Spain, close out Tier 2) is
+  open, user-side work — see `state.md` for the full log, including the
+  priority order and the GE factual-error / CE coverage-gap tracking
+  tables, and issue #3 for tracking.
 
 ## Stage 1 feature matrix (country x quarter — settled facts)
 `src/stage1_clustering/build_feature_matrix.py` builds two wide, country x

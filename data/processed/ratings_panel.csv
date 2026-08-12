@@ -540,6 +540,73 @@ Greece,S&P,2023-04-21,BB+,11,Positive,outlook_change,countryeconomy.com,2023-04-
 Greece,S&P,2023-10-20,BBB-,10,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2023-10-20
 Greece,S&P,2024-04-19,BBB-,10,Positive,outlook_change,countryeconomy.com,2024-04-19
 Greece,S&P,2025-04-18,BBB,9,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2025-04-18
+Nigeria,Fitch,2006-01-30,BB-,13,Stable,initial,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2006-01-30
+Nigeria,Fitch,2008-05-23,BB-,13,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2008-05-23
+Nigeria,Fitch,2010-10-22,BB-,13,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2010-10-22
+Nigeria,Fitch,2011-01-21,BB-,13,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2011-01-21
+Nigeria,Fitch,2011-10-21,BB-,13,Stable,outlook_change,countryeconomy.com,2011-10-21
+Nigeria,Fitch,2012-02-23,BB-,13,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2012-02-23
+Nigeria,Fitch,2012-10-19,BB-,13,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2012-10-19
+Nigeria,Fitch,2013-07-05,BB-,13,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-07-05
+Nigeria,Fitch,2013-07-11,BB-,13,Stable,affirm,countryeconomy.com,2013-07-11
+Nigeria,Fitch,2013-10-16,BB-,13,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-10-16
+Nigeria,Fitch,2014-04-11,BB-,13,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-04-11
+Nigeria,Fitch,2014-10-03,BB-,13,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-10-03
+Nigeria,Fitch,2015-03-30,BB-,13,,affirm,countryeconomy.com,2015-03-30
+Nigeria,Fitch,2015-09-25,BB-,13,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-09-25
+Nigeria,Fitch,2016-06-23,B+,14,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2016-06-23
+Nigeria,Fitch,2016-07-22,B+,14,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2016-07-22
+Nigeria,Fitch,2017-01-25,B+,14,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2017-01-25
+Nigeria,Fitch,2017-08-31,B+,14,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2017-08-31
+Nigeria,Fitch,2018-05-17,B+,14,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2018-05-17
+Nigeria,Fitch,2018-11-02,B+,14,,affirm,countryeconomy.com,2018-11-02
+Nigeria,Fitch,2019-06-07,B+,14,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2019-06-07
+Nigeria,Fitch,2019-12-19,B+,14,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2019-12-19
+Nigeria,Fitch,2020-04-06,B,15,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2020-04-06
+Nigeria,Fitch,2020-09-01,B,15,Stable,outlook_change,theglobaleconomy.com (month-precision),2020-09-01
+Nigeria,Fitch,2021-03-01,B,15,Stable,affirm,theglobaleconomy.com (month-precision),2021-03-01
+Nigeria,Fitch,2022-03-01,B,15,Stable,affirm,theglobaleconomy.com (month-precision),2022-03-01
+Nigeria,Fitch,2022-11-11,B-,16,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2022-11-11
+Nigeria,Fitch,2023-05-01,B-,16,Stable,affirm,theglobaleconomy.com (month-precision),2023-05-01
+Nigeria,Fitch,2023-11-01,B-,16,Stable,affirm,theglobaleconomy.com (month-precision),2023-11-01
+Nigeria,Fitch,2024-05-01,B-,16,Positive,outlook_change,theglobaleconomy.com (month-precision),2024-05-01
+Nigeria,Fitch,2024-11-01,B-,16,Positive,affirm,theglobaleconomy.com (month-precision),2024-11-01
+Nigeria,Fitch,2025-04-01,B,15,Stable,upgrade,theglobaleconomy.com (month-precision),2025-04-01
+Nigeria,Fitch,2025-10-01,B,15,Stable,affirm,theglobaleconomy.com (month-precision),2025-10-01
+Nigeria,Fitch,2026-04-01,B,15,Stable,affirm,theglobaleconomy.com (month-precision),2026-04-01
+Nigeria,Moody's,2012-11-01,Ba3,13,Stable,initial,theglobaleconomy.com (month-precision),2012-11-01
+Nigeria,Moody's,2015-12-01,Ba3,13,Stable,affirm,theglobaleconomy.com (month-precision),2015-12-01
+Nigeria,Moody's,2016-03-01,Ba3,13,Negative watch,outlook_change,theglobaleconomy.com (month-precision),2016-03-01
+Nigeria,Moody's,2016-04-01,B1,14,Stable,downgrade,theglobaleconomy.com (month-precision),2016-04-01
+Nigeria,Moody's,2016-12-01,B1,14,Stable,affirm,theglobaleconomy.com (month-precision),2016-12-01
+Nigeria,Moody's,2017-11-01,B2,15,Stable,downgrade,theglobaleconomy.com (month-precision),2017-11-01
+Nigeria,Moody's,2019-12-01,B3,16,Negative,downgrade,theglobaleconomy.com (month-precision),2019-12-01
+Nigeria,Moody's,2020-04-01,B2,15,Negative,upgrade,theglobaleconomy.com (month-precision),2020-04-01
+Nigeria,Moody's,2021-11-01,B2,15,Stable,outlook_change,theglobaleconomy.com (month-precision),2021-11-01
+Nigeria,Moody's,2022-11-01,B3,16,Under Review,downgrade,theglobaleconomy.com (month-precision),2022-11-01
+Nigeria,Moody's,2023-02-01,Caa1,17,Stable,downgrade,theglobaleconomy.com (month-precision),2023-02-01
+Nigeria,Moody's,2023-12-01,Caa1,17,Positive,outlook_change,theglobaleconomy.com (month-precision),2023-12-01
+Nigeria,Moody's,2024-02-01,Caa3,19,Stable,downgrade,theglobaleconomy.com (month-precision),2024-02-01
+Nigeria,Moody's,2024-06-01,Caa1,17,Positive,upgrade,theglobaleconomy.com (month-precision),2024-06-01
+Nigeria,Moody's,2025-05-01,B3,16,Stable,upgrade,theglobaleconomy.com (month-precision),2025-05-01
+Nigeria,S&P,2006-02-01,BB-,13,Stable,initial,theglobaleconomy.com (month-precision),2006-02-01
+Nigeria,S&P,2009-03-01,BB-,13,Negative,outlook_change,theglobaleconomy.com (month-precision),2009-03-01
+Nigeria,S&P,2009-08-21,B+,14,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2009-08-21
+Nigeria,S&P,2011-12-29,B+,14,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2011-12-29
+Nigeria,S&P,2012-11-07,BB-,13,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2012-11-07
+Nigeria,S&P,2014-03-21,BB-,13,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-03-21
+Nigeria,S&P,2014-03-27,BB-,13,Negative watch,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-03-27
+Nigeria,S&P,2015-02-01,BB-,13,Negative watch,affirm,theglobaleconomy.com (month-precision),2015-02-01
+Nigeria,S&P,2015-03-20,B+,14,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-03-20
+Nigeria,S&P,2016-03-18,B+,14,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2016-03-18
+Nigeria,S&P,2016-09-16,B,15,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2016-09-16
+Nigeria,S&P,2020-02-28,B,15,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2020-02-28
+Nigeria,S&P,2020-03-26,B-,16,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2020-03-26
+Nigeria,S&P,2023-02-03,B-,16,Negative,outlook_change,countryeconomy.com,2023-02-03
+Nigeria,S&P,2023-08-04,B-,16,Stable,outlook_change,countryeconomy.com,2023-08-04
+Nigeria,S&P,2025-11-01,B-,16,Positive,outlook_change,theglobaleconomy.com (month-precision),2025-11-01
+Nigeria,S&P,2025-11-14,B-,16,Positive,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2025-11-14
+Nigeria,S&P,2026-05-15,B,15,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2026-05-15
 Pakistan,Fitch,2015-09-15,B,15,Stable,initial,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-09-15
 Pakistan,Fitch,2016-04-12,B,15,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2016-04-12
 Pakistan,Fitch,2016-07-22,B,15,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2016-07-22
