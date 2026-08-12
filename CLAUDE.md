@@ -1083,3 +1083,10 @@ positions) is the right bar. All three checks currently pass.
 - All hyperparameters live in `configs/params.yaml`.
 - SHAP is used for Stage 2 model interpretability.
 - HRP (Hierarchical Risk Parity) is the Stage 3 allocation method.
+- **Push after every commit** unless there's a specific reason not to
+  (e.g. a commit that's intentionally part of a larger in-progress
+  change, or the user says otherwise for that instance) — don't let
+  commits sit local-only waiting to be asked for. This repo has no CI or
+  collaborators to conflict with, so there's no cost to pushing
+  immediately, and unpushed commits have previously piled up
+  (12 at once, 2026-08-12) purely from not doing this by default.
