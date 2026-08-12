@@ -154,6 +154,59 @@ Nigeria, Italy, or Spain surface.
 
 ## Chronological log
 
+### 2026-08-12 — PRE-REGISTRATION: Egypt/Pakistan/Nigeria lead/lag prediction (committed before any of the three is reconciled)
+**This entry is written and committed before Egypt, Pakistan, or
+Nigeria's ratings data has been reconciled, and before
+`ratings_leadlag_stub.py` has been re-run on any of them.** The commit
+timestamp/hash on this entry is the audit trail that the prediction
+below was fixed in advance, not fitted after seeing which of the three
+clears p<0.05 -- the same discipline as the H2 multi-horizon
+pre-registration (2026-08-11, below), applied here because the
+explanation this entry is testing was itself built *post hoc* from the
+5-, 7-, and 8-country pilot results already observed (Greece, Portugal,
+South Africa, Sri Lanka, Colombia positive/borderline-positive; Turkey,
+Zambia, Brazil null/negative) -- a genuine prediction, made before new
+data, is the only way to tell whether that explanation is real or just a
+story that fits what's already been seen.
+
+**The working explanation being tested**: the ML risk score deteriorates
+ahead of a downgrade when that downgrade is preceded by visible,
+persistent **macro-fundamental** deterioration -- Greece, Portugal, and
+South Africa all clear p<0.05 positive; Sri Lanka and Colombia are
+directionally consistent (borderline-positive, underpowered rather than
+null) -- and does *not* when the downgrade's driver runs through a
+pathway Stage 1's feature set doesn't observe: **political/currency
+shock** (Turkey), **commodity-linked chronic distress** (Zambia), or
+deterioration that was **already priced in or entangled with political
+events** by the time it showed up as a downgrade (Brazil).
+
+**The prediction, fixed now**: Egypt, Pakistan, and Nigeria are all
+currency- and commodity-driven cases, the same category the explanation
+says should fail. If the explanation holds, **all three should come back
+null or near-null** (p not clearing 0.05, and/or `mean_diff` flat or
+negative) when reconciled and run through the pilot. **If any one of the
+three clears p<0.05 with a positive direction, the explanation needs
+revising, not extending** -- it would mean "currency/commodity-driven"
+isn't actually the operative distinction, and whatever the real
+distinction is would need to be re-derived from scratch rather than
+patched with a new post-hoc carve-out for the exception.
+
+**All three will be reported regardless of outcome** -- a clean 3-for-3
+null, a mixed result, or a clean miss for the hypothesis are all
+reportable results, not just the one that confirms the explanation.
+Consistent with how the H2 multi-horizon protocol and every lead/lag
+pilot addition so far (including Colombia, which did not confirm South
+Africa outright) have been reported unconditionally.
+
+Not yet run as of this commit -- Egypt is next, reconciled immediately
+after this entry is committed. See later chronological entries (above,
+since newest-first) for results as each of the three lands.
+
+Commit: (pending, this session) · Issue: #4 — pre-registration only,
+precedes the check
+
+---
+
 ### 2026-08-12 — Colombia reconciled: tie-breaker for the fiscal-deterioration trio, new NR-outlook policy
 **What**: Colombia -- third of Tier 2, the tie-breaker within the
 fiscal-deterioration/non-Eurozone group after South Africa (positive
