@@ -1273,8 +1273,8 @@ Sri_Lanka,Moody's,2024-12-23,Caa1,17,Stable,upgrade,countryeconomy.com (confirme
 Sri_Lanka,S&P,2005-12-01,B+,14,Stable,initial,theglobaleconomy.com (month-precision),2005-12-01
 Sri_Lanka,S&P,2006-04-01,B+,14,Stable,affirm,theglobaleconomy.com (month-precision),2006-04-01
 Sri_Lanka,S&P,2006-04-01,B+,14,Negative,outlook_change,theglobaleconomy.com (month-precision),2006-04-01
-Sri_Lanka,S&P,2007-01-23,A,6,,upgrade,countryeconomy.com,2007-01-23
-Sri_Lanka,S&P,2007-08-01,B+,14,Stable,downgrade,theglobaleconomy.com (month-precision),2007-08-01
+Sri_Lanka,S&P,2007-01-23,B+,14,,affirm,countryeconomy.com,2007-01-23
+Sri_Lanka,S&P,2007-08-01,B+,14,Stable,outlook_change,theglobaleconomy.com (month-precision),2007-08-01
 Sri_Lanka,S&P,2008-02-01,B+,14,Negative,outlook_change,theglobaleconomy.com (month-precision),2008-02-01
 Sri_Lanka,S&P,2008-12-01,B,15,Stable,downgrade,theglobaleconomy.com (month-precision),2008-12-01
 Sri_Lanka,S&P,2009-05-01,B,15,Negative,outlook_change,theglobaleconomy.com (month-precision),2009-05-01

@@ -600,16 +600,69 @@ yet for a country just means it's absent from the output, not an error.
   Africa, Brazil, Colombia) produced at least one GE/CE conflict; every
   one of 7 non-crossers (Sri Lanka, Zambia, Egypt, Pakistan, Nigeria,
   Italy, Spain) produced zero. Explicitly flagged as striking but not
-  yet a settled causal claim — see `state.md`'s GE factual-error tracking
-  section for the full table and an important caveat surfaced while
-  checking it: a likely Sri Lanka transcription error (`S&P, A,
-  2007-01-23` — Sri Lanka was never remotely A-rated), flagged and held
-  for the user's decision, not silently fixed. This closes Tier 2 (13 of
-  the thesis-priority countries). Manually collecting and transcribing
+  yet a settled causal claim — see `state.md`'s Source factual-error
+  tracking section (renamed from "GE factual-error tracking" — see
+  below) for the full table. This closes Tier 2 (13 of the
+  thesis-priority countries). Manually collecting and transcribing
   the remaining 31 per-country files (starting Tier 3) is open,
   user-side work — see `state.md` for the full log, including the
-  priority order and the GE factual-error / CE coverage-gap tracking
+  priority order and the factual-error / CE coverage-gap tracking
   tables, and issue #3 for tracking.
+- **2026-08-12: the Sri Lanka `S&P, A, 2007-01-23` anomaly flagged above
+  was confirmed a real CE transcription error** (Sri Lanka was in the B
+  range throughout that period; GE's `B+` is correct) and fixed — not
+  via a hand-edit (`Sri_Lanka.csv` is mechanically regenerated every
+  session) but via a new `_corrections.csv` mechanism in
+  `reconcile_ratings_sources.py`, modeled on the existing
+  `_resolutions.csv` conflict-adjudication pattern but distinct from
+  it: corrections fix a single-source factual error found by means
+  *other* than cross-source conflict (this one was found by the sanity
+  checker below plus direct domain knowledge), applied to each source's
+  raw data before cleaning/matching runs, and fail loudly if a
+  correction matches no row. This is CE carrying the wrong value,
+  against the pipeline's CE-preferred-on-conflict default policy — see
+  `state.md`'s Source factual-error tracking section, case 5, and its
+  explicit caveat that the resulting GE-4/CE-1 error tally is an
+  artifact of which detection mechanism catches what, not evidence
+  about relative source reliability.
+- **The error never surfaced as a conflict**, exposing a structural
+  blind spot: conflict detection only checks rows where both sources
+  have an overlapping entry; single-sourced rows (CE-only, GE-only, or
+  entire agencies — Zambia's/Nigeria's Moody's is 100% GE-only) were
+  never checked by anything. `src/data_acquisition/sanity_check_ratings.py`
+  now closes this gap: three source-agnostic checks over
+  `data/processed/ratings_panel.csv` — implausible same-agency notch
+  jumps (>4), MAD-based range outliers against each country's own
+  cross-agency history (modified z-score >3.5), and a single-source
+  exposure report. Run across all 13 reconciled countries: Sri Lanka's
+  error was the only real problem found (caught independently by both
+  the jump and outlier checks, at modified z=-5.40 — the most extreme
+  outlier pre-fix); the other 25 flags (7 jumps, 16 outliers
+  post-fix) are all explainable (SD/RD/D default-designation
+  transitions, or long-run secular trends like Italy's making early
+  history look like an outlier only against that country's own
+  whole-history median) — **isolated, not symptomatic**. Notable
+  finding independent of the Sri Lanka case: **46.0% (695/1512) of all
+  rows across the 13 countries have never been cross-validated against
+  anything** — the honest size of what conflict detection alone misses.
+  Should be re-run after every future country reconciliation, not
+  treated as a one-off. Outputs:
+  `data/processed/ratings_sanity_{jumps,range_outliers,single_source}.csv`.
+- **Diagnostic-only check (no shared pilot files touched, per explicit
+  scope boundary between the ratings-reconciliation and lead/lag-pilot
+  threads)**: does the fix change Sri Lanka's borderline p=0.052
+  lead/lag result? No — byte-identical, p=0.051515 before and after.
+  The phantom `downgrade` event (now correctly `outlook_change`) had
+  `status="insufficient_history"` in both panel versions — too close to
+  the 2005-2006 panel start for a training window — so it was already
+  excluded from the actual t-test regardless of its value.
+- **Cross-thread note**: `ratings_panel.csv` changed as a result of this
+  fix (Sri Lanka's 2007-08-01 event type flipped). The 13-country
+  lead/lag pilot logged elsewhere in `state.md` was run *before* this
+  fix — the diagnostic above suggests it's a no-op for the aggregate
+  stats, but `ratings_leadlag_stub.py` and
+  `stage1_leadlag_pilot_events.csv` should be re-run to confirm rather
+  than assumed unaffected. Not done here — out of this thread's scope.
 
 ## Stage 1 feature matrix (country x quarter — settled facts)
 `src/stage1_clustering/build_feature_matrix.py` builds two wide, country x

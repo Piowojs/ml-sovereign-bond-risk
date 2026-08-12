@@ -153,6 +153,36 @@ between them that a naive "pick a primary source" merge would get wrong:
     on ratings, unreliable on outlook-only updates" hypothesis there
     remains at 2 confirmed cases; Colombia neither confirms nor
     disconfirms it.
+12. **Conflict detection has a structural blind spot: it only checks
+    rows where both sources have an overlapping (agency, month) entry.**
+    A row carried by only one source -- the majority of rows in most
+    countries, and the entirety of some agencies (Zambia's and Nigeria's
+    Moody's history is 100% GE-only) -- is never checked against
+    anything by this script. Found the hard way on Sri Lanka: a
+    CE-sourced row, `S&P, "A", 2007-01-23`, sat undetected for a full
+    session (2026-08-11 through the 2026-08-12 Italy/Spain audit) because
+    GE had no row that date to disagree with -- Sri Lanka was in the B
+    range throughout that period (GE confirms `B+` on both sides,
+    Apr 2006 and Aug 2007), so `"A"` was simply wrong, not a source
+    disagreement. `src/data_acquisition/sanity_check_ratings.py` is a
+    separate, source-agnostic diagnostic for exactly this gap -- it
+    checks single-sourced rows for internal plausibility (implausible
+    same-agency notch jumps, whole-country-history range outliers) since
+    there's no second source to check them against, and reports what
+    fraction of each (country, agency)'s rows were never cross-validated
+    at all. It corrects nothing itself; findings are reviewed and, where
+    confirmed, fixed via `_reconciliation/<Country>_corrections.csv`
+    (columns: `source,agency,date,wrong_rating,corrected_rating,note`),
+    a new, permanent, re-run-safe mechanism applied by `_apply_corrections`
+    at the very start of `reconcile()` -- before anything else, so it
+    corrects the source's raw as-transcribed value, and survives every
+    future re-run instead of being silently overwritten (editing
+    `<Country>.csv` directly would NOT survive a re-run, since that file
+    is mechanically regenerated from the raw workbook every time).
+    Deliberately distinct from `_resolutions.csv`: a resolution
+    adjudicates a disagreement *between* two sources; a correction fixes
+    one source that was simply wrong on its own, found by a check that
+    has nothing to do with cross-source conflict detection.
 
 Given all that, the merge policy for non-conflicting (agency, month)
 buckets is: union of both sources' months; where only one source has a
@@ -553,7 +583,66 @@ def _load_resolutions(path: Path) -> pd.DataFrame:
     return df
 
 
-def reconcile(ge_df: pd.DataFrame, ce_df: pd.DataFrame, resolutions_df: pd.DataFrame):
+def _load_corrections(path: Path) -> pd.DataFrame:
+    """Known single-source factual errors to fix before anything else
+    runs -- distinct from `_resolutions.csv`, which adjudicates a
+    *disagreement between two sources*. A correction fixes one source
+    that was simply wrong on its own, found by a check that has nothing
+    to do with cross-source conflict detection (module docstring, point
+    12) -- e.g. Sri Lanka's CE-sourced S&P "A" for 2007-01-23, found by
+    `sanity_check_ratings.py`'s implausible-jump/range-outlier checks
+    plus the user's own knowledge of Sri Lanka's actual rating history,
+    not by GE and CE disagreeing (GE had no row that date to disagree
+    with in the first place)."""
+    if not path.exists():
+        return pd.DataFrame(columns=["source", "agency", "date", "wrong_rating", "corrected_rating", "note"])
+    df = pd.read_csv(path)
+    required = {"source", "agency", "date", "wrong_rating", "corrected_rating", "note"}
+    missing = required - set(df.columns)
+    if missing:
+        raise ValueError(f"{path}: missing required column(s) {missing}")
+    df["date"] = pd.to_datetime(df["date"]).dt.strftime("%Y-%m-%d")
+    df["source"] = df["source"].str.strip().str.upper()
+    return df
+
+
+def _apply_corrections(df: pd.DataFrame, source_label: str, corrections_df: pd.DataFrame) -> pd.DataFrame:
+    """Apply known single-source corrections to one source's raw
+    dataframe, before any cleaning/matching runs -- has to happen first
+    so it matches the literal as-transcribed rating string. Raises if a
+    correction matches no row: a stale or mistyped correction should
+    fail loudly, not silently no-op and leave the bad value in place."""
+    relevant = corrections_df[corrections_df["source"] == source_label.upper()]
+    if relevant.empty:
+        return df
+    df = df.copy()
+    date_str = df["date"].dt.strftime("%Y-%m-%d")
+    for _, corr in relevant.iterrows():
+        mask = (
+            (df["agency"] == corr["agency"])
+            & (date_str == corr["date"])
+            & (df["rating"].astype(str).str.strip() == str(corr["wrong_rating"]).strip())
+        )
+        if not mask.any():
+            raise ValueError(
+                f"{source_label}: correction for {corr['agency']} on {corr['date']} "
+                f"(expected rating '{corr['wrong_rating']}') matched no row -- "
+                f"stale or mistyped correction entry"
+            )
+        df.loc[mask, "rating"] = corr["corrected_rating"]
+        logging.warning(
+            f"{source_label}: corrected {corr['agency']} on {corr['date']} from "
+            f"'{corr['wrong_rating']}' to '{corr['corrected_rating']}' -- {corr['note']}"
+        )
+    return df
+
+
+def reconcile(ge_df: pd.DataFrame, ce_df: pd.DataFrame, resolutions_df: pd.DataFrame,
+              corrections_df: pd.DataFrame | None = None):
+    if corrections_df is not None and not corrections_df.empty:
+        ge_df = _apply_corrections(ge_df, "GE", corrections_df)
+        ce_df = _apply_corrections(ce_df, "CE", corrections_df)
+
     ge_df = _drop_not_rated(ge_df, "GE")
     ce_df = _drop_not_rated(ce_df, "CE")
 
@@ -740,6 +829,13 @@ def main():
         help="CSV of conflict resolutions (agency,ge_date,ce_date,chosen_source,note). "
         "Defaults to _reconciliation/<Country>_resolutions.csv if present.",
     )
+    parser.add_argument(
+        "--corrections",
+        default=None,
+        help="CSV of known single-source factual corrections "
+        "(source,agency,date,wrong_rating,corrected_rating,note). "
+        "Defaults to _reconciliation/<Country>_corrections.csv if present.",
+    )
     args = parser.parse_args()
 
     logging.basicConfig(level=logging.INFO, format="%(message)s")
@@ -753,10 +849,15 @@ def main():
     if not resolutions_df.empty:
         logging.info(f"Loaded {len(resolutions_df)} conflict resolution(s) from {resolutions_path}")
 
+    corrections_path = Path(args.corrections) if args.corrections else RECONCILIATION_DIR / f"{country}_corrections.csv"
+    corrections_df = _load_corrections(corrections_path)
+    if not corrections_df.empty:
+        logging.info(f"Loaded {len(corrections_df)} known correction(s) from {corrections_path}")
+
     ge_df = _load_sheet(xlsx_path, args.ge_sheet, "GE")
     ce_df = _load_sheet(xlsx_path, args.ce_sheet, "CE")
 
-    merged_df, conflicts_df = reconcile(ge_df, ce_df, resolutions_df)
+    merged_df, conflicts_df = reconcile(ge_df, ce_df, resolutions_df, corrections_df)
 
     country_path = MANUAL_DIR / f"{country}.csv"
     merged_df.to_csv(country_path, index=False)

@@ -1,0 +1,8 @@
+country,agency,date_from,rating_from,date_to,rating_to,notch_jump,source_from,source_to
+Greece,Fitch,2012-03-09,RD,2012-03-14,B-,-6,countryeconomy.com (default designation; theglobaleconomy.com omits this event),countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,S&P,2012-12-05,SD,2012-12-18,B-,-6,countryeconomy.com (default designation; theglobaleconomy.com omits this event),countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Zambia,Fitch,2024-12-01,RD,2025-11-01,B-,-6,theglobaleconomy.com (month-precision),theglobaleconomy.com (month-precision)
+Sri_Lanka,S&P,2022-04-25,SD,2025-09-19,CCC+,-5,countryeconomy.com (default designation; theglobaleconomy.com omits this event),countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Zambia,Fitch,2020-11-18,RD,2023-12-01,CCC+,-5,countryeconomy.com (default designation; theglobaleconomy.com omits this event),theglobaleconomy.com (month-precision)
+Zambia,Fitch,2023-12-01,CCC+,2024-12-01,RD,5,theglobaleconomy.com (month-precision),theglobaleconomy.com (month-precision)
+Zambia,S&P,2020-10-21,SD,2025-11-21,CCC+,-5,countryeconomy.com (default designation; theglobaleconomy.com omits this event),countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))

@@ -1,0 +1,17 @@
+country,agency,date,rating,rating_numeric,country_median_numeric,modified_z_score,source
+Sri_Lanka,S&P,2022-04-25,SD,22,14.0,5.4,countryeconomy.com (default designation; theglobaleconomy.com omits this event)
+Sri_Lanka,Fitch,2022-05-19,RD,22,14.0,5.4,countryeconomy.com (default designation; theglobaleconomy.com omits this event)
+Italy,Moody's,1986-10-10,Aaa,1,8.0,-4.72,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri_Lanka,Fitch,2022-04-13,C,21,14.0,4.72,countryeconomy.com
+Italy,S&P,1991-05-01,AA+,2,8.0,-4.05,theglobaleconomy.com (month-precision)
+Italy,S&P,1992-05-01,AA+,2,8.0,-4.05,theglobaleconomy.com (month-precision)
+Italy,S&P,1989-06-01,AA+,2,8.0,-4.05,theglobaleconomy.com (month-precision)
+Italy,Moody's,1991-07-01,Aa1,2,8.0,-4.05,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri_Lanka,Fitch,2021-12-17,CC,20,14.0,4.05,countryeconomy.com
+Italy,S&P,1993-03-01,AA+,2,8.0,-4.05,theglobaleconomy.com (month-precision)
+Sri_Lanka,Moody's,2024-11-28,Ca,20,14.0,4.05,countryeconomy.com
+Sri_Lanka,Moody's,2022-04-18,Ca,20,14.0,4.05,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri_Lanka,S&P,2022-04-13,CC,20,14.0,4.05,countryeconomy.com
+Zambia,Fitch,2020-11-18,RD,22,16.0,4.05,countryeconomy.com (default designation; theglobaleconomy.com omits this event)
+Zambia,Fitch,2024-12-01,RD,22,16.0,4.05,theglobaleconomy.com (month-precision)
+Zambia,S&P,2020-10-21,SD,22,16.0,4.05,countryeconomy.com (default designation; theglobaleconomy.com omits this event)
