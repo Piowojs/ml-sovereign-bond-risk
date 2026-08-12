@@ -535,10 +535,27 @@ yet for a country just means it's absent from the output, not an error.
   counted as a third GE factual-error case** — South Africa/Brazil were
   GE asserting something wrong, this was GE asserting nothing at all; the
   hypothesis stays at 2 confirmed cases, untested by Colombia either way.
-  Manually collecting and transcribing the remaining 36 per-country files
-  (Egypt next, then Pakistan/Nigeria/Italy/Spain) is open, user-side
-  work — see `state.md` for the full log, including the priority order
-  and the GE factual-error tracking table, and issue #3 for tracking.
+  **Egypt (first currency/commodity-driven country, 2026-08-12)** added
+  a 9th: 138 rows, **zero conflicts** — the cleanest run since Sri Lanka
+  — and all three of Egypt's stress episodes (Arab Spring 2011–2013,
+  2016 currency-float/IMF period, 2022–2024 currency crisis) confirmed
+  present with no gaps from either source. The 2016 window shows flat
+  ratings rather than a fresh downgrade wave — a real historical
+  pattern (the IMF deal read as a credibility anchor, not a
+  credit-negative shock), not a coverage gap. No SD/RD/D, as expected.
+  Zero conflicts means no test of the GE hypothesis this round either
+  way. Egypt was reconciled *after* a written prediction was committed
+  to `state.md` (Refs #4) that Egypt, Pakistan, and Nigeria should all
+  come back null or near-null on the lead/lag pilot, since the working
+  explanation for the pilot's mixed results ties positive signal to
+  macro-fundamental-driven downgrades specifically — see `state.md`'s
+  pre-registration entry for the full prediction and reasoning, committed
+  before any of the three was touched, same discipline as the Stage 2
+  multi-horizon protocol. Manually collecting and transcribing the
+  remaining 35 per-country files (Pakistan next, then Nigeria/Italy/
+  Spain) is open, user-side work — see `state.md` for the full log,
+  including the priority order and the GE factual-error tracking table,
+  and issue #3 for tracking.
 
 ## Stage 1 feature matrix (country x quarter — settled facts)
 `src/stage1_clustering/build_feature_matrix.py` builds two wide, country x
