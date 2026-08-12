@@ -20,7 +20,7 @@ after the fact from memory.
 | Item | Blocks | Whose action | Status |
 |---|---|---|---|
 | Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10/2026-08-11 reconciliation entries below; agency IR pages for gaps neither source covers). **Tier 1 fully done — continue with Tier 2**, see the transcription priority list below. **Reminder for multi-word countries**: pass the underscore form (`Sri_Lanka`, not `Sri Lanka`) as the script's `country` argument — it's used verbatim as the output filename and must match `configs/universe.yaml`'s `name.replace(" ", "_")` for `ingest_ratings.py`'s coverage check to recognize it (caught once on Sri Lanka, fixed before anything downstream ran on the wrong filename). **CE raw-paste reminder**: as of the pre-Portugal fix, both `LETTER_GRADE (Outlook)` and letter-grade-less `(Outlook)`-only CE cells are handled automatically — paste CE's raw combined rating+outlook text straight into the `rating` column and leave `outlook` blank, no manual pre-splitting needed. | **In progress — 13/44 (Greece, Turkey, Sri Lanka, Portugal, Zambia, South Africa, Brazil, Colombia, Egypt, Pakistan, Nigeria, Italy, Spain) done — Tier 2 fully complete**, all reconciled via `reconcile_ratings_sources.py` (172 + 170 + 118 + 108 + 45 + 137 + 137 + 94 + 138 + 84 + 67 + 132 + 110 = 1,512 rows, 5 conflicts total found and resolved — Greece 1, Turkey 2, South Africa 1, Brazil 1; Colombia, Egypt, Pakistan, Nigeria, Italy, and Spain all reconciled without a resolutions.csv entry). Italy and Spain both reconciled under a pre-registration (`12f9a3e`) predicting positive-direction lead/lag signal for both; both had zero conflicts, full 3-agency CE coverage, and — checked systematically across all 13 countries reconciled so far — neither crossed the IG/junk boundary, which now shows a **perfect 13-for-13 split** with the GE/CE conflict hypothesis (every IG-boundary-crosser produced a conflict, every non-crosser didn't) — see the GE factual-error tracking section below for the full table and an important caveat (a likely Sri Lanka transcription error, flagged not fixed). 31 to go — starting Tier 3. |
-| §4.2.4 lead/lag analysis (`ratings_leadlag_stub.py`) | §4.2.4, RQ1/H1 | Full-universe version still blocked on the remaining 33 countries' ratings transcription | **11-country pilot re-run 2026-08-12 (Nigeria added) — pre-registered trio (`d23fd6e`) now complete: Egypt, Pakistan, Nigeria all null or near-null, prediction not falsified.** Egypt p=0.776, Pakistan p=0.080 (positive mean driven by a non-independent 2008 cluster, majority of events negative), **Nigeria p=0.478** (clean, unremarkable null — mean≈0, 53.8% agreement, no hidden story). Nigeria-specific checks per explicit request: single-sourced (GE-only) Moody's events excluded → p=0.324, still null, and the single-sourced events pull the mean *down* not up, so single-sourcing isn't inflating a false result on the decisive leg. Turkey and Zambia also decomposed this round (per the new standing rule below) — both confirm their existing null reads rather than revealing anything hidden. Pooled (still non-independent, not a real test): p=0.00026, 63.7% of events show an increase. Not citable as a §5.1 result — 11 countries, still a selected high-signal subset. Trio surviving a real test isn't proof the underlying explanation is right, only that it wasn't falsified. Italy/Spain (remaining Tier 2, Eurozone-crisis cases) are the next natural check. See the 2026-08-12 "Lead/lag pilot re-run at 11 countries" chronological entry for full reasoning, and the "Lead/lag pilot decomposition principle" section for the new standing rule. |
+| §4.2.4 lead/lag analysis (`ratings_leadlag_stub.py`) | §4.2.4, RQ1/H1 | Full-universe version still blocked on the remaining 31 countries' ratings transcription | **13-country pilot re-run 2026-08-12 (Italy + Spain added) — Tier 2 complete, both pre-registrations (`d23fd6e`, `12f9a3e`) survived without a single exception.** Eurozone pair landed precisely as predicted: **Spain clears p<0.05 (0.018)**, **Italy doesn't (0.107) but is clearly positive-direction** (84.6% of events increase) — the specific "Spain more cleanly than Italy" call, not just a vague positive/negative one, hit. Full 13-country picture now shows a **clean two-bucket split with zero exceptions**: all 7 "macro-fundamental/persistent deterioration" countries (Greece, Portugal, South Africa, Spain, Sri Lanka, Colombia, Italy) are positive-direction (4 clear, 2 borderline, 1 short of significance); all 6 "other pathway" countries (Turkey, Zambia, Brazil, Egypt, Pakistan, Nigeria) are null or near-null, none clearing p<0.05 positive. Second genuine pre-registered test survived intact. Still not citable — 13 of 44 countries, no formal multiple-testing correction, and only 5 of 13 countries' bucket assignment was genuinely pre-registered before reconciliation (the original 5-country pilot's classification was post hoc). See the 2026-08-12 "Lead/lag pilot re-run at 13 countries" chronological entry for the full table, decomposition, and H1 status read. |
 | Residual global-regime sensitivity in Stage 1 clustering (`core-eligible` = 0 for several consecutive quarters, 2009-2017) | §5.5 candidate robustness check; not blocking Stage 3/4 | Open — see CLAUDE.md "Stage 1 clustering" for the full diagnosis (us_10y/curve_slope are global-only features, thesis §3.3 keeps them in Stage 1 regardless) | Documented, not fixed further without a methodology-level call to override the thesis's own feature-group spec |
 | Execution-verify `bond_data_pull_reconstructed.py` (does it actually run/chunk/return data as designed) | Appendix A reproducibility only — not blocking, since existing bond data already feeds Stage 1 | User (requires a session on the university-library Windows PC with Refinitiv Workspace) | Not started |
 | CDS data (`data/raw/cds/`) never successfully pulled | Nothing currently — Stage 1 extended tier gates on duration/convexity, not CDS (see CLAUDE.md) | Would also require the library-PC session if pursued | Open, not currently prioritized |
@@ -385,6 +385,97 @@ pre-registrations (`d23fd6e` and `12f9a3e`)**: next chronological entry
 immediately below.
 
 Commit: (pending, this session) · Issue: #3
+
+### 2026-08-12 — Lead/lag pilot re-run at 13 countries: Tier 2 complete, both pre-registrations survive intact, and the working explanation now shows a clean two-bucket split with zero exceptions
+**What**: `ratings_leadlag_stub.py` re-run with `ratings_panel.csv` now
+covering all 13 countries reconciled so far (the prior 11 plus Italy and
+Spain). Evaluated against both pre-registrations now in the record:
+`d23fd6e` (currency/commodity trio should be null) and `12f9a3e`
+(Eurozone pair should be positive, Spain more cleanly than Italy).
+
+**Results, full 13 countries**:
+
+| country | n_events_tested | mean_diff | % events with increase | p (one-sided) |
+|---|---|---|---|---|
+| Greece | 34 | +0.0208 | 76.5% | 0.00017 |
+| Portugal | 16 | +0.0374 | 93.8% | 0.010 |
+| **Spain** | **16** | **+0.0354** | **93.8%** | **0.018** |
+| South Africa | 15 | +0.0074 | 80.0% | 0.020 |
+| Sri Lanka | 19 | +0.0210 | 78.9% | 0.052 |
+| Colombia | 7 | +0.0094 | 71.4% | 0.062 |
+| Pakistan | 13 | +0.0312 | 38.5% | 0.080 |
+| **Italy** | **13** | **+0.0120** | **84.6%** | **0.107** |
+| Nigeria | 13 | +0.0004 | 53.8% | 0.478 |
+| Zambia | 18 | -0.0006 | 66.7% | 0.536 |
+| Turkey | 15 | -0.0032 | 53.3% | 0.771 |
+| Egypt | 22 | -0.0058 | 45.5% | 0.776 |
+| Brazil | 10 | -0.0163 | 10.0% | 0.973 |
+
+Pooled (still non-independent, not a real test): p=0.0000121, 67.3% of
+all 211 tested events show an increase.
+
+**Against `12f9a3e`, precisely**: the prediction wasn't just "both
+positive" -- it specifically called Spain more likely to clear cleanly
+than Italy. **Both hits landed**: Spain clears p<0.05 (0.018), Italy
+doesn't (0.107) but is still clearly positive-direction (84.6% of events
+increase, no negative mean) -- not the "clean negative-direction null"
+that would have falsified the prediction. This is a more precise
+confirmation than a simple positive/negative call would have been.
+
+**Decomposition for both, per the standing rule**: neither shows a
+Pakistan-style divergence -- in both cases the majority direction and
+the mean direction agree, and the positive signal is broad-based, not
+propped up by one or two outliers. Italy: 11 of 13 events positive,
+spread across the whole 2011-2014 window (including a notably large
++0.102 in Dec 2014), with the only 2 negative events both from the later
+2017-19 populist-coalition episode. Spain: 15 of 16 events positive,
+spread across 2009-2012, with the single negative event being the
+earliest one (Jan 2009, pre-dating the main crisis). **Both show
+substantial event clustering worth naming explicitly**, not just
+inherited as a generic caveat: several dates in each country have 2-3
+agencies acting within days to a few weeks of each other (Italy:
+Oct 2011, Jan-Feb 2012; Spain: Apr-Jun 2010, Oct 2011, Jan-Feb 2012,
+Apr-Jun 2012) -- real non-independence reducing the effective sample
+size below the nominal 13/16, consistent with the module's documented
+"events are not independent" limitation, concretely instantiated here
+rather than left abstract.
+
+**Where H1 stands across all 13 countries -- the requested read**: a
+genuinely clean two-bucket split has emerged, with **zero exceptions on
+either side**:
+- **7 countries classified under "macro-fundamental/persistent
+  deterioration" (Greece, Portugal, South Africa, Spain, Sri Lanka,
+  Colombia, Italy)**: every single one is positive-direction. 4 clear
+  p<0.05 (Greece, Portugal, Spain, South Africa), 2 borderline-positive
+  underpowered rather than null (Sri Lanka, Colombia), 1 positive but
+  short of significance (Italy). **Not one null or negative-direction
+  result in this entire group.**
+- **6 countries classified under "other pathway" (political/currency
+  shock, commodity-linked distress, or already-priced/entangled
+  deterioration): Turkey, Zambia, Brazil, Egypt, Pakistan, Nigeria**:
+  every single one is null or near-null. **Not one clears p<0.05
+  positive.** Pakistan's raw p=0.080 is the closest to the boundary, but
+  its own decomposition (2026-08-12, 11-country entry) showed the
+  positive mean was carried by one non-independent 2008 cluster while
+  its most representative episode (2022-23) was cleanly negative --
+  once decomposed, it reinforces rather than weakens the null bucket.
+
+**This is the second genuine pre-registered test the working explanation
+has now survived without a single exception**, following the
+currency/commodity trio. That's a real, if still small-sample, result --
+worth taking seriously for the thesis's Chapter 5/6 discussion -- but
+still not a citable §5.1 result: 13 of 44 countries, non-independent
+pooled/within-country events, no formal multiple-testing correction
+across 13 country-level tests, and the classification into the two
+buckets, while genuinely pre-registered for 5 of the 13 countries
+(the trio and the Eurozone pair), was fitted post hoc for the original
+5-country pilot (Greece, Portugal, Turkey, Zambia, Sri Lanka). A truly
+citable version of this pattern would need it to keep holding on
+countries chosen for reasons unrelated to testing it, ideally with a
+pre-registered classification for the *next* several countries before
+they're reconciled, not just before each pair.
+
+Commit: (pending, this session) · Issue: #4
 
 ### 2026-08-12 — Italy reconciled: first of the Eurozone pair, zero conflicts, full CE coverage, never crossed IG boundary despite severe turbulence
 **What**: Italy -- first of the Eurozone-crisis pair (Spain closes
