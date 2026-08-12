@@ -551,11 +551,22 @@ yet for a country just means it's absent from the output, not an error.
   macro-fundamental-driven downgrades specifically — see `state.md`'s
   pre-registration entry for the full prediction and reasoning, committed
   before any of the three was touched, same discipline as the Stage 2
-  multi-horizon protocol. Manually collecting and transcribing the
-  remaining 35 per-country files (Pakistan next, then Nigeria/Italy/
-  Spain) is open, user-side work — see `state.md` for the full log,
-  including the priority order and the GE factual-error tracking table,
-  and issue #3 for tracking.
+  multi-horizon protocol. **Pakistan (second currency/commodity-driven
+  country, 2026-08-12)** added a 10th: 84 rows, **zero conflicts again**
+  (neither currency/commodity-group country has produced one yet, unlike
+  every fiscal-deterioration-group country), no SD/RD/D despite Pakistan
+  genuinely nearing default in 2008 (S&P `CCC`/`CCC+`) and again 2022-23
+  (Fitch `CCC-`, Moody's `Caa3`) — confirming the expectation, no primary-
+  source check needed. The IMF-programme-flat-rating pattern Egypt showed
+  in 2016 replicates during Pakistan's 2019 EFF arrangement (ratings hold
+  or outlooks improve rather than deteriorate further), though over a
+  much shorter window than Egypt's ~3-year plateau — a second data point
+  toward a real, repeatable pattern, not confirmed as one yet. Manually
+  collecting and transcribing the remaining 34 per-country files (Nigeria
+  next, closing the currency/commodity trio, then Italy/Spain) is open,
+  user-side work — see `state.md` for the full log, including the
+  priority order and the GE factual-error tracking table, and issue #3
+  for tracking.
 
 ## Stage 1 feature matrix (country x quarter — settled facts)
 `src/stage1_clustering/build_feature_matrix.py` builds two wide, country x

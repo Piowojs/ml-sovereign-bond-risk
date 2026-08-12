@@ -19,7 +19,7 @@ after the fact from memory.
 
 | Item | Blocks | Whose action | Status |
 |---|---|---|---|
-| Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10/2026-08-11 reconciliation entries below; agency IR pages for gaps neither source covers). **Tier 1 fully done — continue with Tier 2**, see the transcription priority list below. **Reminder for multi-word countries**: pass the underscore form (`Sri_Lanka`, not `Sri Lanka`) as the script's `country` argument — it's used verbatim as the output filename and must match `configs/universe.yaml`'s `name.replace(" ", "_")` for `ingest_ratings.py`'s coverage check to recognize it (caught once on Sri Lanka, fixed before anything downstream ran on the wrong filename). **CE raw-paste reminder**: as of the pre-Portugal fix, both `LETTER_GRADE (Outlook)` and letter-grade-less `(Outlook)`-only CE cells are handled automatically — paste CE's raw combined rating+outlook text straight into the `rating` column and leave `outlook` blank, no manual pre-splitting needed. | **In progress — 9/44 (Greece, Turkey, Sri Lanka, Portugal, Zambia, South Africa, Brazil, Colombia, Egypt) done**, all reconciled via `reconcile_ratings_sources.py` (172 + 170 + 118 + 108 + 45 + 137 + 137 + 94 + 138 = 1,119 rows, 5 conflicts total found and resolved — Greece 1, Turkey 2, South Africa 1, Brazil 1; Colombia's and Egypt's candidate/zero conflicts resolved without a resolutions.csv entry). Egypt opens the currency/commodity-driven group (Pakistan, Nigeria to follow) that the 2026-08-12 pre-registration predicts should come back null on the lead/lag pilot — see that entry below; the pilot itself isn't re-run until Pakistan also lands, per the pair cadence. 35 to go — Pakistan next, then Nigeria/Italy/Spain (see GE factual-error tracking section below for the data-quality thread, still at 2 confirmed cases — Egypt had zero conflicts, so no test either way this round). |
+| Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10/2026-08-11 reconciliation entries below; agency IR pages for gaps neither source covers). **Tier 1 fully done — continue with Tier 2**, see the transcription priority list below. **Reminder for multi-word countries**: pass the underscore form (`Sri_Lanka`, not `Sri Lanka`) as the script's `country` argument — it's used verbatim as the output filename and must match `configs/universe.yaml`'s `name.replace(" ", "_")` for `ingest_ratings.py`'s coverage check to recognize it (caught once on Sri Lanka, fixed before anything downstream ran on the wrong filename). **CE raw-paste reminder**: as of the pre-Portugal fix, both `LETTER_GRADE (Outlook)` and letter-grade-less `(Outlook)`-only CE cells are handled automatically — paste CE's raw combined rating+outlook text straight into the `rating` column and leave `outlook` blank, no manual pre-splitting needed. | **In progress — 10/44 (Greece, Turkey, Sri Lanka, Portugal, Zambia, South Africa, Brazil, Colombia, Egypt, Pakistan) done**, all reconciled via `reconcile_ratings_sources.py` (172 + 170 + 118 + 108 + 45 + 137 + 137 + 94 + 138 + 84 = 1,203 rows, 5 conflicts total found and resolved — Greece 1, Turkey 2, South Africa 1, Brazil 1; Colombia, Egypt, and Pakistan all reconciled without a resolutions.csv entry). Pakistan completes the second of three currency/commodity-driven countries the 2026-08-12 pre-registration (Refs #4) predicts should come back null on the lead/lag pilot — 10-country pilot re-run follows below, read directly against that prediction. 34 to go — Nigeria next (closes the currency/commodity trio), then Italy/Spain (see GE factual-error tracking section below for the data-quality thread, still at 2 confirmed cases — Egypt and Pakistan both had zero conflicts, so no test either way from either). |
 | §4.2.4 lead/lag analysis (`ratings_leadlag_stub.py`) | §4.2.4, RQ1/H1 | Full-universe version still blocked on the remaining 36 countries' ratings transcription | **8-country pilot re-run 2026-08-12 (Colombia added) — Colombia doesn't cleanly resolve the tie-break, but leans toward Brazil being the outlier.** Greece p=0.00017, Portugal p=0.010, South Africa p=0.020 (clear p<0.05, positive); Sri Lanka p=0.052, **Colombia p=0.062** (both borderline-positive, same direction and shape as South Africa, just underpowered at n=7); Turkey p=0.77, **Brazil p=0.97** (clean nulls, Brazil's `mean_diff` actually negative). 2 of 3 fiscal-deterioration countries now lean positive. Colombia: 7/15 events testable (7 pre-2005, 1 post-panel-end excluded — not a data gap). Pooled (still non-independent, not a real test): p=0.0000936, 70.1% of events show an increase. Not citable as a §5.1 result — 8 countries, still a selected high-signal subset. See the 2026-08-12 chronological entry below for the full reasoning. |
 | Residual global-regime sensitivity in Stage 1 clustering (`core-eligible` = 0 for several consecutive quarters, 2009-2017) | §5.5 candidate robustness check; not blocking Stage 3/4 | Open — see CLAUDE.md "Stage 1 clustering" for the full diagnosis (us_10y/curve_slope are global-only features, thesis §3.3 keeps them in Stage 1 regardless) | Documented, not fixed further without a methodology-level call to override the thesis's own feature-group spec |
 | Execution-verify `bond_data_pull_reconstructed.py` (does it actually run/chunk/return data as designed) | Appendix A reproducibility only — not blocking, since existing bond data already feeds Stage 1 | User (requires a session on the university-library Windows PC with Refinitiv Workspace) | Not started |
@@ -153,6 +153,65 @@ Nigeria, Italy, or Spain surface.
 ---
 
 ## Chronological log
+
+### 2026-08-12 — Pakistan reconciled: second currency/commodity-driven country, zero conflicts, IMF-flat pattern replicates
+**What**: Pakistan -- second of the currency/commodity-driven trio
+(Nigeria closes it out). No new reconciliation-logic edge case; the one
+NR-rating drop, three exact-duplicate drops, and NR-outlook occurrences
+are all already-known categories.
+
+**All three downgrade waves confirmed present with no gaps**: the 2007-
+2009 crisis is dense across all three agencies, and notably shows
+Pakistan already brushing near-default territory once before -- S&P hit
+`CCC`/`CCC+` (Nov-Dec 2008) before recovering to `B-` by Aug 2009. The
+2018-19 wave (Fitch `B`->`B-`, Moody's `B3`/Negative) is captured, and the
+2022-2024 balance-of-payments crisis is the deepest of the three --
+Fitch reached `CCC-` (Feb 2023), Moody's `Caa3` (Feb 2023) -- genuinely
+close to default, consistent with the well-known 2023 near-miss, but
+never crossing into SD/RD.
+
+**Critical check, per the specific ask**: confirmed **no** SD/RD/D
+anywhere in either source. Pakistan came close to default in 2022-23 but
+the data correctly shows it never happened -- no primary-source check
+needed since nothing contradicted the expectation.
+
+**IMF-programme-flat-rating pattern replicates, with a caveat on
+duration**: during Pakistan's 2019 EFF arrangement, ratings hold roughly
+steady rather than showing a fresh downgrade wave -- Fitch `B-`/Stable
+(Dec 2018) stays `B-`/Stable (June 2019); Moody's outlook actually
+*improves* from Negative (June 2018) to Stable (Dec 2019); S&P holds
+`B-`/Stable through the period. Directionally the same pattern Egypt
+showed during its 2016 programme (agencies don't downgrade further, and
+outlooks stabilize or improve, during/immediately after IMF engagement),
+now seen in a second country -- worth treating as a real, repeatable
+pattern rather than a one-off, though with a real difference in scale:
+Egypt's flat period ran a full ~3 years (2015-2017) before the next
+episode; Pakistan's is a much shorter window before the 2022-23 crisis
+hit. Worth watching for a third instance if Nigeria's IMF engagement
+history shows the same shape.
+
+**Zero conflicts again** -- no test of the GE outlook-reliability
+hypothesis this round either, same as Egypt. Two countries into the
+currency/commodity group and neither has produced a single conflict,
+notably different from every country in the fiscal-deterioration group
+(all three of which had at least one candidate conflict). Not
+over-reading this yet, but flagged: it's possible GE and CE agree more
+often on volatile/frequently-reviewed names than on slower-moving
+gradual-deterioration cases, or it could just be these two countries'
+specific transcriptions -- not enough data to distinguish those
+explanations.
+
+**Verified**: 84 reconciled rows in `Pakistan.csv`. All nine prior
+countries re-run as regression checks -- unchanged. Combined 1,203 rows
+pass through `ingest_ratings.py` with only the now-five known-category
+duplicate-action warnings (one new Pakistan/Moody's instance);
+`test_lag_rules.py` 10/10.
+
+**10-country lead/lag pilot re-run, read against the pre-registered
+prediction (`d23fd6e`)**: see the next chronological entry immediately
+below.
+
+Commit: (pending, this session) · Issue: #3
 
 ### 2026-08-12 — Egypt reconciled: first currency/commodity-driven country, zero conflicts, three stress episodes confirmed
 **What**: Egypt -- first of the currency/commodity-driven trio

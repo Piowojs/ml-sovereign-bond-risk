@@ -540,6 +540,90 @@ Greece,S&P,2023-04-21,BB+,11,Positive,outlook_change,countryeconomy.com,2023-04-
 Greece,S&P,2023-10-20,BBB-,10,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2023-10-20
 Greece,S&P,2024-04-19,BBB-,10,Positive,outlook_change,countryeconomy.com,2024-04-19
 Greece,S&P,2025-04-18,BBB,9,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2025-04-18
+Pakistan,Fitch,2015-09-15,B,15,Stable,initial,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-09-15
+Pakistan,Fitch,2016-04-12,B,15,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2016-04-12
+Pakistan,Fitch,2016-07-22,B,15,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2016-07-22
+Pakistan,Fitch,2017-02-06,B,15,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2017-02-06
+Pakistan,Fitch,2018-01-25,B,15,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2018-01-25
+Pakistan,Fitch,2018-12-14,B-,16,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2018-12-14
+Pakistan,Fitch,2019-06-14,B-,16,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2019-06-14
+Pakistan,Fitch,2020-01-13,B-,16,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2020-01-13
+Pakistan,Fitch,2020-08-01,B-,16,Stable,affirm,theglobaleconomy.com (month-precision),2020-08-01
+Pakistan,Fitch,2021-06-01,B-,16,Stable,affirm,theglobaleconomy.com (month-precision),2021-06-01
+Pakistan,Fitch,2022-02-01,B-,16,Stable,affirm,theglobaleconomy.com (month-precision),2022-02-01
+Pakistan,Fitch,2022-07-01,B-,16,Negative,outlook_change,theglobaleconomy.com (month-precision),2022-07-01
+Pakistan,Fitch,2022-10-21,CCC+,17,,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2022-10-21
+Pakistan,Fitch,2023-02-14,CCC-,19,,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2023-02-14
+Pakistan,Fitch,2023-07-01,CCC,18,NR,upgrade,theglobaleconomy.com (month-precision),2023-07-01
+Pakistan,Fitch,2023-12-01,CCC,18,NR,affirm,theglobaleconomy.com (month-precision),2023-12-01
+Pakistan,Fitch,2024-07-01,CCC+,17,NR,upgrade,theglobaleconomy.com (month-precision),2024-07-01
+Pakistan,Fitch,2025-04-01,B-,16,Stable,upgrade,theglobaleconomy.com (month-precision),2025-04-01
+Pakistan,Fitch,2026-01-01,B-,16,Stable,affirm,theglobaleconomy.com (month-precision),2026-01-01
+Pakistan,Fitch,2026-04-01,B-,16,Stable,affirm,theglobaleconomy.com (month-precision),2026-04-01
+Pakistan,Moody's,1994-11-23,Ba3,13,,initial,countryeconomy.com,1994-11-23
+Pakistan,Moody's,1995-07-11,B1,14,,downgrade,countryeconomy.com,1995-07-11
+Pakistan,Moody's,1996-11-06,B2,15,,downgrade,countryeconomy.com,1996-11-06
+Pakistan,Moody's,1998-05-28,B3,16,,downgrade,countryeconomy.com,1998-05-28
+Pakistan,Moody's,1998-10-23,Caa1,17,,downgrade,countryeconomy.com,1998-10-23
+Pakistan,Moody's,2001-10-01,Caa1,17,Stable,affirm,theglobaleconomy.com (month-precision),2001-10-01
+Pakistan,Moody's,2002-02-13,B3,16,,upgrade,countryeconomy.com,2002-02-13
+Pakistan,Moody's,2003-10-20,B2,15,,upgrade,countryeconomy.com,2003-10-20
+Pakistan,Moody's,2003-11-15,B2,15,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2003-11-15
+Pakistan,Moody's,2005-01-20,B2,15,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2005-01-20
+Pakistan,Moody's,2006-11-08,B2,15,Under Review,outlook_change,countryeconomy.com,2006-11-08
+Pakistan,Moody's,2006-11-22,B1,14,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2006-11-22
+Pakistan,Moody's,2007-11-05,B1,14,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2007-11-05
+Pakistan,Moody's,2008-05-21,B2,15,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2008-05-21
+Pakistan,Moody's,2008-09-23,B2,15,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2008-09-23
+Pakistan,Moody's,2008-10-28,B3,16,Under Review,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2008-10-28
+Pakistan,Moody's,2008-12-12,B3,16,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2008-12-12
+Pakistan,Moody's,2009-08-17,B3,16,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2009-08-17
+Pakistan,Moody's,2012-07-13,Caa1,17,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2012-07-13
+Pakistan,Moody's,2014-07-14,Caa1,17,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-07-14
+Pakistan,Moody's,2015-03-25,Caa1,17,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-03-25
+Pakistan,Moody's,2015-06-11,B3,16,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-06-11
+Pakistan,Moody's,2017-07-11,B3,16,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2017-07-11
+Pakistan,Moody's,2018-06-20,B3,16,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2018-06-20
+Pakistan,Moody's,2019-12-02,B3,16,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2019-12-02
+Pakistan,Moody's,2020-05-14,B3,16,Under Review,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2020-05-14
+Pakistan,Moody's,2020-08-08,B3,16,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2020-08-08
+Pakistan,Moody's,2022-05-01,B3,16,Negative,outlook_change,theglobaleconomy.com (month-precision),2022-05-01
+Pakistan,Moody's,2022-06-02,B3,16,Negative,affirm,countryeconomy.com,2022-06-02
+Pakistan,Moody's,2022-10-06,Caa1,17,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2022-10-06
+Pakistan,Moody's,2023-02-28,Caa3,19,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2023-02-28
+Pakistan,Moody's,2024-08-28,Caa2,18,Positive,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2024-08-28
+Pakistan,Moody's,2025-08-13,Caa1,17,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2025-08-13
+Pakistan,S&P,1994-11-01,B+,14,Positive,initial,theglobaleconomy.com (month-precision),1994-11-01
+Pakistan,S&P,1995-08-01,B+,14,Stable,outlook_change,theglobaleconomy.com (month-precision),1995-08-01
+Pakistan,S&P,1997-01-01,B+,14,Stable,affirm,theglobaleconomy.com (month-precision),1997-01-01
+Pakistan,S&P,1998-01-01,B+,14,Negative,outlook_change,theglobaleconomy.com (month-precision),1998-01-01
+Pakistan,S&P,1998-05-01,B+,14,Negative watch,outlook_change,theglobaleconomy.com (month-precision),1998-05-01
+Pakistan,S&P,1998-06-01,B-,16,Negative watch,downgrade,theglobaleconomy.com (month-precision),1998-06-01
+Pakistan,S&P,1998-07-01,CCC,18,Negative watch,downgrade,theglobaleconomy.com (month-precision),1998-07-01
+Pakistan,S&P,1998-10-01,CCC-,19,Negative,downgrade,theglobaleconomy.com (month-precision),1998-10-01
+Pakistan,S&P,1998-12-01,CC,20,Negative,downgrade,theglobaleconomy.com (month-precision),1998-12-01
+Pakistan,S&P,1999-12-01,B-,16,Stable,upgrade,theglobaleconomy.com (month-precision),1999-12-01
+Pakistan,S&P,2002-12-01,B,15,Stable,upgrade,theglobaleconomy.com (month-precision),2002-12-01
+Pakistan,S&P,2003-12-01,B,15,Positive,outlook_change,theglobaleconomy.com (month-precision),2003-12-01
+Pakistan,S&P,2004-11-01,B+,14,Stable,upgrade,theglobaleconomy.com (month-precision),2004-11-01
+Pakistan,S&P,2005-11-01,B+,14,Stable,affirm,theglobaleconomy.com (month-precision),2005-11-01
+Pakistan,S&P,2005-12-01,B+,14,Positive,outlook_change,theglobaleconomy.com (month-precision),2005-12-01
+Pakistan,S&P,2006-12-01,B+,14,Positive,affirm,theglobaleconomy.com (month-precision),2006-12-01
+Pakistan,S&P,2007-07-01,B+,14,Stable,outlook_change,theglobaleconomy.com (month-precision),2007-07-01
+Pakistan,S&P,2007-11-01,B+,14,Negative,outlook_change,theglobaleconomy.com (month-precision),2007-11-01
+Pakistan,S&P,2008-05-01,B,15,Negative,downgrade,theglobaleconomy.com (month-precision),2008-05-01
+Pakistan,S&P,2008-10-01,CCC+,17,Negative,downgrade,theglobaleconomy.com (month-precision),2008-10-01
+Pakistan,S&P,2008-11-01,CCC,18,Developing,downgrade,theglobaleconomy.com (month-precision),2008-11-01
+Pakistan,S&P,2008-12-01,CCC+,17,Developing,upgrade,theglobaleconomy.com (month-precision),2008-12-01
+Pakistan,S&P,2009-08-24,B-,16,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2009-08-24
+Pakistan,S&P,2012-07-01,B-,16,Stable,affirm,theglobaleconomy.com (month-precision),2012-07-01
+Pakistan,S&P,2015-05-05,B-,16,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-05-05
+Pakistan,S&P,2016-10-31,B,15,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2016-10-31
+Pakistan,S&P,2019-02-04,B-,16,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2019-02-04
+Pakistan,S&P,2022-07-28,B-,16,Negative,outlook_change,countryeconomy.com,2022-07-28
+Pakistan,S&P,2022-12-22,CCC+,17,Stable,downgrade,countryeconomy.com,2022-12-22
+Pakistan,S&P,2025-07-24,B-,16,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2025-07-24
+Pakistan,S&P,2026-07-01,B,15,Stable,upgrade,theglobaleconomy.com (month-precision),2026-07-01
 Portugal,Fitch,1994-08-10,AA-,4,,initial,countryeconomy.com,1994-08-10
 Portugal,Fitch,1995-10-26,AA-,4,,affirm,countryeconomy.com,1995-10-26
 Portugal,Fitch,1998-06-04,AA,3,,upgrade,countryeconomy.com,1998-06-04
