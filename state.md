@@ -20,7 +20,7 @@ after the fact from memory.
 | Item | Blocks | Whose action | Status |
 |---|---|---|---|
 | Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10/2026-08-11 reconciliation entries below; agency IR pages for gaps neither source covers). **Tier 1 fully done — continue with Tier 2**, see the transcription priority list below. **Reminder for multi-word countries**: pass the underscore form (`Sri_Lanka`, not `Sri Lanka`) as the script's `country` argument — it's used verbatim as the output filename and must match `configs/universe.yaml`'s `name.replace(" ", "_")` for `ingest_ratings.py`'s coverage check to recognize it (caught once on Sri Lanka, fixed before anything downstream ran on the wrong filename). **CE raw-paste reminder**: as of the pre-Portugal fix, both `LETTER_GRADE (Outlook)` and letter-grade-less `(Outlook)`-only CE cells are handled automatically — paste CE's raw combined rating+outlook text straight into the `rating` column and leave `outlook` blank, no manual pre-splitting needed. | **In progress — 11/44 (Greece, Turkey, Sri Lanka, Portugal, Zambia, South Africa, Brazil, Colombia, Egypt, Pakistan, Nigeria) done**, all reconciled via `reconcile_ratings_sources.py` (172 + 170 + 118 + 108 + 45 + 137 + 137 + 94 + 138 + 84 + 67 = 1,270 rows, 5 conflicts total found and resolved — Greece 1, Turkey 2, South Africa 1, Brazil 1; Colombia, Egypt, Pakistan, and Nigeria all reconciled without a resolutions.csv entry). Nigeria closes the currency/commodity-driven trio (Refs #4 pre-registration `d23fd6e`) and is its decisive third leg — 11-country pilot re-run follows below. Nigeria is also the second country (after Zambia) where CE has zero rows for an entire agency (Moody's) that GE covers — see the new "CE agency-coverage gap tracking" section below. Only Tier 2's Italy/Spain remain after Nigeria — 33 to go overall (see GE factual-error tracking section below for the data-quality thread, still at 2 confirmed cases — 3 straight zero-conflict countries in the currency/commodity group, itself now a tracked observation). |
-| §4.2.4 lead/lag analysis (`ratings_leadlag_stub.py`) | §4.2.4, RQ1/H1 | Full-universe version still blocked on the remaining 34 countries' ratings transcription | **10-country pilot re-run 2026-08-12 (Egypt + Pakistan added) — first re-run evaluated against a pre-registered prediction (`d23fd6e`), not just reported after the fact. Neither falsifies it.** Egypt p=0.776 (clean null, as predicted). **Pakistan p=0.080** — doesn't clear p<0.05, but the positive `mean_diff` is driven entirely by 3 non-independent events in the 2008 crisis cluster; only 38.5% of its 13 events show an increase, and the 2022-23 episode (the one most representative of "currency/commodity-driven") is cleanly negative — a more supportive read for the prediction than the raw p-value alone suggests. Nigeria remains the decisive third data point, still to come. Pooled (still non-independent, not a real test): p=0.00022, 64.5% of events show an increase. Not citable as a §5.1 result — 10 countries, still a selected high-signal subset. See the 2026-08-12 chronological entry below for the full reasoning, including a speculative (not yet a finding) observation about crisis-onset-vs-recurrence timing. |
+| §4.2.4 lead/lag analysis (`ratings_leadlag_stub.py`) | §4.2.4, RQ1/H1 | Full-universe version still blocked on the remaining 33 countries' ratings transcription | **11-country pilot re-run 2026-08-12 (Nigeria added) — pre-registered trio (`d23fd6e`) now complete: Egypt, Pakistan, Nigeria all null or near-null, prediction not falsified.** Egypt p=0.776, Pakistan p=0.080 (positive mean driven by a non-independent 2008 cluster, majority of events negative), **Nigeria p=0.478** (clean, unremarkable null — mean≈0, 53.8% agreement, no hidden story). Nigeria-specific checks per explicit request: single-sourced (GE-only) Moody's events excluded → p=0.324, still null, and the single-sourced events pull the mean *down* not up, so single-sourcing isn't inflating a false result on the decisive leg. Turkey and Zambia also decomposed this round (per the new standing rule below) — both confirm their existing null reads rather than revealing anything hidden. Pooled (still non-independent, not a real test): p=0.00026, 63.7% of events show an increase. Not citable as a §5.1 result — 11 countries, still a selected high-signal subset. Trio surviving a real test isn't proof the underlying explanation is right, only that it wasn't falsified. Italy/Spain (remaining Tier 2, Eurozone-crisis cases) are the next natural check. See the 2026-08-12 "Lead/lag pilot re-run at 11 countries" chronological entry for full reasoning, and the "Lead/lag pilot decomposition principle" section for the new standing rule. |
 | Residual global-regime sensitivity in Stage 1 clustering (`core-eligible` = 0 for several consecutive quarters, 2009-2017) | §5.5 candidate robustness check; not blocking Stage 3/4 | Open — see CLAUDE.md "Stage 1 clustering" for the full diagnosis (us_10y/curve_slope are global-only features, thesis §3.3 keeps them in Stage 1 regardless) | Documented, not fixed further without a methodology-level call to override the thesis's own feature-group spec |
 | Execution-verify `bond_data_pull_reconstructed.py` (does it actually run/chunk/return data as designed) | Appendix A reproducibility only — not blocking, since existing bond data already feeds Stage 1 | User (requires a session on the university-library Windows PC with Refinitiv Workspace) | Not started |
 | CDS data (`data/raw/cds/`) never successfully pulled | Nothing currently — Stage 1 extended tier gates on duration/convexity, not CDS (see CLAUDE.md) | Would also require the library-PC session if pursued | Open, not currently prioritized |
@@ -310,6 +310,94 @@ new decomposition-principle standing rule** (see that section above):
 next chronological entry immediately below.
 
 Commit: (pending, this session) · Issue: #3
+
+### 2026-08-12 — Lead/lag pilot re-run at 11 countries: pre-registered trio complete, none falsify the prediction; decomposition principle applied for the first time as a standing rule
+**What**: `ratings_leadlag_stub.py` re-run with `ratings_panel.csv` now
+covering 11 countries (the prior 10 plus Nigeria). This completes the
+pre-registered trio (`d23fd6e`: Egypt, Pakistan, Nigeria) and is the
+first re-run where the new decomposition-principle standing rule (see
+that section above) is applied deliberately across multiple countries,
+not just the one that happened to look surprising.
+
+**Results**:
+
+| country | n_events_tested | mean_diff | % events with increase | p (one-sided) |
+|---|---|---|---|---|
+| Greece | 34 | +0.0208 | 76.5% | 0.00017 |
+| Portugal | 16 | +0.0374 | 93.8% | 0.010 |
+| South Africa | 15 | +0.0074 | 80.0% | 0.020 |
+| Sri Lanka | 19 | +0.0210 | 78.9% | 0.052 |
+| Colombia | 7 | +0.0094 | 71.4% | 0.062 |
+| Pakistan | 13 | +0.0312 | 38.5% | 0.080 |
+| **Nigeria** | **13** | **+0.0004** | **53.8%** | **0.478** |
+| Zambia | 18 | -0.0006 | 66.7% | 0.536 |
+| Turkey | 15 | -0.0032 | 53.3% | 0.771 |
+| Egypt | 22 | -0.0058 | 45.5% | 0.776 |
+| Brazil | 10 | -0.0163 | 10.0% | 0.973 |
+
+Pooled (still non-independent, not a real test): p=0.00026, 63.7% of
+all 182 tested events show an increase.
+
+**Against the prediction, literally**: none of Egypt (p=0.776), Pakistan
+(p=0.080), or Nigeria (p=0.478) clears p<0.05 positive. The
+pre-registered trio is complete and **the prediction is not falsified**
+-- all three currency/commodity-driven countries came back null or
+near-null, exactly as committed to in `d23fd6e` before any of the three
+was reconciled.
+
+**Nigeria's decomposition, per the specific request and the new standing
+rule**: unlike Pakistan, Nigeria's is a genuinely clean, unremarkable
+null -- `mean_diff` essentially zero (+0.0004), 53.8% of events showing
+an increase (close to an even split, not a lopsided minority propped up
+by outliers the way Pakistan's 38.5% was). No dramatic reinterpretation
+needed; the p-value and the event-level shape agree with each other.
+
+**Single-sourcing check, per the specific request (Nigeria's Moody's
+events are 100% GE-only, 6 of its 13 tested events)**: re-ran the test
+excluding those 6 single-sourced events. **Including** them: n=13,
+mean_diff=+0.0004, p=0.478. **Excluding** them: n=7, mean_diff=+0.0061,
+p=0.324 -- still nowhere near significant either way, but notably the
+single-sourced Moody's events pull the mean *down* slightly (4 of the 6
+are negative), not up. So single-sourcing is not inflating a spurious
+positive result for Nigeria; if anything the opposite. This directly
+answers the concern that mattered most here, since Nigeria is the
+decisive leg of the trio: the null result does not depend on, or get
+manufactured by, the single-sourced Moody's data.
+
+**Turkey and Zambia checked too, per the standing rule applying to every
+country, not just the surprising one this time**: both show the same
+kind of mean-vs-majority divergence Pakistan did, but in both cases the
+decomposition *confirms* the existing null reading rather than
+overturning it, unlike Pakistan. Turkey's negative diffs cluster
+specifically in the 2018-19 crisis (5 of 7 negative events), its most
+representative "political/currency shock" episode -- if anything this
+sharpens the null into "the risk score didn't rise ahead of Turkey's
+defining crisis specifically," not a diluted average across unrelated
+episodes. Zambia's 12-of-18 majority-positive count is offset by 6
+negative events spread across its multi-year default saga (2013, 2016,
+2018 cluster) with no single dominant outlier cluster -- consistent with
+genuine noise across a long, multi-episode history rather than a masked
+signal in either direction. Greece, Portugal, South Africa, Sri Lanka,
+Colombia, and Brazil were not re-decomposed this round since their
+mean-direction and majority-direction already agree (no divergence to
+explain) -- per the standing rule this should still be confirmed
+explicitly on a future pass rather than assumed indefinitely.
+
+**Event coverage**: Nigeria 13/17 testable (4 excluded, consistent with
+prior truncation patterns -- not re-verified in detail this round since
+the country-level check was already the focus).
+
+**Trio complete, prediction holds up so far.** This doesn't confirm the
+underlying explanation (macro-fundamental-driven downgrades predict the
+lead/lag signal; other pathways don't) -- 3 null/near-null results
+consistent with a prediction isn't proof the prediction is *right*, only
+that it survived a real test where it could have failed. Still not
+citable: 11 of 44 countries, still a selected high-signal subset. Italy
+and Spain (the remaining Tier 2 countries, both Eurozone-crisis cases
+structurally similar to Greece/Portugal) are the next natural check, on
+a different axis than this trio.
+
+Commit: (pending, this session) · Issue: #4
 
 ### 2026-08-12 — Pakistan reconciled: second currency/commodity-driven country, zero conflicts, IMF-flat pattern replicates
 **What**: Pakistan -- second of the currency/commodity-driven trio
