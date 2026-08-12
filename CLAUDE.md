@@ -486,11 +486,28 @@ yet for a country just means it's absent from the output, not an error.
   GE gap runs 2019-08 → 2025-11, over 6 years, versus Fitch's ~3 years —
   the blackout isn't a fixed duration, it appears to track how long each
   specific agency actually kept the issuer in distressed/default status.
-  This closes all 5 of 5 Tier 1 countries. Manually collecting and
-  transcribing the remaining 39 per-country files (starting with Tier 2)
-  is open, user-side work — see `state.md` for the full log, including a
-  priority order for which countries to transcribe next, and issue #3 for
-  tracking.
+  This closed all 5 of 5 Tier 1 countries. **South Africa (first Tier 2
+  country, 2026-08-12)** added a 6th: 137 rows, 1 genuine conflict (Fitch
+  2020-11, GE `Stable` vs CE-confirmed-correct `Negative`, a factual
+  error not just a precision gap — Fitch's own release title and South
+  Africa's National Treasury both confirm `Negative`), no SD/RD/D (none
+  expected, none found), and the full 2012–2020 graduated
+  investment-grade-loss trajectory confirmed present with no gaps in
+  either source. Also the first country to validate the raw-paste
+  CE-transcription workflow (both `LETTER_GRADE (Outlook)` and bare
+  `(Outlook)`-only cells) against real, not synthetic, data — clean, no
+  new edge case. South Africa's conflict is the *second* confirmed case
+  (after Turkey's 2015-12 Moody's `Ba3`/`Baa3`) of GE being factually
+  wrong rather than just coarse or incomplete — `state.md` now has a
+  dedicated "GE factual-error tracking" section watching whether this
+  clusters around multi-agency rating-action rounds (South Africa's case
+  has a specific, checkable mechanism for that; Turkey's doesn't have
+  confirming evidence either way yet) as a candidate data-quality finding
+  for Appendix B. Manually collecting and transcribing the remaining 38
+  per-country files (Brazil next, then the rest of Tier 2) is open,
+  user-side work — see `state.md` for the full log, including the
+  priority order and the GE factual-error tracking table, and issue #3
+  for tracking.
 
 ## Stage 1 feature matrix (country x quarter — settled facts)
 `src/stage1_clustering/build_feature_matrix.py` builds two wide, country x
