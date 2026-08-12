@@ -20,7 +20,7 @@ after the fact from memory.
 | Item | Blocks | Whose action | Status |
 |---|---|---|---|
 | Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10/2026-08-11 reconciliation entries below; agency IR pages for gaps neither source covers). **Tier 1 fully done — continue with Tier 2**, see the transcription priority list below. **Reminder for multi-word countries**: pass the underscore form (`Sri_Lanka`, not `Sri Lanka`) as the script's `country` argument — it's used verbatim as the output filename and must match `configs/universe.yaml`'s `name.replace(" ", "_")` for `ingest_ratings.py`'s coverage check to recognize it (caught once on Sri Lanka, fixed before anything downstream ran on the wrong filename). **CE raw-paste reminder**: as of the pre-Portugal fix, both `LETTER_GRADE (Outlook)` and letter-grade-less `(Outlook)`-only CE cells are handled automatically — paste CE's raw combined rating+outlook text straight into the `rating` column and leave `outlook` blank, no manual pre-splitting needed. | **In progress — 13/44 (Greece, Turkey, Sri Lanka, Portugal, Zambia, South Africa, Brazil, Colombia, Egypt, Pakistan, Nigeria, Italy, Spain) done — Tier 2 fully complete**, all reconciled via `reconcile_ratings_sources.py` (172 + 170 + 118 + 108 + 45 + 137 + 137 + 94 + 138 + 84 + 67 + 132 + 110 = 1,512 rows, 5 conflicts total found and resolved — Greece 1, Turkey 2, South Africa 1, Brazil 1; Colombia, Egypt, Pakistan, Nigeria, Italy, and Spain all reconciled without a resolutions.csv entry). Italy and Spain both reconciled under a pre-registration (`12f9a3e`) predicting positive-direction lead/lag signal for both; both had zero conflicts, full 3-agency CE coverage, and — checked systematically across all 13 countries reconciled so far — neither crossed the IG/junk boundary, which now shows a **perfect 13-for-13 split** with the GE/CE conflict hypothesis (every IG-boundary-crosser produced a conflict, every non-crosser didn't) — see the Source factual-error tracking section below for the full table. **2026-08-12 audit + fix**: the Sri Lanka anomaly flagged above turned out to be a real CE transcription error (S&P `A` should be `B+`), corrected via a new re-run-safe `_corrections.csv` mechanism; a source-agnostic `sanity_check_ratings.py` was then built and run across all 13 countries specifically because this error had never surfaced as a conflict (single-source rows are structurally invisible to conflict detection) — found the Sri Lanka case was isolated (1 real problem of 26 total flags) and quantified 46.0% (695/1512) of all rows as never cross-validated against anything. See the 2026-08-12 chronological entry for full detail. **Panel changed — the 13-country lead/lag pilot below was run before this fix and needs re-confirming**, though a direct before/after check shows Sri Lanka's own result is unaffected (p=0.051515 either way). 31 to go — starting Tier 3. |
-| §4.2.4 lead/lag analysis (`ratings_leadlag_stub.py`) | §4.2.4, RQ1/H1 | Full-universe version still blocked on the remaining 31 countries' ratings transcription | **13-country pilot re-run 2026-08-12 (Italy + Spain added) — Tier 2 complete, both pre-registrations (`d23fd6e`, `12f9a3e`) survived without a single exception.** Eurozone pair landed precisely as predicted: **Spain clears p<0.05 (0.018)**, **Italy doesn't (0.107) but is clearly positive-direction** (84.6% of events increase) — the specific "Spain more cleanly than Italy" call, not just a vague positive/negative one, hit. Full 13-country picture now shows a **clean two-bucket split with zero exceptions**: all 7 "macro-fundamental/persistent deterioration" countries (Greece, Portugal, South Africa, Spain, Sri Lanka, Colombia, Italy) are positive-direction (4 clear, 2 borderline, 1 short of significance); all 6 "other pathway" countries (Turkey, Zambia, Brazil, Egypt, Pakistan, Nigeria) are null or near-null, none clearing p<0.05 positive. Second genuine pre-registered test survived intact. Still not citable — 13 of 44 countries, no formal multiple-testing correction, and only 5 of 13 countries' bucket assignment was genuinely pre-registered before reconciliation (the original 5-country pilot's classification was post hoc). See the 2026-08-12 "Lead/lag pilot re-run at 13 countries" chronological entry for the full table, decomposition, and H1 status read. |
+| §4.2.4 lead/lag analysis (`ratings_leadlag_stub.py`) | §4.2.4, RQ1/H1 | Full-universe version still blocked on the remaining 31 countries' ratings transcription | **13-country pilot re-run 2026-08-12 (Italy + Spain added) — Tier 2 complete, both pre-registrations (`d23fd6e`, `12f9a3e`) survived without a single exception.** Eurozone pair landed precisely as predicted: **Spain clears p<0.05 (0.018)**, **Italy doesn't (0.107) but is clearly positive-direction** (84.6% of events increase) — the specific "Spain more cleanly than Italy" call, not just a vague positive/negative one, hit. Full 13-country picture now shows a **clean two-bucket split with zero exceptions**: all 7 "macro-fundamental/persistent deterioration" countries (Greece, Portugal, South Africa, Spain, Sri Lanka, Colombia, Italy) are positive-direction (4 clear, 2 borderline, 1 short of significance); all 6 "other pathway" countries (Turkey, Zambia, Brazil, Egypt, Pakistan, Nigeria) are null or near-null, none clearing p<0.05 positive. Second genuine pre-registered test survived intact. Still not citable — 13 of 44 countries, no formal multiple-testing correction, and only 5 of 13 countries' bucket assignment was genuinely pre-registered before reconciliation (the original 5-country pilot's classification was post hoc). See the 2026-08-12 "Lead/lag pilot re-run at 13 countries" chronological entry for the full table, decomposition, and H1 status read. **Verified against the Sri Lanka-corrected panel (`455909e`) 2026-08-12 — every number in this row is byte-identical pre- and post-correction**; see the "13-country pilot re-verified against the corrected ratings panel" chronological entry. |
 | Residual global-regime sensitivity in Stage 1 clustering (`core-eligible` = 0 for several consecutive quarters, 2009-2017) | §5.5 candidate robustness check; not blocking Stage 3/4 | Open — see CLAUDE.md "Stage 1 clustering" for the full diagnosis (us_10y/curve_slope are global-only features, thesis §3.3 keeps them in Stage 1 regardless) | Documented, not fixed further without a methodology-level call to override the thesis's own feature-group spec |
 | Execution-verify `bond_data_pull_reconstructed.py` (does it actually run/chunk/return data as designed) | Appendix A reproducibility only — not blocking, since existing bond data already feeds Stage 1 | User (requires a session on the university-library Windows PC with Refinitiv Workspace) | Not started |
 | CDS data (`data/raw/cds/`) never successfully pulled | Nothing currently — Stage 1 extended tier gates on duration/convexity, not CDS (see CLAUDE.md) | Would also require the library-PC session if pursued | Open, not currently prioritized |
@@ -352,6 +352,78 @@ starting with the 11-country re-run below (Nigeria) and going forward.
 
 ## Chronological log
 
+### 2026-08-12 — 13-country pilot re-verified against the corrected ratings panel (`455909e`)
+**What**: `data/processed/ratings_panel.csv` changed as of `455909e`
+(Sri Lanka's spurious `S&P, A, 2007-01-23` corrected to `B+`, which also
+flipped that row's inferred `action` from a phantom `downgrade` to a real
+`outlook_change` — see that commit's chronological entry below for the
+full fix). The "13-country pilot re-run" entry further down this log had
+been written against the *pre-correction* panel, so it needed an actual
+re-run to confirm it still holds, not just the ratings thread's own
+diagnostic reasoning (which predicted a no-op via a different code path
+than the shared pilot script).
+
+Ran `src/stage1_clustering/ratings_leadlag_stub.py` fresh against the
+current (corrected) `ratings_panel.csv` and the existing walk-forward
+`stage1_risk_labels.parquet` (unaffected -- it has no dependency on
+ratings data). **Confirmed: every number is byte-identical to the
+pre-correction 13-country table** -- n_events_tested, mean_diff, %
+events with increase, t-stat, and p-value, per country and pooled:
+
+| country | n_events_tested | mean_diff | % events with increase | p (one-sided) | unchanged? |
+|---|---|---|---|---|---|
+| Greece | 34 | +0.0208 | 76.5% | 0.000170 | yes |
+| Portugal | 16 | +0.0374 | 93.8% | 0.010315 | yes |
+| Spain | 16 | +0.0354 | 93.8% | 0.018398 | yes |
+| South Africa | 15 | +0.0074 | 80.0% | 0.020090 | yes |
+| Sri Lanka | 19 | +0.0210 | 78.9% | 0.051515 | yes |
+| Colombia | 7 | +0.0094 | 71.4% | 0.061901 | yes |
+| Pakistan | 13 | +0.0312 | 38.5% | 0.079742 | yes |
+| Italy | 13 | +0.0120 | 84.6% | 0.107411 | yes |
+| Nigeria | 13 | +0.0004 | 53.8% | 0.477717 | yes |
+| Zambia | 18 | -0.0006 | 66.7% | 0.535659 | yes |
+| Turkey | 15 | -0.0032 | 53.3% | 0.770799 | yes |
+| Egypt | 22 | -0.0058 | 45.5% | 0.776460 | yes |
+| Brazil | 10 | -0.0163 | 10.0% | 0.972812 | yes |
+| **Pooled** | **211** | **+0.0126** | **67.3%** | **1.21e-05** | yes |
+
+Nothing moves. The Eurozone-pair pre-registration verdict (`12f9a3e`:
+Spain clears p<0.05, Italy doesn't but stays positive-direction), the
+currency/commodity-trio pre-registration verdict (`d23fd6e`), the clean
+two-bucket split, and the standing decomposition-principle findings all
+stand exactly as recorded in the "Lead/lag pilot re-run at 13 countries"
+entry below -- none of that needed to be rewritten.
+
+**Why it was a no-op, confirmed rather than assumed**: the ratings
+thread's diagnostic (see the Sri Lanka correction entry below) had
+already shown the phantom event's `status` was `insufficient_history` in
+both panel versions, so it was excluded from the actual t-test either
+way. This re-run confirms that reasoning end-to-end through the real
+pipeline (not a reconstruction) and surfaces the one thing the diagnostic
+couldn't see from outside the pilot script: the corrected row doesn't
+just change `status` within the event table, it disappears from it
+entirely -- Sri Lanka's event count went from 20 rows (19 `ok` + 1
+`insufficient_history`) to 19 rows (19 `ok`), because `compute_lead_lag`
+filters on `action == "downgrade"` and the corrected row no longer
+qualifies. Net effect on any number that matters: zero.
+
+`data/processed/stage1_leadlag_pilot_events.csv` regenerated (263 total
+event rows now, was 264) and committed against the corrected panel, so
+the file on disk matches the current `ratings_panel.csv` rather than a
+now-superseded one.
+
+**Provenance note for later**: the 13-country pilot numbers cited
+anywhere from this point forward (including the "Lead/lag pilot re-run at
+13 countries" entry below, written before this verification) are
+confirmed valid against `ratings_panel.csv` as of `455909e` and later, as
+long as no further correction touches these 13 countries' downgrade
+rows. If another correction lands, re-run and re-verify the same way --
+don't assume from the shape of the fix.
+
+Commit: (pending, this session) · Issue: #4
+
+---
+
 ### 2026-08-12 — Sri Lanka CE error corrected, source-agnostic sanity-check tool built and run across all 13 countries — **panel changed, 13-country pilot is now stale**
 
 **What, part 1 — the Sri Lanka fix**: user confirmed `S&P, A, 2007-01-23`
@@ -452,6 +524,18 @@ boundary, not this one's). The 13-country pilot and
 current panel before being treated as final — likely a no-op given the
 diagnostic result, but should be confirmed by an actual re-run rather
 than assumed.
+
+**Closed out 2026-08-12 by the clustering thread**: confirmed by an
+actual re-run, not just the diagnostic above — see "13-country pilot
+re-verified against the corrected ratings panel" further down this log.
+Every "ok"-status number (n_events_tested, mean_diff, % increase,
+p-value, per-country and pooled) came back byte-identical. The only
+change was structural: Sri Lanka's event table went from 20 rows (19 ok
++ 1 insufficient_history, the phantom event) to 19 rows (19 ok) — the
+corrected row no longer classifies as `action == "downgrade"` at all, so
+it doesn't just move status, it drops out of the downgrade-event universe
+entirely. `data/processed/stage1_leadlag_pilot_events.csv` regenerated
+and committed against the corrected panel.
 
 ### 2026-08-12 — Spain reconciled: closes Tier 2, corrects an assumption, and completes a perfect 13-for-13 boundary-crossing pattern
 **What**: Spain -- second of the Eurozone pair, closes Tier 2 entirely
