@@ -20,7 +20,7 @@ after the fact from memory.
 | Item | Blocks | Whose action | Status |
 |---|---|---|---|
 | Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10/2026-08-11 reconciliation entries below; agency IR pages for gaps neither source covers). **Tier 1 fully done — continue with Tier 2**, see the transcription priority list below. **Reminder for multi-word countries**: pass the underscore form (`Sri_Lanka`, not `Sri Lanka`) as the script's `country` argument — it's used verbatim as the output filename and must match `configs/universe.yaml`'s `name.replace(" ", "_")` for `ingest_ratings.py`'s coverage check to recognize it (caught once on Sri Lanka, fixed before anything downstream ran on the wrong filename). **CE raw-paste reminder**: as of the pre-Portugal fix, both `LETTER_GRADE (Outlook)` and letter-grade-less `(Outlook)`-only CE cells are handled automatically — paste CE's raw combined rating+outlook text straight into the `rating` column and leave `outlook` blank, no manual pre-splitting needed. | **In progress — 8/44 (Greece, Turkey, Sri Lanka, Portugal, Zambia, South Africa, Brazil, Colombia) done**, all reconciled via `reconcile_ratings_sources.py` (172 + 170 + 118 + 108 + 45 + 137 + 137 + 94 = 981 rows, 5 conflicts total found and resolved — Greece 1, Turkey 2, South Africa 1, Brazil 1; Colombia's one candidate conflict dissolved automatically under the new NR-outlook policy, no resolution needed). Colombia completes the fiscal-deterioration/non-Eurozone trio with South Africa and Brazil — see the 8-country lead/lag pilot re-run below. 36 to go — Egypt next (currency/commodity-driven group), then Pakistan/Nigeria/Italy/Spain (see GE factual-error tracking section below for the data-quality thread, still at 2 confirmed cases). |
-| §4.2.4 lead/lag analysis (`ratings_leadlag_stub.py`) | §4.2.4, RQ1/H1 | Full-universe version still blocked on the remaining 37 countries' ratings transcription | **7-country pilot re-run 2026-08-12 (South Africa + Brazil added) — still mixed, and the new pair splits rather than confirming or refuting generalization.** Greece p=0.00017, Portugal p=0.010, **South Africa p=0.020** (all clear p<0.05, positive direction); Sri Lanka borderline p=0.052; Turkey p=0.77 and **Brazil p=0.97** show no effect — Brazil's `mean_diff` is actually *negative* (only 10% of its 10 testable events show an increase). South Africa has full event coverage (15/15 testable); Brazil's 9 excluded events are pre-2005, before the panel window starts, not a data gap. Pooled (still non-independent, not a real test): p=0.00016, 70% of events show an increase. Not citable as a §5.1 result — 7 countries, still a selected high-signal subset. See the 2026-08-12 chronological entry below for the fuller read on what the South Africa/Brazil split does and doesn't tell us about generalization beyond Eurozone-style crises. |
+| §4.2.4 lead/lag analysis (`ratings_leadlag_stub.py`) | §4.2.4, RQ1/H1 | Full-universe version still blocked on the remaining 36 countries' ratings transcription | **8-country pilot re-run 2026-08-12 (Colombia added) — Colombia doesn't cleanly resolve the tie-break, but leans toward Brazil being the outlier.** Greece p=0.00017, Portugal p=0.010, South Africa p=0.020 (clear p<0.05, positive); Sri Lanka p=0.052, **Colombia p=0.062** (both borderline-positive, same direction and shape as South Africa, just underpowered at n=7); Turkey p=0.77, **Brazil p=0.97** (clean nulls, Brazil's `mean_diff` actually negative). 2 of 3 fiscal-deterioration countries now lean positive. Colombia: 7/15 events testable (7 pre-2005, 1 post-panel-end excluded — not a data gap). Pooled (still non-independent, not a real test): p=0.0000936, 70.1% of events show an increase. Not citable as a §5.1 result — 8 countries, still a selected high-signal subset. See the 2026-08-12 chronological entry below for the full reasoning. |
 | Residual global-regime sensitivity in Stage 1 clustering (`core-eligible` = 0 for several consecutive quarters, 2009-2017) | §5.5 candidate robustness check; not blocking Stage 3/4 | Open — see CLAUDE.md "Stage 1 clustering" for the full diagnosis (us_10y/curve_slope are global-only features, thesis §3.3 keeps them in Stage 1 regardless) | Documented, not fixed further without a methodology-level call to override the thesis's own feature-group spec |
 | Execution-verify `bond_data_pull_reconstructed.py` (does it actually run/chunk/return data as designed) | Appendix A reproducibility only — not blocking, since existing bond data already feeds Stage 1 | User (requires a session on the university-library Windows PC with Refinitiv Workspace) | Not started |
 | CDS data (`data/raw/cds/`) never successfully pulled | Nothing currently — Stage 1 extended tier gates on duration/convexity, not CDS (see CLAUDE.md) | Would also require the library-PC session if pursued | Open, not currently prioritized |
@@ -219,6 +219,70 @@ South Africa, and a new Colombia/Fitch instance of the same category,
 re-run (8 countries) follows immediately below.
 
 Commit: (pending, this session) · Issue: #3
+
+### 2026-08-12 — Lead/lag pilot re-run at 8 countries: Colombia leans positive but doesn't clear the bar, tilts the tie-break toward "Brazil is the outlier"
+**What**: `ratings_leadlag_stub.py` re-run with `ratings_panel.csv` now
+covering 8 countries (the prior 7 plus Colombia, committed immediately
+before this run). No code changes needed.
+
+**Results**:
+
+| country | n_events_tested | mean_diff | % events with increase | p (one-sided) |
+|---|---|---|---|---|
+| Greece | 34 | +0.0208 | 76.5% | 0.00017 |
+| Portugal | 16 | +0.0374 | 93.8% | 0.010 |
+| South Africa | 15 | +0.0074 | 80.0% | 0.020 |
+| Sri Lanka | 19 | +0.0210 | 78.9% | 0.052 |
+| **Colombia** | **7** | **+0.0094** | **71.4%** | **0.062** |
+| Turkey | 15 | -0.0032 | 53.3% | 0.771 |
+| Brazil | 10 | -0.0163 | 10.0% | 0.973 |
+| Zambia | 18 | -0.0006 | 66.7% | 0.536 |
+
+Pooled (still non-independent, not a real test): p=0.0000936, 70.1% of
+all 134 tested events show an increase.
+
+**Colombia's event coverage, per the standing practice of reporting this
+explicitly**: 7 tested, 8 excluded -- 7 `no_preceding_data` (all
+pre-2005: 1999-2002, before the panel window, same story as Brazil's
+exclusions) and 1 `event_after_panel_end` (a 2026-04 S&P downgrade dated
+beyond the risk-labels panel's coverage). Neither of Colombia's
+exclusion reasons reflects a real coverage gap in `Colombia.csv` itself.
+
+**Reading the tie-break** (the specific question this country was
+chosen to answer, per the 2026-08-12 Colombia entry above): Colombia
+does not cleanly resolve it, but leans toward one side. It doesn't clear
+the informal p<0.05 bar the way South Africa did, but it's directionally
+consistent with South Africa -- positive `mean_diff`, 71% of events
+showing an increase -- sitting in the same borderline-positive territory
+as Sri Lanka (p=0.052) rather than anywhere near Brazil's actual
+negative-direction null (10% of events increasing, `mean_diff`
+negative). So the fiscal-deterioration group is now 2-of-3 positive-
+leaning (one confirmed, one borderline) against 1-of-3 clean null,
+rather than an even split. That's meaningfully different from "the
+framing doesn't work" -- it reads more like "Brazil is the country that
+needs a separate explanation" than like "graduated fiscal deterioration
+doesn't predict the lead/lag mechanism."
+
+**On whether small-N is confounding these comparisons** (the user's
+explicit concern, given Brazil's 10/19 and now Colombia's 7/15): worth
+taking seriously but not the whole story. Colombia (n=7) is the smallest
+n so far and sits right at the p<0.05 boundary from below -- a few
+events flipping direction could move it either side, so "underpowered
+to confirm a real but modest effect" is a more honest read than "null."
+But n alone doesn't explain the pattern: Portugal has only 16 events and
+the single strongest p-value in the pilot, because its effect size
+(`mean_diff` +0.037, the largest of any country) is large enough to
+clear the bar even at modest n. So event count affects *precision* of
+the estimate (consistent with the Stage 2 EM-satellite small-N caveat
+already documented elsewhere in this file), but the underlying effect
+size still looks like the dominant factor in which countries clear the
+bar or not.
+
+**Still not citable**: 8 of 44 countries, still a selected high-signal
+subset, same caveats as before (non-independent pooled events, Zambia/
+Moody's GE-only single-sourcing, feasibility check only).
+
+Commit: (pending, this session) · Issue: #4
 
 ### 2026-08-12 — Lead/lag pilot re-run at 7 countries: South Africa/Brazil split, doesn't resolve the generalization question
 **What**: `ratings_leadlag_stub.py` re-run with `ratings_panel.csv` now
