@@ -1,4 +1,141 @@
 country,agency,date,rating,rating_numeric,outlook,action,source,available_date
+Brazil,Fitch,1994-12-01,B+,14,,initial,countryeconomy.com,1994-12-01
+Brazil,Fitch,1995-10-26,B+,14,,affirm,countryeconomy.com,1995-10-26
+Brazil,Fitch,1997-12-03,B+,14,,affirm,countryeconomy.com,1997-12-03
+Brazil,Fitch,1999-01-26,B,15,,downgrade,countryeconomy.com,1999-01-26
+Brazil,Fitch,2000-02-22,B+,14,,upgrade,countryeconomy.com,2000-02-22
+Brazil,Fitch,2000-05-19,BB-,13,,upgrade,countryeconomy.com,2000-05-19
+Brazil,Fitch,2000-09-21,BB-,13,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2000-09-21
+Brazil,Fitch,2001-07-17,BB-,13,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2001-07-17
+Brazil,Fitch,2002-06-20,B+,14,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2002-06-20
+Brazil,Fitch,2002-08-01,B+,14,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2002-08-01
+Brazil,Fitch,2002-10-21,B,15,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2002-10-21
+Brazil,Fitch,2003-03-10,B,15,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2003-03-10
+Brazil,Fitch,2003-06-03,B,15,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2003-06-03
+Brazil,Fitch,2003-11-06,B+,14,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2003-11-06
+Brazil,Fitch,2004-09-28,BB-,13,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2004-09-28
+Brazil,Fitch,2005-10-11,BB-,13,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2005-10-11
+Brazil,Fitch,2006-06-28,BB,12,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2006-06-28
+Brazil,Fitch,2007-02-05,BB,12,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2007-02-05
+Brazil,Fitch,2007-05-09,BB+,11,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2007-05-09
+Brazil,Fitch,2008-05-29,BBB-,10,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2008-05-29
+Brazil,Fitch,2010-06-28,BBB-,10,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2010-06-28
+Brazil,Fitch,2011-04-04,BBB,9,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2011-04-04
+Brazil,Fitch,2011-10-25,BBB,9,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2011-10-25
+Brazil,Fitch,2012-01-23,BBB,9,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2012-01-23
+Brazil,Fitch,2012-04-30,BBB,9,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2012-04-30
+Brazil,Fitch,2012-07-26,BBB,9,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2012-07-26
+Brazil,Fitch,2012-09-20,BBB,9,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2012-09-20
+Brazil,Fitch,2013-04-26,BBB,9,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-04-26
+Brazil,Fitch,2013-07-18,BBB,9,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-07-18
+Brazil,Fitch,2013-10-24,BBB,9,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-10-24
+Brazil,Fitch,2013-11-06,BBB,9,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-11-06
+Brazil,Fitch,2014-01-14,BBB,9,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-01-14
+Brazil,Fitch,2014-01-21,BBB,9,Stable,affirm,countryeconomy.com,2014-01-21
+Brazil,Fitch,2014-04-03,BBB,9,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-04-03
+Brazil,Fitch,2014-07-10,BBB,9,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-07-10
+Brazil,Fitch,2014-07-28,BBB,9,Stable,affirm,countryeconomy.com,2014-07-28
+Brazil,Fitch,2014-08-13,BBB,9,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-08-13
+Brazil,Fitch,2015-04-09,BBB,9,,affirm,countryeconomy.com,2015-04-09
+Brazil,Fitch,2015-10-15,BBB-,10,,downgrade,countryeconomy.com,2015-10-15
+Brazil,Fitch,2015-12-16,BB+,11,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-12-16
+Brazil,Fitch,2016-05-05,BB,12,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2016-05-05
+Brazil,Fitch,2016-07-22,BB,12,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2016-07-22
+Brazil,Fitch,2016-11-11,BB,12,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2016-11-11
+Brazil,Fitch,2017-05-19,BB,12,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2017-05-19
+Brazil,Fitch,2017-11-10,BB,12,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2017-11-10
+Brazil,Fitch,2018-02-23,BB-,13,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2018-02-23
+Brazil,Fitch,2018-08-01,BB-,13,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2018-08-01
+Brazil,Fitch,2019-05-21,BB-,13,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2019-05-21
+Brazil,Fitch,2019-11-14,BB-,13,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2019-11-14
+Brazil,Fitch,2020-05-05,BB-,13,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2020-05-05
+Brazil,Fitch,2020-11-01,BB-,13,Negative,affirm,theglobaleconomy.com (month-precision),2020-11-01
+Brazil,Fitch,2021-06-01,BB-,13,Negative,affirm,theglobaleconomy.com (month-precision),2021-06-01
+Brazil,Fitch,2021-12-01,BB-,13,Negative,affirm,theglobaleconomy.com (month-precision),2021-12-01
+Brazil,Fitch,2022-07-01,BB-,13,Stable,outlook_change,theglobaleconomy.com (month-precision),2022-07-01
+Brazil,Fitch,2022-12-01,BB-,13,Stable,affirm,theglobaleconomy.com (month-precision),2022-12-01
+Brazil,Fitch,2023-07-01,BB,12,Stable,upgrade,theglobaleconomy.com (month-precision),2023-07-01
+Brazil,Fitch,2023-12-01,BB,12,Stable,affirm,theglobaleconomy.com (month-precision),2023-12-01
+Brazil,Fitch,2024-07-01,BB,12,Stable,affirm,theglobaleconomy.com (month-precision),2024-07-01
+Brazil,Fitch,2025-11-01,BB,12,Stable,affirm,theglobaleconomy.com (month-precision),2025-11-01
+Brazil,Fitch,2026-06-01,BB,12,Stable,affirm,theglobaleconomy.com (month-precision),2026-06-01
+Brazil,Moody's,1986-11-18,Ba1,11,,initial,countryeconomy.com,1986-11-18
+Brazil,Moody's,1987-12-04,B1,14,,downgrade,countryeconomy.com,1987-12-04
+Brazil,Moody's,1989-03-28,B2,15,,downgrade,countryeconomy.com,1989-03-28
+Brazil,Moody's,1994-11-30,B1,14,,upgrade,countryeconomy.com,1994-11-30
+Brazil,Moody's,1998-09-03,B2,15,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),1998-09-03
+Brazil,Moody's,1999-06-01,B2,15,Positive,outlook_change,theglobaleconomy.com (month-precision),1999-06-01
+Brazil,Moody's,2000-10-16,B1,14,,upgrade,countryeconomy.com,2000-10-16
+Brazil,Moody's,2002-08-12,B2,15,,downgrade,countryeconomy.com,2002-08-12
+Brazil,Moody's,2003-11-15,B2,15,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2003-11-15
+Brazil,Moody's,2004-09-09,B1,14,,upgrade,countryeconomy.com,2004-09-09
+Brazil,Moody's,2005-01-12,B1,14,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2005-01-12
+Brazil,Moody's,2005-10-12,Ba3,13,,upgrade,countryeconomy.com,2005-10-12
+Brazil,Moody's,2006-08-01,Ba3,13,Under Review,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2006-08-01
+Brazil,Moody's,2006-08-31,Ba2,12,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2006-08-31
+Brazil,Moody's,2007-05-24,Ba2,12,Under Review,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2007-05-24
+Brazil,Moody's,2007-07-01,Ba1,11,Under Review,upgrade,theglobaleconomy.com (month-precision),2007-07-01
+Brazil,Moody's,2007-08-23,Ba1,11,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2007-08-23
+Brazil,Moody's,2009-07-06,Ba1,11,Under Review,outlook_change,countryeconomy.com,2009-07-06
+Brazil,Moody's,2009-09-22,Baa3,10,Positive,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2009-09-22
+Brazil,Moody's,2011-06-20,Baa2,9,,upgrade,countryeconomy.com,2011-06-20
+Brazil,Moody's,2013-10-02,Baa2,9,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-10-02
+Brazil,Moody's,2014-09-09,Baa2,9,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-09-09
+Brazil,Moody's,2015-08-11,Baa3,10,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-08-11
+Brazil,Moody's,2015-12-09,Baa3,10,Under Review,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-12-09
+Brazil,Moody's,2016-02-24,Ba2,12,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2016-02-24
+Brazil,Moody's,2017-03-15,Ba2,12,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2017-03-15
+Brazil,Moody's,2017-05-26,Ba2,12,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2017-05-26
+Brazil,Moody's,2018-04-09,Ba2,12,Stable,outlook_change,"countryeconomy.com (conflict resolved: High confidence, directly confirmed: Moody's affirmed Brazil at Ba2 and changed the outlook to stable from negative on 2018-04-09 (reported by Itau BBA; independently listed in Trading Economics' Brazil rating history as 'Moody's Ba2 Stable Apr 09 2018'). Corroborating: Brazil's National Treasury described Moody's May 2024 outlook change as its first move since 2018, 'when it shifted the outlook from negative to stable.' GE's 'Negative' appears to be a stale carry-forward of Moody's prior outlook (Ba2/Negative, May 2017) rather than a cross-agency mix-up.)",2018-04-09
+Brazil,Moody's,2020-05-15,Ba2,12,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2020-05-15
+Brazil,Moody's,2022-04-12,Ba2,12,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2022-04-12
+Brazil,Moody's,2024-05-01,Ba2,12,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2024-05-01
+Brazil,Moody's,2024-10-01,Ba1,11,Positive,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2024-10-01
+Brazil,Moody's,2025-05-30,Ba1,11,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2025-05-30
+Brazil,S&P,1994-11-01,B,15,Positive,initial,theglobaleconomy.com (month-precision),1994-11-01
+Brazil,S&P,1995-07-01,B+,14,Stable,upgrade,theglobaleconomy.com (month-precision),1995-07-01
+Brazil,S&P,1995-12-01,B+,14,Positive,outlook_change,theglobaleconomy.com (month-precision),1995-12-01
+Brazil,S&P,1996-06-01,B+,14,Positive,affirm,theglobaleconomy.com (month-precision),1996-06-01
+Brazil,S&P,1997-04-01,BB-,13,Stable,upgrade,theglobaleconomy.com (month-precision),1997-04-01
+Brazil,S&P,1998-09-01,BB-,13,Negative,outlook_change,theglobaleconomy.com (month-precision),1998-09-01
+Brazil,S&P,1999-01-01,B+,14,Negative,downgrade,theglobaleconomy.com (month-precision),1999-01-01
+Brazil,S&P,1999-11-01,B+,14,Stable,outlook_change,theglobaleconomy.com (month-precision),1999-11-01
+Brazil,S&P,2000-02-01,B+,14,Positive,outlook_change,theglobaleconomy.com (month-precision),2000-02-01
+Brazil,S&P,2001-01-01,BB-,13,Stable,upgrade,theglobaleconomy.com (month-precision),2001-01-01
+Brazil,S&P,2001-08-01,BB-,13,Negative,outlook_change,theglobaleconomy.com (month-precision),2001-08-01
+Brazil,S&P,2002-07-01,B+,14,Negative,downgrade,theglobaleconomy.com (month-precision),2002-07-01
+Brazil,S&P,2003-04-01,B+,14,Stable,outlook_change,theglobaleconomy.com (month-precision),2003-04-01
+Brazil,S&P,2003-12-01,B+,14,Positive,outlook_change,theglobaleconomy.com (month-precision),2003-12-01
+Brazil,S&P,2004-09-01,BB-,13,Stable,upgrade,theglobaleconomy.com (month-precision),2004-09-01
+Brazil,S&P,2005-11-01,BB-,13,Positive,outlook_change,theglobaleconomy.com (month-precision),2005-11-01
+Brazil,S&P,2005-11-01,BB-,13,Stable,outlook_change,theglobaleconomy.com (month-precision),2005-11-01
+Brazil,S&P,2006-02-01,BB,12,Stable,upgrade,theglobaleconomy.com (month-precision),2006-02-01
+Brazil,S&P,2006-11-01,BB,12,Positive,outlook_change,theglobaleconomy.com (month-precision),2006-11-01
+Brazil,S&P,2007-05-01,BB+,11,Positive,upgrade,theglobaleconomy.com (month-precision),2007-05-01
+Brazil,S&P,2008-04-30,BBB-,10,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2008-04-30
+Brazil,S&P,2011-05-23,BBB-,10,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2011-05-23
+Brazil,S&P,2011-08-01,BBB-,10,Positive,affirm,theglobaleconomy.com (month-precision),2011-08-01
+Brazil,S&P,2011-11-17,BBB,9,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2011-11-17
+Brazil,S&P,2012-07-01,BBB,9,Stable,affirm,theglobaleconomy.com (month-precision),2012-07-01
+Brazil,S&P,2013-06-06,BBB,9,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2013-06-06
+Brazil,S&P,2014-03-24,BBB-,10,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2014-03-24
+Brazil,S&P,2015-07-28,BBB-,10,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-07-28
+Brazil,S&P,2015-09-09,BB+,11,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2015-09-09
+Brazil,S&P,2016-02-17,BB,12,Negative,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2016-02-17
+Brazil,S&P,2017-08-15,BB,12,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2017-08-15
+Brazil,S&P,2018-01-11,BB-,13,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2018-01-11
+Brazil,S&P,2019-04-01,BB-,13,Developing,outlook_change,theglobaleconomy.com (month-precision),2019-04-01
+Brazil,S&P,2019-11-01,BB-,13,Developing,affirm,theglobaleconomy.com (month-precision),2019-11-01
+Brazil,S&P,2019-12-11,BB-,13,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),2019-12-11
+Brazil,S&P,2020-04-06,BB-,13,Stable,outlook_change,countryeconomy.com,2020-04-06
+Brazil,S&P,2023-06-14,BB-,13,Positive,outlook_change,countryeconomy.com,2023-06-14
+Brazil,S&P,2023-12-19,BB,12,Stable,upgrade,countryeconomy.com,2023-12-19
+Brazil,S&P,2025-06-01,BB,12,NR,outlook_change,theglobaleconomy.com (month-precision),2025-06-01
+Brazil,S&P,2025-06-01,BB,12,Stable,outlook_change,theglobaleconomy.com (month-precision),2025-06-01
+Brazil,S&P,2025-09-01,BB,12,NR,outlook_change,theglobaleconomy.com (month-precision),2025-09-01
+Brazil,S&P,2025-11-01,BB,12,NR,affirm,theglobaleconomy.com (month-precision),2025-11-01
+Brazil,S&P,2026-02-01,BB,12,NR,affirm,theglobaleconomy.com (month-precision),2026-02-01
+Brazil,S&P,2026-04-01,BB,12,NR,affirm,theglobaleconomy.com (month-precision),2026-04-01
 Greece,Fitch,1995-11-13,BBB-,10,,initial,countryeconomy.com,1995-11-13
 Greece,Fitch,1997-06-04,BBB,9,,upgrade,countryeconomy.com,1997-06-04
 Greece,Fitch,1999-08-10,BBB,9,Positive,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),1999-08-10

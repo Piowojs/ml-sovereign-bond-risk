@@ -496,15 +496,29 @@ yet for a country just means it's absent from the output, not an error.
   either source. Also the first country to validate the raw-paste
   CE-transcription workflow (both `LETTER_GRADE (Outlook)` and bare
   `(Outlook)`-only cells) against real, not synthetic, data — clean, no
-  new edge case. South Africa's conflict is the *second* confirmed case
-  (after Turkey's 2015-12 Moody's `Ba3`/`Baa3`) of GE being factually
-  wrong rather than just coarse or incomplete — `state.md` now has a
-  dedicated "GE factual-error tracking" section watching whether this
-  clusters around multi-agency rating-action rounds (South Africa's case
-  has a specific, checkable mechanism for that; Turkey's doesn't have
-  confirming evidence either way yet) as a candidate data-quality finding
-  for Appendix B. Manually collecting and transcribing the remaining 38
-  per-country files (Brazil next, then the rest of Tier 2) is open,
+  new edge case. **Brazil (second Tier 2 country, completing the South
+  Africa/Brazil pair, 2026-08-12)** added a 7th: 137 rows, 1 genuine
+  conflict (Moody's 2018-04, GE `Negative` vs CE-confirmed-correct
+  `Stable`), no SD/RD/D, and the full pre-2015 investment-grade period
+  plus the 2015–2016 downgrade-to-junk sequence (S&P first, Fitch next,
+  Moody's last, all within ~5 months — matching the known
+  Petrobras/recession story) confirmed present with no gaps. **The GE
+  factual-error hypothesis was revised, not just extended, on this
+  case**: the original multi-agency-round-clustering idea (from South
+  Africa) was directly tested against Brazil's conflict and did *not*
+  hold — no other agency acted anywhere near April 2018 — but Brazil's
+  error turned out to share a more precise commonality with South
+  Africa's anyway: in both, GE got the *rating* right and only the
+  *outlook* wrong (South Africa borrowed a different agency's concurrent
+  outlook; Brazil carried forward the same agency's own prior outlook
+  instead of picking up an outlook-only revision). Turkey's original case
+  (a rating-level error) remains a separate, unexplained outlier under
+  this revised characterization. Standing hypothesis now: **GE is
+  reliable on letter ratings, unreliable on outlook-only updates** — see
+  `state.md`'s "GE factual-error tracking" section for the full table and
+  rationale, watched for confirmation across the rest of Tier 2. Manually
+  collecting and transcribing the remaining 37 per-country files
+  (Colombia next, then Egypt/Pakistan/Nigeria/Italy/Spain) is open,
   user-side work — see `state.md` for the full log, including the
   priority order and the GE factual-error tracking table, and issue #3
   for tracking.

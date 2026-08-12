@@ -19,7 +19,7 @@ after the fact from memory.
 
 | Item | Blocks | Whose action | Status |
 |---|---|---|---|
-| Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10/2026-08-11 reconciliation entries below; agency IR pages for gaps neither source covers). **Tier 1 fully done — continue with Tier 2**, see the transcription priority list below. **Reminder for multi-word countries**: pass the underscore form (`Sri_Lanka`, not `Sri Lanka`) as the script's `country` argument — it's used verbatim as the output filename and must match `configs/universe.yaml`'s `name.replace(" ", "_")` for `ingest_ratings.py`'s coverage check to recognize it (caught once on Sri Lanka, fixed before anything downstream ran on the wrong filename). **CE raw-paste reminder**: as of the pre-Portugal fix, both `LETTER_GRADE (Outlook)` and letter-grade-less `(Outlook)`-only CE cells are handled automatically — paste CE's raw combined rating+outlook text straight into the `rating` column and leave `outlook` blank, no manual pre-splitting needed. | **In progress — 6/44 (Greece, Turkey, Sri Lanka, Portugal, Zambia, South Africa) done**, all reconciled via `reconcile_ratings_sources.py` (172 + 170 + 118 + 108 + 45 + 137 = 750 rows, 4 conflicts total found and resolved — Greece 1, Turkey 2, South Africa 1). 38 to go — Brazil next (see GE factual-error tracking section below for a data-quality thread now running alongside the transcription itself). |
+| Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10/2026-08-11 reconciliation entries below; agency IR pages for gaps neither source covers). **Tier 1 fully done — continue with Tier 2**, see the transcription priority list below. **Reminder for multi-word countries**: pass the underscore form (`Sri_Lanka`, not `Sri Lanka`) as the script's `country` argument — it's used verbatim as the output filename and must match `configs/universe.yaml`'s `name.replace(" ", "_")` for `ingest_ratings.py`'s coverage check to recognize it (caught once on Sri Lanka, fixed before anything downstream ran on the wrong filename). **CE raw-paste reminder**: as of the pre-Portugal fix, both `LETTER_GRADE (Outlook)` and letter-grade-less `(Outlook)`-only CE cells are handled automatically — paste CE's raw combined rating+outlook text straight into the `rating` column and leave `outlook` blank, no manual pre-splitting needed. | **In progress — 7/44 (Greece, Turkey, Sri Lanka, Portugal, Zambia, South Africa, Brazil) done**, all reconciled via `reconcile_ratings_sources.py` (172 + 170 + 118 + 108 + 45 + 137 + 137 = 887 rows, 5 conflicts total found and resolved — Greece 1, Turkey 2, South Africa 1, Brazil 1). South Africa + Brazil complete the first Tier 2 pair (fiscal-deterioration, non-Eurozone) — see the lead/lag pilot re-run below. 37 to go — Colombia next in that same group, then Egypt/Pakistan/Nigeria (see GE factual-error tracking section below for a data-quality thread now running alongside the transcription itself). |
 | §4.2.4 lead/lag analysis (`ratings_leadlag_stub.py`) | §4.2.4, RQ1/H1 | Full-universe version still blocked on the remaining 39 countries' ratings transcription | **5-country pilot run 2026-08-11 — mixed result, see chronological log entry below.** Greece/Portugal show a significant pre-downgrade risk-score increase (p=0.0002 / p=0.010); Sri Lanka borderline (p=0.052); Turkey/Zambia show no effect (p=0.77 / p=0.54). Not citable as a §5.1 result — 5 countries, selected as the highest-signal cases. Informs, doesn't resolve, whether continuing full transcription is worth prioritizing. |
 | Residual global-regime sensitivity in Stage 1 clustering (`core-eligible` = 0 for several consecutive quarters, 2009-2017) | §5.5 candidate robustness check; not blocking Stage 3/4 | Open — see CLAUDE.md "Stage 1 clustering" for the full diagnosis (us_10y/curve_slope are global-only features, thesis §3.3 keeps them in Stage 1 regardless) | Documented, not fixed further without a methodology-level call to override the thesis's own feature-group spec |
 | Execution-verify `bond_data_pull_reconstructed.py` (does it actually run/chunk/return data as designed) | Appendix A reproducibility only — not blocking, since existing bond data already feeds Stage 1 | User (requires a session on the university-library Windows PC with Refinitiv Workspace) | Not started |
@@ -93,35 +93,110 @@ distinct from GE's much more common failure modes (coarser month-only
 precision, or the default-designation/multi-year-blackout gaps around
 actual default events documented per-country above). Those other modes
 are *incompleteness*; the cases below are GE actively asserting something
-incorrect. Started after the second confirmed instance, per the user's
-observation that this might be a describable, specific reliability
-limitation worth quantifying for the thesis's data-quality discussion
-(Appendix B candidate) rather than writing up each case as an unrelated
-one-off. Add a row here every time a conflict resolution confirms GE was
-simply wrong (not just less precise) — not every resolved conflict
+incorrect. Add a row here every time a conflict resolution confirms GE
+was simply wrong (not just less precise) — not every resolved conflict
 belongs here, only ones where the primary-source check specifically
 established GE's value was incorrect for that date.
 
-| # | Country | Agency | Date | GE said | Primary-source-confirmed correct | Working theory |
-|---|---|---|---|---|---|---|
-| 1 | Turkey | Moody's | 2015-12 | `Ba3` | `Baa3` (Reuters/Business Standard, Sept 2016 downgrade-from-Baa3 reporting) | Plausible one-character transcription typo (`Ba3`/`Baa3`) — no evidence either way of a multi-agency-round cause |
-| 2 | South Africa | Fitch | 2020-11-20 | `Stable` | `Negative` (Fitch's own release title; South Africa National Treasury statement) | Likely cross-contamination from S&P's simultaneous BB- affirmation with a Stable outlook, in the same November 2020 round where Fitch and Moody's both moved Negative |
+| # | Country | Agency | Date | GE said | Primary-source-confirmed correct | Failure type | Mechanism |
+|---|---|---|---|---|---|---|---|
+| 1 | Turkey | Moody's | 2015-12 | `Ba3` | `Baa3` (Reuters/Business Standard, Sept 2016 downgrade-from-Baa3 reporting) | **Rating-level error** | Unexplained — plausible one-character typo (`Ba3`/`Baa3`), no confirming or disconfirming evidence for any specific mechanism |
+| 2 | South Africa | Fitch | 2020-11-20 | `BB-`/`Stable` | `BB-`/`Negative` (Fitch's own release title; South Africa National Treasury statement) | **Outlook-level error, rating correct** | Cross-agency contamination — S&P concurrently affirmed BB- with a Stable outlook in the same Nov 2020 round while Fitch/Moody's both moved Negative; GE's Stable looks attached to the wrong agency's action |
+| 3 | Brazil | Moody's | 2018-04-09 | `Ba2`/`Negative` | `Ba2`/`Stable` (Itaú BBA reporting; Trading Economics' rating history; Brazil National Treasury's 2024 statement referencing this 2018 move) | **Outlook-level error, rating correct** | Stale same-agency carry-forward — Moody's own *prior* outlook for Brazil (Ba2/Negative, May 2017) is what GE shows, one outlook-only revision behind |
 
-**Open hypothesis, not yet confirmed**: case 2 has a specific, checkable
-mechanism (GE attaching one agency's outlook to a different agency's
-rating action within the same multi-agency round) that case 1 doesn't
-have direct evidence for either way. Two data points isn't a pattern yet
-— watch for a third case during Tier 2 (Brazil, Colombia, Egypt,
-Pakistan, Nigeria, Italy, Spain all remaining) and specifically check,
-when a new GE-wrong case turns up, whether other agencies moved in the
-same window. If the "multi-agency-round contamination" mechanism repeats,
-that becomes a citable, specific reliability finding (GE's cross-
-attribution error rate during multi-agency rounds) rather than "GE is
-sometimes wrong" as an unquantified caveat.
+**Revised characterization (2026-08-12, after Brazil), superseding the
+original multi-agency-clustering hypothesis**: the clustering idea (does
+GE err specifically when several agencies act close together?) was
+tested and did *not* hold up on Brazil — no other agency acted anywhere
+near the April 2018 date, ruling out a coincident-round explanation for
+that case, yet it turned out to be the same broader symptom as South
+Africa anyway. The pattern that actually holds across cases 2 and 3: in
+both, **GE got the rating right and the outlook wrong**, and in both the
+wrong outlook was a value that was correct *somewhere else* — case 2
+borrowed a different agency's concurrent outlook, case 3 carried forward
+the *same* agency's own prior outlook instead of picking up the
+outlook-only revision. Two different proximate mechanisms (cross-agency
+vs. stale same-agency), one shared symptom: **GE does not reliably
+update the outlook field specifically when a change is outlook-only**
+(no accompanying letter-grade move to signal "something changed here").
+Case 1 (Turkey) remains a genuine outlier under this revised
+characterization — a rating-level error, not an outlook-level one — and
+isn't folded into this pattern; it stays open as a separate, unexplained
+case unless a similar rating-level error recurs.
+
+If this "reliable on rating levels, unreliable on outlook-only updates"
+characterization continues to hold as more Tier 2 countries land
+(Colombia, Egypt, Pakistan, Nigeria, Italy, Spain remaining), it becomes
+a clean, describable, and reasonably well-evidenced source-reliability
+limitation for the thesis's data-quality discussion (Appendix B
+candidate): **trust GE's letter ratings; verify its outlooks against CE
+or a primary source, especially on outlook-only actions with no
+accompanying rating change.** Watch specifically for outlook-only
+conflicts (rating agrees, outlook doesn't, no watch-qualifier asymmetry)
+going forward — that's the exact shape both confirmed cases took.
 
 ---
 
 ## Chronological log
+
+### 2026-08-12 — Brazil reconciled: completes the South Africa/Brazil pair, revises the GE factual-error hypothesis
+**What**: Brazil -- second of Tier 2, the pair with South Africa
+specifically chosen to test whether H1's lead/lag mechanism generalizes
+beyond Eurozone-style crises (Greece/Portugal) to a different kind of
+graduated fiscal-deterioration case. No new reconciliation-logic edge
+case surfaced (raw-paste CE format continues to work cleanly on real
+data, one routine NR drop, one routine exact-duplicate drop).
+
+**Trajectory, confirmed per the specific scrutiny requested**: pre-2015
+investment-grade period captured cleanly by all three agencies
+(2008-2014), and the 2015-2016 downgrade-to-junk sequence lands exactly
+as the well-known Petrobras/recession story describes -- **S&P first**
+into junk (BB+, 2015-09-09), **Fitch next** (BB+, 2015-12-16), **Moody's
+last** (Ba2, 2016-02-24), all three within a ~5-month window. No SD/RD/D
+anywhere, as expected -- the default-designation override correctly
+never fired (Brazil has no default history in the 2005-2025 window).
+
+**One genuine conflict, resolved via primary-source research**: Moody's,
+2018-04-09 -- GE said `Ba2/Negative`, CE said `Ba2/Stable`. Confirmed CE
+correct at high confidence (Itaú BBA reporting; Trading Economics'
+rating history; independently corroborated by Brazil's National
+Treasury referencing this exact 2018 move in a 2024 statement). Checked
+this specific conflict against the South-Africa-derived
+multi-agency-clustering hypothesis before assuming it applied: no other
+agency acted anywhere near April 2018 (nearest are Jan/Feb 2018, both
+`Stable`, both S&P/Fitch) -- so the clustering mechanism does **not**
+explain this case, which turned the investigation in a different,
+better-supported direction (see below).
+
+**GE factual-error hypothesis revised, not just extended** (see the "GE
+factual-error tracking" section above for the full table and rationale):
+the original multi-agency-clustering idea was specifically tested here
+and failed to explain Brazil's case, but Brazil's error turned out to
+share a *different*, more precise commonality with South Africa's: in
+both, **GE got the letter rating right and only the outlook wrong** --
+South Africa borrowed a different agency's concurrent outlook; Brazil
+carried forward the *same* agency's own prior outlook (Ba2/Negative from
+May 2017) instead of picking up the April 2018 outlook-only revision.
+One shared symptom (GE unreliable on outlook-only updates specifically,
+reliable on rating levels), two different proximate mechanisms getting
+there. Turkey's original case (a rating-level error, `Ba3`/`Baa3`)
+remains a separate, unexplained outlier under this revised
+characterization -- not forced into the pattern just because it's also
+a GE error. This is now the standing hypothesis to watch across the rest
+of Tier 2: outlook-only conflicts (rating agrees, outlook doesn't, not a
+watch-qualifier asymmetry) are the specific shape to look for.
+
+**Verified**: 137 reconciled rows in `Brazil.csv`. All six prior
+countries re-run as regression checks -- unchanged. Combined 887 rows
+pass through `ingest_ratings.py` with only the two already-known
+duplicate-action warnings; `test_lag_rules.py` 10/10.
+
+**Completes the first Tier 2 pair.** Lead/lag pilot re-run (7 countries:
+the original 5 plus South Africa and Brazil) follows immediately in the
+next entry below, per the user's plan to re-run after each pair rather
+than after every single country.
+
+Commit: (pending, this session) · Issue: #3
 
 ### 2026-08-12 — South Africa reconciled: first Tier 2 country, raw-paste path validated on real data, second confirmed GE factual error
 **What**: South Africa -- first of Tier 2, resequenced ahead of the rest
