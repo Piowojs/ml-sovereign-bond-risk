@@ -1,6 +1,6 @@
 # Central hyperparameter file for the thesis pipeline (per CLAUDE.md: never
 # hardcode a hyperparameter in code — it belongs here so it can feed the
-# sensitivity analysis in thesis §5.5). Sections are added as each stage
+# sensitivity analysis in thesis §4.5). Sections are added as each stage
 # starts needing tunable parameters; macro_acquisition is the first.
 
 macro_acquisition:
@@ -27,18 +27,18 @@ stage1_feature_matrix:
   # coverage (over the country's full raw bond history) meets this
   # threshold. Gated on duration/convexity, not CDS, because INT_CDS is
   # essentially DM-only in the raw pull (see CLAUDE.md). Candidate for the
-  # thesis's §5.5 sensitivity sweep (0.6/0.7/0.8) once Stage 1 clustering
+  # thesis's §4.5 sensitivity sweep (0.6/0.7/0.8) once Stage 1 clustering
   # results exist.
   extended_tier_min_duration_convexity_coverage: 0.7
   output_dir: "data/processed"
 
-# Stage 1: unsupervised sovereign risk classification (thesis Sec 4.2,
+# Stage 1: unsupervised sovereign risk classification (thesis Sec 3.2,
 # src/stage1_clustering/algorithm_comparison.py + build_risk_labels.py).
 # Reads the feature matrices this stage's build_feature_matrix.py already
 # produced. See CLAUDE.md "Stage 1 clustering" for the full writeup of why
 # these choices were made (feature set, imputation, tier mapping).
 stage1_clustering:
-  # Feature set used for clustering, per thesis Sec 3.3's declared groups
+  # Feature set used for clustering, per thesis Sec 2.3's declared groups
   # -- specifically the "Stage" column of the Group C table, which scopes
   # VIX and DXY to Stage 2 only (global risk appetite / EM funding
   # pressure -- time-series signals for return prediction) and marks only
@@ -103,18 +103,18 @@ stage1_clustering:
   chosen_k: 3
   output_dir: "data/processed"
 
-# Stage 2: compensated EM sovereign risk identification (thesis Sec 4.3,
+# Stage 2: compensated EM sovereign risk identification (thesis Sec 3.3,
 # src/stage2_signal/). Operates only on the subset of Stage 1's output
 # (data/processed/stage1_risk_labels.parquet) with dm_em_flag == "EM" and
 # risk_label == "satellite-candidate" at each rebal_date -- per thesis
-# Sec 4.4.1's sleeve definition and Ch.1's framing ("compensated EM
+# Sec 3.4.1's sleeve definition and Wstęp's framing ("compensated EM
 # sovereign risk"), never the occasional DM rows that land in
 # satellite-candidate under Stage 1's known residual global-feature
 # regime artifact (see CLAUDE.md "Stage 1 clustering").
 stage2_signal:
   start_date: "2005-01-01"
   end_date: "2025-12-31"
-  # Risk-free leg for the excess-return target (thesis Sec 4.3.2): the
+  # Risk-free leg for the excess-return target (thesis Sec 3.3.2): the
   # 3-month US T-bill, added to macro_pull.py's FRED_SERIES for this stage
   # (issue #5) -- was not previously pulled anywhere in the repo.
   risk_free_series: "us_3m_tbill_yield"
@@ -129,14 +129,14 @@ stage2_signal:
   # for the 2 countries (Kazakhstan, Morocco) with no MID_PRICE/CLEAN_PRC
   # column at all.
   price_field_priority: ["DIRTY_PRC", "CLEAN_PRC", "MID_PRICE", "synthetic_mid", "BID"]
-  # Momentum lookback windows (thesis Sec 3.3 Group A: "1m/3m/12m return
+  # Momentum lookback windows (thesis Sec 2.3 Group A: "1m/3m/12m return
   # momentum", Stage-2-scoped only) and the as-of tolerance (days) allowed
   # when looking back that many calendar days for a priced observation --
   # wider than macro's as-of tolerance since bond prices are daily, not
   # quarterly.
   momentum_lookback_days: {mom_1m: 30, mom_3m: 91, mom_12m: 365}
   momentum_asof_tolerance_days: 10
-  # Trailing window for the 52-week spread z-score (thesis Sec 3.3 Group A).
+  # Trailing window for the 52-week spread z-score (thesis Sec 2.3 Group A).
   spread_zscore_window_days: 364
   # A country-quarter row needs at least this fraction of the *model*
   # feature columns (below) actually observed (non-imputed) to get a real
@@ -150,7 +150,7 @@ stage2_signal:
   # quarter (data/processed/stage1_risk_labels.parquet) -- so this is
   # deliberately low relative to Stage 1's threshold (15x k).
   min_training_rows: 20
-  # Final Stage 2 feature set, per thesis Sec 3.3's Group A/B/C "Stage"
+  # Final Stage 2 feature set, per thesis Sec 2.3's Group A/B/C "Stage"
   # column filtered to entries marked "2" or "1 & 2" (not "1" only) --
   # deliberately narrower than reusing Stage 1's whole feature list, the
   # same discipline Stage 1 applied when it dropped vix/dxy_proxy for being
@@ -187,10 +187,10 @@ stage2_signal:
   xgb_max_depth: 3
   xgb_learning_rate: 0.05
   # Sensitivity levels for the top-N satellite sleeve selection (thesis
-  # Sec 4.3.5), all built rather than one hardcoded choice.
+  # Sec 3.3.5), all built rather than one hardcoded choice.
   top_n_options: [5, 10, 15]
   # Filled in by model_comparison.py's walk-forward results (thesis
-  # Sec 4.3.3) -- see CLAUDE.md "Stage 2 signal" for the full writeup.
+  # Sec 3.3.3) -- see CLAUDE.md "Stage 2 signal" for the full writeup.
   # LASSO won BOTH framings: classification AUC 0.560 (vs RF 0.546, XGB
   # 0.550) and regression mean IC +0.076 (vs RF -0.168, XGB -0.261,
   # actually negative) across 52 walk-forward folds -- driven by the small
@@ -202,7 +202,7 @@ stage2_signal:
   chosen_model_regression: "lasso"
   output_dir: "data/processed"
 
-# Stage 2 H2 multi-horizon robustness check (thesis Sec 2.4, 2.8 --
+# Stage 2 H2 multi-horizon robustness check (thesis Sec 1.4, 1.8 --
 # pre-registered 2026-08-11, see state.md, before this was run). Tests
 # whether the quarterly-horizon target (chosen to match rebalancing
 # frequency, not from theory about where predictability should appear)
@@ -210,7 +210,7 @@ stage2_signal:
 # BEFORE running: same satellite-candidate population and features as the
 # quarterly panel (only the forward-return window changes), same model
 # hyperparameters as stage2_signal above (no re-tuning per horizon). All
-# three horizons are reported unconditionally, per thesis Sec 2.8
+# three horizons are reported unconditionally, per thesis Sec 1.8
 # (Harvey, Liu & Zhu) applied to our own testing.
 stage2_multi_horizon_robustness:
   horizons_days: {monthly: 30, quarterly: 91, semi_annual: 182}

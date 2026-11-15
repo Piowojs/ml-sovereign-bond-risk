@@ -1,4 +1,4 @@
-"""Stage 2 model selection (thesis Sec 4.3.3), diagnostic -- compares
+"""Stage 2 model selection (thesis Sec 3.3.3), diagnostic -- compares
 LASSO/Random Forest/XGBoost, both classification framing (AUC) and
 regression framing (Information Coefficient), via true walk-forward
 out-of-sample evaluation.
@@ -11,7 +11,7 @@ direct leak than Stage 1's pooled-fit diagnostic. So this already walks
 forward (refit at every rebalancing date on stage2_utils.build_expanding_
 train_mask's target-realized-only training set) and evaluates out-of-
 sample predictions pooled across all folds -- consistent with H2's test
-design (thesis Sec 1.5): IC computed per fold (rebalancing date), then a
+design (thesis Wstęp Sec 5): IC computed per fold (rebalancing date), then a
 one-sided t-test of mean IC > 0 across folds; AUC computed on the pooled
 out-of-sample classification predictions.
 

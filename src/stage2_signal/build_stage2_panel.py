@@ -1,9 +1,9 @@
-"""Build the Stage 2 country x quarter signal panel (thesis Sec 4.3.2
-target construction + Sec 3.3 Group A/B/C Stage-2-scoped features).
+"""Build the Stage 2 country x quarter signal panel (thesis Sec 3.3.2
+target construction + Sec 2.3 Group A/B/C Stage-2-scoped features).
 
 Population: (country, rebal_date) rows with dm_em_flag == "EM" and
 risk_label == "satellite-candidate" in Stage 1's walk-forward output
-(data/processed/stage1_risk_labels.parquet) -- see thesis Sec 4.4.1's
+(data/processed/stage1_risk_labels.parquet) -- see thesis Sec 3.4.1's
 sleeve definition and stage2_utils.load_satellite_em_universe's docstring
 for why the occasional DM row in satellite-candidate is excluded.
 
@@ -14,7 +14,7 @@ pull (11 fields total, confirmed against bond_data_pull_reconstructed.py's
 own field list) -- the bond CSVs are generic benchmark composites
 (XX10YT=RR RICs), not individual fixed-coupon issues with a cashflow
 schedule. "Excess total return (price return + coupon)" per thesis
-Sec 4.3.2 is therefore NOT constructible as a true coupon-inclusive total
+Sec 3.3.2 is therefore NOT constructible as a true coupon-inclusive total
 return. What's built instead, and flagged per row rather than silently
 presented as equivalent:
   - Where DIRTY_PRC (dirty price, embeds accrued interest) is available,

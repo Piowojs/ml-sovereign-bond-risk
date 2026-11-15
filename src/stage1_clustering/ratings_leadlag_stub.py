@@ -1,9 +1,9 @@
-"""Thesis Sec 4.2.4 lead/lag analysis vs agency ratings -- PILOT, not the
+"""Thesis Sec 3.2.4 lead/lag analysis vs agency ratings -- PILOT, not the
 full implementation. Retains the original "stub" filename deliberately
 (see note at the bottom of this docstring) even though `compute_lead_lag`
 is now real code, because this is still explicitly scoped to a pilot over
 whatever subset of countries has reconciled ratings history, not the
-full-universe §4.2.4 result the thesis will actually cite.
+full-universe §3.2.4 result the thesis will actually cite.
 
 ## Why a pilot, and why now
 As of the last run (2026-08-12), `data/processed/ratings_panel.csv`
@@ -48,7 +48,7 @@ high-risk centroid, walk-forward-safe by the same construction as
 Only implemented for K-Means (the chosen production algorithm); if the
 chosen algorithm ever changes, this needs a real extension, not a patch.
 
-## Test design (thesis Sec 1.5, H1)
+## Test design (thesis Wstęp Sec 5, H1)
 For each downgrade event (one row of the ratings panel with
 action == "downgrade"): the "near window" is the up-to-4 rebalancing
 quarters with rebal_date strictly before the downgrade date (i.e. the
@@ -68,7 +68,7 @@ baseline-window means across events. Reported per-country and pooled.
   panel row (one agency, one date) -- during acute crises (Greece
   2010-2012, Portugal 2011) multiple agencies downgraded within weeks of
   each other, so several "events" share almost the same near/baseline
-  windows. The paired t-test as specified in thesis Sec 1.5 does not
+  windows. The paired t-test as specified in thesis Wstęp Sec 5 does not
   address this; treat any pooled p-value as optimistic, not a real
   independent-events test.
 - **Agency source-coverage gaps.** Some (country, agency) pairs in the
@@ -77,11 +77,11 @@ baseline-window means across events. Reported per-country and pooled.
   -- most notably Zambia/Moody's, which is 100% GE-only (11/11 rows; see
   state.md's 2026-08-11 Zambia entry). Events built from single-sourced
   agency data are flagged, not excluded.
-- **This is a feasibility check, not a §5.1 result.** Even a clean
+- **This is a feasibility check, not a §4.1 result.** Even a clean
   positive finding here should not be written into CLAUDE.md's "settled
   facts" style documentation or cited in the thesis yet -- it's 13 of 44
   countries, prioritized specifically because they're the highest-signal
-  cases, which is a form of selection that a real §5.1 result must not
+  cases, which is a form of selection that a real §4.1 result must not
   have.
 """
 
@@ -203,7 +203,7 @@ def compute_lead_lag(risk_labels_df: pd.DataFrame, ratings_panel_df: pd.DataFram
 
 def _paired_ttest_greater(near: np.ndarray, baseline: np.ndarray):
     """One-sided paired t-test, alternative = near > baseline, matching
-    thesis Sec 1.5 H1's directional statement ("a statistically
+    thesis Wstęp Sec 5 H1's directional statement ("a statistically
     significant *increase* in risk score ahead of the downgrade").
     Returns (t_stat, p_value) or (nan, nan) if fewer than 2 pairs."""
     if len(near) < 2:
@@ -283,7 +283,7 @@ def main():
     print(
         "\nNOTE: pooled test pools non-independent events (see module docstring's "
         "'Events are not independent' limitation) -- read as a feasibility check, not "
-        "a citable §5.1 result."
+        "a citable §4.1 result."
     )
 
 

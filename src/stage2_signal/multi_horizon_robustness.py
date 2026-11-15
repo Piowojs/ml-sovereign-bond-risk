@@ -5,8 +5,8 @@ rationale. Do not read this docstring as post-hoc justification -- the
 protocol below was fixed and committed first.
 
 Tests whether Stage 2's quarterly target horizon (chosen to match
-rebalancing frequency, thesis Sec 4.4.3, not derived from a theoretical
-claim about where sovereign return predictability appears -- Sec 2.4's
+rebalancing frequency, thesis Sec 3.4.3, not derived from a theoretical
+claim about where sovereign return predictability appears -- Sec 1.4's
 factor literature spans 1-12 months) is masking a stronger signal at a
 shorter (monthly) or longer (semi-annual) horizon.
 
@@ -32,8 +32,8 @@ Design, exactly as pre-registered:
     re-tuning per horizon -- any IC/AUC difference reflects the horizon,
     not a better-fit model.
   - All three horizons' results are written and printed unconditionally,
-    regardless of which (if any) clear H2's bar (thesis Sec 1.5: IC>0.05
-    and p<0.05) -- per thesis Sec 2.8 (Harvey, Liu & Zhu) applied to our
+    regardless of which (if any) clear H2's bar (thesis Wstęp Sec 5: IC>0.05
+    and p<0.05) -- per thesis Sec 1.8 (Harvey, Liu & Zhu) applied to our
     own testing, not just cited against the literature.
 
 Writes: data/processed/stage2_multi_horizon_robustness.csv (per-fold),

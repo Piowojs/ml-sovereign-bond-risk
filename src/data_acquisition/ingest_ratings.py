@@ -52,7 +52,7 @@ extraction.
     only (e.g. "5/2026"), not exact day, unlike countryeconomy.com.
     Convention: use the 1st of the month as `date`, and append
     "(month-precision)" to `source` for traceability. This is coarser
-    than exact-day but still well within thesis Sec 4.5.1's quarterly
+    than exact-day but still well within thesis Sec 3.5.1's quarterly
     walk-forward fold granularity, so H1's quarter-level lead/lag windows
     lose no real resolution. It does not interact with
     test_lag_rules.py's zero-lag assertion for ratings either --
@@ -94,7 +94,7 @@ picks up.
 just used internally to help infer `action` -- outlook deterioration
 (e.g. Stable -> Negative with no letter-grade change) often precedes an
 actual downgrade by months, a potential leading-indicator signal beyond
-letter-grade actions alone. Thesis Sec 1.5/4.2.4's formal H1 test is
+letter-grade actions alone. Thesis Wstęp Sec 5/4.2.4's formal H1 test is
 defined against letter-grade downgrades specifically, so this isn't
 required for that test, but it's captured now -- while the schema is
 still young and the marginal transcription cost is ~zero (the outlook

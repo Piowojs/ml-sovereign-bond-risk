@@ -1,11 +1,11 @@
-"""Stage 1 output labeling (thesis Sec 4.2.5) -- the walk-forward-safe,
+"""Stage 1 output labeling (thesis Sec 3.2.5) -- the walk-forward-safe,
 point-in-time-correct production pipeline. Assigns every sovereign, at
 every rebalancing date, one of: core-eligible (low risk), excluded
 (moderate risk / too uncertain), satellite-candidate (high risk), or
 insufficient_data (too few observed features / too little training
 history to fit a meaningful model yet). Also emits a continuous
 `risk_score` column (see `_continuous_risk_score` below) -- added
-specifically to unblock Sec 4.2.4's lead/lag test, which needs a numeric
+specifically to unblock Sec 3.2.4's lead/lag test, which needs a numeric
 score to average and paired-t-test, not just the categorical tier.
 
 This is deliberately a *separate* pipeline from algorithm_comparison.py's

@@ -1,8 +1,8 @@
 """Shared building blocks for Stage 2 compensated EM sovereign risk
-identification (thesis Sec 4.3). Used by build_stage2_panel.py (target +
-feature construction), model_comparison.py (Sec 4.3.3 diagnostic),
-build_return_signals.py (Sec 4.3.5 production walk-forward pipeline), and
-feature_importance.py (Sec 4.3.4 SHAP).
+identification (thesis Sec 3.3). Used by build_stage2_panel.py (target +
+feature construction), model_comparison.py (Sec 3.3.3 diagnostic),
+build_return_signals.py (Sec 3.3.5 production walk-forward pipeline), and
+feature_importance.py (Sec 3.3.4 SHAP).
 
 Stage 2 operates only on the EM subset of Stage 1's satellite-candidate
 output (data/processed/stage1_risk_labels.parquet) -- see CLAUDE.md
@@ -170,7 +170,7 @@ def load_satellite_em_universe() -> pd.DataFrame:
     walk-forward output -- deliberately excludes the occasional DM rows
     that land in satellite-candidate under Stage 1's documented residual
     global-feature regime artifact (see CLAUDE.md 'Stage 1 clustering'),
-    since this stage is scoped to the EM universe per thesis Ch.1/Sec 4.4.1."""
+    since this stage is scoped to the EM universe per thesis Wstęp/Sec 3.4.1."""
     labels = pd.read_parquet(STAGE1_RISK_LABELS_PARQUET)
     sat = labels[(labels["dm_em_flag"] == "EM") & (labels["risk_label"] == "satellite-candidate")]
     return sat[["country_code", "country_name", "dm_em_flag", "rebal_date"]].reset_index(drop=True)
@@ -226,7 +226,7 @@ def build_expanding_train_mask(panel: pd.DataFrame, as_of_date: pd.Timestamp) ->
 
 def make_models(params: dict, random_state: int):
     """Returns {"classification": {name: estimator}, "regression": {name: estimator}}
-    -- LASSO / Random Forest / XGBoost per thesis Sec 4.3.3, with the
+    -- LASSO / Random Forest / XGBoost per thesis Sec 3.3.3, with the
     classification framing's LASSO counterpart being L1-penalized logistic
     regression (LASSO itself is a regression method; this is the standard
     like-for-like classification analogue, not a fourth model)."""
@@ -264,7 +264,7 @@ def make_models(params: dict, random_state: int):
 
 def information_coefficient(predicted: np.ndarray, realized: np.ndarray) -> float:
     """Spearman rank correlation between predicted and realized excess
-    returns -- the IC definition thesis Sec 1.5/H2 specifies."""
+    returns -- the IC definition thesis Wstęp Sec 5/H2 specifies."""
     if len(predicted) < 3:
         return float("nan")
     ic, _ = stats.spearmanr(predicted, realized)
@@ -273,7 +273,7 @@ def information_coefficient(predicted: np.ndarray, realized: np.ndarray) -> floa
 
 def ic_one_sided_ttest(fold_ics: list[float]) -> tuple[float, float]:
     """One-sided t-test of mean IC > 0 across fold observations, per H2's
-    test design (thesis Sec 1.5): 'Test whether the mean IC is
+    test design (thesis Wstęp Sec 5): 'Test whether the mean IC is
     significantly greater than zero using a one-sided t-test across fold
     observations.' Returns (t_statistic, one_sided_p_value)."""
     fold_ics = [x for x in fold_ics if not math.isnan(x)]

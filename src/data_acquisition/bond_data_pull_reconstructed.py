@@ -110,7 +110,7 @@ CONFIRMED LICENCE LIMITATIONS
   TR.IssuerRating history — SDate/EDate ignored; snapshot only, returns NaN
   ISIN-based get_history — universe-not-found for all ISINs tested
 
-EXCLUDED COUNTRIES (document in thesis Section 3.2)
+EXCLUDED COUNTRIES (document in thesis Section 2.2)
 -----------------------------------------------------
   Russia           — UserNotPermission 92000 (sanctions-related restriction)
   Argentina        — no benchmark RIC available in Workspace

@@ -19,16 +19,16 @@ after the fact from memory.
 
 | Item | Blocks | Whose action | Status |
 |---|---|---|---|
-| Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §4.2.3, §4.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10/2026-08-11 reconciliation entries below; agency IR pages for gaps neither source covers). **Tier 1 fully done — continue with Tier 2**, see the transcription priority list below. **Reminder for multi-word countries**: pass the underscore form (`Sri_Lanka`, not `Sri Lanka`) as the script's `country` argument — it's used verbatim as the output filename and must match `configs/universe.yaml`'s `name.replace(" ", "_")` for `ingest_ratings.py`'s coverage check to recognize it (caught once on Sri Lanka, fixed before anything downstream ran on the wrong filename). **CE raw-paste reminder**: as of the pre-Portugal fix, both `LETTER_GRADE (Outlook)` and letter-grade-less `(Outlook)`-only CE cells are handled automatically — paste CE's raw combined rating+outlook text straight into the `rating` column and leave `outlook` blank, no manual pre-splitting needed. | **In progress — 13/44 (Greece, Turkey, Sri Lanka, Portugal, Zambia, South Africa, Brazil, Colombia, Egypt, Pakistan, Nigeria, Italy, Spain) done — Tier 2 fully complete**, all reconciled via `reconcile_ratings_sources.py` (172 + 170 + 118 + 108 + 45 + 137 + 137 + 94 + 138 + 84 + 67 + 132 + 110 = 1,512 rows, 5 conflicts total found and resolved — Greece 1, Turkey 2, South Africa 1, Brazil 1; Colombia, Egypt, Pakistan, Nigeria, Italy, and Spain all reconciled without a resolutions.csv entry). Italy and Spain both reconciled under a pre-registration (`12f9a3e`) predicting positive-direction lead/lag signal for both; both had zero conflicts, full 3-agency CE coverage, and — checked systematically across all 13 countries reconciled so far — neither crossed the IG/junk boundary, which now shows a **perfect 13-for-13 split** with the GE/CE conflict hypothesis (every IG-boundary-crosser produced a conflict, every non-crosser didn't) — see the Source factual-error tracking section below for the full table. **2026-08-12 audit + fix**: the Sri Lanka anomaly flagged above turned out to be a real CE transcription error (S&P `A` should be `B+`), corrected via a new re-run-safe `_corrections.csv` mechanism; a source-agnostic `sanity_check_ratings.py` was then built and run across all 13 countries specifically because this error had never surfaced as a conflict (single-source rows are structurally invisible to conflict detection) — found the Sri Lanka case was isolated (1 real problem of 26 total flags) and quantified 46.0% (695/1512) of all rows as never cross-validated against anything. See the 2026-08-12 chronological entry for full detail. **Panel changed — the 13-country lead/lag pilot below was run before this fix and needs re-confirming**, though a direct before/after check shows Sri Lanka's own result is unaffected (p=0.051515 either way). 31 to go — starting Tier 3. |
-| §4.2.4 lead/lag analysis (`ratings_leadlag_stub.py`) | §4.2.4, RQ1/H1 | Full-universe version still blocked on the remaining 31 countries' ratings transcription | **13-country pilot re-run 2026-08-12 (Italy + Spain added) — Tier 2 complete, both pre-registrations (`d23fd6e`, `12f9a3e`) survived without a single exception.** Eurozone pair landed precisely as predicted: **Spain clears p<0.05 (0.018)**, **Italy doesn't (0.107) but is clearly positive-direction** (84.6% of events increase) — the specific "Spain more cleanly than Italy" call, not just a vague positive/negative one, hit. Full 13-country picture now shows a **clean two-bucket split with zero exceptions**: all 7 "macro-fundamental/persistent deterioration" countries (Greece, Portugal, South Africa, Spain, Sri Lanka, Colombia, Italy) are positive-direction (4 clear, 2 borderline, 1 short of significance); all 6 "other pathway" countries (Turkey, Zambia, Brazil, Egypt, Pakistan, Nigeria) are null or near-null, none clearing p<0.05 positive. Second genuine pre-registered test survived intact. Still not citable — 13 of 44 countries, no formal multiple-testing correction, and only 5 of 13 countries' bucket assignment was genuinely pre-registered before reconciliation (the original 5-country pilot's classification was post hoc). See the 2026-08-12 "Lead/lag pilot re-run at 13 countries" chronological entry for the full table, decomposition, and H1 status read. **Verified against the Sri Lanka-corrected panel (`455909e`) 2026-08-12 — every number in this row is byte-identical pre- and post-correction**; see the "13-country pilot re-verified against the corrected ratings panel" chronological entry. |
-| Residual global-regime sensitivity in Stage 1 clustering (`core-eligible` = 0 for several consecutive quarters, 2009-2017) | §5.5 candidate robustness check; not blocking Stage 3/4 | Open — see CLAUDE.md "Stage 1 clustering" for the full diagnosis (us_10y/curve_slope are global-only features, thesis §3.3 keeps them in Stage 1 regardless) | Documented, not fixed further without a methodology-level call to override the thesis's own feature-group spec |
+| Manually collect per-country rating-action history into `data/raw/ratings/manual/<Country>.csv` | §3.2.3, §3.2.4, RQ1/H1 | User (transcribe both TheGlobalEconomy.com and countryeconomy.com per country as a two-sheet workbook, then run `reconcile_ratings_sources.py` — see the 2026-08-10/2026-08-11 reconciliation entries below; agency IR pages for gaps neither source covers). **Tier 1 fully done — continue with Tier 2**, see the transcription priority list below. **Reminder for multi-word countries**: pass the underscore form (`Sri_Lanka`, not `Sri Lanka`) as the script's `country` argument — it's used verbatim as the output filename and must match `configs/universe.yaml`'s `name.replace(" ", "_")` for `ingest_ratings.py`'s coverage check to recognize it (caught once on Sri Lanka, fixed before anything downstream ran on the wrong filename). **CE raw-paste reminder**: as of the pre-Portugal fix, both `LETTER_GRADE (Outlook)` and letter-grade-less `(Outlook)`-only CE cells are handled automatically — paste CE's raw combined rating+outlook text straight into the `rating` column and leave `outlook` blank, no manual pre-splitting needed. | **In progress — 13/44 (Greece, Turkey, Sri Lanka, Portugal, Zambia, South Africa, Brazil, Colombia, Egypt, Pakistan, Nigeria, Italy, Spain) done — Tier 2 fully complete**, all reconciled via `reconcile_ratings_sources.py` (172 + 170 + 118 + 108 + 45 + 137 + 137 + 94 + 138 + 84 + 67 + 132 + 110 = 1,512 rows, 5 conflicts total found and resolved — Greece 1, Turkey 2, South Africa 1, Brazil 1; Colombia, Egypt, Pakistan, Nigeria, Italy, and Spain all reconciled without a resolutions.csv entry). Italy and Spain both reconciled under a pre-registration (`12f9a3e`) predicting positive-direction lead/lag signal for both; both had zero conflicts, full 3-agency CE coverage, and — checked systematically across all 13 countries reconciled so far — neither crossed the IG/junk boundary, which now shows a **perfect 13-for-13 split** with the GE/CE conflict hypothesis (every IG-boundary-crosser produced a conflict, every non-crosser didn't) — see the Source factual-error tracking section below for the full table. **2026-08-12 audit + fix**: the Sri Lanka anomaly flagged above turned out to be a real CE transcription error (S&P `A` should be `B+`), corrected via a new re-run-safe `_corrections.csv` mechanism; a source-agnostic `sanity_check_ratings.py` was then built and run across all 13 countries specifically because this error had never surfaced as a conflict (single-source rows are structurally invisible to conflict detection) — found the Sri Lanka case was isolated (1 real problem of 26 total flags) and quantified 46.0% (695/1512) of all rows as never cross-validated against anything. See the 2026-08-12 chronological entry for full detail. **Panel changed — the 13-country lead/lag pilot below was run before this fix and needs re-confirming**, though a direct before/after check shows Sri Lanka's own result is unaffected (p=0.051515 either way). 31 to go — starting Tier 3. |
+| §3.2.4 lead/lag analysis (`ratings_leadlag_stub.py`) | §3.2.4, RQ1/H1 | Full-universe version still blocked on the remaining 31 countries' ratings transcription | **13-country pilot re-run 2026-08-12 (Italy + Spain added) — Tier 2 complete, both pre-registrations (`d23fd6e`, `12f9a3e`) survived without a single exception.** Eurozone pair landed precisely as predicted: **Spain clears p<0.05 (0.018)**, **Italy doesn't (0.107) but is clearly positive-direction** (84.6% of events increase) — the specific "Spain more cleanly than Italy" call, not just a vague positive/negative one, hit. Full 13-country picture now shows a **clean two-bucket split with zero exceptions**: all 7 "macro-fundamental/persistent deterioration" countries (Greece, Portugal, South Africa, Spain, Sri Lanka, Colombia, Italy) are positive-direction (4 clear, 2 borderline, 1 short of significance); all 6 "other pathway" countries (Turkey, Zambia, Brazil, Egypt, Pakistan, Nigeria) are null or near-null, none clearing p<0.05 positive. Second genuine pre-registered test survived intact. Still not citable — 13 of 44 countries, no formal multiple-testing correction, and only 5 of 13 countries' bucket assignment was genuinely pre-registered before reconciliation (the original 5-country pilot's classification was post hoc). See the 2026-08-12 "Lead/lag pilot re-run at 13 countries" chronological entry for the full table, decomposition, and H1 status read. **Verified against the Sri Lanka-corrected panel (`455909e`) 2026-08-12 — every number in this row is byte-identical pre- and post-correction**; see the "13-country pilot re-verified against the corrected ratings panel" chronological entry. |
+| Residual global-regime sensitivity in Stage 1 clustering (`core-eligible` = 0 for several consecutive quarters, 2009-2017) | §4.5 candidate robustness check; not blocking Stage 3/4 | Open — see CLAUDE.md "Stage 1 clustering" for the full diagnosis (us_10y/curve_slope are global-only features, thesis §2.3 keeps them in Stage 1 regardless) | Documented, not fixed further without a methodology-level call to override the thesis's own feature-group spec |
 | Execution-verify `bond_data_pull_reconstructed.py` (does it actually run/chunk/return data as designed) | Appendix A reproducibility only — not blocking, since existing bond data already feeds Stage 1 | User (requires a session on the university-library Windows PC with Refinitiv Workspace) | Not started |
 | CDS data (`data/raw/cds/`) never successfully pulled | Nothing currently — Stage 1 extended tier gates on duration/convexity, not CDS (see CLAUDE.md) | Would also require the library-PC session if pursued | Open, not currently prioritized |
-| `docs/thesis_outline_sovereign.md` §1.4 still says "2005–2023"; actual pipeline uses 2005–2025 | Consistency of the written thesis, not the code | User (thesis text edit) | Open, tracked separately from code |
-| Stage 2 (`src/stage2_signal/`) built — see 2026-08-11 chronological entries below | §4.3, RQ2/H2 | — | **Done.** H2 not rejected (LASSO mean IC +0.076 but p=0.205, doesn't clear the p<0.05 bar). Two follow-up diagnostics (2026-08-11) tested whether this is a power problem — both point away from that reading (AUC collapses to ~0.50 on 4.4x the observations); see CLAUDE.md "Stage 2 signal" for the full picture and the "this specification, not this universe" distinction that should carry into §6.2/§7.4. |
-| No coupon-rate/cashflow field exists anywhere in the raw bond pull — Stage 2's "total return" is a documented price-return proxy, not true coupon-inclusive total return | §4.3.2, Appendix B | Structural licence/data limitation (generic benchmark composite RICs, not individual bond issues) — not fixable without different source data | Documented and flagged per-row (`has_income_component`), not silently approximated — see CLAUDE.md "Stage 2 signal" |
-| Stage 2 EM satellite population is small-N by construction (median 4-8 countries/quarter, EM rows in only 65/84 quarters) | §4.3.3/§4.3.4 result reliability | Inherited from Stage 1's clustering output — would require revisiting Stage 1's residual global-regime sensitivity (already an open item above) to change | Documented as a first-order caveat on every Stage 2 result. **Update (2026-08-11 diagnostics)**: the small-N caveat still applies to *precision* of the estimate, but two diagnostics found no evidence it's suppressing a real signal — see the Stage 2 row above. |
-| H2 multi-horizon robustness check (pre-registered 2026-08-11, run 2026-08-11) — monthly (30d) / quarterly (~91d) / semi-annual (182d), 3 models x 2 framings = 18 combinations | §2.8 (Harvey/Liu/Zhu multiple-testing standard), §5.5, §6.2/§7.4 framing of H2 | — | **Done. 0 of 9 regression combinations clear H2's bar** (IC>0.05 and p<0.05) — not even before any multiple-testing correction, so correction only reinforces the null, doesn't change it. Best regression IC is still quarterly/LASSO (+0.076, p=0.205); monthly is ~flat (+0.001, p=0.495); semi-annual goes negative (-0.049, p=0.714). One genuinely interesting, NOT pre-specified-as-a-bar observation: monthly/LASSO classification AUC=0.617, the highest AUC anywhere in Stage 2's investigation (vs quarterly 0.560, semi-annual 0.467 — below chance) — flagged for §7.4 as suggestive, unvalidated (H2's formal test is the IC/regression framing only, no significance test was pre-specified for AUC), not promoted into a conclusion. See CLAUDE.md "Stage 2 signal" and `data/processed/stage2_multi_horizon_robustness_summary.csv`. |
+| `docs/thesis_outline_sovereign.md` Wstęp §4 still says "2005–2023"; actual pipeline uses 2005–2025 | Consistency of the written thesis, not the code | User (thesis text edit) | Open, tracked separately from code |
+| Stage 2 (`src/stage2_signal/`) built — see 2026-08-11 chronological entries below | §3.3, RQ2/H2 | — | **Done.** H2 not rejected (LASSO mean IC +0.076 but p=0.205, doesn't clear the p<0.05 bar). Two follow-up diagnostics (2026-08-11) tested whether this is a power problem — both point away from that reading (AUC collapses to ~0.50 on 4.4x the observations); see CLAUDE.md "Stage 2 signal" for the full picture and the "this specification, not this universe" distinction that should carry into §5.2/Zakończenie §4. |
+| No coupon-rate/cashflow field exists anywhere in the raw bond pull — Stage 2's "total return" is a documented price-return proxy, not true coupon-inclusive total return | §3.3.2, Appendix B | Structural licence/data limitation (generic benchmark composite RICs, not individual bond issues) — not fixable without different source data | Documented and flagged per-row (`has_income_component`), not silently approximated — see CLAUDE.md "Stage 2 signal" |
+| Stage 2 EM satellite population is small-N by construction (median 4-8 countries/quarter, EM rows in only 65/84 quarters) | §3.3.3/§3.3.4 result reliability | Inherited from Stage 1's clustering output — would require revisiting Stage 1's residual global-regime sensitivity (already an open item above) to change | Documented as a first-order caveat on every Stage 2 result. **Update (2026-08-11 diagnostics)**: the small-N caveat still applies to *precision* of the estimate, but two diagnostics found no evidence it's suppressing a real signal — see the Stage 2 row above. |
+| H2 multi-horizon robustness check (pre-registered 2026-08-11, run 2026-08-11) — monthly (30d) / quarterly (~91d) / semi-annual (182d), 3 models x 2 framings = 18 combinations | §1.8 (Harvey/Liu/Zhu multiple-testing standard), §4.5, §5.2/Zakończenie §4 framing of H2 | — | **Done. 0 of 9 regression combinations clear H2's bar** (IC>0.05 and p<0.05) — not even before any multiple-testing correction, so correction only reinforces the null, doesn't change it. Best regression IC is still quarterly/LASSO (+0.076, p=0.205); monthly is ~flat (+0.001, p=0.495); semi-annual goes negative (-0.049, p=0.714). One genuinely interesting, NOT pre-specified-as-a-bar observation: monthly/LASSO classification AUC=0.617, the highest AUC anywhere in Stage 2's investigation (vs quarterly 0.560, semi-annual 0.467 — below chance) — flagged for Zakończenie §4 as suggestive, unvalidated (H2's formal test is the IC/regression framing only, no significance test was pre-specified for AUC), not promoted into a conclusion. See CLAUDE.md "Stage 2 signal" and `data/processed/stage2_multi_horizon_robustness_summary.csv`. |
 | Stage 3/4 (`stage3_portfolio/`, `stage4_evaluation/`) not started | Everything downstream of Stage 2 | — | Not started — Stage 1 and Stage 2 are now fully built; this is the next major phase |
 
 ---
@@ -66,7 +66,7 @@ yet verified against the actual transcribed data.
      debt/fiscal-driven deterioration shape), so they're likely to
      confirm what's already been observed rather than test it. Still
      valuable for other reasons (both are thesis-named DM stress cases,
-     §2.3/§6.4) — just not the next-highest-information transcription
+     §1.3/§5.4) — just not the next-highest-information transcription
      targets for H1's generalization question.
 - **Tier 3 (moderate — real notches, plus two "even safe sovereigns
   react" DM cases)**: United States, United Kingdom, France, Hungary,
@@ -274,7 +274,7 @@ omission) documented elsewhere in this file: this is CE's *entire
 agency coverage* being absent for a country, not a per-date gap. Handled
 correctly by the existing union-of-months policy with no code change
 needed both times it's occurred — flagged here purely as a data-quality
-observation for the thesis's Chapter 3 characterization of sources, not
+observation for the thesis's Chapter 2 characterization of sources, not
 a reconciliation bug.
 
 | # | Country | Missing agency (CE) | GE rows for that agency | Confirmed how |
@@ -296,14 +296,14 @@ lowest-rated countries happened to both be Moody's gaps."
 
 **If this holds across the remaining 33 countries** (worth checking
 explicitly on the next several, not just noting when it happens to
-recur), it becomes a describable, citable limitation for Chapter 3:
+recur), it becomes a describable, citable limitation for Chapter 2:
 **CE cannot be treated as a uniform baseline "primary manual source"
 across the full 44-country universe** — for frontier/lower-rated
 sovereigns specifically, GE may be the *only* available source for a
 given agency, which matters for how the thesis frames "CE primary, GE
 fallback" (the general framing) versus what actually happens in
 practice for a meaningful subset of the universe. Not yet enough
-evidence to write that claim into Chapter 3 — 2 of 44 countries, both
+evidence to write that claim into Chapter 2 — 2 of 44 countries, both
 found opportunistically rather than through a systematic check — but
 worth deciding whether to check this explicitly (grep each remaining
 country's CE sheet for agency coverage before reconciling, the way the
@@ -677,8 +677,8 @@ either side**:
 **This is the second genuine pre-registered test the working explanation
 has now survived without a single exception**, following the
 currency/commodity trio. That's a real, if still small-sample, result --
-worth taking seriously for the thesis's Chapter 5/6 discussion -- but
-still not a citable §5.1 result: 13 of 44 countries, non-independent
+worth taking seriously for the thesis's Chapter 4/6 discussion -- but
+still not a citable §4.1 result: 13 of 44 countries, non-independent
 pooled/within-country events, no formal multiple-testing correction
 across 13 country-level tests, and the classification into the two
 buckets, while genuinely pre-registered for 5 of the 13 countries
@@ -738,6 +738,8 @@ every prior group.
 Commit: (pending, this session) · Issue: #3
 
 ### 2026-08-12 — PRE-REGISTRATION: Italy/Spain lead/lag prediction (committed before either is reconciled)
+
+*(Note added 2026-11-15: this pre-registration block is kept verbatim as committed; its thesis section numbers use the OLD numbering — see CLAUDE.md's chapter-renumbering mapping note.)*
 **This entry is written and committed before Italy or Spain's ratings
 data has been reconciled, and before `ratings_leadlag_stub.py` has been
 re-run on either.** The commit timestamp/hash is the audit trail that
@@ -831,7 +833,7 @@ have zero CE rows for Moody's specifically, both African, both
 sub-investment-grade throughout the sample. Two cases, explicitly not
 yet claimed as a pattern -- but worth deciding whether to check this
 proactively on remaining countries rather than continuing to find it
-opportunistically, since if it holds it changes how Chapter 3 should
+opportunistically, since if it holds it changes how Chapter 2 should
 characterize CE as a "primary" source across the full universe.
 
 **Verified**: 67 reconciled rows in `Nigeria.csv`. All ten prior
@@ -1073,7 +1075,7 @@ neither exclusion pattern reflects a coverage gap in either country's
 **Nigeria remains the decisive third data point** the pre-registration
 committed to reporting regardless of outcome -- two null/near-null
 results don't confirm the hypothesis on their own (that would need the
-full trio, and even then this is 10-of-44 countries, not a §5.1 result),
+full trio, and even then this is 10-of-44 countries, not a §4.1 result),
 but nothing so far contradicts it either.
 
 Commit: (pending, this session) · Issue: #4
@@ -1124,6 +1126,8 @@ Pakistan.
 Commit: (pending, this session) · Issue: #3
 
 ### 2026-08-12 — PRE-REGISTRATION: Egypt/Pakistan/Nigeria lead/lag prediction (committed before any of the three is reconciled)
+
+*(Note added 2026-11-15: this pre-registration block is kept verbatim as committed; its thesis section numbers use the OLD numbering — see CLAUDE.md's chapter-renumbering mapping note.)*
 **This entry is written and committed before Egypt, Pakistan, or
 Nigeria's ratings data has been reconciled, and before
 `ratings_leadlag_stub.py` has been re-run on any of them.** The commit
@@ -1540,13 +1544,13 @@ pre-registered commitment):
 | Semi-annual | random_forest | -0.0226 | 0.589 | 0.496 |
 | Semi-annual | xgboost | -0.1410 | 0.940 | 0.442 |
 
-**H2 bar (IC>0.05 and p<0.05, thesis §1.5) -- 0 of 9 regression
+**H2 bar (IC>0.05 and p<0.05, thesis Wstęp §5) -- 0 of 9 regression
 combinations clear it.** Quarterly/LASSO remains the closest (already
 reported: +0.076, p=0.205). Monthly is essentially flat (+0.0015,
 p=0.495) rather than stronger, and semi-annual actually turns negative
 (-0.049, p=0.714) with an AUC (0.467) below chance. Since none of the 9
 regression tests reach significance even before any multiple-testing
-adjustment, the Harvey/Liu/Zhu (thesis §2.8) correction that would be
+adjustment, the Harvey/Liu/Zhu (thesis §1.8) correction that would be
 needed if something *had* looked significant across this 9-test family
 isn't the operative issue here -- the finding is a clean, uncorrected
 null across the whole pre-registered family, which is a *stronger*, not
@@ -1557,16 +1561,16 @@ result alone.
 (0.617) is the highest AUC value seen anywhere across Stage 2's full
 investigation (quarterly 0.560; the full-EM-universe power diagnostic's
 best was ~0.50). This is genuinely interesting but explicitly **not**
-promoted into a claim here: thesis §1.5's H2 test is defined via the
+promoted into a claim here: thesis Wstęp §5's H2 test is defined via the
 regression/IC framing only -- no significance threshold was ever
 pre-specified for AUC, and with 9 model x horizon combinations now in
 play, treating one AUC number as a finding without a matching
 significance test and multiple-testing accounting would be exactly the
-kind of post-hoc mining §2.8 warns against. Recorded as a lead for §7.4
+kind of post-hoc mining §1.8 warns against. Recorded as a lead for Zakończenie §4
 future work (a monthly-horizon classification-only follow-up would need
 its own pre-registration), not folded into the H2 conclusion.
 
-**Bottom line for §6.2/§7.4**: "this specification doesn't recover a
+**Bottom line for §5.2/Zakończenie §4**: "this specification doesn't recover a
 premium" (already the conclusion from the earlier power-vs-absence
 diagnostics) now generalizes across three pre-registered horizons, not
 just the one originally built to match rebalancing frequency -- horizon
@@ -1580,6 +1584,8 @@ pre-registered check below
 ---
 
 ### 2026-08-11 — PRE-REGISTRATION: H2 multi-horizon robustness check (committed before running)
+
+*(Note added 2026-11-15: this pre-registration block is kept verbatim as committed; its thesis section numbers use the OLD numbering — see CLAUDE.md's chapter-renumbering mapping note.)*
 **This entry is written and committed before the check below it is run or
 its results are known.** The commit timestamp/hash on this entry is the
 audit trail that the protocol below was fixed in advance, not adjusted
@@ -1657,7 +1663,7 @@ negative (-0.027), XGBoost weakly positive but non-significant (+0.019,
 p=0.292). Classification AUC for all three models collapses to
 **0.48-0.50** — indistinguishable from chance, despite 4.4x the data.
 This breaks the pipeline's own logical chain deliberately (thesis
-§4.4.1's satellite sleeve is explicitly gated on Stage 1's output; this
+§3.4.1's satellite sleeve is explicitly gated on Stage 1's output; this
 diagnostic isn't a candidate replacement for that design) — it's a probe,
 not a pipeline change.
 
@@ -1684,8 +1690,8 @@ story without fully ruling it out on composition grounds alone.
 for the different population**, the honest scope of this finding is "this
 feature set + these three fixed-hyperparameter models don't recover a
 premium here" — not "no premium is recoverable by any specification."
-That distinction should carry directly into how §6.2 (does a premium
-exist / what drives it) and §7.4 (future work) characterize the result —
+That distinction should carry directly into how §5.2 (does a premium
+exist / what drives it) and Zakończenie §4 (future work) characterize the result —
 richer market-based features, re-tuned hyperparameters per population, or
 an alternative EM universe definition are all still open, untested
 alternatives, not ruled out by this pilot.
@@ -1709,10 +1715,10 @@ no code/pipeline changes
 **What**: `src/stage2_signal/` built end to end — `stage2_utils.py`
 (shared primitives, mirroring Stage 1's `clustering_utils.py` split
 between full-sample diagnostic and walk-forward production modes),
-`build_stage2_panel.py` (§4.3.2 target + §3.3 Stage-2-scoped feature
-construction), `model_comparison.py` (§4.3.3 walk-forward LASSO/RF/XGBoost
-comparison), `build_return_signals.py` (§4.3.5 walk-forward-safe
-production signal + top-5/10/15 output), `feature_importance.py` (§4.3.4
+`build_stage2_panel.py` (§3.3.2 target + §2.3 Stage-2-scoped feature
+construction), `model_comparison.py` (§3.3.3 walk-forward LASSO/RF/XGBoost
+comparison), `build_return_signals.py` (§3.3.5 walk-forward-safe
+production signal + top-5/10/15 output), `feature_importance.py` (§3.3.4
 SHAP). Independent of the ratings-transcription/lead-lag-pilot work above
 — reads only Stage 1's already-built `stage1_risk_labels.parquet` and
 `stage1_feature_matrix_core.parquet`, doesn't touch either. Full writeup
@@ -1723,7 +1729,7 @@ data gaps silently**:
 - No coupon-rate/cashflow field exists anywhere in the raw bond pull (11
   fields total, confirmed against `bond_data_pull_reconstructed.py`'s
   field list) — the bonds are generic benchmark composites (`XX10YT=RR`),
-  not individually-cashflowed issues. Thesis §4.3.2's "price return +
+  not individually-cashflowed issues. Thesis §3.3.2's "price return +
   coupon" total return is therefore not literally constructible. Built
   instead: a price-return proxy, using `DIRTY_PRC` (embeds accrued
   interest, closest available proxy) where available, `CLEAN_PRC`/
@@ -1751,25 +1757,25 @@ landing in the highest-risk tier. Answer to "is the feature set rich
 enough": yes, a real model is buildable, but sample size — not feature
 richness — is the binding constraint on result reliability.
 
-**Model comparison (§4.3.3) result**: LASSO won both framings across 52
+**Model comparison (§3.3.3) result**: LASSO won both framings across 52
 walk-forward folds (classification AUC 0.560 vs RF 0.546/XGB 0.550;
 regression mean IC +0.076, t=0.83, one-sided p=0.205, vs RF -0.168/XGB
 -0.261 — both *negative*). Not a default choice — the more flexible
 tree-based models measurably overfit the small per-fold sample (median
 ~4-8 rows) and generalized worse than a linear, heavily-regularized model.
-Per H2's own bar (IC>0.05 *and* p<0.05, thesis §1.5), **H2 is not
+Per H2's own bar (IC>0.05 *and* p<0.05, thesis Wstęp §5), **H2 is not
 rejected** — economic significance (0.076) without statistical
 significance (p=0.205). Reported as-is, not adjusted to force a positive
 result.
 
-**SHAP (§4.3.4) result, with caveat attached**: at LASSO's near-CV-optimal
+**SHAP (§3.3.4) result, with caveat attached**: at LASSO's near-CV-optimal
 alpha, only 3 of 14 features survive shrinkage — `cpi_inflation`,
 `fiscal_bal_gdp`, `real_gdp_growth` — all macro fundamentals; every
 market-based and global feature shrinks to exactly zero. Flagged
 explicitly (in both CLAUDE.md and the script's own printed output) as
 plausibly a data-richness artifact (market features are majority-missing
 in this population) rather than proof markets carry no signal — this
-distinction matters for how §6.2 can honestly characterize the result.
+distinction matters for how §5.2 can honestly characterize the result.
 
 **Leakage discipline**: `stage2_utils.build_expanding_train_mask`
 requires `target_period_end <= as_of_date` for training eligibility, one
@@ -1786,11 +1792,11 @@ references #2, #4 as predecessors
 
 ---
 
-### 2026-08-11 — §4.2.4 lead/lag pilot run on the 5 Tier-1 countries: mixed result
+### 2026-08-11 — §3.2.4 lead/lag pilot run on the 5 Tier-1 countries: mixed result
 **What**: With Tier 1 (Greece, Turkey, Sri Lanka, Portugal, Zambia)
 reconciled, `src/stage1_clustering/ratings_leadlag_stub.py`'s
 `compute_lead_lag()` was implemented for real -- a scoped **pilot**, not
-the full §4.2.4 result, explicitly to answer one question before
+the full §3.2.4 result, explicitly to answer one question before
 prioritizing the remaining 39 countries' manual transcription: does H1's
 mechanism (ML risk score deteriorates ahead of the agency downgrade) show
 up at all in the highest-signal cases? Uses
@@ -1815,7 +1821,7 @@ column; `test_lag_rules.py`'s truncation-invariance check still passes
 
 **Test design**: paired, one-sided t-test (near window = up to 4 quarters
 strictly before the downgrade date; baseline = the up to 4 quarters before
-that), per thesis §1.5's H1 statement. 121 downgrade events across the 5
+that), per thesis Wstęp §5's H1 statement. 121 downgrade events across the 5
 countries; 17 fall entirely before the panel starts (`no_preceding_data`
 -- e.g. Greece 1990/1994/2004, Turkey 1994-2003, all correctly excluded,
 not silently dropped) and 2 fall too close to the panel's 2005-2006 start
@@ -1893,7 +1899,7 @@ config changed (it currently doesn't depend on ratings, so this is
 usually unnecessary) and always rerun `ratings_leadlag_stub.py` to
 regenerate `stage1_leadlag_pilot_events.csv` and the per-country table.
 
-**Explicitly not a §5.1 result**: 5 countries, chosen because they're the
+**Explicitly not a §4.1 result**: 5 countries, chosen because they're the
 highest-signal cases (Tier 1 = "explicit crisis case studies named in the
 thesis outline itself" per the transcription priority list) -- citing
 this pilot's numbers in the thesis proper without the full 44-country
@@ -2426,7 +2432,7 @@ used internally to help infer `action`. It had been silently dropped from
 accepted in the raw-file format. Reasoning: outlook deterioration (e.g.
 Stable → Negative with no letter-grade change) often precedes an actual
 downgrade by months — a plausible leading-indicator signal beyond
-letter-grade actions alone. Thesis §1.5/§4.2.4's formal H1 test is
+letter-grade actions alone. Thesis Wstęp §5/§3.2.4's formal H1 test is
 defined against letter-grade downgrades specifically, so capturing
 outlook isn't required for that test to run, but the marginal
 transcription cost is ~zero (the value is already being read off the same
@@ -2451,14 +2457,14 @@ deleted — `data/processed/ratings_panel.csv` is back to 0 rows).
 
 Commit: (pending, this session) · Issue: #3
 
-### 2026-08-10 — Stage 1 unsupervised sovereign risk classification built (§4.2.1-4.2.3, §4.2.5)
+### 2026-08-10 — Stage 1 unsupervised sovereign risk classification built (§3.2.1-3.2.3, §3.2.5)
 **What**: Built the actual clustering step on top of the Stage 1 feature
 matrix (`3c11d87`) — `src/stage1_clustering/clustering_utils.py` (shared
-primitives), `algorithm_comparison.py` (§4.2.1-4.2.3, full-sample
+primitives), `algorithm_comparison.py` (§3.2.1-3.2.3, full-sample
 diagnostic: K-Means/GMM/HDBSCAN x CORE/EXTENDED, k=2-8, silhouette/BIC/AIC,
-ARI vs DM/EM), and `build_risk_labels.py` (§4.2.5, the actual
+ARI vs DM/EM), and `build_risk_labels.py` (§3.2.5, the actual
 point-in-time-safe production pipeline: refits the chosen model at every
-rebalancing date using only `rebal_date <= date` rows). `§4.2.4` (lead/lag
+rebalancing date using only `rebal_date <= date` rows). `§3.2.4` (lead/lag
 vs ratings) stubbed only — blocked on issue #3's ratings data, see below.
 Full write-up of every decision (feature set, imputation, algorithm/k
 selection with real numbers, DM/EM disagreement highlights, leakage
@@ -2477,14 +2483,14 @@ quarter. Root cause: VIX/US-10y/DXY are identical across all 44 countries
 within a given quarter (zero cross-sectional variance, all their variance
 is across time), so in a full-sample pooled fit they let global regime
 dominate the distance metric over actual country differentiation.
-Rechecking thesis §3.3's Group C table confirmed VIX and DXY are scoped
+Rechecking thesis §2.3's Group C table confirmed VIX and DXY are scoped
 to Stage 2 only ("2"), not Stage 1 ("1 & 2") — the original feature set
 was a misread of the thesis's own spec, not a defensible design choice.
 Removing them raised full-sample ARI vs DM/EM from 0.258 to 0.377 (k=3,
 core, K-Means) and every year in the sample now shows a genuine mix of
 all three tiers. A weaker residual version of the same effect persists
 (`us_10y`/`curve_slope` are still global-only and the thesis keeps them in
-Stage 1 regardless) — flagged in the open items table above as a §5.5
+Stage 1 regardless) — flagged in the open items table above as a §4.5
 robustness-check candidate, not silently fixed further.
 
 **Finding 2 — HDBSCAN doesn't work on this feature set**: swept
@@ -2494,14 +2500,14 @@ silhouette of any combo tried (0.33) but ARI vs DM/EM of 0.018
 (near-random) — inspection showed why: one 3,153-row catch-all cluster, a
 62-row all-DM outlier pocket, and 261 scattered noise points. It isolates
 density outliers, not a risk stratification. Documented rather than
-forced to "work" — a legitimate negative result for §4.2.1's algorithm
+forced to "work" — a legitimate negative result for §3.2.1's algorithm
 comparison, not a bug in the implementation.
 
 **Algorithm/k choice**: K-Means, CORE tier, k=3 — chosen because it's the
 best ARI among all k=3 combinations tried (0.377, vs GMM-core-k3's 0.296),
 its silhouette is statistically indistinguishable from K-Means-core's
 best k (flat 0.13-0.17 across k=2-8, no real elbow — itself a citable
-§4.2.1/§6.1 finding that sovereign risk doesn't form tightly separated
+§3.2.1/§5.1 finding that sovereign risk doesn't form tightly separated
 clusters here), and unlike k=2 (which has the single highest raw ARI,
 0.554) it actually supports the thesis's 3-tier output structure — k=2
 structurally can never populate the `excluded` middle tier. EXTENDED tier
@@ -2512,12 +2518,12 @@ downstream.
 **DM/EM disagreement highlights** (from `stage1_dmem_disagreements.csv`,
 full-sample diagnostic fit): Poland, Chile, Czech Republic, South Africa,
 Malaysia, Vietnam, and Kazakhstan repeatedly land in `core-eligible`
-(matches thesis §4.2.3's own named "stable EM" examples exactly). Greece,
+(matches thesis §3.2.3's own named "stable EM" examples exactly). Greece,
 Italy, Japan, Portugal, and the UK repeatedly land in
 `satellite-candidate`, including as early as 2006 — before the 2010-2012
 crisis. That's a genuinely interesting early-warning result worth
-pursuing in §6.1/§6.4, but formal validation (does it precede the actual
-rating downgrade?) needs §4.2.4, which is blocked on real ratings data.
+pursuing in §5.1/§5.4, but formal validation (does it precede the actual
+rating downgrade?) needs §3.2.4, which is blocked on real ratings data.
 
 **Leakage check**: `test_lag_rules.py` extended with a structural check
 (`training_window_end == rebal_date` for every row) and a real
@@ -2532,9 +2538,9 @@ environment — installed via `pip install scikit-learn hdbscan` as part of
 this session (sklearn 1.9.0, hdbscan installed cleanly, no dependency
 conflicts).
 
-**Open**: §4.2.4 still blocked on issue #3 (ratings — see below); also
+**Open**: §3.2.4 still blocked on issue #3 (ratings — see below); also
 needs a continuous risk score (not just the categorical tier) added to
-`build_risk_labels.py` before it can implement thesis §1.5's paired
+`build_risk_labels.py` before it can implement thesis Wstęp §5's paired
 t-test, which isn't solved yet either. Tracked in a new GitHub issue
 (Stage 1 clustering, predecessor: issue #2 — Stage 1 feature matrix).
 
@@ -2593,7 +2599,7 @@ fundamentals (lagged) and from bond market data (also zero-lag, but for a
 different reason — market prices are observed same-day, not announced).
 
 **Open**: 0/44 countries actually collected. This is the blocking gap for
-§4.2.3/§4.2.4 and RQ1/H1, not the pipeline itself.
+§3.2.3/§3.2.4 and RQ1/H1, not the pipeline itself.
 
 Commit: (pending, this session) · Issue: #3
 
@@ -2660,7 +2666,7 @@ clustering input).
   known 2012 crisis spike (quarter-end 2012-06-30: 2447.6bps, consistent
   with post-election spread easing).
 - `ZSPREAD` is over the swap curve, not UST — flagged for Appendix B since
-  it's not a drop-in match for thesis §3.3's Group A spec.
+  it's not a drop-in match for thesis §2.3's Group A spec.
 - Bond market fields treated as same-day-knowable (no publication lag),
   unlike macro fundamentals — quarter-end resampling uses last
   observation in-quarter, not mean.
@@ -2674,7 +2680,7 @@ clustering input).
 - **Correction to a pre-implementation estimate**: expected only Peru to
   be excluded by the 0.7 threshold; actual run excluded 3 countries
   (Peru, Hungary, Colombia), giving 41 not 43 countries in the extended
-  tier. Flagged as a candidate for the thesis's §5.5 sensitivity sweep.
+  tier. Flagged as a candidate for the thesis's §4.5 sensitivity sweep.
 
 Commit: `3c11d87` · issue #2 (Stage 1 feature matrix) closed by this work
 
@@ -2733,7 +2739,7 @@ Commits: `84c2b45`, `01f7cfb`
 
 ### 2026-07-28 — Repo scaffolded
 **What**: Initial project structure created — `src/` organized by thesis
-stage (1:1 with thesis §4.2–§4.5), `configs/`, `data/`, `docs/`,
+stage (1:1 with thesis §3.2–§3.5), `configs/`, `data/`, `docs/`,
 `notebooks/`, `CLAUDE.md`, and the full thesis outline doc
 (`docs/thesis_outline_sovereign.md`) added as the canonical reference for
 chapter structure, hypotheses, and data source specs. `.gitignore` added

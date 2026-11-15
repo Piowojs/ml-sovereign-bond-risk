@@ -174,7 +174,7 @@ def test_stage1_risk_labels_training_window_never_exceeds_rebal_date():
 
 
 def test_stage1_risk_labels_no_future_leakage():
-    """The real leakage check for Stage 1 clustering (thesis Sec 4.2.5):
+    """The real leakage check for Stage 1 clustering (thesis Sec 3.2.5):
     proves build_risk_labels.label_panel() never lets a rebalancing
     date's clustering fit see rows from a later date. Re-runs
     label_panel() on the feature matrix truncated to a cutoff date and
@@ -296,7 +296,7 @@ def test_stage2_training_window_never_uses_unrealized_target():
 
 
 def test_stage2_return_signals_no_future_leakage():
-    """The real leakage check for Stage 2 (thesis Sec 4.3), mirroring
+    """The real leakage check for Stage 2 (thesis Sec 3.3), mirroring
     test_stage1_risk_labels_no_future_leakage's design -- including the gap
     that check's own docstring flags as having been a real one caught and
     fixed in Stage 1: checking only a single cutoff date would miss leakage

@@ -1,7 +1,7 @@
 """Shared building blocks for Stage 1 unsupervised sovereign risk
-classification (thesis Sec 4.2). Used by both `algorithm_comparison.py`
-(Sec 4.2.1-4.2.3, full-sample diagnostic) and `build_risk_labels.py`
-(Sec 4.2.5, walk-forward point-in-time production labels).
+classification (thesis Sec 3.2). Used by both `algorithm_comparison.py`
+(Sec 3.2.1-3.2.3, full-sample diagnostic) and `build_risk_labels.py`
+(Sec 3.2.5, walk-forward point-in-time production labels).
 
 Two distinct clustering "modes" share the same primitives here, and it
 matters which one a caller is using:
@@ -126,7 +126,7 @@ def raw_risk_proxy_per_cluster(raw_yield_spread: pd.Series, cluster_labels: np.n
 
 def rank_to_tier(rank: int, n_ranked_clusters: int) -> str:
     """Buckets a 0-indexed (0 = lowest risk) cluster rank into one of the
-    three thesis Sec 4.2.5 tiers. For n_ranked_clusters == 3 this is an
+    three thesis Sec 3.2.5 tiers. For n_ranked_clusters == 3 this is an
     exact 1:1 mapping. For other k, splits into thirds by rank so the
     bucket sizes stay balanced regardless of k -- documented in
     algorithm_comparison.py's output for whichever k is not 3."""
@@ -143,7 +143,7 @@ def cluster_labels_to_risk_tiers(cluster_labels: np.ndarray, raw_yield_spread: p
     """Maps raw cluster labels (e.g. from KMeans/GMM/HDBSCAN) to risk-tier
     strings, ranking clusters by raw_risk_proxy_per_cluster. HDBSCAN noise
     points (raw label -1) are mapped directly to "excluded" -- an
-    intentional semantic fit, not an approximation: thesis Sec 4.2.5
+    intentional semantic fit, not an approximation: thesis Sec 3.2.5
     defines "excluded" as moderate risk, too uncertain for either sleeve,
     which is exactly what an HDBSCAN noise point is (doesn't fit any
     density-coherent risk regime).
@@ -170,7 +170,7 @@ def kmeans_bic(kmeans, X: np.ndarray) -> float:
     within-cluster sum of squares (the standard KMeans-as-Gaussian-mixture
     approximation, e.g. Pelleg & Moore 2000) -- KMeans has no native
     likelihood, so this is what lets it be compared to GMM's BIC/AIC on
-    the same k-range as thesis Sec 4.2.2 asks for."""
+    the same k-range as thesis Sec 3.2.2 asks for."""
     n, d = X.shape
     k = kmeans.n_clusters
     if n <= k:

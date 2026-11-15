@@ -1,4 +1,4 @@
-"""Build the Stage 1 country x quarter feature matrix (thesis Sec 4.2 input).
+"""Build the Stage 1 country x quarter feature matrix (thesis Sec 3.2 input).
 
 Produces two wide, country x quarter-end panels for the sovereign universe in
 configs/universe.yaml:

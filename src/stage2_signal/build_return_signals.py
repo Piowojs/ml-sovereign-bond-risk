@@ -1,4 +1,4 @@
-"""Stage 2 output (thesis Sec 4.3.5) -- the walk-forward-safe, point-in-time-
+"""Stage 2 output (thesis Sec 3.3.5) -- the walk-forward-safe, point-in-time-
 correct production pipeline. At every rebalancing date, refits the models
 chosen by model_comparison.py (configs/params.yaml:
 stage2_signal.chosen_model_classification/chosen_model_regression, both
@@ -6,7 +6,7 @@ stage2_signal.chosen_model_classification/chosen_model_regression, both
 using only rows whose target is already realized as of that date
 (stage2_utils.build_expanding_train_mask), then scores that date's EM
 satellite-candidate cross-section: a continuous predicted excess-return
-score (the "expected excess return signal" thesis Sec 4.3.5 asks for) and a
+score (the "expected excess return signal" thesis Sec 3.3.5 asks for) and a
 classification probability of positive excess return, both used to rank
 sovereigns and flag top-N membership for every N in
 configs/params.yaml: stage2_signal.top_n_options (5/10/15 -- built for all

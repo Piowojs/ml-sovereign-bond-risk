@@ -1,9 +1,9 @@
-"""Stage 2 feature importance (thesis Sec 4.3.4) -- SHAP values for the
+"""Stage 2 feature importance (thesis Sec 3.3.4) -- SHAP values for the
 model that performed best in model_comparison.py's walk-forward evaluation
 (configs/params.yaml: stage2_signal.chosen_model_regression, "lasso" --
 LASSO won both the classification-AUC and regression-IC framings; see
 CLAUDE.md "Stage 2 signal"). Answers the interpretive question thesis
-Sec 6.2 depends on: do fundamental macro factors or market-based signals
+Sec 5.2 depends on: do fundamental macro factors or market-based signals
 dominate the EM excess-return prediction?
 
 Deliberately a full-sample diagnostic fit (all target-realized rows with

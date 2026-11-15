@@ -13,6 +13,21 @@ Full thesis outline (chapters, methodology, hypotheses, exact data sources per
 chapter): @docs/thesis_outline_sovereign.md — consult it when naming outputs,
 writing docstrings, or checking that code maps to the right thesis section.
 
+**Thesis chapter renumbering (2026-11-15).** Wstęp (Introduction) and
+Zakończenie (Conclusion) are now unnumbered; old chapters 2–6 became 1–5.
+Mapping from the old scheme (used in all git history and commit messages
+before this date): old §1.x → "Wstęp §x", old §2.x → §1.x, §3.x → §2.x,
+§4.x → §3.x, §5.x → §4.x, §6.x → §5.x, old §7.x → "Zakończenie §x";
+appendices unchanged. The stage↔section isomorphism is now Stage 1 = §3.2,
+Stage 2 = §3.3, Stage 3 = §3.4, Stage 4 = §3.5; H1/H2/H3 live in Wstęp §5.
+All current references in CLAUDE.md, state.md, code comments, and
+`docs/thesis_outline_sovereign.md` use the NEW numbering, with two
+exceptions: references to `docs/return_construction_spec.md`'s own internal
+sections ("spec §6", "spec §7" — the spec's numbering is its own, not the
+thesis's) and the three verbatim pre-registration blocks in state.md
+(Italy/Spain, Egypt/Pakistan/Nigeria, H2 multi-horizon), which keep the old
+numbering they were committed under, each with a pointer line to this note.
+
 For a chronological log of what's been done, key decisions and their
 rationale, and open items (distinct from this file's operational focus),
 see `state.md` at the repo root — check it for the fuller narrative behind
@@ -24,17 +39,17 @@ This is an early-stage scaffold, not a working pipeline yet:
   quarter feature matrix — see "Stage 1 feature matrix" below for full
   details. The actual clustering step now exists too:
   `src/stage1_clustering/clustering_utils.py` (shared primitives),
-  `algorithm_comparison.py` (§4.2.1-4.2.3, diagnostic), and
-  `build_risk_labels.py` (§4.2.5, walk-forward-safe production labels) —
+  `algorithm_comparison.py` (§3.2.1-3.2.3, diagnostic), and
+  `build_risk_labels.py` (§3.2.5, walk-forward-safe production labels) —
   see "Stage 1 clustering" below for full details, including a
   methodologically important finding (VIX/DXY had to be dropped from the
   Stage 1 feature set — see that section). `stage2_signal/` is now built
   too — `stage2_utils.py` (shared primitives), `build_stage2_panel.py`
-  (§4.3.2 target construction + §3.3 Stage-2-scoped features),
-  `model_comparison.py` (§4.3.3 walk-forward LASSO/RF/XGBoost comparison,
-  diagnostic), `build_return_signals.py` (§4.3.5 walk-forward-safe
-  production signal + top-N output), `feature_importance.py` (§4.3.4
-  SHAP), and `multi_horizon_robustness.py` (§2.4/§2.8 pre-registered
+  (§3.3.2 target construction + §2.3 Stage-2-scoped features),
+  `model_comparison.py` (§3.3.3 walk-forward LASSO/RF/XGBoost comparison,
+  diagnostic), `build_return_signals.py` (§3.3.5 walk-forward-safe
+  production signal + top-N output), `feature_importance.py` (§3.3.4
+  SHAP), and `multi_horizon_robustness.py` (§1.4/§1.8 pre-registered
   robustness check across monthly/quarterly/semi-annual return horizons)
   — see "Stage 2 signal" below for full details, including a real
   data gap discovered before building (no coupon/cashflow field exists
@@ -67,7 +82,7 @@ This is an early-stage scaffold, not a working pipeline yet:
   `asof_max_available_date` may exceed its `rebal_date`). Extend it with
   walk-forward / training-window checks as those are built.
 - **Confirmed full-sample window: 2005–2025** (not the 2005–2023 figure
-  still in `docs/thesis_outline_sovereign.md` §1.4 — that text is being
+  still in `docs/thesis_outline_sovereign.md` Wstęp §4 — that text is being
   updated separately). All data pulls and the Stage 1 feature matrix use
   `2005-01-01`–`2025-12-31`; treat this as the authoritative range for any
   later stage.
@@ -138,38 +153,38 @@ linter config, no packaging file). What exists today:
   and logs coverage against the 44-country universe. No API/desktop app
   involved; safe to re-run any time as more countries' files are added.
 - Run the Stage 1 algorithm comparison (diagnostic, full-sample —
-  §4.2.1-4.2.3): `python src/stage1_clustering/algorithm_comparison.py`
+  §3.2.1-3.2.3): `python src/stage1_clustering/algorithm_comparison.py`
   — writes `data/processed/stage1_algorithm_comparison.csv`,
   `stage1_dmem_disagreements.csv`, `stage1_dmem_ari_by_quarter.csv`.
   Requires `scikit-learn` and `hdbscan` (in `requirements.txt`).
-- Build the Stage 1 walk-forward risk labels (production, §4.2.5):
+- Build the Stage 1 walk-forward risk labels (production, §3.2.5):
   `python src/stage1_clustering/build_risk_labels.py` — reads the chosen
   algorithm/tier/k from `configs/params.yaml: stage1_clustering`, writes
   `data/processed/stage1_risk_labels.parquet`. Run
   `algorithm_comparison.py` first if changing the chosen combo — see
   "Stage 1 clustering" below.
-- Build the Stage 2 target + feature panel (§4.3.2, §3.3 Stage-2-scoped
+- Build the Stage 2 target + feature panel (§3.3.2, §2.3 Stage-2-scoped
   features): `python src/stage2_signal/build_stage2_panel.py` — reads
   `data/processed/stage1_risk_labels.parquet` (EM satellite-candidate
   rows) and `stage1_feature_matrix_core.parquet`, plus the raw
   `data/raw/bonds/*.csv` files directly for price/momentum/carry/spread
   z-score, writes `data/processed/stage2_signal_panel.parquet`. Run this
   first whenever Stage 1's risk labels change.
-- Run the Stage 2 model comparison (diagnostic, walk-forward — §4.3.3):
+- Run the Stage 2 model comparison (diagnostic, walk-forward — §3.3.3):
   `python src/stage2_signal/model_comparison.py` — writes
   `data/processed/stage2_model_comparison.csv` (per-fold) and
   `stage2_model_comparison_summary.csv`. See "Stage 2 signal" below for
   why LASSO was chosen over Random Forest/XGBoost for both framings.
-- Build the Stage 2 walk-forward return signals (production, §4.3.5):
+- Build the Stage 2 walk-forward return signals (production, §3.3.5):
   `python src/stage2_signal/build_return_signals.py` — reads the chosen
   models from `configs/params.yaml: stage2_signal`, writes
   `data/processed/stage2_return_signals.parquet` (includes `top_5`/
   `top_10`/`top_15` selection flags per rebalancing date).
-- Compute Stage 2 SHAP feature importance (§4.3.4):
+- Compute Stage 2 SHAP feature importance (§3.3.4):
   `python src/stage2_signal/feature_importance.py` — writes
   `data/processed/stage2_shap_importance.csv`. Full-sample diagnostic fit,
   not a walk-forward output — see "Stage 2 signal" below.
-- Run the H2 multi-horizon robustness check (§2.4, §2.8 — pre-registered,
+- Run the H2 multi-horizon robustness check (§1.4, §1.8 — pre-registered,
   see "Stage 2 signal" below and `state.md`):
   `python src/stage2_signal/multi_horizon_robustness.py` — writes
   `data/processed/stage2_multi_horizon_robustness.csv` (per-fold) and
@@ -188,12 +203,12 @@ linter config, no packaging file). What exists today:
 ## Repo structure — pipeline isomorphism
 Folder layout mirrors the thesis chapters/stages 1:1. Key rules:
 - `src/` is organized by stage, matching thesis section numbers (Stage 1 =
-  §4.2, Stage 2 = §4.3, Stage 3 = §4.4, Stage 4 = §4.5 in the thesis outline).
+  §3.2, Stage 2 = §3.3, Stage 3 = §3.4, Stage 4 = §3.5 in the thesis outline).
 - `configs/params.yaml` is meant to centralize ALL hyperparameters — never
   hardcode a hyperparameter in code; this file is what supports the
-  sensitivity analysis in thesis §5.5.
+  sensitivity analysis in thesis §4.5.
 - `data/raw/` is READ-ONLY. Never write to it, never modify files in it.
-- Output files should be named by thesis section (e.g. `fig_5_1_cluster_map.png`).
+- Output files should be named by thesis section (e.g. `fig_4_1_cluster_map.png`).
 
 ## Data acquisition status (settled facts — do not re-derive)
 - Use `lseg-data`, NOT `eikon` — `eikon` is incompatible with Refinitiv
@@ -231,7 +246,7 @@ Folder layout mirrors the thesis chapters/stages 1:1. Key rules:
   `bond_data_pull_reconstructed.py`'s `UNIVERSE` already reflects the
   exclusions and matches `configs/universe.yaml`.
 - EM data sparsity is a structural constraint of the university licence, not
-  a script error — thesis sections 1.4, 3.2, 3.3, 3.4, 4.2.1, 6.6, and
+  a script error — thesis sections Wstęp §4, 2.2, 2.3, 2.4, 3.2.1, 5.6, and
   Appendix B need to reflect this framing.
 - **Bond/CDS/ratings pull provenance**: the raw data in `data/raw/bonds/`
   and `data/raw/ratings/` came from an untracked script (`data_pull.py`, run
@@ -326,7 +341,7 @@ writing to `data/raw/macro/macro_fundamentals.csv` (tidy long format:
 
 ## Ratings data acquisition (issue #3 — settled facts)
 Real sovereign rating history (not just a current snapshot) is required for
-thesis §4.2.3/§4.2.4 and RQ1/H1 (does the ML risk score deteriorate ahead
+thesis §3.2.3/§3.2.4 and RQ1/H1 (does the ML risk score deteriorate ahead
 of agency downgrades?). `TR.IssuerRating` (Refinitiv) is a confirmed dead
 end for this — SDate/EDate are silently ignored and it only ever returns
 the current snapshot, under our licence. Free public alternatives were
@@ -370,7 +385,7 @@ third-party aggregators, not primary agency sources — cite them as such.
   only (e.g. `5/2026`), not exact day. Convention: use the 1st of the
   month as `date`, and append `(month-precision)` to `source` for
   traceability. Coarser than exact-day, but still well within thesis
-  §4.5.1's quarterly walk-forward fold granularity, so H1's quarter-level
+  §3.5.1's quarterly walk-forward fold granularity, so H1's quarter-level
   lead/lag windows lose no real resolution. This does **not** interact
   with `test_lag_rules.py`'s zero-lag assertion — `available_date` is
   always set equal to whatever `date` value is in the raw file, so that
@@ -401,7 +416,7 @@ yet for a country just means it's absent from the output, not an error.
   just used internally — outlook deterioration (e.g. Stable → Negative,
   no letter-grade change) can precede an actual downgrade by months, a
   potential leading-indicator signal beyond letter-grade actions alone.
-  Thesis §1.5/§4.2.4's formal H1 test is defined against letter-grade
+  Thesis Wstęp §5/§3.2.4's formal H1 test is defined against letter-grade
   downgrades specifically, so this isn't required for that test, but was
   captured now — marginal transcription cost ~zero — rather than
   retrofitted later if a future analysis wants it.
@@ -584,7 +599,7 @@ yet for a country just means it's absent from the output, not an error.
   — now tracked in a new `state.md` section ("CE agency-coverage gap
   tracking") watching whether this recurs for other frontier/lower-rated
   sovereigns, which would mean CE can't be treated as a uniform primary
-  source across the full universe for Chapter 3's purposes. Three
+  source across the full universe for Chapter 2's purposes. Three
   straight zero-conflict countries in this group (vs. every
   fiscal-deterioration-group country having at least one conflict) is
   now also tracked as its own open question — see `state.md`'s GE
@@ -693,7 +708,7 @@ pull is still an open gap" below.
 - **`ZSPREAD` is a spread over the swap curve, not over US Treasuries.**
   This matters beyond naming: it embeds a swap/OIS basis component on top of
   sovereign credit risk, so it is not a drop-in equivalent to a UST-based
-  spread as described in thesis §3.3's Group A feature table. Flag this
+  spread as described in thesis §2.3's Group A feature table. Flag this
   explicitly in Appendix B when documenting feature construction formulas.
 - **Bond market data has no publication lag.** Unlike macro fundamentals,
   `yield_spread_bps`, `mod_duration`, `convexity`, and `cds_5y` are treated
@@ -733,7 +748,7 @@ pull is still an open gap" below.
     expected the 0.7 threshold to exclude only Peru (55% coverage). The
     actual run excludes **three** EM countries — Peru (54%), Hungary (64%),
     Colombia (66%) — giving an extended tier of **41 countries (18 DM + 23
-    EM)**, not 43. This threshold is a candidate for the thesis's §5.5
+    EM)**, not 43. This threshold is a candidate for the thesis's §4.5
     sensitivity sweep (0.6/0.7/0.8) once Stage 1 clustering results exist;
     no need to test multiple thresholds before then.
 - **`coverage_tier`** is a per-row metadata column (not a tier-membership
@@ -767,22 +782,22 @@ pull is still an open gap" below.
   `data/processed/ratings_panel.csv` — currently 1,512 rows across 13
   countries (see "Ratings data acquisition" above for the full status).
   Both Stage 1 tiers correctly continue to exclude ratings regardless
-  (ratings are a Stage 1 validation target — §4.2.3/§4.2.4 — not a
+  (ratings are a Stage 1 validation target — §3.2.3/§3.2.4 — not a
   clustering input). Tracked in issue #3: the remaining 31 countries
-  (Tier 3) still block the *full-universe* §4.2.4 result and RQ1/H1, but
+  (Tier 3) still block the *full-universe* §3.2.4 result and RQ1/H1, but
   a 13-country pilot has already run — see "Stage 1 clustering" below.
 
-## Stage 1 clustering (thesis §4.2.1-4.2.3, §4.2.5 — settled facts)
+## Stage 1 clustering (thesis §3.2.1-3.2.3, §3.2.5 — settled facts)
 Built on top of the feature matrices above. Two genuinely separate
 pipelines share primitives in `src/stage1_clustering/clustering_utils.py`
 but must not be conflated:
-- `algorithm_comparison.py` (§4.2.1-4.2.3) fits **once on the full
+- `algorithm_comparison.py` (§3.2.1-3.2.3) fits **once on the full
   2005-2025 panel, pooled across all quarters** — diagnostic/descriptive
   only, used to pick an algorithm/tier/k and to examine DM/EM
   disagreements. **Not point-in-time safe** — a model fit on the whole
   sample implicitly "knows" about 2025 when scoring a 2008 row — so its
   output must never feed Stage 3/4.
-- `build_risk_labels.py` (§4.2.5) is the actual production pipeline: at
+- `build_risk_labels.py` (§3.2.5) is the actual production pipeline: at
   every rebalancing date it refits the chosen model from scratch using
   only rows with `rebal_date <= that date` (expanding window, same
   principle as the macro publication-lag rule elsewhere in this repo),
@@ -791,7 +806,7 @@ but must not be conflated:
   (see below) verifies.
 
 **Feature set — and a methodologically important correction.** Per thesis
-§3.3's Group C table, only `curve_slope` and `us_10y` are scoped to Stage
+§2.3's Group C table, only `curve_slope` and `us_10y` are scoped to Stage
 1 ("1 & 2"); VIX and DXY are scoped to Stage 2 only ("2"). An early
 version of this pipeline included `vix`/`dxy_proxy` in the Stage 1
 feature set anyway, and it produced a concrete, diagnosable failure: since
@@ -803,7 +818,7 @@ of country — e.g. 2008-2015 had **zero** countries in `core-eligible`
 across the whole period, and 2023/2025 had **zero** in
 `excluded`/`satellite-candidate`. That's a global-regime artifact, not
 country risk differentiation, and it's the opposite of what Stage 1 is
-supposed to produce. Restricting the feature set to what §3.3 actually
+supposed to produce. Restricting the feature set to what §2.3 actually
 specifies (dropping `vix`/`dxy_proxy`) fixed this: full-sample ARI vs
 DM/EM rose from 0.258 to 0.377 (KMeans, core, k=3) and every year in the
 sample now has a genuine mix of all three tiers. A **residual, weaker**
@@ -811,7 +826,7 @@ version of the same effect persists even after the fix (`core-eligible`
 is genuinely 0 for several consecutive quarters in 2009-2017 in the
 walk-forward output — see below), because `us_10y`/`curve_slope` are
 still global-only features and the thesis's own spec keeps them in Stage
-1; flagged as a candidate robustness check for §5.5, not fixed further
+1; flagged as a candidate robustness check for §4.5, not fixed further
 without a methodology-level decision to override the thesis's declared
 feature groups. Final Stage 1 clustering feature set (`configs/params.yaml:
 stage1_clustering.core_features`, extended tier adds `mod_duration` +
@@ -836,7 +851,7 @@ always the training-window median, and their cluster assignment is
 effectively driven entirely by macro fundamentals + global factors, never
 their own market-priced risk.
 
-**Algorithm/k selection (§4.2.1-4.2.2) — actual numbers, not assumption.**
+**Algorithm/k selection (§3.2.1-3.2.2) — actual numbers, not assumption.**
 Ran K-Means and GMM for k=2..8 (silhouette, BIC, AIC — KMeans's BIC/AIC
 use the standard spherical-Gaussian approximation, since KMeans has no
 native likelihood) and HDBSCAN swept at `min_cluster_size` = 1%/2%/5% of
@@ -851,7 +866,7 @@ numbers in `data/processed/stage1_algorithm_comparison.csv`). Findings:
   that's 100% DM (an extreme low-yield outlier pocket, not a risk tier),
   and 261 noise points scattered across both DM and EM. It isolates a
   density outlier, not an interpretable risk stratification. This is a
-  clean instance of thesis §4.2.1's own caveat about HDBSCAN cutting both
+  clean instance of thesis §3.2.1's own caveat about HDBSCAN cutting both
   ways: robust to outliers, but here that means it collapses everything
   *except* the outliers into one undifferentiated mass.
 - **GMM underperforms K-Means at essentially every k on both tiers** —
@@ -861,9 +876,9 @@ numbers in `data/processed/stage1_algorithm_comparison.csv`). Findings:
 - **k=3 is not the silhouette-maximizing choice for K-Means** (silhouette
   is essentially flat across k=2..8, 0.13-0.17, no real elbow — the
   clusters are not that well separated at any k, itself a citable finding
-  for §4.2.1/§6.1: sovereign risk doesn't form tight, well-separated
+  for §3.2.1/§5.1: sovereign risk doesn't form tight, well-separated
   clusters in this feature space). **k=2 has the highest raw ARI**
-  (0.554, core) but is structurally unusable for §4.2.5's 3-tier output —
+  (0.554, core) but is structurally unusable for §3.2.5's 3-tier output —
   by construction it never populates the `excluded` middle tier at all,
   collapsing the framework into a binary DM/EM lookalike with none of the
   "too uncertain for either sleeve" middle case the thesis output spec
@@ -878,29 +893,29 @@ numbers in `data/processed/stage1_algorithm_comparison.csv`). Findings:
   coverage. `configs/params.yaml: stage1_clustering.chosen_algorithm/
   chosen_tier/chosen_k` = `kmeans`/`core`/`3`.
 
-**DM/EM validation and disagreements (§4.2.3).** Overall full-sample ARI
+**DM/EM validation and disagreements (§3.2.3).** Overall full-sample ARI
 0.377 (chosen combo); per-quarter ARI ranges 0.007-0.688, mean 0.381
 (`data/processed/stage1_dmem_ari_by_quarter.csv`) — confirms the panel
 *is* quarter-structured and validation must be (and is) computed
 per-rebalancing-date, not once on the whole sample. The disagreement list
 (`data/processed/stage1_dmem_disagreements.csv`, 1,139 rows) reproduces
-exactly the kind of boundary case thesis §4.2.3 expects: Poland, Chile,
+exactly the kind of boundary case thesis §3.2.3 expects: Poland, Chile,
 Czech Republic, South Africa, Malaysia, Vietnam, and Kazakhstan appear
-repeatedly in `core-eligible` (the "stable EM" case §4.2.3 names by name),
+repeatedly in `core-eligible` (the "stable EM" case §3.2.3 names by name),
 while Greece, Italy, Japan, Portugal, and the UK appear repeatedly in
 `satellite-candidate` — including as early as 2006, **before** the
 2010-2012 crisis, which is a genuinely interesting early-warning signal
-worth pursuing in §6.1/§6.4 once ratings data exists to test it formally
-against actual downgrade timing (§4.2.4 — a 13-country pilot has run,
+worth pursuing in §5.1/§5.4 once ratings data exists to test it formally
+against actual downgrade timing (§3.2.4 — a 13-country pilot has run,
 the full-universe version is still blocked on ratings coverage; see below).
 
-**Walk-forward output (§4.2.5).** `data/processed/stage1_risk_labels.parquet`
+**Walk-forward output (§3.2.5).** `data/processed/stage1_risk_labels.parquet`
 — one row per (country, rebal_date) with `risk_label` (`core-eligible` /
 `excluded` / `satellite-candidate` / `insufficient_data`),
 `raw_cluster_label`, and diagnostic columns (`n_features_observed`,
 `training_window_start/end/n_rows`). HDBSCAN noise points and any
 predicted label unseen in a given date's training fit are both mapped to
-`excluded` — an intentional semantic fit (§4.2.5 defines `excluded` as
+`excluded` — an intentional semantic fit (§3.2.5 defines `excluded` as
 "too uncertain for either sleeve," which is exactly what a density-noise
 or unseen-cluster point is), not an approximation. `insufficient_data`
 is correctly 100% of 2005 and most of 2006 (before macro fundamentals are
@@ -914,7 +929,7 @@ era, no country may look unambiguously low-risk relative to the model's
 learned notion of "calm regime"), but flagged rather than asserted, since
 it's confounded with the known residual global-feature effect.
 
-**§4.2.4 (lead/lag vs. ratings) exists as a working 13-country pilot,
+**§3.2.4 (lead/lag vs. ratings) exists as a working 13-country pilot,
 not the full-universe result.** `src/stage1_clustering/ratings_leadlag_stub.py`
 is no longer a `NotImplementedError` stub — `compute_lead_lag()` /
 `summarize_lead_lag()` are real code, run against the 13 reconciled
@@ -923,12 +938,12 @@ countries in `ratings_panel.csv` (output:
 surviving pre-registrations in `state.md`). The filename keeps "stub"
 deliberately — the script's docstring explains it is scoped as a
 feasibility pilot, selection-biased toward the highest-signal countries,
-and must not be cited as a §5.1 result. The continuous-score follow-up
+and must not be cited as a §4.1 result. The continuous-score follow-up
 previously flagged here is done: `build_risk_labels.py` now emits a
 walk-forward-safe `risk_score` column (0 = on the low-risk K-Means
 centroid, 1 = on the high-risk centroid, `d_low/(d_low+d_high)`;
 K-Means-only — needs a real extension if `chosen_algorithm` ever
-changes). The full-universe §4.2.4 remains blocked on the 31
+changes). The full-universe §3.2.4 remains blocked on the 31
 untranscribed countries (issue #3).
 
 **Leakage check.** `test_lag_rules.py` has two Stage-1-clustering-specific
@@ -943,21 +958,21 @@ scaling stats, or the cluster fit itself) would change the truncated run's
 labels — an exact match is therefore the right bar, not a tolerance, and
 both checks currently pass.
 
-## Stage 2 signal (thesis §4.3.1-4.3.5 — settled facts)
+## Stage 2 signal (thesis §3.3.1-3.3.5 — settled facts)
 Built on `src/stage2_signal/`. Operates only on the EM subset of Stage 1's
 `satellite-candidate` output (`dm_em_flag == "EM" and risk_label ==
 "satellite-candidate"` in `stage1_risk_labels.parquet`) — deliberately
 excludes the occasional DM row that lands in `satellite-candidate` under
 Stage 1's documented residual global-feature regime artifact (see "Stage 1
 clustering" above), since Stage 2 is scoped to the EM universe per thesis
-Ch.1/§4.4.1.
+Wstęp/§3.4.1.
 
 **Data gap confirmed before building, not assumed away.** No explicit
 coupon-rate/cashflow field exists anywhere in the raw bond pull (11 fields
 total — confirmed against `bond_data_pull_reconstructed.py`'s own field
 list) — the bond CSVs are generic benchmark composites (`XX10YT=RR` RICs),
 not individual fixed-coupon issues with a cashflow schedule. Thesis
-§4.3.2's "excess total return (price return + coupon)" is therefore **not
+§3.3.2's "excess total return (price return + coupon)" is therefore **not
 constructible as a true coupon-inclusive total return**. What's built
 instead, flagged per row rather than silently presented as equivalent
 (`price_field_used`, `has_income_component` columns in
@@ -987,7 +1002,7 @@ instead, flagged per row rather than silently presented as equivalent
   from `us_10y`/`us_2y`.
 
 **Feature set is deliberately narrower than reusing Stage 1's whole
-feature list** — filtered to thesis §3.3's Group A/B/C table entries
+feature list** — filtered to thesis §2.3's Group A/B/C table entries
 marked Stage "2" or "1 & 2", not "1" only, the same discipline Stage 1
 applied when it dropped `vix`/`dxy_proxy`. `configs/params.yaml:
 stage2_signal.model_features` (14 features): `yield_spread_bps`, `mom_1m`/
@@ -1023,7 +1038,7 @@ not by an absence of a feature-construction path — the pipeline is real
 and leakage-safe, but small-N noise is a first-order caveat on every
 result below, not a footnote.
 
-**Model selection (§4.3.3) — actual walk-forward results, not assumption.**
+**Model selection (§3.3.3) — actual walk-forward results, not assumption.**
 `model_comparison.py` refits LASSO / Random Forest / XGBoost at every
 rebalancing date (classification framing: L1-penalized logistic
 regression as LASSO's classification analogue; regression framing: LASSO
@@ -1050,7 +1065,7 @@ prediction) while LASSO's linear regularization generalizes better under
 low-N conditions — the same "simpler model wins" pattern as Stage 1's GMM/
 HDBSCAN underperforming K-Means, for an analogous reason (the fancier
 model's flexibility becomes a liability, not an asset, given what the data
-can actually support). Per H2's own stated bar (thesis §1.5: IC > 0.05
+can actually support). Per H2's own stated bar (thesis Wstęp §5: IC > 0.05
 *and* p < 0.05), **H2 is not rejected by this result** — mean IC (0.076)
 clears the economic-significance threshold but p=0.205 does not clear the
 statistical-significance one. Reported as a genuine, non-forced empirical
@@ -1058,7 +1073,7 @@ finding, not adjusted to fit the hypothesis. `configs/params.yaml:
 stage2_signal.chosen_model_classification/chosen_model_regression` =
 `lasso_logistic`/`lasso`.
 
-**Feature importance (§4.3.4) — SHAP, with an important caveat.**
+**Feature importance (§3.3.4) — SHAP, with an important caveat.**
 `feature_importance.py` fits the chosen LASSO regression model on the full
 target-realized sample (274 rows) as a diagnostic (not a walk-forward
 output — same "diagnostic vs production" split as Stage 1's
@@ -1129,14 +1144,14 @@ composition — so precisely calibrated, this is evidence that *this*
 feature set + these three fixed-hyperparameter models don't recover a
 premium, not a general claim that no premium is recoverable by any
 specification. That distinction should carry through directly into how
-§6.2 and §7.4 (future work — richer market features, re-tuned
+§5.2 and Zakończenie §4 (future work — richer market features, re-tuned
 hyperparameters, alternative EM universes) characterize the result.
 
-**H2 multi-horizon robustness check (§2.4, §2.8) — pre-registered, run,
+**H2 multi-horizon robustness check (§1.4, §1.8) — pre-registered, run,
 0 of 9 regression combinations clear the bar.** The quarterly target
-horizon was originally chosen to match rebalancing frequency (§4.4.3),
+horizon was originally chosen to match rebalancing frequency (§3.4.3),
 not derived from theory about where sovereign return predictability
-should appear — §2.4's factor literature (Ilmanen 1995; Koijen et al.
+should appear — §1.4's factor literature (Ilmanen 1995; Koijen et al.
 2018; Asness, Moskowitz & Pedersen 2013) spans 1-12 months. Committed to
 the protocol in `state.md` (dated, committed *before* running, so the
 result can't be read as a post-hoc search) then ran
@@ -1144,7 +1159,7 @@ result can't be read as a post-hoc search) then ran
 population and features, same fixed model hyperparameters (no re-tuning),
 target horizon swapped to monthly (30d) and semi-annual (182d) alongside
 the existing quarterly (~91d, reused as-is). All three reported
-unconditionally, per §2.8 (Harvey, Liu & Zhu) applied to Stage 2's own
+unconditionally, per §1.8 (Harvey, Liu & Zhu) applied to Stage 2's own
 testing:
 
 | Horizon | Model | Regression mean IC | one-sided p | Classification AUC |
@@ -1174,15 +1189,15 @@ choice as an alternative explanation for the quarterly null.
 **One flagged, deliberately not-promoted observation**: monthly/LASSO's
 classification AUC (0.617) is the highest AUC seen anywhere in Stage 2's
 full investigation (quarterly 0.560; the full-EM-universe power
-diagnostic's best was ~0.50). Recorded as a §7.4 future-work lead, not
-folded into the H2 conclusion — thesis §1.5's H2 test is defined via the
+diagnostic's best was ~0.50). Recorded as a Zakończenie §4 future-work lead, not
+folded into the H2 conclusion — thesis Wstęp §5's H2 test is defined via the
 regression/IC framing only, no significance threshold was ever
 pre-specified for AUC, and with 9 combinations now in play, treating one
 unvalidated AUC number as a finding would be exactly the kind of
-post-hoc mining §2.8 warns against. A monthly-horizon,
+post-hoc mining §1.8 warns against. A monthly-horizon,
 classification-specific follow-up would need its own pre-registration.
 
-**Output (§4.3.5).** `data/processed/stage2_return_signals.parquet` — one
+**Output (§3.3.5).** `data/processed/stage2_return_signals.parquet` — one
 row per (country, rebal_date) with `predicted_excess_return` (continuous,
 the primary ranking signal), `predicted_prob_positive` (classification
 framing, secondary diagnostic), `rank_within_date`, and `top_5`/`top_10`/
@@ -1246,7 +1261,7 @@ have a decided direction, measured in `diagnostics/returns_diagnostics.py`
   excess return over the local 3-month rate** (approximating a
   currency-hedged excess return), with the USD-unhedged excess return
   over the US 3M T-bill kept as a robustness measure. The thesis
-  outline's "USD-denominated" §1.4/§3.2 framing and
+  outline's "USD-denominated" Wstęp §4/§2.2 framing and
   `build_stage2_panel.py`'s price-based return are superseded.
 - The spec's §6 validation gates (correlation >= 0.90, |bias| <=
   0.25%/quarter) are **PROVISIONAL** until confirmed after the
@@ -1262,7 +1277,7 @@ untouched by the spec and still open as listed.
 - **Local-currency series vs. the thesis's USD scope.** The bond data is
   `XX10YT=RR` benchmark RICs — each country's *local-currency* 10Y
   benchmark bond (Bunds in EUR, JGBs in JPY, …), not the USD-denominated
-  universe thesis §1.4/§3.2 declares. Nothing in the repo documents the
+  universe thesis Wstęp §4/§2.2 declares. Nothing in the repo documents the
   currency of the price series. Consequences: Stage 2's excess return
   subtracts a USD risk-free rate from local-currency price returns, and
   Stage 3 would aggregate returns across ~20 currencies with no FX
@@ -1282,14 +1297,14 @@ untouched by the spec and still open as listed.
   here because Stage 3/4 portfolio returns inherit it wholesale.
 - **`core-eligible` is empty 2009-2017.** Stage 1's walk-forward labels
   assign zero countries to `core-eligible` for ~9 consecutive years
-  (1 row in 2013), i.e. the 70% core sleeve of thesis §4.4.1 is undefined
+  (1 row in 2013), i.e. the 70% core sleeve of thesis §3.4.1 is undefined
   for roughly half the backtest. Needs a design decision (fallback rule,
-  feature-set change, or methodology-level override of §3.3's global
+  feature-set change, or methodology-level override of §2.3's global
   features in Stage 1) before any Stage 3 code is written. See the
   residual global-feature regime artifact in "Stage 1 clustering" above.
 - **No benchmark index data.** Nothing in `data/` for JP Morgan EMBI
   Global Diversified, Bloomberg Global Treasury, or any other index —
-  benchmarks 1-3 of thesis §4.5.3 are currently unconstructible, and no
+  benchmarks 1-3 of thesis §3.5.3 are currently unconstructible, and no
   acquisition path has been identified (EMBI is proprietary; a free
   source or licence-covered pull needs scoping). Longest-lead-time Stage
   4 blocker alongside the 31 remaining ratings countries.

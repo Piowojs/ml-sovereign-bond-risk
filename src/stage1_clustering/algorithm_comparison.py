@@ -1,4 +1,4 @@
-"""Stage 1 algorithm comparison and DM/EM validation (thesis Sec 4.2.1-4.2.3).
+"""Stage 1 algorithm comparison and DM/EM validation (thesis Sec 3.2.1-3.2.3).
 
 Full-sample, diagnostic-only analysis -- see clustering_utils.py's module
 docstring for why this is explicitly NOT the point-in-time-safe pipeline
@@ -112,7 +112,7 @@ def run_hdbscan_sweep(tier: str, analysis_df: pd.DataFrame, X: np.ndarray, param
 def per_quarter_dmem_disagreements(analysis_df: pd.DataFrame, risk_tiers: np.ndarray) -> pd.DataFrame:
     """For the chosen algorithm/tier/k, list every EM country landing in
     'core-eligible' and every DM country landing in 'satellite-candidate',
-    per rebalancing date -- the disagreement structure thesis Sec 4.2.3
+    per rebalancing date -- the disagreement structure thesis Sec 3.2.3
     asks for, not just a single aggregate ARI number. This uses the
     full-sample-fitted labels (diagnostic mode); see module docstring."""
     d = analysis_df[["country_code", "country_name", "dm_em_flag", "rebal_date"]].copy()
