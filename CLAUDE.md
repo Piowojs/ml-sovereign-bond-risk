@@ -1231,10 +1231,34 @@ positions) is the right bar. All three checks currently pass.
   lag — it's treated as same-day-knowable, unlike macro fundamentals. See
   "Stage 1 feature matrix" above.
 
-## Known open problems (flagged 2026-11-15 status audit — unresolved, not yet worked)
-Methodology-level gaps found in the resume-from-pause audit. None has a
-fix in the repo yet; each needs either code, data, or an explicit
-thesis-text scoping decision before Stage 3/4 is built on top of it.
+## Known open problems (flagged 2026-11-15 status audit)
+Methodology-level gaps found in the resume-from-pause audit. Each needs
+either code, data, or an explicit thesis-text scoping decision before
+Stage 3/4 is built on top of it.
+
+**Resolution direction decided 2026-11-15 — the return rebuild.** The
+first three problems below (currency scope, rolls, coupon income) now
+have a decided direction, measured in `diagnostics/returns_diagnostics.py`
+/ `data/diagnostics/returns/summary.md` and specified in
+**`docs/return_construction_spec.md` — the binding return spec**:
+- **Scope re-decision**: the thesis is re-scoped to **local-currency
+  10Y benchmark bonds**; the primary return measure is **local-currency
+  excess return over the local 3-month rate** (approximating a
+  currency-hedged excess return), with the USD-unhedged excess return
+  over the US 3M T-bill kept as a robustness measure. The thesis
+  outline's "USD-denominated" §1.4/§3.2 framing and
+  `build_stage2_panel.py`'s price-based return are superseded.
+- The spec's §6 validation gates (correlation >= 0.90, |bias| <=
+  0.25%/quarter) are **PROVISIONAL** until confirmed after the
+  `scripts/licence_yield_test.py` session on the university PC; no
+  rebuilt return feeds any downstream stage before that confirmation.
+- **Stage 2 will be re-run on the rebuilt returns under the existing
+  pre-registered protocol with no other change** (same
+  satellite-candidate population, features per spec §7, fixed
+  hyperparameters; both old and new results reported) — the H2
+  conclusion is not final until that re-run.
+The remaining two problems (empty core tier, benchmark index data) are
+untouched by the spec and still open as listed.
 - **Local-currency series vs. the thesis's USD scope.** The bond data is
   `XX10YT=RR` benchmark RICs — each country's *local-currency* 10Y
   benchmark bond (Bunds in EUR, JGBs in JPY, …), not the USD-denominated
