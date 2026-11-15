@@ -732,6 +732,27 @@ yet for a country just means it's absent from the output, not an error.
     qualifying unspecified rows. 7 countries have zero FC_LT
     downgrades (Australia, Czech Republic, Germany, Indonesia, Norway,
     Sweden, Switzerland).
+  - Event survival under the §5.1 gap rule
+    (`diagnostics/ratings_v2_event_survival.py`, FC_LT + qualifying
+    unspecified variant): no rule 238 collapsed / 109 initial / 39
+    countries; pre-registration rule (issuing agency's gaps in the
+    preceding 4 quarters) 212 / 102 / 37; strict any-agency rule
+    185 / 88 / 36. The cost is concentrated in 2000 (wiped out) and
+    the 2008 + 2011-2012 crisis years; from ~2016 the rules are nearly
+    identical. Even the strict rule keeps 88 initial events across 36
+    countries. **The pre-registration's gap rule is under review
+    pending the second collection pass** — the rule choice mainly
+    moves crisis-era events, exactly where H1's signal is expected,
+    so it must be settled (in a dated pre-registration amendment)
+    before any outcome is computed.
+  - `data/diagnostics/ratings/second_pass_targets.csv` (137 rows):
+    the prioritized work list for that second collection pass — stale
+    Fitch tables (20), MISSING ACTION SUSPECTED cases (6), multi-notch
+    possible-gap spans (38), post-2004 FC_LT series starts not marked
+    as new ratings (29), the Nigeria Moody's 2019-12 and Sri Lanka S&P
+    2007-01-23 problems, and 42 undated latest-rating hint rows.
+    Priority = rule-(iii)-excluded events overlapping the target span;
+    Greece's S&P/Fitch 2011-2014 spans top the list.
 
 ## Stage 1 feature matrix (country x quarter — settled facts)
 `src/stage1_clustering/build_feature_matrix.py` builds two wide, country x
