@@ -1,0 +1,6 @@
+country,n_quarters,bias_pct_pts,mae_pct_pts,corr_levels,corr_quarterly_changes
+Germany,81,0.931,1.006,0.898,0.821
+Japan,71,1.99,1.99,0.72,0.626
+Switzerland,52,1.989,1.989,0.568,0.601
+United_Kingdom,71,0.153,0.553,0.88,0.79
+United_States,68,0.006,0.156,0.976,0.971
