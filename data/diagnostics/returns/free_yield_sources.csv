@@ -1,45 +1,45 @@
-country,yld10y_monthly_source,yld10y_confidence,yld10y_basis,yld10y_first_date_approx,rate3m_local_source,rate3m_confidence,rate3m_basis,fx_spot_usd_source,fx_confidence
-Australia,FRED IRLTLT01AUM156N (OECD MEI),verified,avg,1969,FRED IR3TIB01AUM156N (3m interbank) or IFS T-bill,likely,avg,FRED DEXUSAL (daily),verified
-Austria,FRED IRLTLT01ATM156N (OECD MEI),verified,avg,1990,FRED IR3TIB01ATM156N (3m interbank) or IFS T-bill,likely,avg,"FRED DEXUSEU (EUR, daily)",verified
-Belgium,FRED IRLTLT01BEM156N (OECD MEI),verified,avg,1960,FRED IR3TIB01BEM156N (3m interbank) or IFS T-bill,likely,avg,"FRED DEXUSEU (EUR, daily)",verified
-Brazil,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,FRED DEXBZUS (daily),verified
-Canada,FRED IRLTLT01CAM156N (OECD MEI),verified,avg,1960,FRED IR3TIB01CAM156N (3m interbank) or IFS T-bill,likely,avg,FRED DEXCAUS (daily),verified
-Chile,FRED IRLTLT01CLM156N (OECD MEI),verified,avg,2004,FRED IR3TIB01CLM156N (3m interbank) or IFS T-bill,likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
-China,IMF IFS govt bond yield (FIGB_PA),likely,avg,2000s,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,FRED DEXCHUS (daily),verified
-Colombia,FRED IRLTLT01COM156N (OECD MEI),verified,avg,2003,FRED IR3TIB01COM156N (3m interbank) or IFS T-bill,likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
-Czech_Republic,FRED IRLTLT01CZM156N (OECD MEI),verified,avg,2000,FRED IR3TIB01CZM156N (3m interbank) or IFS T-bill,likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
-Egypt,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
-Finland,FRED IRLTLT01FIM156N (OECD MEI),verified,avg,1988,FRED IR3TIB01FIM156N (3m interbank) or IFS T-bill,likely,avg,"FRED DEXUSEU (EUR, daily)",verified
-France,FRED IRLTLT01FRM156N (OECD MEI),verified,avg,1960,FRED IR3TIB01FRM156N (3m interbank) or IFS T-bill,likely,avg,"FRED DEXUSEU (EUR, daily)",verified
-Germany,FRED IRLTLT01DEM156N (OECD MEI),verified,avg,1960,FRED IR3TIB01DEM156N (3m interbank) or IFS T-bill,likely,avg,"FRED DEXUSEU (EUR, daily)",verified
-Greece,FRED IRLTLT01GRM156N (OECD MEI),verified,avg,1997,FRED IR3TIB01GRM156N (3m interbank) or IFS T-bill,likely,avg,"FRED DEXUSEU (EUR, daily)",verified
-Hungary,FRED IRLTLT01HUM156N (OECD MEI),verified,avg,1999,FRED IR3TIB01HUM156N (3m interbank) or IFS T-bill,likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
-India,FRED/OECD partner long-term yield series,likely,avg,2011,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,FRED DEXINUS (daily),verified
-Indonesia,FRED/OECD partner long-term yield series,likely,avg,2000s,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
-Italy,FRED IRLTLT01ITM156N (OECD MEI),verified,avg,1991,FRED IR3TIB01ITM156N (3m interbank) or IFS T-bill,likely,avg,"FRED DEXUSEU (EUR, daily)",verified
-Japan,FRED IRLTLT01JPM156N (OECD MEI),verified,avg,1989,FRED IR3TIB01JPM156N (3m interbank) or IFS T-bill,likely,avg,FRED DEXJPUS (daily),verified
-Kazakhstan,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
-Kenya,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
-Malaysia,IMF IFS govt bond yield (FIGB_PA),likely,avg,1990s,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,FRED DEXMAUS (daily),verified
-Mexico,FRED IRLTLT01MXM156N (OECD MEI),verified,avg,2001,FRED IR3TIB01MXM156N (3m interbank) or IFS T-bill,likely,avg,FRED DEXMXUS (daily),verified
-Morocco,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
-Netherlands,FRED IRLTLT01NLM156N (OECD MEI),verified,avg,1960,FRED IR3TIB01NLM156N (3m interbank) or IFS T-bill,likely,avg,"FRED DEXUSEU (EUR, daily)",verified
-Nigeria,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
-Norway,FRED IRLTLT01NOM156N (OECD MEI),verified,avg,1985,FRED IR3TIB01NOM156N (3m interbank) or IFS T-bill,likely,avg,FRED DEXNOUS (daily),verified
-Pakistan,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
-Peru,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
-Philippines,IMF IFS govt bond yield (FIGB_PA),likely,avg,1990s,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
-Poland,FRED IRLTLT01PLM156N (OECD MEI),verified,avg,2001,FRED IR3TIB01PLM156N (3m interbank) or IFS T-bill,likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
-Portugal,FRED IRLTLT01PTM156N (OECD MEI),verified,avg,1993,FRED IR3TIB01PTM156N (3m interbank) or IFS T-bill,likely,avg,"FRED DEXUSEU (EUR, daily)",verified
-Romania,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
-South_Africa,FRED/OECD partner long-term yield series,likely,avg,1960,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,FRED DEXSFUS (daily),verified
-Spain,FRED IRLTLT01ESM156N (OECD MEI),verified,avg,1980,FRED IR3TIB01ESM156N (3m interbank) or IFS T-bill,likely,avg,"FRED DEXUSEU (EUR, daily)",verified
-Sri_Lanka,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,FRED DEXSLUS (daily),verified
-Sweden,FRED IRLTLT01SEM156N (OECD MEI),verified,avg,1986,FRED IR3TIB01SEM156N (3m interbank) or IFS T-bill,likely,avg,FRED DEXSDUS (daily),verified
-Switzerland,FRED IRLTLT01CHM156N (OECD MEI),verified,avg,1960,FRED IR3TIB01CHM156N (3m interbank) or IFS T-bill,likely,avg,FRED DEXSZUS (daily),verified
-Thailand,IMF IFS govt bond yield (FIGB_PA),likely,avg,1990s,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,FRED DEXTHUS (daily),verified
-Turkey,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
-United_Kingdom,FRED IRLTLT01GBM156N (OECD MEI),verified,avg,1960,FRED IR3TIB01GBM156N (3m interbank) or IFS T-bill,likely,avg,FRED DEXUSUK (daily),verified
-United_States,FRED IRLTLT01USM156N (OECD MEI),verified,avg,1954,FRED IR3TIB01USM156N (3m interbank) or IFS T-bill,likely,avg,n/a (USD),verified
-Vietnam,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
-Zambia,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
+country,yld10y_monthly_source,yld10y_confidence,yld10y_basis,yld10y_first_date_approx,yld10y_cb_fallback_source,yld10y_cb_fallback_confidence,yld10y_cb_fallback_basis,yld10y_cb_fallback_first_date,rate3m_local_source,rate3m_confidence,rate3m_basis,fx_spot_usd_source,fx_confidence
+Australia,FRED IRLTLT01AUM156N (OECD MEI),verified,avg,1969,,,,,FRED IR3TIB01AUM156N (3m interbank) or IFS T-bill,likely,avg,FRED DEXUSAL (daily),verified
+Austria,FRED IRLTLT01ATM156N (OECD MEI),verified,avg,1990,,,,,FRED IR3TIB01ATM156N (3m interbank) or IFS T-bill,likely,avg,"FRED DEXUSEU (EUR, daily)",verified
+Belgium,FRED IRLTLT01BEM156N (OECD MEI),verified,avg,1960,,,,,FRED IR3TIB01BEM156N (3m interbank) or IFS T-bill,likely,avg,"FRED DEXUSEU (EUR, daily)",verified
+Brazil,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,BCB SGS / ANBIMA secondary-market NTN-F 10Y yields,likely,eop (daily),~2007,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,FRED DEXBZUS (daily),verified
+Canada,FRED IRLTLT01CAM156N (OECD MEI),verified,avg,1960,,,,,FRED IR3TIB01CAM156N (3m interbank) or IFS T-bill,likely,avg,FRED DEXCAUS (daily),verified
+Chile,FRED IRLTLT01CLM156N (OECD MEI),verified,avg,2004,,,,,FRED IR3TIB01CLM156N (3m interbank) or IFS T-bill,likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
+China,IMF IFS govt bond yield (FIGB_PA),likely,avg,2000s,,,,,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,FRED DEXCHUS (daily),verified
+Colombia,FRED IRLTLT01COM156N (OECD MEI),verified,avg,2003,,,,,FRED IR3TIB01COM156N (3m interbank) or IFS T-bill,likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
+Czech_Republic,FRED IRLTLT01CZM156N (OECD MEI),verified,avg,2000,,,,,FRED IR3TIB01CZM156N (3m interbank) or IFS T-bill,likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
+Egypt,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,CBE T-bond auction cut-off yields (10Y auctions),likely,auction dates,2000s,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
+Finland,FRED IRLTLT01FIM156N (OECD MEI),verified,avg,1988,,,,,FRED IR3TIB01FIM156N (3m interbank) or IFS T-bill,likely,avg,"FRED DEXUSEU (EUR, daily)",verified
+France,FRED IRLTLT01FRM156N (OECD MEI),verified,avg,1960,,,,,FRED IR3TIB01FRM156N (3m interbank) or IFS T-bill,likely,avg,"FRED DEXUSEU (EUR, daily)",verified
+Germany,FRED IRLTLT01DEM156N (OECD MEI),verified,avg,1960,,,,,FRED IR3TIB01DEM156N (3m interbank) or IFS T-bill,likely,avg,"FRED DEXUSEU (EUR, daily)",verified
+Greece,FRED IRLTLT01GRM156N (OECD MEI),verified,avg,1997,,,,,FRED IR3TIB01GRM156N (3m interbank) or IFS T-bill,likely,avg,"FRED DEXUSEU (EUR, daily)",verified
+Hungary,FRED IRLTLT01HUM156N (OECD MEI),verified,avg,1999,,,,,FRED IR3TIB01HUM156N (3m interbank) or IFS T-bill,likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
+India,FRED/OECD partner long-term yield series,likely,avg,2011,,,,,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,FRED DEXINUS (daily),verified
+Indonesia,FRED/OECD partner long-term yield series,likely,avg,2000s,,,,,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
+Italy,FRED IRLTLT01ITM156N (OECD MEI),verified,avg,1991,,,,,FRED IR3TIB01ITM156N (3m interbank) or IFS T-bill,likely,avg,"FRED DEXUSEU (EUR, daily)",verified
+Japan,FRED IRLTLT01JPM156N (OECD MEI),verified,avg,1989,,,,,FRED IR3TIB01JPM156N (3m interbank) or IFS T-bill,likely,avg,FRED DEXJPUS (daily),verified
+Kazakhstan,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,KASE / NBK government securities yields,likely (partial),,2010s,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
+Kenya,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,CBK Treasury bond auction + secondary yields,likely,auction dates,2000s,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
+Malaysia,IMF IFS govt bond yield (FIGB_PA),likely,avg,1990s,,,,,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,FRED DEXMAUS (daily),verified
+Mexico,FRED IRLTLT01MXM156N (OECD MEI),verified,avg,2001,,,,,FRED IR3TIB01MXM156N (3m interbank) or IFS T-bill,likely,avg,FRED DEXMXUS (daily),verified
+Morocco,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,Bank Al-Maghrib secondary-market Treasury reference rates (bkam.ma),verified,eop (daily curve),2000s,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
+Netherlands,FRED IRLTLT01NLM156N (OECD MEI),verified,avg,1960,,,,,FRED IR3TIB01NLM156N (3m interbank) or IFS T-bill,likely,avg,"FRED DEXUSEU (EUR, daily)",verified
+Nigeria,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,CBN statistics / DMO FGN bond yields,likely,,2000s,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
+Norway,FRED IRLTLT01NOM156N (OECD MEI),verified,avg,1985,,,,,FRED IR3TIB01NOM156N (3m interbank) or IFS T-bill,likely,avg,FRED DEXNOUS (daily),verified
+Pakistan,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,SBP PIB 10Y cut-off yields,likely,auction dates,2000s,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
+Peru,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,BCRP statistics (BCRPData) 10Y sovereign bond yield,likely,avg,2000s,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
+Philippines,IMF IFS govt bond yield (FIGB_PA),likely,avg,1990s,,,,,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
+Poland,FRED IRLTLT01PLM156N (OECD MEI),verified,avg,2001,,,,,FRED IR3TIB01PLM156N (3m interbank) or IFS T-bill,likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
+Portugal,FRED IRLTLT01PTM156N (OECD MEI),verified,avg,1993,,,,,FRED IR3TIB01PTM156N (3m interbank) or IFS T-bill,likely,avg,"FRED DEXUSEU (EUR, daily)",verified
+Romania,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,ECB Data Portal IRS.M.RO.L.L40.CI.0000.RON.N.Z (convergence LTIR),verified,avg,2005,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
+South_Africa,FRED/OECD partner long-term yield series,likely,avg,1960,,,,,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,FRED DEXSFUS (daily),verified
+Spain,FRED IRLTLT01ESM156N (OECD MEI),verified,avg,1980,,,,,FRED IR3TIB01ESM156N (3m interbank) or IFS T-bill,likely,avg,"FRED DEXUSEU (EUR, daily)",verified
+Sri_Lanka,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,CBSL Treasury bond yields,likely,,2000s,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,FRED DEXSLUS (daily),verified
+Sweden,FRED IRLTLT01SEM156N (OECD MEI),verified,avg,1986,,,,,FRED IR3TIB01SEM156N (3m interbank) or IFS T-bill,likely,avg,FRED DEXSDUS (daily),verified
+Switzerland,FRED IRLTLT01CHM156N (OECD MEI),verified,avg,1960,,,,,FRED IR3TIB01CHM156N (3m interbank) or IFS T-bill,likely,avg,FRED DEXSZUS (daily),verified
+Thailand,IMF IFS govt bond yield (FIGB_PA),likely,avg,1990s,,,,,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,FRED DEXTHUS (daily),verified
+Turkey,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,CBRT EVDS government securities yields,likely,,~2010 (first 10Y TRY issue Jan 2010),IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
+United_Kingdom,FRED IRLTLT01GBM156N (OECD MEI),verified,avg,1960,,,,,FRED IR3TIB01GBM156N (3m interbank) or IFS T-bill,likely,avg,FRED DEXUSUK (daily),verified
+United_States,FRED IRLTLT01USM156N (OECD MEI),verified,avg,1954,,,,,FRED IR3TIB01USM156N (3m interbank) or IFS T-bill,likely,avg,n/a (USD),verified
+Vietnam,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,HNX bond market / SBV,likely (partial),,2010s,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely
+Zambia,none known in FRED/OECD/IMF IFS (check local CB / investing aggregators),not found,,,BoZ government bond auction yields,likely (partial),auction dates,2010s,IMF IFS T-bill (FITB_PA) / money market (FIMM_PA),likely,avg,IMF IFS exchange rate (ENDA avg / ENDE eop),likely

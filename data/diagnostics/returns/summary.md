@@ -142,7 +142,20 @@ an averaging-vs-end-of-quarter mismatch the rebuild must handle explicitly.
   series; China, Malaysia, Thailand, Philippines via IMF IFS);
   **13 not found** in FRED/OECD/IFS: Brazil, Egypt, Kazakhstan, Kenya,
   Morocco, Nigeria, Pakistan, Peru, Romania, Sri Lanka, Turkey, Vietnam,
-  Zambia — local central-bank sites or paid aggregators would be needed.
+  Zambia.
+- **ECB / national-central-bank fallbacks for those 13** (added
+  2026-11-15; `yld10y_cb_fallback_*` columns): two **verified** — Romania
+  via the ECB Data Portal's convergence-purposes long-term rate
+  (`IRS.M.RO.L.L40.CI.0000.RON.N.Z`, monthly average, RON, from ~2005)
+  and Morocco via Bank Al-Maghrib's downloadable secondary-market
+  Treasury reference rates (daily curve incl. 10Y, bkam.ma). The other
+  11 have `likely` national-CB sources (BCB/ANBIMA for Brazil ~2007+,
+  CBE Egypt, CBK Kenya, CBN/DMO Nigeria, SBP Pakistan, BCRP Peru, CBSL
+  Sri Lanka, CBRT EVDS Turkey from ~2010, and partial-confidence
+  KASE/NBK Kazakhstan, HNX/SBV Vietnam, BoZ Zambia) — several are
+  auction-date series rather than continuous monthly, which the rebuild
+  must handle. Net: only Kazakhstan, Vietnam, and Zambia remain genuinely
+  uncertain for a free local 10Y.
 - **Local 3M rate (now required under the local-currency re-scope)**: OECD
   members likely covered by FRED `IR3TIB01…` 3m interbank; the EM/frontier
   set by IMF IFS T-bill (`FITB_PA`) / money-market (`FIMM_PA`) rates —

@@ -410,6 +410,34 @@ PARTNER_10Y_LIKELY = {"India": "2011", "Indonesia": "2000s", "South_Africa": "19
 IFS_10Y_LIKELY = {"China": "2000s", "Malaysia": "1990s", "Thailand": "1990s", "Philippines": "1990s"}
 NO_FREE_10Y = ["Brazil", "Egypt", "Kazakhstan", "Kenya", "Morocco", "Nigeria",
                "Pakistan", "Peru", "Romania", "Sri_Lanka", "Turkey", "Vietnam", "Zambia"]
+# ECB / national-central-bank fallbacks for the 13 countries with no free
+# 10Y in FRED/OECD/IMF IFS (added 2026-11-15, task follow-up). Verified:
+# Romania (ECB Data Portal convergence-purposes series
+# IRS.M.RO.L.L40.CI.0000.RON.N.Z, monthly avg, lei, ~2005; EU-wide
+# programme so it predates everything else available for RO) and Morocco
+# (Bank Al-Maghrib "Taux de référence des bons du Trésor", secondary
+# market, daily, downloadable by date at bkam.ma). The rest are
+# knowledge-compiled `likely` entries -- national CB statistics portals
+# known to publish government-securities yields; ids/history depth not
+# individually confirmed without fetching.
+CB_10Y_FALLBACK = {
+    # country: (source, confidence, basis, first date approx)
+    "Romania": ("ECB Data Portal IRS.M.RO.L.L40.CI.0000.RON.N.Z (convergence LTIR)",
+                "verified", "avg", "2005"),
+    "Morocco": ("Bank Al-Maghrib secondary-market Treasury reference rates (bkam.ma)",
+                "verified", "eop (daily curve)", "2000s"),
+    "Brazil": ("BCB SGS / ANBIMA secondary-market NTN-F 10Y yields", "likely", "eop (daily)", "~2007"),
+    "Egypt": ("CBE T-bond auction cut-off yields (10Y auctions)", "likely", "auction dates", "2000s"),
+    "Kazakhstan": ("KASE / NBK government securities yields", "likely (partial)", "", "2010s"),
+    "Kenya": ("CBK Treasury bond auction + secondary yields", "likely", "auction dates", "2000s"),
+    "Nigeria": ("CBN statistics / DMO FGN bond yields", "likely", "", "2000s"),
+    "Pakistan": ("SBP PIB 10Y cut-off yields", "likely", "auction dates", "2000s"),
+    "Peru": ("BCRP statistics (BCRPData) 10Y sovereign bond yield", "likely", "avg", "2000s"),
+    "Sri_Lanka": ("CBSL Treasury bond yields", "likely", "", "2000s"),
+    "Turkey": ("CBRT EVDS government securities yields", "likely", "", "~2010 (first 10Y TRY issue Jan 2010)"),
+    "Vietnam": ("HNX bond market / SBV", "likely (partial)", "", "2010s"),
+    "Zambia": ("BoZ government bond auction yields", "likely (partial)", "auction dates", "2010s"),
+}
 # Local 3M: FRED IR3TIB (3m interbank, OECD members) / IFS T-bill (FITB_PA)
 IFS_TBILL_LIKELY = ["Brazil", "Egypt", "Kenya", "Malaysia", "Mexico", "Nigeria", "Pakistan",
                     "Philippines", "Peru", "Romania", "South_Africa", "Sri_Lanka", "Thailand",
@@ -439,6 +467,7 @@ def part4():
         else:
             y10 = ("none known in FRED/OECD/IMF IFS (check local CB / investing aggregators)",
                    "not found", "", "")
+        cb = CB_10Y_FALLBACK.get(c, ("", "", "", ""))
         if c in OECD_10Y:
             iso2 = OECD_10Y[c][0]
             r3m = (f"FRED IR3TIB01{iso2}M156N (3m interbank) or IFS T-bill", "likely", "avg")
@@ -457,6 +486,8 @@ def part4():
         rows.append({"country": c,
                      "yld10y_monthly_source": y10[0], "yld10y_confidence": y10[1],
                      "yld10y_basis": y10[2], "yld10y_first_date_approx": y10[3],
+                     "yld10y_cb_fallback_source": cb[0], "yld10y_cb_fallback_confidence": cb[1],
+                     "yld10y_cb_fallback_basis": cb[2], "yld10y_cb_fallback_first_date": cb[3],
                      "rate3m_local_source": r3m[0], "rate3m_confidence": r3m[1], "rate3m_basis": r3m[2],
                      "fx_spot_usd_source": fx[0], "fx_confidence": fx[1]})
     df = pd.DataFrame(rows)
