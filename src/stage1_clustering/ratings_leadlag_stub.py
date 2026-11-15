@@ -1,21 +1,27 @@
 """Thesis Sec 4.2.4 lead/lag analysis vs agency ratings -- PILOT, not the
 full implementation. Retains the original "stub" filename deliberately
 (see note at the bottom of this docstring) even though `compute_lead_lag`
-is now real code, because this is still explicitly scoped to a 5-country
-pilot, not the full-universe §4.2.4 result the thesis will actually cite.
+is now real code, because this is still explicitly scoped to a pilot over
+whatever subset of countries has reconciled ratings history, not the
+full-universe §4.2.4 result the thesis will actually cite.
 
 ## Why a pilot, and why now
-As of this writing, `data/processed/ratings_panel.csv` covers exactly 5 of
-44 countries -- Greece, Turkey, Sri Lanka, Portugal, Zambia ("Tier 1" in
-state.md's ratings transcription priority list: the crisis case studies
-and both default-event countries the thesis outline names explicitly).
-The remaining 39 countries have not been transcribed yet. This script
-exists to answer one question before committing more time to manual
-transcription: does H1's mechanism (ML risk score deteriorates ahead of
-the agency downgrade) show up at all in the best-case, highest-signal
-countries? A "no" or "mixed" result here is exactly as useful as a "yes"
-for planning purposes -- see the pooled/per-country results this script
-prints for the actual read.
+As of the last run (2026-08-12), `data/processed/ratings_panel.csv`
+covers 13 of 44 countries (1,512 rows) -- Tier 1 (Greece, Turkey,
+Sri Lanka, Portugal, Zambia: the crisis case studies and default-event
+countries the thesis outline names explicitly) plus Tier 2 (South Africa,
+Brazil, Colombia, Egypt, Pakistan, Nigeria, Italy, Spain); see state.md's
+transcription priority list. The remaining 31 countries (Tier 3) have not
+been transcribed yet. The script auto-discovers its country set from
+whatever is in ratings_panel.csv, so it needs no code change as more
+countries land. It exists to answer one question before committing more
+time to manual transcription: does H1's mechanism (ML risk score
+deteriorates ahead of the agency downgrade) show up at all in the
+best-case, highest-signal countries? A "no" or "mixed" result here is
+exactly as useful as a "yes" for planning purposes -- see the
+pooled/per-country results this script prints, and state.md's 13-country
+pilot entries (two surviving pre-registrations, `d23fd6e`/`12f9a3e`) for
+the actual read.
 
 ## Two pipelines, and this script only trusts one of them
 `src/stage1_clustering/algorithm_comparison.py` fits its clustering ONCE
@@ -53,7 +59,8 @@ score ahead of the downgrade") compares near-window means to
 baseline-window means across events. Reported per-country and pooled.
 
 ## Known limitations of this pilot (read before citing anything from it)
-- **5 countries, several with short histories.** Zambia's first
+- **Partial universe (13/44), several countries with short histories.**
+  Zambia's first
   downgrade-eligible history starts 2011; several of its events fall too
   close to the 2005-2006 insufficient_data period for a full 8-quarter
   lookback -- flagged per-event, not silently dropped or forced through.
@@ -72,8 +79,8 @@ baseline-window means across events. Reported per-country and pooled.
   agency data are flagged, not excluded.
 - **This is a feasibility check, not a §5.1 result.** Even a clean
   positive finding here should not be written into CLAUDE.md's "settled
-  facts" style documentation or cited in the thesis yet -- it's 5 of 44
-  countries, chosen specifically because they're the highest-signal
+  facts" style documentation or cited in the thesis yet -- it's 13 of 44
+  countries, prioritized specifically because they're the highest-signal
   cases, which is a form of selection that a real §5.1 result must not
   have.
 """
@@ -270,7 +277,7 @@ def main():
     with pd.option_context("display.max_columns", None, "display.width", 160):
         print(per_country.to_string(index=False))
 
-    print("\n=== Pooled summary (status == 'ok' events only, ALL 5 countries together) ===")
+    print("\n=== Pooled summary (status == 'ok' events only, all pilot countries together) ===")
     for k, v in pooled.items():
         print(f"  {k}: {v}")
     print(

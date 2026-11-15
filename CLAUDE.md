@@ -242,6 +242,14 @@ Folder layout mirrors the thesis chapters/stages 1:1. Key rules:
   pull is needed before Stage 2 (existing data already feeds Stage 1
   successfully); the open item is reproducibility documentation for
   Appendix A, not missing data.
+- **Thailand's bond data ends 2025-03-26** (found in the 2026-11-15
+  status audit) — every other country's CSV runs through late December
+  2025, so Thailand is missing the final ~3 quarters of the sample.
+  Undocumented in the pull logs; cause unknown (licence, RIC change, or
+  pull-session gap). Any 2025 result that includes Thailand should note
+  this, and a re-pull attempt belongs on the next university-library
+  session's list alongside the `bond_data_pull_reconstructed.py`
+  execution verification.
 
 ## Macro data acquisition (World Bank / IMF WEO / FRED — settled facts)
 `src/data_acquisition/macro_pull.py` pulls all macro/fundamental and
@@ -751,20 +759,18 @@ pull is still an open gap" below.
     averaging behave differently from raw daily coverage; `mod_duration`/
     `convexity` are 12.2% missing (early quarters before a country's bond
     history starts, e.g. Turkey 2010, Zambia 2012).
-- **Real ratings data is still an open gap, but the pipeline is now built.**
-  Every `data/raw/ratings/*.csv` is still just a header + one blank-value
-  row — the real S&P/Moody's/Fitch website pull described in "Data
-  acquisition status" above never happened, and no free API offers
-  automatable history (see "Ratings data acquisition" above). What's
-  changed: `src/data_acquisition/ingest_ratings.py` can now consolidate
-  manually-collected per-country rating-action files into a real
-  `ratings_panel` table the moment they're dropped into
-  `data/raw/ratings/manual/`; today that table has 0 rows since no country
-  has been transcribed yet. Both Stage 1 tiers correctly continue to
-  exclude ratings regardless (ratings are a Stage 1 validation target —
-  §4.2.3/§4.2.4 — not a clustering input). Tracked in issue #3, blocking
-  for those sections and for RQ1/H1 (the ratings-lead/lag validation
-  depends on real ratings history) until enough countries are collected.
+- **Real ratings data is partially collected — 13/44 countries as of
+  2026-08-12.** The legacy `data/raw/ratings/*.csv` stubs (header + one
+  blank-value row, from the never-recovered original pull) remain dead;
+  the real path is `src/data_acquisition/ingest_ratings.py` consolidating
+  manually-transcribed files from `data/raw/ratings/manual/` into
+  `data/processed/ratings_panel.csv` — currently 1,512 rows across 13
+  countries (see "Ratings data acquisition" above for the full status).
+  Both Stage 1 tiers correctly continue to exclude ratings regardless
+  (ratings are a Stage 1 validation target — §4.2.3/§4.2.4 — not a
+  clustering input). Tracked in issue #3: the remaining 31 countries
+  (Tier 3) still block the *full-universe* §4.2.4 result and RQ1/H1, but
+  a 13-country pilot has already run — see "Stage 1 clustering" below.
 
 ## Stage 1 clustering (thesis §4.2.1-4.2.3, §4.2.5 — settled facts)
 Built on top of the feature matrices above. Two genuinely separate
@@ -885,7 +891,8 @@ while Greece, Italy, Japan, Portugal, and the UK appear repeatedly in
 `satellite-candidate` — including as early as 2006, **before** the
 2010-2012 crisis, which is a genuinely interesting early-warning signal
 worth pursuing in §6.1/§6.4 once ratings data exists to test it formally
-against actual downgrade timing (§4.2.4, still blocked — see below).
+against actual downgrade timing (§4.2.4 — a 13-country pilot has run,
+the full-universe version is still blocked on ratings coverage; see below).
 
 **Walk-forward output (§4.2.5).** `data/processed/stage1_risk_labels.parquet`
 — one row per (country, rebal_date) with `risk_label` (`core-eligible` /
@@ -907,17 +914,22 @@ era, no country may look unambiguously low-risk relative to the model's
 learned notion of "calm regime"), but flagged rather than asserted, since
 it's confounded with the known residual global-feature effect.
 
-**§4.2.4 (lead/lag vs. ratings) is intentionally not built.** It's
-blocked on real ratings data (issue #3, 0/44 countries collected as of
-this writing — see "Ratings data acquisition" above). The expected
-interface is stubbed at `src/stage1_clustering/ratings_leadlag_stub.py`
-(`compute_lead_lag()`, raises `NotImplementedError`) with the full
-expected input/output schema documented in its docstring, including a
-flagged follow-up: the paired t-test thesis §1.5/H1 describes needs a
-*continuous* risk score, not just the categorical `risk_label`, so
-`build_risk_labels.py` will need a scoring extension (e.g. distance to
-the nearest low-risk centroid) before §4.2.4 can actually run — not solved
-now, since there's nothing to validate it against yet.
+**§4.2.4 (lead/lag vs. ratings) exists as a working 13-country pilot,
+not the full-universe result.** `src/stage1_clustering/ratings_leadlag_stub.py`
+is no longer a `NotImplementedError` stub — `compute_lead_lag()` /
+`summarize_lead_lag()` are real code, run against the 13 reconciled
+countries in `ratings_panel.csv` (output:
+`data/processed/stage1_leadlag_pilot_events.csv`; full results and both
+surviving pre-registrations in `state.md`). The filename keeps "stub"
+deliberately — the script's docstring explains it is scoped as a
+feasibility pilot, selection-biased toward the highest-signal countries,
+and must not be cited as a §5.1 result. The continuous-score follow-up
+previously flagged here is done: `build_risk_labels.py` now emits a
+walk-forward-safe `risk_score` column (0 = on the low-risk K-Means
+centroid, 1 = on the high-risk centroid, `d_low/(d_low+d_high)`;
+K-Means-only — needs a real extension if `chosen_algorithm` ever
+changes). The full-universe §4.2.4 remains blocked on the 31
+untranscribed countries (issue #3).
 
 **Leakage check.** `test_lag_rules.py` has two Stage-1-clustering-specific
 checks: a structural check that every row's `training_window_end` equals
@@ -1218,6 +1230,45 @@ positions) is the right bar. All three checks currently pass.
 - Bond market data (spread, duration, convexity, CDS) has no publication
   lag — it's treated as same-day-knowable, unlike macro fundamentals. See
   "Stage 1 feature matrix" above.
+
+## Known open problems (flagged 2026-11-15 status audit — unresolved, not yet worked)
+Methodology-level gaps found in the resume-from-pause audit. None has a
+fix in the repo yet; each needs either code, data, or an explicit
+thesis-text scoping decision before Stage 3/4 is built on top of it.
+- **Local-currency series vs. the thesis's USD scope.** The bond data is
+  `XX10YT=RR` benchmark RICs — each country's *local-currency* 10Y
+  benchmark bond (Bunds in EUR, JGBs in JPY, …), not the USD-denominated
+  universe thesis §1.4/§3.2 declares. Nothing in the repo documents the
+  currency of the price series. Consequences: Stage 2's excess return
+  subtracts a USD risk-free rate from local-currency price returns, and
+  Stage 3 would aggregate returns across ~20 currencies with no FX
+  treatment. Resolution is either verifying what the `=RR` composites
+  actually quote, or re-scoping the thesis text to local-currency
+  benchmark bonds with currency effects out of scope.
+- **No benchmark-bond roll handling.** `XX10YT=RR` composites silently
+  switch underlying bond when the 10Y benchmark rolls; the resulting
+  price jumps flow unadjusted into quarterly returns, momentum features,
+  and Stage 2 targets. No detection, adjustment, or even documentation
+  exists anywhere in `src/`.
+- **Missing coupon income.** No coupon/cashflow field exists in the raw
+  pull, so "total return" is a price-return proxy (`DIRTY_PRC` where
+  available, pure price otherwise — `has_income_component` flags this per
+  row). Systematically understates returns, worst for high-coupon
+  high-risk EM sovereigns. Documented in "Stage 2 signal" above; listed
+  here because Stage 3/4 portfolio returns inherit it wholesale.
+- **`core-eligible` is empty 2009-2017.** Stage 1's walk-forward labels
+  assign zero countries to `core-eligible` for ~9 consecutive years
+  (1 row in 2013), i.e. the 70% core sleeve of thesis §4.4.1 is undefined
+  for roughly half the backtest. Needs a design decision (fallback rule,
+  feature-set change, or methodology-level override of §3.3's global
+  features in Stage 1) before any Stage 3 code is written. See the
+  residual global-feature regime artifact in "Stage 1 clustering" above.
+- **No benchmark index data.** Nothing in `data/` for JP Morgan EMBI
+  Global Diversified, Bloomberg Global Treasury, or any other index —
+  benchmarks 1-3 of thesis §4.5.3 are currently unconstructible, and no
+  acquisition path has been identified (EMBI is proprietary; a free
+  source or licence-covered pull needs scoping). Longest-lead-time Stage
+  4 blocker alongside the 31 remaining ratings countries.
 
 ## Conventions
 - Python throughout.
