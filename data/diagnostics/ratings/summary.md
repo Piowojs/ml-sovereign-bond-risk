@@ -121,6 +121,51 @@ the pre-2004 unspecified series only). Files:
 `ratings_v2_events_fc_only.csv`, `ratings_v2_events_fc_plus_unspec.csv`,
 `ratings_v2_event_counts.csv`.
 
+## (f) Event survival under the gap rule + second-pass targets (added later on 2026-11-15)
+
+Produced by `diagnostics/ratings_v2_event_survival.py`, on the FC_LT +
+passing-S&P-unspecified variant throughout. A "gap" is a country ×
+agency × year cell that is not `complete` under the same classification
+as (d), computed over 2000–2025 so early events' lookback windows are
+classifiable. The `initial` flag stays defined on the full collapsed
+event set (actual downgrade history); the rules filter on top of it.
+
+| rule | collapsed | initial | countries with ≥1 surviving initial |
+|---|---|---|---|
+| (i) no gap rule | 238 | 109 | 39 |
+| (ii) pre-registration §5.1 (issuing agency) | 212 | 102 | 37 |
+| (iii) strict (any of the 3 agencies) | 185 | 88 | 36 |
+
+By-year detail in `ratings_v2_event_survival_by_year.csv`, per-event
+flags in `ratings_v2_event_survival_events.csv`. The gap rule's cost is
+concentrated where expected: 2000 is wiped out entirely (lookback into
+pre-coverage years), and 2011–2012 (Eurozone crisis — multi-notch
+possible-gap spans) plus 2008 lose the most under rule (iii)
+(19→9 and 22→13 collapsed in 2011/2012). From ~2016 on the three rules
+are nearly identical, so the rule choice mainly affects the crisis-era
+sample. Even under the strict rule, 88 initial events across 36
+countries remain — comfortably above the 13-country pilot's base.
+
+**`second_pass_targets.csv`** (137 rows): one row per item a second
+collection pass should resolve — 20 stale Fitch FC_LT tables ("no
+action found after …" → 2025-12-31), 6 MISSING ACTION SUSPECTED cases,
+38 multi-notch possible-gap spans (with both surrounding dates), 29
+FC_LT series starting after 2004 whose first row is not marked as a new
+rating (the big S&P FC-labelling gaps, 2004-01-01 → series start), the
+2 known cross-collection problems (Nigeria Moody's 2019-12 B3-vs-B2;
+Sri Lanka S&P 2007-01-23 `A`-for-`B+`), and 42 undated latest-rating
+rows from `excluded_source_rows.csv` as hints for what the missing
+action is (dateless, priority last). Priority ranks by
+`n_events_affected` = rule-(iii)-excluded events whose event quarter or
+4-quarter lookback overlaps the target span. Top of the list is Greece
+(S&P 2011–2014 possible-gap span, 8 events affected; S&P pre-FC
+history to 2011, 6; Fitch 2011 spans, 5 each).
+
+Note: the user-facing count "62 rows … that are undated latest-rating
+rows" splits as 42 undated latest-rating rows + 17 short-term/
+provisional + 3 unrecognised strings; only the 42 undated ones are
+hints and included.
+
 ## Notes
 
 - `unresolved.md` references `excluded_source_rows.csv`; it was provided

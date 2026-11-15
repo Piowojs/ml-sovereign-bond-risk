@@ -1,0 +1,239 @@
+country,quarter,agency,date,from_rating,to_rating,initial_downgrade,survives_rule_agency,survives_rule_any,year
+Australia,2000Q1,SP,2000-01-01,AA+,AA,True,False,False,2000
+Austria,2012Q1,SP,2012-01-13,AAA,AA+,True,True,True,2012
+Austria,2015Q1,Fitch,2015-02-13,AAA,AA+,True,True,True,2015
+Austria,2016Q2,Moodys,2016-06-24,Aaa,Aa1,True,True,True,2016
+Austria,2025Q2,Fitch,2025-06-06,AA+,AA,True,True,True,2025
+Belgium,2011Q4,SP,2011-11-25,AA+,AA,True,True,True,2011
+Belgium,2012Q1,Fitch,2012-01-27,AA+,AA,False,True,True,2012
+Belgium,2016Q4,Fitch,2016-12-23,AA,AA-,True,True,True,2016
+Belgium,2025Q2,Fitch,2025-06-13,AA-,A+,True,True,True,2025
+Brazil,2002Q2,Fitch,2002-06-20,BB-,B+,True,True,True,2002
+Brazil,2002Q3,SP,2002-07-02,BB-,B+,False,True,True,2002
+Brazil,2002Q4,Fitch,2002-10-21,B+,B,False,True,True,2002
+Brazil,2014Q1,SP,2014-03-24,BBB,BBB-,True,True,True,2014
+Brazil,2015Q3,Moodys,2015-08-11,Baa2,Baa3,True,True,True,2015
+Brazil,2015Q4,Fitch,2015-10-15,BBB,BBB-,False,True,True,2015
+Brazil,2016Q1,SP,2016-02-17,BB+,BB,False,True,True,2016
+Brazil,2016Q2,Fitch,2016-05-05,BB+,BB,False,True,True,2016
+Brazil,2018Q1,SP,2018-01-11,BB,BB-,True,True,True,2018
+Canada,2020Q2,Fitch,2020-06-24,AAA,AA+,True,True,True,2020
+Chile,2017Q3,SP,2017-07-13,AA-,A+,True,True,True,2017
+Chile,2018Q3,Moodys,2018-07-26,Aa3,A1,False,True,True,2018
+Chile,2020Q4,Fitch,2020-10-15,A,A-,True,True,True,2020
+Chile,2021Q1,SP,2021-03-24,A+,A,False,True,True,2021
+Chile,2022Q3,Moodys,2022-09-15,A1,A2,True,True,False,2022
+China,2017Q2,Moodys,2017-05-24,Aa3,A1,True,True,True,2017
+China,2017Q3,SP,2017-09-21,AA-,A+,False,True,True,2017
+China,2025Q2,Fitch,2025-04-03,A+,A,True,True,True,2025
+Colombia,2000Q1,Fitch,2000-03-17,BBB-,BB+,True,False,False,2000
+Colombia,2000Q2,SP,2000-05-24,BB+,BB,False,False,False,2000
+Colombia,2002Q1,Fitch,2002-01-10,BB+,BB,True,True,True,2002
+Colombia,2017Q4,SP,2017-12-11,BBB,BBB-,True,True,True,2017
+Colombia,2020Q2,Fitch,2020-04-01,BBB,BBB-,True,True,True,2020
+Colombia,2021Q2,SP,2021-05-19,BBB-,BB+,False,True,True,2021
+Colombia,2021Q3,Fitch,2021-07-01,BBB-,BB+,False,True,True,2021
+Colombia,2025Q2,SP,2025-06-26,BB+,BB,True,True,True,2025
+Colombia,2025Q4,Fitch,2025-12-16,BB+,BB,False,True,True,2025
+Egypt,2002Q2,SP,2002-05-22,BBB-,BB+,True,True,True,2002
+Egypt,2002Q3,Fitch,2002-08-21,BBB-,BB+,False,True,True,2002
+Egypt,2011Q1,Moodys,2011-01-31,Ba1,Ba2,True,True,True,2011
+Egypt,2011Q4,SP,2011-10-18,BB,BB-,False,True,True,2011
+Egypt,2012Q1,SP,2012-02-10,B+,B,False,True,True,2012
+Egypt,2012Q3,Fitch,2012-07-11,BB-,B+,False,True,True,2012
+Egypt,2012Q4,SP,2012-12-24,B,B-,False,True,True,2012
+Egypt,2013Q1,Moodys,2013-02-12,B2,B3,False,True,True,2013
+Egypt,2013Q2,SP,2013-05-09,B-,CCC+,False,True,True,2013
+Egypt,2013Q3,Fitch,2013-07-05,B,B-,False,True,True,2013
+Egypt,2023Q1,Moodys,2023-02-07,B2,B3,True,True,True,2023
+Egypt,2023Q2,Fitch,2023-05-05,B+,B,False,True,True,2023
+Egypt,2023Q4,Moodys,2023-10-05,B3,Caa1,False,True,True,2023
+Finland,2014Q4,SP,2014-10-10,AAA,AA+,True,True,True,2014
+Finland,2016Q1,Fitch,2016-03-11,AAA,AA+,True,True,True,2016
+Finland,2016Q2,Moodys,2016-06-03,Aaa,Aa1,False,True,True,2016
+Finland,2025Q3,Fitch,2025-07-25,AA+,AA,True,True,True,2025
+France,2012Q1,SP,2012-01-13,AAA,AA+,True,True,True,2012
+France,2012Q4,Moodys,2012-11-19,Aaa,Aa1,False,True,True,2012
+France,2013Q3,Fitch,2013-07-12,AAA,AA+,False,True,True,2013
+France,2013Q4,SP,2013-11-08,AA+,AA,False,True,True,2013
+France,2014Q4,Fitch,2014-12-12,AA+,AA,False,True,True,2014
+France,2015Q3,Moodys,2015-09-18,Aa1,Aa2,False,True,True,2015
+France,2023Q2,Fitch,2023-04-28,AA,AA-,True,True,True,2023
+France,2024Q2,SP,2024-05-31,AA,AA-,False,True,True,2024
+France,2024Q4,Moodys,2024-12-14,Aa2,Aa3,False,True,True,2024
+France,2025Q4,SP,2025-10-17,AA-,A+,False,True,True,2025
+Greece,2004Q4,SP,2004-11-17,A+,A,True,True,True,2004
+Greece,2009Q1,SP,2009-01-14,A,A-,True,True,True,2009
+Greece,2009Q4,Fitch,2009-10-22,A,A-,False,True,True,2009
+Greece,2010Q2,Fitch,2010-04-09,BBB+,BBB-,False,True,False,2010
+Greece,2011Q1,Fitch,2011-01-14,BBB-,BB+,False,True,False,2011
+Greece,2011Q2,SP,2011-05-09,BB-,B,False,False,False,2011
+Greece,2011Q3,Fitch,2011-07-13,B+,CCC,False,False,False,2011
+Greece,2012Q1,Fitch,2012-02-22,CCC,C,False,False,False,2012
+Greece,2012Q2,Fitch,2012-05-17,B-,CCC,False,False,False,2012
+Greece,2012Q4,SP,2012-12-05,CCC,SD,False,False,False,2012
+Greece,2015Q1,SP,2015-02-06,B,B-,True,True,False,2015
+Greece,2015Q2,SP,2015-04-15,B-,CCC+,False,True,False,2015
+Greece,2015Q3,Moodys,2015-07-01,Caa2,Caa3,False,True,False,2015
+Hungary,2005Q4,Fitch,2005-12-06,A-,BBB+,True,True,True,2005
+Hungary,2006Q2,SP,2006-06-15,A-,BBB+,False,True,True,2006
+Hungary,2006Q4,Moodys,2006-12-22,A1,A2,False,True,True,2006
+Hungary,2008Q4,Moodys,2008-11-07,A2,A3,True,True,True,2008
+Hungary,2009Q1,SP,2009-03-30,BBB,BBB-,False,True,True,2009
+Hungary,2010Q4,Moodys,2010-12-06,Baa1,Baa3,True,True,True,2010
+Hungary,2011Q4,Moodys,2011-11-24,Baa3,Ba1,False,True,True,2011
+Hungary,2012Q1,Fitch,2012-01-06,BBB-,BB+,False,True,True,2012
+Hungary,2012Q4,SP,2012-11-23,BB+,BB,False,True,True,2012
+Hungary,2023Q1,SP,2023-01-27,BBB,BBB-,True,True,True,2023
+India,2001Q4,Fitch,2001-11-22,BB+,BB,True,False,False,2001
+India,2020Q2,Moodys,2020-06-01,Baa2,Baa3,True,True,True,2020
+Indonesia,2000Q2,SP,2000-04-17,CCC+,SD,True,False,False,2000
+Indonesia,2001Q2,SP,2001-05-21,B-,CCC+,False,False,False,2001
+Indonesia,2001Q4,SP,2001-11-02,CCC+,CCC,False,False,False,2001
+Indonesia,2002Q2,SP,2002-04-22,CCC,SD,False,False,False,2002
+Italy,2004Q3,SP,2004-07-07,AA,AA-,True,True,True,2004
+Italy,2006Q4,SP,2006-10-19,AA-,A+,True,True,True,2006
+Italy,2011Q3,SP,2011-09-19,A+,A,True,True,False,2011
+Italy,2011Q4,Moodys,2011-10-04,Aa2,A2,False,False,False,2011
+Italy,2012Q1,SP,2012-01-13,A,BBB+,False,True,False,2012
+Italy,2012Q3,Moodys,2012-07-13,A3,Baa2,False,False,False,2012
+Italy,2013Q1,Fitch,2013-03-08,A-,BBB+,False,True,True,2013
+Italy,2013Q3,SP,2013-07-09,BBB+,BBB,False,True,True,2013
+Italy,2014Q4,SP,2014-12-05,BBB,BBB-,True,True,True,2014
+Italy,2017Q2,Fitch,2017-04-21,BBB+,BBB,True,True,True,2017
+Italy,2018Q4,Moodys,2018-10-19,Baa2,Baa3,True,True,True,2018
+Italy,2020Q2,Fitch,2020-04-28,BBB,BBB-,True,True,True,2020
+Japan,2001Q1,SP,2001-02-22,AAA,AA+,True,True,True,2001
+Japan,2001Q4,Fitch,2001-11-26,AA+,AA,False,True,True,2001
+Japan,2002Q2,SP,2002-04-15,AA,AA-,False,True,True,2002
+Japan,2009Q2,Moodys,2009-05-18,Aaa,Aa2,True,True,True,2009
+Japan,2011Q1,SP,2011-01-27,AA,AA-,True,True,True,2011
+Japan,2011Q3,Moodys,2011-08-24,Aa2,Aa3,False,True,True,2011
+Japan,2012Q2,Fitch,2012-05-22,AA,A+,False,True,True,2012
+Japan,2014Q4,Moodys,2014-12-01,Aa3,A1,True,True,True,2014
+Japan,2015Q2,Fitch,2015-04-27,A+,A,False,True,True,2015
+Japan,2015Q3,SP,2015-09-16,AA-,A+,False,True,True,2015
+Kazakhstan,2007Q4,SP,2007-10-08,BBB,BBB-,True,True,True,2007
+Kazakhstan,2008Q4,Fitch,2008-11-09,BBB,BBB-,False,True,True,2008
+Kazakhstan,2015Q1,SP,2015-02-09,BBB+,BBB,True,True,True,2015
+Kazakhstan,2016Q1,SP,2016-02-17,BBB,BBB-,False,True,True,2016
+Kazakhstan,2016Q2,Moodys,2016-04-22,Baa2,Baa3,False,True,True,2016
+Kenya,2008Q1,SP,2008-02-04,B+,B,True,True,False,2008
+Kenya,2018Q1,Moodys,2018-02-13,B1,B2,True,True,True,2018
+Kenya,2021Q1,SP,2021-03-05,B+,B,True,True,True,2021
+Kenya,2022Q4,Fitch,2022-12-14,B+,B,True,True,True,2022
+Kenya,2023Q2,Moodys,2023-05-12,B2,B3,False,True,True,2023
+Kenya,2024Q3,Moodys,2024-07-08,B3,Caa1,True,True,True,2024
+Malaysia,2020Q4,Fitch,2020-12-04,A-,BBB+,True,True,True,2020
+Mexico,2009Q4,Fitch,2009-11-23,BBB+,BBB,True,True,True,2009
+Mexico,2019Q2,Fitch,2019-06-05,BBB+,BBB,True,True,True,2019
+Mexico,2020Q1,SP,2020-03-26,BBB+,BBB,False,True,True,2020
+Mexico,2020Q2,Fitch,2020-04-15,BBB,BBB-,False,True,True,2020
+Mexico,2022Q3,Moodys,2022-07-08,Baa1,Baa2,True,True,False,2022
+Morocco,2020Q4,Fitch,2020-10-23,BBB-,BB+,True,True,True,2020
+Morocco,2021Q2,SP,2021-04-02,BBB-,BB+,False,True,False,2021
+Netherlands,2013Q4,SP,2013-11-29,AAA,AA+,True,True,True,2013
+Nigeria,2009Q3,SP,2009-08-21,BB-,B+,True,True,False,2009
+Nigeria,2015Q1,SP,2015-03-20,BB-,B+,True,True,False,2015
+Nigeria,2016Q2,Fitch,2016-06-23,BB-,B+,True,True,False,2016
+Nigeria,2016Q3,SP,2016-09-16,B+,B,False,True,False,2016
+Nigeria,2020Q1,SP,2020-03-26,B,B-,True,True,True,2020
+Nigeria,2020Q2,Fitch,2020-04-06,B+,B,False,True,True,2020
+Nigeria,2022Q4,Fitch,2022-11-11,B,B-,True,True,True,2022
+Nigeria,2023Q1,Moodys,2023-01-27,B2,Caa1,False,True,True,2023
+Pakistan,2008Q2,SP,2008-05-15,B+,B,True,True,False,2008
+Pakistan,2008Q4,SP,2008-10-06,B,CCC+,False,True,False,2008
+Pakistan,2012Q3,Moodys,2012-07-13,B3,Caa1,True,True,False,2012
+Pakistan,2018Q4,Fitch,2018-12-14,B,B-,True,True,True,2018
+Pakistan,2019Q1,SP,2019-02-04,B,B-,False,True,True,2019
+Pakistan,2022Q4,Moodys,2022-10-06,B3,Caa1,True,True,True,2022
+Pakistan,2023Q1,Fitch,2023-02-14,CCC+,CCC-,False,True,True,2023
+Peru,2000Q4,SP,2000-11-01,BB,BB-,True,False,False,2000
+Peru,2001Q2,Fitch,2001-04-18,BB,BB-,False,True,True,2001
+Peru,2021Q3,Moodys,2021-09-01,A3,Baa1,True,True,True,2021
+Peru,2021Q4,Fitch,2021-10-15,BBB+,BBB,False,True,True,2021
+Peru,2022Q1,SP,2022-03-18,BBB+,BBB,False,True,True,2022
+Peru,2024Q2,SP,2024-04-25,BBB,BBB-,True,True,True,2024
+Philippines,2003Q2,SP,2003-04-24,BB+,BB,True,True,True,2003
+Philippines,2004Q1,Moodys,2004-01-27,Ba1,Ba2,False,True,True,2004
+Philippines,2005Q1,SP,2005-01-17,BB,BB-,False,True,True,2005
+Poland,2016Q1,SP,2016-01-15,A-,BBB+,True,True,True,2016
+Portugal,2005Q2,SP,2005-06-27,AA,AA-,True,True,True,2005
+Portugal,2009Q1,SP,2009-01-21,AA-,A+,True,True,True,2009
+Portugal,2010Q1,Fitch,2010-03-24,AA,AA-,False,True,True,2010
+Portugal,2010Q2,SP,2010-04-27,A+,A-,False,True,True,2010
+Portugal,2010Q3,Moodys,2010-07-13,Aa2,A1,False,True,True,2010
+Portugal,2010Q4,Fitch,2010-12-23,AA-,A+,False,True,True,2010
+Portugal,2011Q1,Moodys,2011-03-15,A1,A3,False,True,True,2011
+Portugal,2011Q2,Fitch,2011-04-01,A-,BBB-,False,False,False,2011
+Portugal,2011Q3,Moodys,2011-07-05,Baa1,Ba2,False,False,False,2011
+Portugal,2011Q4,Fitch,2011-11-24,BBB-,BB+,False,False,False,2011
+Portugal,2012Q1,SP,2012-01-13,BBB-,BB,False,True,False,2012
+Romania,2008Q4,SP,2008-10-27,BBB-,BB+,True,True,True,2008
+South Africa,2012Q3,Moodys,2012-09-27,A3,Baa1,True,True,True,2012
+South Africa,2012Q4,SP,2012-10-12,BBB+,BBB,False,True,True,2012
+South Africa,2013Q1,Fitch,2013-03-08,BBB+,BBB,False,True,True,2013
+South Africa,2014Q2,SP,2014-06-13,BBB,BBB-,True,True,True,2014
+South Africa,2014Q4,Moodys,2014-11-06,Baa1,Baa2,False,True,True,2014
+South Africa,2015Q4,Fitch,2015-12-04,BBB,BBB-,False,True,True,2015
+South Africa,2017Q2,SP,2017-04-03,BBB-,BB+,True,True,True,2017
+South Africa,2017Q4,SP,2017-11-24,BB+,BB,False,True,True,2017
+South Africa,2020Q1,Moodys,2020-03-27,Baa3,Ba1,True,True,True,2020
+South Africa,2020Q2,Fitch,2020-04-03,BB+,BB,False,True,True,2020
+South Africa,2020Q4,Moodys,2020-11-20,Ba1,Ba2,False,True,True,2020
+Spain,2009Q1,SP,2009-01-19,AAA,AA+,True,True,True,2009
+Spain,2010Q2,SP,2010-04-28,AA+,AA,True,True,True,2010
+Spain,2010Q3,Moodys,2010-09-30,Aaa,Aa1,False,True,True,2010
+Spain,2011Q1,Moodys,2011-03-10,Aa1,Aa2,False,True,True,2011
+Spain,2011Q4,Fitch,2011-10-07,AA+,AA-,False,True,True,2011
+Spain,2012Q1,SP,2012-01-13,AA-,A,False,True,True,2012
+Spain,2012Q2,SP,2012-04-26,A,BBB+,False,True,False,2012
+Spain,2012Q4,SP,2012-10-10,BBB+,BBB-,False,True,False,2012
+Spain,2024Q4,SP,2024-11-08,A,A-,True,True,False,2024
+Sri Lanka,2007Q3,SP,2007-08-08,A,B+,True,False,False,2007
+Sri Lanka,2008Q2,Fitch,2008-04-02,BB-,B+,False,True,False,2008
+Sri Lanka,2008Q4,SP,2008-12-15,B+,B,False,False,False,2008
+Sri Lanka,2016Q1,Fitch,2016-02-29,BB-,B+,True,True,True,2016
+Sri Lanka,2018Q4,Moodys,2018-11-20,B1,B2,True,True,True,2018
+Sri Lanka,2020Q2,Fitch,2020-04-24,B,B-,True,True,True,2020
+Sri Lanka,2020Q3,Moodys,2020-09-28,B2,Caa1,False,True,True,2020
+Sri Lanka,2020Q4,Fitch,2020-11-27,B-,CCC,False,True,True,2020
+Sri Lanka,2021Q4,Moodys,2021-10-28,Caa1,Caa2,False,True,True,2021
+Sri Lanka,2022Q1,SP,2022-01-12,CCC+,CCC,False,True,True,2022
+Sri Lanka,2022Q2,Fitch,2022-04-13,CC,C,False,False,False,2022
+Thailand,2009Q2,Fitch,2009-04-16,BBB+,BBB,True,True,True,2009
+Turkey,2001Q1,SP,2001-02-23,B+,B,True,True,True,2001
+Turkey,2001Q2,Fitch,2001-04-02,BB-,B+,False,True,True,2001
+Turkey,2001Q3,Fitch,2001-08-02,B+,B,False,True,True,2001
+Turkey,2003Q1,Fitch,2003-03-25,B,B-,True,True,True,2003
+Turkey,2016Q3,SP,2016-07-20,BB+,BB,True,True,True,2016
+Turkey,2017Q1,Fitch,2017-01-27,BBB-,BB+,False,True,True,2017
+Turkey,2018Q1,Moodys,2018-03-07,Ba1,Ba2,False,True,True,2018
+Turkey,2018Q2,SP,2018-05-01,BB,BB-,False,True,True,2018
+Turkey,2018Q3,Fitch,2018-07-13,BB+,BB,False,True,True,2018
+Turkey,2019Q2,Moodys,2019-06-14,Ba3,B1,False,True,True,2019
+Turkey,2019Q3,Fitch,2019-07-12,BB,BB-,False,True,True,2019
+Turkey,2020Q3,Moodys,2020-09-11,B1,B2,False,True,True,2020
+Turkey,2022Q1,Fitch,2022-02-11,BB-,B+,True,True,True,2022
+Turkey,2022Q3,Fitch,2022-07-08,B+,B,False,True,True,2022
+United Kingdom,2013Q1,Moodys,2013-02-22,Aaa,Aa1,True,True,True,2013
+United Kingdom,2013Q2,Fitch,2013-05-14,AAA,AA+,False,True,True,2013
+United Kingdom,2016Q2,SP,2016-06-27,AAA,AA,True,True,True,2016
+United Kingdom,2017Q3,Moodys,2017-09-22,Aa1,Aa2,True,True,True,2017
+United Kingdom,2020Q1,Fitch,2020-03-27,AA,AA-,True,True,True,2020
+United Kingdom,2020Q4,Moodys,2020-10-16,Aa2,Aa3,False,True,True,2020
+United States,2011Q3,SP,2011-08-05,AAA,AA+,True,False,False,2011
+United States,2023Q3,Fitch,2023-08-01,AAA,AA+,True,True,True,2023
+United States,2025Q2,Moodys,2025-05-16,Aaa,Aa1,True,True,True,2025
+Vietnam,2010Q3,Fitch,2010-07-28,BB-,B+,True,True,False,2010
+Vietnam,2011Q3,SP,2011-08-19,BB,BB-,False,False,False,2011
+Zambia,2013Q4,Fitch,2013-10-28,B+,B,True,True,False,2013
+Zambia,2015Q3,SP,2015-07-01,B+,B,True,True,False,2015
+Zambia,2018Q3,Moodys,2018-07-27,B3,Caa1,True,True,True,2018
+Zambia,2018Q4,Fitch,2018-10-11,B,B-,False,True,True,2018
+Zambia,2019Q2,Moodys,2019-05-23,Caa1,Caa2,False,True,True,2019
+Zambia,2019Q3,SP,2019-08-23,B-,CCC+,False,True,True,2019
+Zambia,2020Q1,SP,2020-02-21,CCC+,CCC,False,True,True,2020
+Zambia,2020Q2,Moodys,2020-04-03,Caa2,Ca,False,True,False,2020
+Zambia,2020Q3,Fitch,2020-09-24,CC,C,False,False,False,2020
+Zambia,2020Q4,SP,2020-10-21,CCC-,SD,False,False,False,2020

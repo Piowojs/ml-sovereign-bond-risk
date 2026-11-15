@@ -1,0 +1,138 @@
+country,iso3,agency,rating_type,date_from,date_to,reason,n_events_affected,priority
+Greece,GRC,SP,unspecified,2011-06-13,2014-12-12,possible gap: 3-notch move CCC -> B,8,1
+Greece,GRC,SP,FC_LT,2004-01-01,2011-07-27,FC_LT history starts 2011-07-27 with action 'downgrade' -- earlier FC history missing,6,2
+Greece,GRC,Fitch,FC_LT,2011-01-14,2011-05-20,possible gap: 3-notch move BB+ -> B+,5,3
+Greece,GRC,Fitch,FC_LT,2011-01-14,2011-05-20,possible gap: 3-notch move BB+ -> B+,5,3
+Greece,GRC,Fitch,FC_LT,2011-01-14,2011-07-13,possible gap: 7-notch move BB+ -> CCC,5,3
+Greece,GRC,Fitch,LC_LT,2011-01-14,2011-05-20,possible gap: 3-notch move BB+ -> B+,5,3
+Greece,GRC,Fitch,FC_LT,2011-07-13,2012-02-22,possible gap: 3-notch move CCC -> C,4,4
+Greece,GRC,Fitch,LC_LT,2011-05-20,2011-07-13,possible gap: 4-notch move B+ -> CCC,4,4
+Greece,GRC,Fitch,LC_LT,2011-07-13,2012-02-22,possible gap: 3-notch move CCC -> C,4,4
+Greece,GRC,SP,unspecified,2011-05-09,2011-06-13,possible gap: 3-notch move B -> CCC,4,4
+Italy,ITA,SP,FC_LT,2004-01-01,2011-09-19,FC_LT history starts 2011-09-19 with action 'downgrade' -- earlier FC history missing,4,4
+Portugal,PRT,Fitch,FC_LT,2010-12-23,2011-04-01,possible gap: 5-notch move A+ -> BBB-,4,4
+Portugal,PRT,Fitch,FC_LT,2010-12-23,2011-04-01,possible gap: 5-notch move A+ -> BBB-,4,4
+Portugal,PRT,Fitch,FC_LT,2010-12-23,2011-10-07,possible gap: 5-notch move A+ -> BBB-,4,4
+Portugal,PRT,Fitch,LC_LT,2011-03-24,2011-04-01,possible gap: 3-notch move A- -> BBB-,4,4
+Portugal,PRT,SP,FC_LT,2004-01-01,2011-03-29,FC_LT history starts 2011-03-29 with action 'downgrade' -- earlier FC history missing,4,4
+Greece,GRC,Fitch,FC_LT,2012-03-09,2012-03-14,possible gap: 6-notch move RD -> B-,3,5
+Greece,GRC,Fitch,FC_LT,2014-05-23,2015-03-27,possible gap: 3-notch move B -> CCC,3,5
+Greece,GRC,Fitch,LC_LT,2012-03-09,2012-03-14,possible gap: 6-notch move RD -> B-,3,5
+Greece,GRC,Fitch,LC_LT,2014-05-23,2015-03-27,possible gap: 3-notch move B -> CCC,3,5
+Greece,GRC,SP,FC_LT,2012-02-27,2012-05-02,possible gap: 4-notch move SD -> CCC,3,5
+Greece,GRC,SP,LC_LT,2012-02-27,2012-05-02,possible gap: 4-notch move SD -> CCC,3,5
+Greece,GRC,SP,unspecified,2010-03-16,2010-04-27,possible gap: 3-notch move BBB+ -> BB+,3,5
+Indonesia,IDN,SP,unspecified,2000-04-17,2000-10-02,possible gap: 6-notch move SD -> B-,3,5
+Sri Lanka,LKA,SP,FC_LT,2007-01-23,2010-09-14,possible gap: 8-notch move A -> B+,3,5
+Sri Lanka,LKA,SP,LC_LT,2007-01-23,2010-09-14,possible gap: 7-notch move A -> BB-,3,5
+Pakistan,PAK,SP,FC_LT,2004-01-01,2009-08-24,FC_LT history starts 2009-08-24 with action 'upgrade' -- earlier FC history missing,2,6
+Spain,ESP,Fitch,FC_LT,2012-01-27,2012-06-07,possible gap: 3-notch move A -> BBB,2,6
+Spain,ESP,Fitch,LC_LT,2012-01-27,2012-06-07,possible gap: 3-notch move A -> BBB,2,6
+Vietnam,VNM,SP,FC_LT,2004-01-01,2019-04-05,FC_LT history starts 2019-04-05 with action 'upgrade' -- earlier FC history missing,2,6
+Chile,CHL,Fitch,FC_LT,2020-10-15,2025-12-31,stale Fitch table: no action found after 2020-10-15,1,7
+Greece,GRC,SP,FC_LT,2012-12-05,2012-12-18,possible gap: 6-notch move SD -> B-,1,7
+Greece,GRC,SP,LC_LT,2012-12-05,2012-12-18,possible gap: 6-notch move SD -> B-,1,7
+Indonesia,IDN,SP,unspecified,2002-04-22,2002-09-05,possible gap: 5-notch move SD -> CCC+,1,7
+Kenya,KEN,SP,FC_LT,2004-01-01,2010-11-19,FC_LT history starts 2010-11-19 with action 'upgrade' -- earlier FC history missing,1,7
+Mexico,MEX,Fitch,FC_LT,2020-04-16,2025-12-31,stale Fitch table: no action found after 2020-04-16,1,7
+Morocco,MAR,Fitch,FC_LT,2020-10-23,2025-12-31,stale Fitch table: no action found after 2020-10-23,1,7
+Nigeria,NGA,SP,FC_LT,2004-01-01,2009-08-21,FC_LT history starts 2009-08-21 with action 'downgrade' -- earlier FC history missing,1,7
+Spain,ESP,Fitch,FC_LT,2018-01-19,2025-12-31,stale Fitch table: no action found after 2018-01-19,1,7
+Spain,ESP,Fitch,FC_LT,2019-12-13,2025-12-31,missing action suspected: current A vs last dated A- on 2019-12-13,1,7
+Sri Lanka,LKA,Fitch,FC_LT,2022-05-19,2024-12-20,possible gap: 5-notch move RD -> CCC+,1,7
+Sri Lanka,LKA,SP,FC_LT,2022-04-25,2025-09-19,possible gap: 5-notch move SD -> CCC+,1,7
+Sri Lanka,LKA,SP,FC_LT,2004-01-01,2007-01-23,FC_LT history starts 2007-01-23 with action 'upgrade' -- earlier FC history missing,1,7
+Sri Lanka,LKA,SP,FC_LT,2007-01-23,2007-01-23,known countryeconomy transcription error: A should be B+ (corrected in old panel via _corrections.csv),1,7
+United States,USA,SP,FC_LT,2004-01-01,2011-08-05,FC_LT history starts 2011-08-05 with action 'downgrade' -- earlier FC history missing,1,7
+Zambia,ZMB,Fitch,FC_LT,2020-11-18,2025-11-28,possible gap: 6-notch move RD -> B-,1,7
+Zambia,ZMB,SP,FC_LT,2020-10-21,2025-11-21,possible gap: 5-notch move SD -> CCC+,1,7
+Australia,AUS,Fitch,FC_LT,2021-10-13,2025-12-31,stale Fitch table: no action found after 2021-10-13,0,8
+Austria,AUT,Fitch,LC_LT,,,hint: source shows undated latest rating 'AA' -- the missing action likely ends there,0,8
+Austria,AUT,Fitch,FC_LT,,,hint: source shows undated latest rating 'AA (Stable)' -- the missing action likely ends there,0,8
+Belgium,BEL,Fitch,LC_LT,,,hint: source shows undated latest rating 'A+' -- the missing action likely ends there,0,8
+Belgium,BEL,Fitch,FC_LT,,,hint: source shows undated latest rating 'A+ (Stable)' -- the missing action likely ends there,0,8
+Brazil,BRA,Fitch,FC_LT,,,hint: source shows undated latest rating 'BB (Stable)' -- the missing action likely ends there,0,8
+Brazil,BRA,Fitch,LC_LT,,,hint: source shows undated latest rating 'BB' -- the missing action likely ends there,0,8
+Brazil,BRA,SP,FC_LT,2004-01-01,2008-04-30,FC_LT history starts 2008-04-30 with action 'upgrade' -- earlier FC history missing,0,8
+Canada,CAN,Fitch,FC_LT,2020-06-24,2025-12-31,stale Fitch table: no action found after 2020-06-24,0,8
+Chile,CHL,SP,FC_LT,2004-01-01,2007-12-18,FC_LT history starts 2007-12-18 with action 'upgrade' -- earlier FC history missing,0,8
+China,CHN,Fitch,FC_LT,,,hint: source shows undated latest rating 'A (Stable)' -- the missing action likely ends there,0,8
+China,CHN,Fitch,LC_LT,,,hint: source shows undated latest rating 'A' -- the missing action likely ends there,0,8
+China,CHN,SP,FC_LT,2004-01-01,2010-12-16,FC_LT history starts 2010-12-16 with action 'upgrade' -- earlier FC history missing,0,8
+Colombia,COL,Fitch,FC_LT,,,hint: source shows undated latest rating 'BB (Stable)' -- the missing action likely ends there,0,8
+Colombia,COL,Fitch,LC_LT,,,hint: source shows undated latest rating 'BB' -- the missing action likely ends there,0,8
+Colombia,COL,SP,FC_LT,2004-01-01,2011-03-16,FC_LT history starts 2011-03-16 with action 'upgrade' -- earlier FC history missing,0,8
+Czech Republic,CZE,Fitch,FC_LT,2018-08-03,2025-12-31,stale Fitch table: no action found after 2018-08-03,0,8
+Czech Republic,CZE,SP,FC_LT,2004-01-01,2007-10-02,FC_LT history starts 2007-10-02 with action 'upgrade' -- earlier FC history missing,0,8
+Egypt,EGY,Fitch,FC_LT,2023-11-03,2025-12-31,missing action suspected: current B vs last dated B- on 2023-11-03,0,8
+Egypt,EGY,Fitch,LC_LT,,,hint: source shows undated latest rating 'B' -- the missing action likely ends there,0,8
+Egypt,EGY,Fitch,FC_LT,,,hint: source shows undated latest rating 'B (Stable)' -- the missing action likely ends there,0,8
+Egypt,EGY,SP,LC_LT,2011-02-01,2011-11-24,possible gap: 3-notch move BB+ -> B+,0,8
+Egypt,EGY,SP,FC_LT,2004-01-01,2011-02-01,FC_LT history starts 2011-02-01 with action 'downgrade' -- earlier FC history missing,0,8
+Finland,FIN,Fitch,LC_LT,,,hint: source shows undated latest rating 'AA' -- the missing action likely ends there,0,8
+Finland,FIN,Fitch,FC_LT,,,hint: source shows undated latest rating 'AA (Stable)' -- the missing action likely ends there,0,8
+France,FRA,Fitch,FC_LT,2024-10-12,2025-12-31,missing action suspected: current A+ vs last dated AA- on 2024-10-12,0,8
+France,FRA,Fitch,LC_LT,,,hint: source shows undated latest rating 'A+' -- the missing action likely ends there,0,8
+France,FRA,Fitch,FC_LT,,,hint: source shows undated latest rating 'A+ (Stable)' -- the missing action likely ends there,0,8
+France,FRA,SP,unspecified,2011-12-05,2025-02-28,possible gap: 3-notch move AAA -> AA-,0,8
+Germany,DEU,Fitch,FC_LT,2011-12-28,2025-12-31,stale Fitch table: no action found after 2011-12-28,0,8
+Greece,GRC,Fitch,FC_LT,,,hint: source shows undated latest rating 'BBB (Stable)' -- the missing action likely ends there,0,8
+Greece,GRC,Fitch,LC_LT,,,hint: source shows undated latest rating 'BBB' -- the missing action likely ends there,0,8
+Hungary,HUN,SP,FC_LT,2004-01-01,2009-03-30,FC_LT history starts 2009-03-30 with action 'downgrade' -- earlier FC history missing,0,8
+India,IND,Fitch,FC_LT,2022-06-10,2025-12-31,stale Fitch table: no action found after 2022-06-10,0,8
+India,IND,SP,FC_LT,2004-01-01,2007-01-30,FC_LT history starts 2007-01-30 with action 'upgrade' -- earlier FC history missing,0,8
+Indonesia,IDN,Fitch,FC_LT,2018-09-02,2025-12-31,stale Fitch table: no action found after 2018-09-02,0,8
+Indonesia,IDN,SP,FC_LT,2004-01-01,2010-03-12,FC_LT history starts 2010-03-12 with action 'upgrade' -- earlier FC history missing,0,8
+Italy,ITA,Fitch,FC_LT,2024-10-18,2025-12-31,missing action suspected: current BBB+ vs last dated BBB on 2024-10-18,0,8
+Italy,ITA,Fitch,LC_LT,,,hint: source shows undated latest rating 'BBB+' -- the missing action likely ends there,0,8
+Italy,ITA,Fitch,FC_LT,,,hint: source shows undated latest rating 'BBB+ (Stable)' -- the missing action likely ends there,0,8
+Japan,JPN,Fitch,FC_LT,2022-03-25,2025-12-31,stale Fitch table: no action found after 2022-03-25,0,8
+Japan,JPN,SP,FC_LT,2004-01-01,2011-01-27,FC_LT history starts 2011-01-27 with action 'downgrade' -- earlier FC history missing,0,8
+Kazakhstan,KAZ,Fitch,FC_LT,2016-04-29,2025-12-31,stale Fitch table: no action found after 2016-04-29,0,8
+Kazakhstan,KAZ,SP,FC_LT,2004-01-01,2010-12-23,FC_LT history starts 2010-12-23 with action 'upgrade' -- earlier FC history missing,0,8
+Kenya,KEN,Fitch,FC_LT,,,hint: source shows undated latest rating 'B- (Stable)' -- the missing action likely ends there,0,8
+Kenya,KEN,Fitch,LC_LT,,,hint: source shows undated latest rating 'B-' -- the missing action likely ends there,0,8
+Malaysia,MYS,Fitch,FC_LT,2020-12-04,2025-12-31,stale Fitch table: no action found after 2020-12-04,0,8
+Mexico,MEX,SP,FC_LT,2004-01-01,2009-12-14,FC_LT history starts 2009-12-14 with action 'downgrade' -- earlier FC history missing,0,8
+Morocco,MAR,SP,FC_LT,2004-01-01,2008-04-11,FC_LT history starts 2008-04-11 with action 'outlook_change' -- earlier FC history missing,0,8
+Netherlands,NLD,Fitch,FC_LT,2014-07-11,2025-12-31,stale Fitch table: no action found after 2014-07-11,0,8
+Nigeria,NGA,Fitch,FC_LT,2022-11-11,2025-12-31,stale Fitch table: no action found after 2022-11-11,0,8
+Nigeria,NGA,Fitch,FC_LT,,,hint: source shows undated latest rating 'B (Stable)' -- the missing action likely ends there,0,8
+Nigeria,NGA,Fitch,LC_LT,,,hint: source shows undated latest rating 'B' -- the missing action likely ends there,0,8
+Nigeria,NGA,Moodys,FC_LT,2019-12-01,2019-12-04,"cross-collection disagreement: old panel (GE, month-precision) B3 vs v2 (fxempire) B2 -- needs primary-source check",0,8
+Norway,NOR,Fitch,FC_LT,2000-09-21,2025-12-31,stale Fitch table: no action found after 2000-09-21,0,8
+Pakistan,PAK,Fitch,FC_LT,2024-07-29,2025-12-31,missing action suspected: current B- vs last dated CCC+ on 2024-07-29,0,8
+Pakistan,PAK,Fitch,FC_LT,,,hint: source shows undated latest rating 'B- (Stable)' -- the missing action likely ends there,0,8
+Pakistan,PAK,Fitch,LC_LT,,,hint: source shows undated latest rating 'B-' -- the missing action likely ends there,0,8
+Peru,PER,SP,FC_LT,2004-01-01,2011-08-30,FC_LT history starts 2011-08-30 with action 'upgrade' -- earlier FC history missing,0,8
+Philippines,PHL,SP,LC_LT,2005-01-17,2009-08-17,possible gap: 3-notch move BB+ -> BBB+,0,8
+Philippines,PHL,SP,FC_LT,2004-01-01,2010-11-12,FC_LT history starts 2010-11-12 with action 'upgrade' -- earlier FC history missing,0,8
+Poland,POL,SP,FC_LT,2004-01-01,2007-03-29,FC_LT history starts 2007-03-29 with action 'upgrade' -- earlier FC history missing,0,8
+Portugal,PRT,Fitch,FC_LT,2026-03-06,2025-12-31,missing action suspected: current A+ vs last dated A on 2026-03-06,0,8
+Portugal,PRT,Fitch,FC_LT,,,hint: source shows undated latest rating 'A+ (Stable)' -- the missing action likely ends there,0,8
+Portugal,PRT,Fitch,LC_LT,,,hint: source shows undated latest rating 'A+' -- the missing action likely ends there,0,8
+Portugal,PRT,SP,unspecified,2013-09-18,2025-02-28,possible gap: 6-notch move BB -> A,0,8
+Romania,ROU,Fitch,FC_LT,2020-04-17,2025-12-31,stale Fitch table: no action found after 2020-04-17,0,8
+Romania,ROU,SP,FC_LT,2004-01-01,2008-10-27,FC_LT history starts 2008-10-27 with action 'downgrade' -- earlier FC history missing,0,8
+South Africa,ZAF,Fitch,FC_LT,2021-12-15,2025-12-31,stale Fitch table: no action found after 2021-12-15,0,8
+South Africa,ZAF,Fitch,LC_LT,,,hint: source shows undated latest rating 'BB' -- the missing action likely ends there,0,8
+South Africa,ZAF,Fitch,FC_LT,,,hint: source shows undated latest rating 'BB (Stable)' -- the missing action likely ends there,0,8
+South Africa,ZAF,SP,FC_LT,2004-01-01,2005-08-01,FC_LT history starts 2005-08-01 with action 'upgrade' -- earlier FC history missing,0,8
+Spain,ESP,Fitch,LC_LT,,,hint: source shows undated latest rating 'A' -- the missing action likely ends there,0,8
+Spain,ESP,Fitch,FC_LT,,,hint: source shows undated latest rating 'A (Stable)' -- the missing action likely ends there,0,8
+Spain,ESP,SP,FC_LT,2004-01-01,2010-04-28,FC_LT history starts 2010-04-28 with action 'downgrade' -- earlier FC history missing,0,8
+Sri Lanka,LKA,Fitch,FC_LT,,,hint: source shows undated latest rating 'B- (Stable)' -- the missing action likely ends there,0,8
+Sri Lanka,LKA,Fitch,LC_LT,,,hint: source shows undated latest rating 'B-' -- the missing action likely ends there,0,8
+Sri Lanka,LKA,Moodys,FC_LT,2024-11-28,2024-12-23,possible gap: 3-notch move Ca -> Caa1,0,8
+Sri Lanka,LKA,SP,LC_LT,2023-09-19,2023-09-25,possible gap: 5-notch move SD -> CCC+,0,8
+Sweden,SWE,Fitch,FC_LT,2004-03-08,2025-12-31,stale Fitch table: no action found after 2004-03-08,0,8
+Switzerland,CHE,Fitch,FC_LT,2000-09-21,2025-12-31,stale Fitch table: no action found after 2000-09-21,0,8
+Turkey,TUR,Fitch,FC_LT,,,hint: source shows undated latest rating 'BB- (Stable)' -- the missing action likely ends there,0,8
+Turkey,TUR,Fitch,LC_LT,,,hint: source shows undated latest rating 'BB-' -- the missing action likely ends there,0,8
+Turkey,TUR,SP,FC_LT,2004-01-01,2010-02-19,FC_LT history starts 2010-02-19 with action 'upgrade' -- earlier FC history missing,0,8
+United States,USA,Fitch,FC_LT,,,hint: source shows undated latest rating 'AA+ (Stable)' -- the missing action likely ends there,0,8
+United States,USA,Fitch,LC_LT,,,hint: source shows undated latest rating 'AA+' -- the missing action likely ends there,0,8
+Vietnam,VNM,Fitch,FC_LT,,,hint: source shows undated latest rating 'BB+ (Stable)' -- the missing action likely ends there,0,8
+Vietnam,VNM,Fitch,LC_LT,,,hint: source shows undated latest rating 'BB+' -- the missing action likely ends there,0,8
+Zambia,ZMB,Fitch,FC_LT,,,hint: source shows undated latest rating 'B- (Stable)' -- the missing action likely ends there,0,8
+Zambia,ZMB,Fitch,LC_LT,,,hint: source shows undated latest rating 'B-' -- the missing action likely ends there,0,8
