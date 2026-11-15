@@ -355,6 +355,12 @@ evaluated as automatable replacements (2026-08-10) and rejected:
 
 **Primary manual source: TheGlobalEconomy.com, not countryeconomy.com**
 (switched 2026-08-10, before any country was transcribed against either).
+**SUPERSEDED for future collection (2026-11-15): TheGlobalEconomy.com's
+credit-rating pages have been discontinued (HTTP 410)** — the GE-primary
+guidance below is kept for the historical record of how the existing 13
+countries were transcribed, but no further country can be collected from
+GE; see the `data/raw/ratings_v2/` entry at the end of this section for
+the replacement collection.
 countryeconomy.com was the original pick — real dated rating-action
 history back to the 1990s for many countries — but it turned out to have
 a structural trap: each country page lays out **four independent
@@ -686,6 +692,46 @@ yet for a country just means it's absent from the output, not an error.
   stats, but `ratings_leadlag_stub.py` and
   `stage1_leadlag_pilot_events.csv` should be re-run to confirm rather
   than assumed unaffected. Not done here — out of this thread's scope.
+- **`data/raw/ratings_v2/` (2026-11-15): an independent, full-44-country
+  FC_LT/LC_LT rating-action collection** (sources: countryeconomy.com,
+  tradingeconomics.com — S&P only, currency unstated — fxempire.com's
+  ~20 most recent actions, and Fitch's own 2011 sovereign-history
+  table; GE being discontinued forced the source change). 2,610 rows,
+  stored untouched and local-only (`data/raw/` is gitignored, like all
+  raw pulls). **Deliberately NOT merged into
+  `data/processed/ratings_panel.csv`** — intake diagnostics only, per
+  `docs/stage1_h1_preregistration.md` §6. Diagnostics
+  (`diagnostics/ratings_v2_diagnostics.py`, outputs + full narrative in
+  `data/diagnostics/ratings/summary.md`), headline results:
+  - Sanity: 15 >4-notch jumps (all default-entry/exit or documented
+    stale series except one), 4 range outliers — **v2 reproduces the
+    known Sri Lanka `S&P, A, 2007-01-23` countryeconomy transcription
+    error** the old panel already caught and corrected, confirming the
+    error originates at the aggregator; any future v2 use must carry
+    the correction over. 54% of rows are single-source.
+  - Pre-registration §5.1 currency tests: source test **35/35
+    tradingeconomics-backed rows carry the FC rating (pass)**;
+    continuity test **0 inconsistent** → all 38 countries with S&P
+    currency-unspecified rows qualify to treat them as FC_LT. (The
+    superseded same-date overlap test would have had only 9 pairs.)
+  - 13-country old-panel comparison (±3 days): 612 matched (609
+    exact-date), 3 disagreements — the inherited Sri Lanka error, the
+    known numerically-identical Zambia `Ca-` alias, and one **genuine
+    new 1-notch conflict (Nigeria Moody's 2019-12, GE `B3` vs fxempire
+    `B2`)** on a series that was 100% GE-only and previously
+    uncheckable. 253 of 612 matches rest on countryeconomy in both
+    collections (not independent confirmations). 897 old-only rows are
+    structurally expected (affirmations/outlook-only actions v2 does
+    not record, plus GE month-precision dates).
+  - Gap map 2004-2025 (country x agency x year): FC_LT-only
+    2,418/244/242 complete/partial/missing; adding qualifying S&P
+    unspecified rows improves to 2,585/220/99. 486 cells block
+    downgrade-event detection under §5.1's 4-quarter rule.
+  - Downgrade-event counts (counts only, no scores): 212 collapsed
+    country-quarter events / 102 initial (FC_LT only); 238 / 109 with
+    qualifying unspecified rows. 7 countries have zero FC_LT
+    downgrades (Australia, Czech Republic, Germany, Indonesia, Norway,
+    Sweden, Switzerland).
 
 ## Stage 1 feature matrix (country x quarter — settled facts)
 `src/stage1_clustering/build_feature_matrix.py` builds two wide, country x
@@ -1298,14 +1344,25 @@ untouched by the spec and still open as listed.
 - **`core-eligible` is empty 2009-2017.** Stage 1's walk-forward labels
   assign zero countries to `core-eligible` for ~9 consecutive years
   (1 row in 2013), i.e. the 70% core sleeve of thesis §3.4.1 is undefined
-  for roughly half the backtest. Needs a design decision (fallback rule,
-  feature-set change, or methodology-level override of §2.3's global
-  features in Stage 1) before any Stage 3 code is written. See the
-  residual global-feature regime artifact in "Stage 1 clustering" above.
+  for roughly half the backtest. See the residual global-feature regime
+  artifact in "Stage 1 clustering" above.
+  - **DESIGN DECISION MADE (2026-11-15, pre-registered):** the Stage 1
+    repair is adopted via **`docs/stage1_h1_preregistration.md`** (DRAFT
+    v0.3, committed; its §3 — spread feature / tier ranking — remains
+    PROVISIONAL pending the licence-test session). **Variant (c)
+    (within-date cross-sectional z-scoring of the 8 country features,
+    globals dropped) is the primary specification; variant (b) (raw
+    country features, globals dropped) is the robustness
+    specification.** The choice was made on structural criteria only —
+    no lead/lag, return, or portfolio outcome had been computed for (b)
+    or (c). Labels are NOT regenerated for downstream use until the
+    pre-registration's §3 is confirmed (its §6 order of operations is
+    binding); the H1 final test protocol (events, windows, tests,
+    verdict rule) lives in that document and must not be re-derived
+    here.
   - **Measured and repair-tested 2026-11-15
     (`diagnostics/stage1_regime_diagnostics.py`, outputs + full narrative
-    in `data/diagnostics/stage1/summary.md`) — diagnostic findings
-    pending a design decision, nothing adopted:**
+    in `data/diagnostics/stage1/summary.md`):**
     - *Size*: 36 of 78 labeled rebal dates (46%) have zero
       `core-eligible`, spanning 2009-03 to **2018-03** (slightly wider
       than the "2009-2017" above); **44.6% of all `risk_score` variance
