@@ -1302,6 +1302,40 @@ untouched by the spec and still open as listed.
   feature-set change, or methodology-level override of §2.3's global
   features in Stage 1) before any Stage 3 code is written. See the
   residual global-feature regime artifact in "Stage 1 clustering" above.
+  - **Measured and repair-tested 2026-11-15
+    (`diagnostics/stage1_regime_diagnostics.py`, outputs + full narrative
+    in `data/diagnostics/stage1/summary.md`) — diagnostic findings
+    pending a design decision, nothing adopted:**
+    - *Size*: 36 of 78 labeled rebal dates (46%) have zero
+      `core-eligible`, spanning 2009-03 to **2018-03** (slightly wider
+      than the "2009-2017" above); **44.6% of all `risk_score` variance
+      is between-date** (calendar-time level shift), not cross-sectional.
+    - *Repairs tested, structure only* (same `label_panel` code path,
+      expanding window, kmeans/core/k=3; **no return/portfolio/lead-lag
+      outcome computed for any variant**, by scope decision; variant (a)
+      byte-reproduced the stored parquet first): (b) drop
+      `us_10y`/`curve_slope`, and (c) within-date cross-sectional
+      z-scoring of the 8 country features, globals dropped. **Both
+      eliminate the empty-core problem entirely** (0 zero-core dates; 0
+      dates with <5 countries in either sleeve, vs 44 for current) and
+      collapse the between-date variance share (0.446 → 0.048 (b) /
+      0.018 (c)) at modest turnover cost (0.098 → 0.102/0.124). Trade-off:
+      mean per-date ARI vs DM/EM *drops* (0.446 → 0.382/0.397 — the
+      globals do add within-date discrimination) while pooled ARI rises
+      (0.085 → 0.104/0.170).
+    - *H1 confound check* (EXPLORATORY — run after the 13-country pilot
+      results were seen, unlike the pilot's pre-registrations): per
+      downgrade event, own near-minus-baseline score change minus the
+      same change in the other-countries cross-sectional median over
+      identical windows (two control sets: all others, and no-own-
+      downgrade-within-±4-quarters; near-identical results). **6 of the
+      pilot's 7 positive-direction countries stay positive after the
+      market adjustment; Greece does not** (own +0.021 vs market +0.030
+      → abnormal −0.009): its 34 events cluster in 2010-2012, inside the
+      artifact's level jump, so the flagship crisis case's pilot signal
+      is fully absorbed by the global shift. 2010-2012 holds 71 of 211
+      ok events (34%). Any H1 result on a repaired Stage 1 must be
+      re-run under the existing pre-registered protocol.
 - **No benchmark index data.** Nothing in `data/` for JP Morgan EMBI
   Global Diversified, Bloomberg Global Treasury, or any other index —
   benchmarks 1-3 of thesis §3.5.3 are currently unconstructible, and no

@@ -11,3 +11,4 @@ wbdata
 requests
 pyyaml
 pyarrow
+matplotlib

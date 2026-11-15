@@ -1,0 +1,4 @@
+variant,n_rows,n_real_labeled,n_labeled_dates,n_dates_zero_core_eligible,core_min,core_p10,core_median,sat_min,sat_p10,sat_median,n_dates_either_sleeve_lt5,mean_label_turnover,ari_dmem_pooled,ari_dmem_mean_per_date,risk_score_between_date_share
+a_current_core,3696,3432,78,36,0,0.0,4.5,0,6.7,15.0,44,0.09828807556080281,0.08520806681342867,0.4463133745076615,0.4464737175642444
+b_no_global_features,3696,3432,78,0,5,6.0,12.0,7,10.0,13.0,0,0.10153482880755606,0.10426985043643136,0.3822350066187743,0.04762813459827946
+c_crosssectional_z,3696,3432,78,0,8,12.0,14.0,8,9.0,11.0,0,0.1242621015348288,0.17010816259379782,0.3972899264244605,0.018412879666746512
