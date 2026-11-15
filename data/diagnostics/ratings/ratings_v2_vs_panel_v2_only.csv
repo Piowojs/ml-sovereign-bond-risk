@@ -1,0 +1,71 @@
+country,agency,action_date,rating,outlook,action,n_independent_sources
+Italy,S&P,2025-04-12,BBB+,stable,upgrade,2
+Italy,Moody's,2000-01-01,Aa3,,initial_state,1
+Italy,Moody's,2022-08-08,Baa3,negative,outlook_change,1
+Italy,Fitch,2000-01-01,AA-,,initial_state,2
+Italy,Fitch,2006-05-25,AA,watch_neg,watch,1
+Italy,Fitch,2024-10-18,BBB,positive,outlook_change,1
+Spain,S&P,2024-11-08,A-,positive,downgrade,1
+Spain,Moody's,2000-01-01,Aa2,,initial_state,1
+Spain,Fitch,2000-01-01,AA+,,initial_state,2
+Portugal,S&P,2025-03-01,A,positive,upgrade,1
+Portugal,Moody's,2000-01-01,Aa2,,initial_state,1
+Portugal,Fitch,2000-01-01,AA,,initial_state,2
+Portugal,Fitch,2011-03-24,A-,watch_neg,downgrade,1
+Portugal,Fitch,2011-04-01,BBB-,watch_neg,downgrade,1
+Greece,Moody's,2000-01-01,A2,,initial_state,1
+Greece,Moody's,2024-09-14,Ba1,positive,outlook_change,1
+Greece,Moody's,2025-03-16,Baa3,stable,upgrade,1
+Greece,Fitch,2000-01-01,BBB+,,initial_state,2
+Greece,Fitch,2000-03-13,BBB+,watch_pos,watch,1
+Greece,Fitch,2004-09-28,A+,watch_neg,watch,1
+Greece,Fitch,2010-12-21,BBB-,watch_neg,watch,1
+Greece,Fitch,2011-05-20,B+,watch_neg,downgrade,1
+Greece,Fitch,2022-01-14,BB,positive,outlook_change,1
+Greece,Fitch,2025-11-14,BBB,stable,upgrade,1
+Brazil,S&P,2017-05-22,BB,watch_neg,watch,2
+Brazil,Moody's,2000-01-01,B2,,initial_state,1
+Brazil,Fitch,2000-01-01,B,,initial_state,2
+Brazil,Fitch,2002-08-01,B+,watch_neg,watch,1
+Brazil,Fitch,2022-07-15,BB-,stable,outlook_change,1
+Brazil,Fitch,2023-07-26,BB,stable,upgrade,1
+South Africa,S&P,2020-04-30,BB-,stable,downgrade,2
+South Africa,S&P,2022-05-20,BB-,positive,downgrade,2
+South Africa,Moody's,2000-01-01,Baa3,,initial_state,1
+South Africa,Fitch,2000-01-01,BB,,initial_state,2
+South Africa,Fitch,2003-03-11,BBB-,watch_pos,watch,1
+South Africa,Fitch,2021-12-15,BB-,stable,outlook_change,1
+Turkey,Moody's,2000-01-01,B1,,initial_state,1
+Turkey,Fitch,2000-01-01,B+,,initial_state,2
+Turkey,Fitch,2000-04-10,B+,watch_pos,watch,1
+Turkey,Fitch,2001-02-22,BB-,watch_neg,watch,1
+Turkey,Fitch,2001-04-02,B+,watch_neg,downgrade,1
+Turkey,Fitch,2009-10-27,BB-,watch_pos,watch,1
+Turkey,Fitch,2021-02-19,BB-,stable,outlook_change,1
+Turkey,Fitch,2022-02-12,B+,negative,downgrade,1
+Turkey,Fitch,2024-03-08,B+,positive,upgrade,1
+Colombia,Moody's,2000-01-01,Ba2,,initial_state,1
+Colombia,Fitch,2000-01-01,BBB-,,initial_state,2
+Colombia,Fitch,2025-03-06,BB+,negative,outlook_change,1
+Colombia,Fitch,2025-12-16,BB,stable,downgrade,1
+Egypt,Moody's,2000-01-01,Ba1,,initial_state,1
+Egypt,Fitch,2000-01-01,BBB-,,initial_state,2
+Egypt,Fitch,2011-02-03,BB,watch_neg,downgrade,1
+Egypt,Fitch,2022-11-08,B+,negative,outlook_change,1
+Nigeria,Moody's,2017-11-07,B2,stable,new,1
+Nigeria,Moody's,2021-11-29,B2,stable,outlook_change,1
+Nigeria,Moody's,2023-01-27,Caa1,stable,downgrade,1
+Nigeria,Moody's,2025-05-30,B3,stable,upgrade,1
+Nigeria,Fitch,2020-09-30,B,stable,outlook_change,1
+Pakistan,Moody's,2000-01-01,Caa1,,initial_state,1
+Pakistan,Fitch,2023-07-10,CCC,,upgrade,1
+Pakistan,Fitch,2024-07-29,CCC+,,upgrade,1
+Zambia,S&P,2020-09-25,CCC-,negative,downgrade,2
+Zambia,Moody's,2016-04-19,B3,negative,new,1
+Zambia,Moody's,2018-01-26,B3,stable,outlook_change,1
+Zambia,Moody's,2018-07-27,Caa1,stable,downgrade,1
+Zambia,Moody's,2019-05-23,Caa2,negative,downgrade,1
+Zambia,Moody's,2024-06-14,Caa2,stable,upgrade,1
+Zambia,Fitch,2025-11-28,B-,stable,upgrade,1
+Sri Lanka,S&P,2021-08-27,CCC+,negative,outlook_change,2
+Sri Lanka,Fitch,2024-12-20,CCC+,,upgrade,1

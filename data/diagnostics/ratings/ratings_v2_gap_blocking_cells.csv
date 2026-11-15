@@ -1,0 +1,487 @@
+country,agency,year,status_fc_only,status_fc_plus_unspec
+Australia,Fitch,2022,partial,partial
+Australia,Fitch,2023,partial,partial
+Australia,Fitch,2024,partial,partial
+Australia,Fitch,2025,partial,partial
+Brazil,SP,2004,missing,complete
+Brazil,SP,2005,missing,complete
+Brazil,SP,2006,missing,complete
+Brazil,SP,2007,missing,complete
+Brazil,SP,2008,partial,complete
+Canada,Fitch,2021,partial,partial
+Canada,Fitch,2022,partial,partial
+Canada,Fitch,2023,partial,partial
+Canada,Fitch,2024,partial,partial
+Canada,Fitch,2025,partial,partial
+Chile,Fitch,2021,partial,partial
+Chile,Fitch,2022,partial,partial
+Chile,Fitch,2023,partial,partial
+Chile,Fitch,2024,partial,partial
+Chile,Fitch,2025,partial,partial
+Chile,SP,2004,missing,complete
+Chile,SP,2005,missing,complete
+Chile,SP,2006,missing,complete
+Chile,SP,2007,partial,complete
+China,SP,2004,missing,complete
+China,SP,2005,missing,complete
+China,SP,2006,missing,complete
+China,SP,2007,missing,complete
+China,SP,2008,missing,complete
+China,SP,2009,missing,complete
+China,SP,2010,partial,complete
+Colombia,SP,2004,missing,complete
+Colombia,SP,2005,missing,complete
+Colombia,SP,2006,missing,complete
+Colombia,SP,2007,missing,complete
+Colombia,SP,2008,missing,complete
+Colombia,SP,2009,missing,complete
+Colombia,SP,2010,missing,complete
+Colombia,SP,2011,partial,complete
+Czech Republic,Fitch,2019,partial,partial
+Czech Republic,Fitch,2020,partial,partial
+Czech Republic,Fitch,2021,partial,partial
+Czech Republic,Fitch,2022,partial,partial
+Czech Republic,Fitch,2023,partial,partial
+Czech Republic,Fitch,2024,partial,partial
+Czech Republic,Fitch,2025,partial,partial
+Czech Republic,SP,2004,missing,complete
+Czech Republic,SP,2005,missing,complete
+Czech Republic,SP,2006,missing,complete
+Czech Republic,SP,2007,partial,complete
+Egypt,SP,2004,missing,complete
+Egypt,SP,2005,missing,complete
+Egypt,SP,2006,missing,complete
+Egypt,SP,2007,missing,complete
+Egypt,SP,2008,missing,complete
+Egypt,SP,2009,missing,complete
+Egypt,SP,2010,missing,complete
+Egypt,SP,2011,partial,complete
+Germany,Fitch,2012,partial,partial
+Germany,Fitch,2013,partial,partial
+Germany,Fitch,2014,partial,partial
+Germany,Fitch,2015,partial,partial
+Germany,Fitch,2016,partial,partial
+Germany,Fitch,2017,partial,partial
+Germany,Fitch,2018,partial,partial
+Germany,Fitch,2019,partial,partial
+Germany,Fitch,2020,partial,partial
+Germany,Fitch,2021,partial,partial
+Germany,Fitch,2022,partial,partial
+Germany,Fitch,2023,partial,partial
+Germany,Fitch,2024,partial,partial
+Germany,Fitch,2025,partial,partial
+Greece,Fitch,2011,partial,partial
+Greece,Fitch,2012,partial,partial
+Greece,Fitch,2014,partial,partial
+Greece,Fitch,2015,partial,partial
+Greece,Moodys,2010,partial,partial
+Greece,Moodys,2011,partial,partial
+Greece,SP,2004,missing,complete
+Greece,SP,2005,missing,complete
+Greece,SP,2006,missing,complete
+Greece,SP,2007,missing,complete
+Greece,SP,2008,missing,complete
+Greece,SP,2009,missing,complete
+Greece,SP,2010,missing,partial
+Greece,SP,2011,partial,partial
+Greece,SP,2012,partial,partial
+Hungary,SP,2004,missing,complete
+Hungary,SP,2005,missing,complete
+Hungary,SP,2006,missing,complete
+Hungary,SP,2007,missing,complete
+Hungary,SP,2008,missing,complete
+Hungary,SP,2009,partial,complete
+India,Fitch,2023,partial,partial
+India,Fitch,2024,partial,partial
+India,Fitch,2025,partial,partial
+India,SP,2004,missing,complete
+India,SP,2005,missing,complete
+India,SP,2006,missing,complete
+India,SP,2007,partial,complete
+Indonesia,Fitch,2019,partial,partial
+Indonesia,Fitch,2020,partial,partial
+Indonesia,Fitch,2021,partial,partial
+Indonesia,Fitch,2022,partial,partial
+Indonesia,Fitch,2023,partial,partial
+Indonesia,Fitch,2024,partial,partial
+Indonesia,Fitch,2025,partial,partial
+Indonesia,SP,2004,missing,complete
+Indonesia,SP,2005,missing,complete
+Indonesia,SP,2006,missing,complete
+Indonesia,SP,2007,missing,complete
+Indonesia,SP,2008,missing,complete
+Indonesia,SP,2009,missing,complete
+Indonesia,SP,2010,partial,complete
+Italy,Moodys,2011,partial,partial
+Italy,SP,2004,missing,complete
+Italy,SP,2005,missing,complete
+Italy,SP,2006,missing,complete
+Italy,SP,2007,missing,complete
+Italy,SP,2008,missing,complete
+Italy,SP,2009,missing,complete
+Italy,SP,2010,missing,complete
+Italy,SP,2011,partial,complete
+Japan,Fitch,2023,partial,partial
+Japan,Fitch,2024,partial,partial
+Japan,Fitch,2025,partial,partial
+Japan,SP,2004,missing,complete
+Japan,SP,2005,missing,complete
+Japan,SP,2006,missing,complete
+Japan,SP,2007,missing,complete
+Japan,SP,2008,missing,complete
+Japan,SP,2009,missing,complete
+Japan,SP,2010,missing,complete
+Japan,SP,2011,partial,complete
+Kazakhstan,Fitch,2017,partial,partial
+Kazakhstan,Fitch,2018,partial,partial
+Kazakhstan,Fitch,2019,partial,partial
+Kazakhstan,Fitch,2020,partial,partial
+Kazakhstan,Fitch,2021,partial,partial
+Kazakhstan,Fitch,2022,partial,partial
+Kazakhstan,Fitch,2023,partial,partial
+Kazakhstan,Fitch,2024,partial,partial
+Kazakhstan,Fitch,2025,partial,partial
+Kazakhstan,SP,2004,missing,complete
+Kazakhstan,SP,2005,missing,complete
+Kazakhstan,SP,2006,missing,complete
+Kazakhstan,SP,2007,missing,complete
+Kazakhstan,SP,2008,missing,complete
+Kazakhstan,SP,2009,missing,complete
+Kazakhstan,SP,2010,partial,complete
+Kenya,Fitch,2004,missing,missing
+Kenya,Fitch,2005,missing,missing
+Kenya,Fitch,2006,missing,missing
+Kenya,Fitch,2007,partial,partial
+Kenya,Moodys,2004,missing,missing
+Kenya,Moodys,2005,missing,missing
+Kenya,Moodys,2006,missing,missing
+Kenya,Moodys,2007,missing,missing
+Kenya,Moodys,2008,missing,missing
+Kenya,Moodys,2009,missing,missing
+Kenya,Moodys,2010,missing,missing
+Kenya,Moodys,2011,missing,missing
+Kenya,Moodys,2012,partial,partial
+Kenya,SP,2004,missing,missing
+Kenya,SP,2005,missing,missing
+Kenya,SP,2006,missing,partial
+Kenya,SP,2007,missing,complete
+Kenya,SP,2008,missing,complete
+Kenya,SP,2009,missing,complete
+Kenya,SP,2010,partial,complete
+Malaysia,Fitch,2021,partial,partial
+Malaysia,Fitch,2022,partial,partial
+Malaysia,Fitch,2023,partial,partial
+Malaysia,Fitch,2024,partial,partial
+Malaysia,Fitch,2025,partial,partial
+Mexico,Fitch,2021,partial,partial
+Mexico,Fitch,2022,partial,partial
+Mexico,Fitch,2023,partial,partial
+Mexico,Fitch,2024,partial,partial
+Mexico,Fitch,2025,partial,partial
+Mexico,SP,2004,missing,complete
+Mexico,SP,2005,missing,complete
+Mexico,SP,2006,missing,complete
+Mexico,SP,2007,missing,complete
+Mexico,SP,2008,missing,complete
+Mexico,SP,2009,partial,complete
+Morocco,Fitch,2004,missing,missing
+Morocco,Fitch,2005,missing,missing
+Morocco,Fitch,2006,missing,missing
+Morocco,Fitch,2007,partial,partial
+Morocco,Fitch,2021,partial,partial
+Morocco,Fitch,2022,partial,partial
+Morocco,Fitch,2023,partial,partial
+Morocco,Fitch,2024,partial,partial
+Morocco,Fitch,2025,partial,partial
+Morocco,SP,2004,missing,complete
+Morocco,SP,2005,missing,complete
+Morocco,SP,2006,missing,complete
+Morocco,SP,2007,missing,complete
+Morocco,SP,2008,partial,complete
+Netherlands,Fitch,2015,partial,partial
+Netherlands,Fitch,2016,partial,partial
+Netherlands,Fitch,2017,partial,partial
+Netherlands,Fitch,2018,partial,partial
+Netherlands,Fitch,2019,partial,partial
+Netherlands,Fitch,2020,partial,partial
+Netherlands,Fitch,2021,partial,partial
+Netherlands,Fitch,2022,partial,partial
+Netherlands,Fitch,2023,partial,partial
+Netherlands,Fitch,2024,partial,partial
+Netherlands,Fitch,2025,partial,partial
+Nigeria,Fitch,2004,missing,missing
+Nigeria,Fitch,2005,missing,missing
+Nigeria,Fitch,2006,partial,partial
+Nigeria,Fitch,2023,partial,partial
+Nigeria,Fitch,2024,partial,partial
+Nigeria,Fitch,2025,partial,partial
+Nigeria,Moodys,2004,missing,missing
+Nigeria,Moodys,2005,missing,missing
+Nigeria,Moodys,2006,missing,missing
+Nigeria,Moodys,2007,missing,missing
+Nigeria,Moodys,2008,missing,missing
+Nigeria,Moodys,2009,missing,missing
+Nigeria,Moodys,2010,missing,missing
+Nigeria,Moodys,2011,missing,missing
+Nigeria,Moodys,2012,missing,missing
+Nigeria,Moodys,2013,missing,missing
+Nigeria,Moodys,2014,missing,missing
+Nigeria,Moodys,2015,missing,missing
+Nigeria,Moodys,2016,missing,missing
+Nigeria,Moodys,2017,partial,partial
+Nigeria,SP,2004,missing,missing
+Nigeria,SP,2005,missing,missing
+Nigeria,SP,2006,missing,partial
+Nigeria,SP,2007,missing,complete
+Nigeria,SP,2008,missing,complete
+Nigeria,SP,2009,partial,complete
+Norway,Fitch,2004,partial,partial
+Norway,Fitch,2005,partial,partial
+Norway,Fitch,2006,partial,partial
+Norway,Fitch,2007,partial,partial
+Norway,Fitch,2008,partial,partial
+Norway,Fitch,2009,partial,partial
+Norway,Fitch,2010,partial,partial
+Norway,Fitch,2011,partial,partial
+Norway,Fitch,2012,partial,partial
+Norway,Fitch,2013,partial,partial
+Norway,Fitch,2014,partial,partial
+Norway,Fitch,2015,partial,partial
+Norway,Fitch,2016,partial,partial
+Norway,Fitch,2017,partial,partial
+Norway,Fitch,2018,partial,partial
+Norway,Fitch,2019,partial,partial
+Norway,Fitch,2020,partial,partial
+Norway,Fitch,2021,partial,partial
+Norway,Fitch,2022,partial,partial
+Norway,Fitch,2023,partial,partial
+Norway,Fitch,2024,partial,partial
+Norway,Fitch,2025,partial,partial
+Pakistan,Fitch,2004,missing,missing
+Pakistan,Fitch,2005,missing,missing
+Pakistan,Fitch,2006,missing,missing
+Pakistan,Fitch,2007,missing,missing
+Pakistan,Fitch,2008,missing,missing
+Pakistan,Fitch,2009,missing,missing
+Pakistan,Fitch,2010,missing,missing
+Pakistan,Fitch,2011,missing,missing
+Pakistan,Fitch,2012,missing,missing
+Pakistan,Fitch,2013,missing,missing
+Pakistan,Fitch,2014,missing,missing
+Pakistan,Fitch,2015,partial,partial
+Pakistan,SP,2004,missing,complete
+Pakistan,SP,2005,missing,complete
+Pakistan,SP,2006,missing,complete
+Pakistan,SP,2007,missing,complete
+Pakistan,SP,2008,missing,complete
+Pakistan,SP,2009,partial,complete
+Peru,SP,2004,missing,complete
+Peru,SP,2005,missing,complete
+Peru,SP,2006,missing,complete
+Peru,SP,2007,missing,complete
+Peru,SP,2008,missing,complete
+Peru,SP,2009,missing,complete
+Peru,SP,2010,missing,complete
+Peru,SP,2011,partial,complete
+Philippines,SP,2004,missing,complete
+Philippines,SP,2005,missing,complete
+Philippines,SP,2006,missing,complete
+Philippines,SP,2007,missing,complete
+Philippines,SP,2008,missing,complete
+Philippines,SP,2009,missing,complete
+Philippines,SP,2010,partial,complete
+Poland,SP,2004,missing,complete
+Poland,SP,2005,missing,complete
+Poland,SP,2006,missing,complete
+Poland,SP,2007,partial,complete
+Portugal,Fitch,2011,partial,partial
+Portugal,Moodys,2011,partial,partial
+Portugal,SP,2004,missing,complete
+Portugal,SP,2005,missing,complete
+Portugal,SP,2006,missing,complete
+Portugal,SP,2007,missing,complete
+Portugal,SP,2008,missing,complete
+Portugal,SP,2009,missing,complete
+Portugal,SP,2010,missing,complete
+Portugal,SP,2011,partial,complete
+Romania,Fitch,2021,partial,partial
+Romania,Fitch,2022,partial,partial
+Romania,Fitch,2023,partial,partial
+Romania,Fitch,2024,partial,partial
+Romania,Fitch,2025,partial,partial
+Romania,SP,2004,missing,complete
+Romania,SP,2005,missing,complete
+Romania,SP,2006,missing,complete
+Romania,SP,2007,missing,complete
+Romania,SP,2008,partial,complete
+South Africa,Fitch,2022,partial,partial
+South Africa,Fitch,2023,partial,partial
+South Africa,Fitch,2024,partial,partial
+South Africa,Fitch,2025,partial,partial
+South Africa,SP,2004,missing,complete
+South Africa,SP,2005,partial,complete
+Spain,Fitch,2012,partial,partial
+Spain,Fitch,2019,partial,partial
+Spain,Fitch,2020,partial,partial
+Spain,Fitch,2021,partial,partial
+Spain,Fitch,2022,partial,partial
+Spain,Fitch,2023,partial,partial
+Spain,Fitch,2024,partial,partial
+Spain,Fitch,2025,partial,partial
+Spain,Moodys,2012,partial,partial
+Spain,SP,2004,missing,complete
+Spain,SP,2005,missing,complete
+Spain,SP,2006,missing,complete
+Spain,SP,2007,missing,complete
+Spain,SP,2008,missing,complete
+Spain,SP,2009,missing,complete
+Spain,SP,2010,partial,complete
+Sri Lanka,Fitch,2004,missing,missing
+Sri Lanka,Fitch,2005,partial,partial
+Sri Lanka,Fitch,2022,partial,partial
+Sri Lanka,Fitch,2023,partial,partial
+Sri Lanka,Fitch,2024,partial,partial
+Sri Lanka,Moodys,2004,missing,missing
+Sri Lanka,Moodys,2005,missing,missing
+Sri Lanka,Moodys,2006,missing,missing
+Sri Lanka,Moodys,2007,missing,missing
+Sri Lanka,Moodys,2008,missing,missing
+Sri Lanka,Moodys,2009,missing,missing
+Sri Lanka,Moodys,2010,partial,partial
+Sri Lanka,Moodys,2024,partial,partial
+Sri Lanka,SP,2004,missing,missing
+Sri Lanka,SP,2005,missing,partial
+Sri Lanka,SP,2006,missing,partial
+Sri Lanka,SP,2007,partial,partial
+Sri Lanka,SP,2008,partial,complete
+Sri Lanka,SP,2009,partial,complete
+Sri Lanka,SP,2010,partial,complete
+Sri Lanka,SP,2022,partial,partial
+Sri Lanka,SP,2023,partial,partial
+Sri Lanka,SP,2024,partial,partial
+Sri Lanka,SP,2025,partial,partial
+Sweden,Fitch,2005,partial,partial
+Sweden,Fitch,2006,partial,partial
+Sweden,Fitch,2007,partial,partial
+Sweden,Fitch,2008,partial,partial
+Sweden,Fitch,2009,partial,partial
+Sweden,Fitch,2010,partial,partial
+Sweden,Fitch,2011,partial,partial
+Sweden,Fitch,2012,partial,partial
+Sweden,Fitch,2013,partial,partial
+Sweden,Fitch,2014,partial,partial
+Sweden,Fitch,2015,partial,partial
+Sweden,Fitch,2016,partial,partial
+Sweden,Fitch,2017,partial,partial
+Sweden,Fitch,2018,partial,partial
+Sweden,Fitch,2019,partial,partial
+Sweden,Fitch,2020,partial,partial
+Sweden,Fitch,2021,partial,partial
+Sweden,Fitch,2022,partial,partial
+Sweden,Fitch,2023,partial,partial
+Sweden,Fitch,2024,partial,partial
+Sweden,Fitch,2025,partial,partial
+Switzerland,Fitch,2004,partial,partial
+Switzerland,Fitch,2005,partial,partial
+Switzerland,Fitch,2006,partial,partial
+Switzerland,Fitch,2007,partial,partial
+Switzerland,Fitch,2008,partial,partial
+Switzerland,Fitch,2009,partial,partial
+Switzerland,Fitch,2010,partial,partial
+Switzerland,Fitch,2011,partial,partial
+Switzerland,Fitch,2012,partial,partial
+Switzerland,Fitch,2013,partial,partial
+Switzerland,Fitch,2014,partial,partial
+Switzerland,Fitch,2015,partial,partial
+Switzerland,Fitch,2016,partial,partial
+Switzerland,Fitch,2017,partial,partial
+Switzerland,Fitch,2018,partial,partial
+Switzerland,Fitch,2019,partial,partial
+Switzerland,Fitch,2020,partial,partial
+Switzerland,Fitch,2021,partial,partial
+Switzerland,Fitch,2022,partial,partial
+Switzerland,Fitch,2023,partial,partial
+Switzerland,Fitch,2024,partial,partial
+Switzerland,Fitch,2025,partial,partial
+Thailand,SP,2004,partial,complete
+Turkey,SP,2004,missing,complete
+Turkey,SP,2005,missing,complete
+Turkey,SP,2006,missing,complete
+Turkey,SP,2007,missing,complete
+Turkey,SP,2008,missing,complete
+Turkey,SP,2009,missing,complete
+Turkey,SP,2010,partial,complete
+United States,SP,2004,missing,missing
+United States,SP,2005,missing,missing
+United States,SP,2006,missing,missing
+United States,SP,2007,missing,missing
+United States,SP,2008,missing,missing
+United States,SP,2009,missing,missing
+United States,SP,2010,missing,missing
+United States,SP,2011,partial,partial
+Vietnam,Moodys,2004,missing,missing
+Vietnam,Moodys,2005,missing,missing
+Vietnam,Moodys,2006,missing,missing
+Vietnam,Moodys,2007,missing,missing
+Vietnam,Moodys,2008,missing,missing
+Vietnam,Moodys,2009,missing,missing
+Vietnam,Moodys,2010,missing,missing
+Vietnam,Moodys,2011,missing,missing
+Vietnam,Moodys,2012,partial,partial
+Vietnam,SP,2004,missing,missing
+Vietnam,SP,2005,missing,missing
+Vietnam,SP,2006,missing,missing
+Vietnam,SP,2007,missing,missing
+Vietnam,SP,2008,missing,missing
+Vietnam,SP,2009,missing,missing
+Vietnam,SP,2010,missing,partial
+Vietnam,SP,2011,missing,complete
+Vietnam,SP,2012,missing,complete
+Vietnam,SP,2013,missing,complete
+Vietnam,SP,2014,missing,complete
+Vietnam,SP,2015,missing,complete
+Vietnam,SP,2016,missing,complete
+Vietnam,SP,2017,missing,complete
+Vietnam,SP,2018,missing,complete
+Vietnam,SP,2019,partial,complete
+Zambia,Fitch,2004,missing,missing
+Zambia,Fitch,2005,missing,missing
+Zambia,Fitch,2006,missing,missing
+Zambia,Fitch,2007,missing,missing
+Zambia,Fitch,2008,missing,missing
+Zambia,Fitch,2009,missing,missing
+Zambia,Fitch,2010,missing,missing
+Zambia,Fitch,2011,partial,partial
+Zambia,Fitch,2020,partial,partial
+Zambia,Fitch,2021,partial,partial
+Zambia,Fitch,2022,partial,partial
+Zambia,Fitch,2023,partial,partial
+Zambia,Fitch,2024,partial,partial
+Zambia,Fitch,2025,partial,partial
+Zambia,Moodys,2004,missing,missing
+Zambia,Moodys,2005,missing,missing
+Zambia,Moodys,2006,missing,missing
+Zambia,Moodys,2007,missing,missing
+Zambia,Moodys,2008,missing,missing
+Zambia,Moodys,2009,missing,missing
+Zambia,Moodys,2010,missing,missing
+Zambia,Moodys,2011,missing,missing
+Zambia,Moodys,2012,missing,missing
+Zambia,Moodys,2013,missing,missing
+Zambia,Moodys,2014,missing,missing
+Zambia,Moodys,2015,missing,missing
+Zambia,Moodys,2016,partial,partial
+Zambia,SP,2004,missing,missing
+Zambia,SP,2005,missing,missing
+Zambia,SP,2006,missing,missing
+Zambia,SP,2007,missing,missing
+Zambia,SP,2008,missing,missing
+Zambia,SP,2009,missing,missing
+Zambia,SP,2010,missing,missing
+Zambia,SP,2011,partial,partial
+Zambia,SP,2020,partial,partial
+Zambia,SP,2021,partial,partial
+Zambia,SP,2022,partial,partial
+Zambia,SP,2023,partial,partial
+Zambia,SP,2024,partial,partial
+Zambia,SP,2025,partial,partial

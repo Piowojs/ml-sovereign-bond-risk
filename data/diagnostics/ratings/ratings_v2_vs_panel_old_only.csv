@@ -1,0 +1,898 @@
+country,agency,date,rating,outlook,action,source
+Brazil,Fitch,1994-12-01,B+,,initial,countryeconomy.com
+Brazil,Fitch,1995-10-26,B+,,affirm,countryeconomy.com
+Brazil,Fitch,1997-12-03,B+,,affirm,countryeconomy.com
+Brazil,Fitch,1999-01-26,B,,downgrade,countryeconomy.com
+Brazil,Fitch,2011-10-25,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Fitch,2012-01-23,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Fitch,2012-04-30,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Fitch,2012-07-26,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Fitch,2012-09-20,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Fitch,2013-04-26,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Fitch,2013-07-18,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Fitch,2013-10-24,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Fitch,2013-11-06,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Fitch,2014-01-14,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Fitch,2014-01-21,BBB,Stable,affirm,countryeconomy.com
+Brazil,Fitch,2014-04-03,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Fitch,2014-07-10,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Fitch,2014-07-28,BBB,Stable,affirm,countryeconomy.com
+Brazil,Fitch,2014-08-13,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Fitch,2015-04-09,BBB,,affirm,countryeconomy.com
+Brazil,Fitch,2016-07-22,BB,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Fitch,2016-11-11,BB,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Fitch,2017-05-19,BB,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Fitch,2017-11-10,BB,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Fitch,2018-08-01,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Fitch,2019-05-21,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Fitch,2019-11-14,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Fitch,2020-11-01,BB-,Negative,affirm,theglobaleconomy.com (month-precision)
+Brazil,Fitch,2021-06-01,BB-,Negative,affirm,theglobaleconomy.com (month-precision)
+Brazil,Fitch,2021-12-01,BB-,Negative,affirm,theglobaleconomy.com (month-precision)
+Brazil,Fitch,2022-07-01,BB-,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Brazil,Fitch,2022-12-01,BB-,Stable,affirm,theglobaleconomy.com (month-precision)
+Brazil,Fitch,2023-07-01,BB,Stable,upgrade,theglobaleconomy.com (month-precision)
+Brazil,Fitch,2023-12-01,BB,Stable,affirm,theglobaleconomy.com (month-precision)
+Brazil,Fitch,2024-07-01,BB,Stable,affirm,theglobaleconomy.com (month-precision)
+Brazil,Fitch,2025-11-01,BB,Stable,affirm,theglobaleconomy.com (month-precision)
+Brazil,Fitch,2026-06-01,BB,Stable,affirm,theglobaleconomy.com (month-precision)
+Brazil,Moody's,1986-11-18,Ba1,,initial,countryeconomy.com
+Brazil,Moody's,1987-12-04,B1,,downgrade,countryeconomy.com
+Brazil,Moody's,1989-03-28,B2,,downgrade,countryeconomy.com
+Brazil,Moody's,1994-11-30,B1,,upgrade,countryeconomy.com
+Brazil,Moody's,1998-09-03,B2,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Moody's,1999-06-01,B2,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Brazil,Moody's,2007-07-01,Ba1,Under Review,upgrade,theglobaleconomy.com (month-precision)
+Brazil,Moody's,2020-05-15,Ba2,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,Moody's,2022-04-12,Ba2,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Brazil,S&P,1994-11-01,B,Positive,initial,theglobaleconomy.com (month-precision)
+Brazil,S&P,1995-07-01,B+,Stable,upgrade,theglobaleconomy.com (month-precision)
+Brazil,S&P,1995-12-01,B+,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Brazil,S&P,1996-06-01,B+,Positive,affirm,theglobaleconomy.com (month-precision)
+Brazil,S&P,1997-04-01,BB-,Stable,upgrade,theglobaleconomy.com (month-precision)
+Brazil,S&P,1998-09-01,BB-,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Brazil,S&P,1999-01-01,B+,Negative,downgrade,theglobaleconomy.com (month-precision)
+Brazil,S&P,1999-11-01,B+,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Brazil,S&P,2000-02-01,B+,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Brazil,S&P,2001-01-01,BB-,Stable,upgrade,theglobaleconomy.com (month-precision)
+Brazil,S&P,2001-08-01,BB-,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Brazil,S&P,2002-07-01,B+,Negative,downgrade,theglobaleconomy.com (month-precision)
+Brazil,S&P,2003-04-01,B+,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Brazil,S&P,2003-12-01,B+,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Brazil,S&P,2004-09-01,BB-,Stable,upgrade,theglobaleconomy.com (month-precision)
+Brazil,S&P,2005-11-01,BB-,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Brazil,S&P,2005-11-01,BB-,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Brazil,S&P,2006-02-01,BB,Stable,upgrade,theglobaleconomy.com (month-precision)
+Brazil,S&P,2006-11-01,BB,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Brazil,S&P,2007-05-01,BB+,Positive,upgrade,theglobaleconomy.com (month-precision)
+Brazil,S&P,2011-08-01,BBB-,Positive,affirm,theglobaleconomy.com (month-precision)
+Brazil,S&P,2012-07-01,BBB,Stable,affirm,theglobaleconomy.com (month-precision)
+Brazil,S&P,2019-04-01,BB-,Developing,outlook_change,theglobaleconomy.com (month-precision)
+Brazil,S&P,2019-11-01,BB-,Developing,affirm,theglobaleconomy.com (month-precision)
+Brazil,S&P,2025-06-01,BB,NR,outlook_change,theglobaleconomy.com (month-precision)
+Brazil,S&P,2025-06-01,BB,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Brazil,S&P,2025-09-01,BB,NR,outlook_change,theglobaleconomy.com (month-precision)
+Brazil,S&P,2025-11-01,BB,NR,affirm,theglobaleconomy.com (month-precision)
+Brazil,S&P,2026-02-01,BB,NR,affirm,theglobaleconomy.com (month-precision)
+Brazil,S&P,2026-04-01,BB,NR,affirm,theglobaleconomy.com (month-precision)
+Colombia,Fitch,1994-08-10,BBB,,initial,countryeconomy.com
+Colombia,Fitch,1998-03-20,BBB,,affirm,countryeconomy.com
+Colombia,Fitch,1999-09-01,BBB-,,downgrade,countryeconomy.com
+Colombia,Fitch,2011-07-06,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Colombia,Fitch,2012-06-19,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Colombia,Fitch,2013-03-06,BBB-,,affirm,countryeconomy.com
+Colombia,Fitch,2013-09-25,BBB-,,affirm,countryeconomy.com
+Colombia,Fitch,2014-01-31,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Colombia,Fitch,2014-08-21,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Colombia,Fitch,2014-11-20,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Colombia,Fitch,2015-05-22,BBB,,affirm,countryeconomy.com
+Colombia,Fitch,2015-12-15,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Colombia,Fitch,2017-10-26,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Colombia,Fitch,2018-05-09,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Colombia,Fitch,2018-11-14,BBB,,affirm,countryeconomy.com
+Colombia,Fitch,2019-11-20,BBB,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Colombia,Fitch,2020-03-01,BBB-,Negative,downgrade,theglobaleconomy.com (month-precision)
+Colombia,Fitch,2020-11-01,BBB-,Negative,affirm,theglobaleconomy.com (month-precision)
+Colombia,Fitch,2021-12-01,BB+,Stable,affirm,theglobaleconomy.com (month-precision)
+Colombia,Fitch,2022-06-01,BB+,Stable,affirm,theglobaleconomy.com (month-precision)
+Colombia,Fitch,2022-12-01,BB+,Stable,affirm,theglobaleconomy.com (month-precision)
+Colombia,Fitch,2023-06-01,BB+,Stable,affirm,theglobaleconomy.com (month-precision)
+Colombia,Fitch,2023-12-01,BB+,Stable,affirm,theglobaleconomy.com (month-precision)
+Colombia,Fitch,2024-07-01,BB+,Stable,affirm,theglobaleconomy.com (month-precision)
+Colombia,Fitch,2024-11-01,BB+,Stable,affirm,theglobaleconomy.com (month-precision)
+Colombia,Fitch,2025-03-01,BB+,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Colombia,Fitch,2025-12-01,BB,Stable,downgrade,theglobaleconomy.com (month-precision)
+Colombia,Moody's,1993-08-04,Ba1,,initial,countryeconomy.com
+Colombia,Moody's,1995-09-19,Baa3,,upgrade,countryeconomy.com
+Colombia,Moody's,1998-12-01,Baa3,Negative,affirm,theglobaleconomy.com (month-precision)
+Colombia,Moody's,1999-08-11,Ba2,,downgrade,countryeconomy.com
+Colombia,Moody's,2002-03-01,Ba2,Negative,affirm,theglobaleconomy.com (month-precision)
+Colombia,Moody's,2016-05-26,Baa2,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Colombia,Moody's,2023-06-08,Baa2,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Colombia,S&P,1993-06-01,BBB-,Stable,initial,theglobaleconomy.com (month-precision)
+Colombia,S&P,1994-09-01,BBB-,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Colombia,S&P,1995-08-01,BBB-,Positive,affirm,theglobaleconomy.com (month-precision)
+Colombia,S&P,1997-10-01,BBB-,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Colombia,S&P,1998-05-01,BBB-,Stable,affirm,theglobaleconomy.com (month-precision)
+Colombia,S&P,1999-06-01,BBB-,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Colombia,S&P,1999-09-01,BB+,Stable,downgrade,theglobaleconomy.com (month-precision)
+Colombia,S&P,2000-04-01,BB+,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Colombia,S&P,2000-05-01,BB,Negative,downgrade,theglobaleconomy.com (month-precision)
+Colombia,S&P,2003-07-01,BB,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Colombia,S&P,2005-11-01,BB,Stable,affirm,theglobaleconomy.com (month-precision)
+Colombia,S&P,2006-02-01,BB,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Colombia,S&P,2007-03-01,BB+,Stable,upgrade,theglobaleconomy.com (month-precision)
+Colombia,S&P,2010-07-01,BB+,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Colombia,S&P,2020-01-01,BBB-,Developing,outlook_change,theglobaleconomy.com (month-precision)
+Colombia,S&P,2025-04-01,BB+,NR,outlook_change,theglobaleconomy.com (month-precision)
+Colombia,S&P,2025-12-01,BB,NR,outlook_change,theglobaleconomy.com (month-precision)
+Colombia,S&P,2026-01-01,BB,NR,affirm,theglobaleconomy.com (month-precision)
+Colombia,S&P,2026-02-01,BB,NR,affirm,theglobaleconomy.com (month-precision)
+Colombia,S&P,2026-04-08,BB-,Stable,downgrade,countryeconomy.com
+Egypt,Fitch,1997-08-19,BBB-,,initial,countryeconomy.com
+Egypt,Fitch,2001-08-22,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2003-12-02,BB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2004-12-15,BB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2011-10-05,BB,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2011-10-20,BB,Negative,affirm,countryeconomy.com
+Egypt,Fitch,2012-01-23,BB-,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2012-02-21,BB-,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2012-04-25,BB-,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2012-05-29,BB-,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2012-08-17,B+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2013-03-28,B,Negative,affirm,countryeconomy.com
+Egypt,Fitch,2013-05-14,B,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2013-06-07,B,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2013-06-25,B,Negative,affirm,countryeconomy.com
+Egypt,Fitch,2013-07-29,B-,Negative,affirm,countryeconomy.com
+Egypt,Fitch,2013-08-09,B-,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2013-10-01,B-,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2013-10-23,B-,Negative,affirm,countryeconomy.com
+Egypt,Fitch,2013-11-28,B-,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2013-12-13,B-,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2014-01-24,B-,Stable,affirm,countryeconomy.com
+Egypt,Fitch,2014-01-31,B-,Stable,affirm,countryeconomy.com
+Egypt,Fitch,2014-02-26,B-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2014-03-07,B-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2014-04-04,B-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2014-04-16,B-,Stable,affirm,countryeconomy.com
+Egypt,Fitch,2014-05-07,B-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2014-05-21,B-,Stable,affirm,countryeconomy.com
+Egypt,Fitch,2014-05-27,B-,Stable,affirm,countryeconomy.com
+Egypt,Fitch,2014-06-27,B-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2014-07-02,B-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2014-07-07,B-,Stable,affirm,countryeconomy.com
+Egypt,Fitch,2014-07-23,B-,Stable,affirm,countryeconomy.com
+Egypt,Fitch,2014-07-31,B-,Stable,affirm,countryeconomy.com
+Egypt,Fitch,2014-08-13,B-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2014-09-04,B-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2014-09-22,B-,Stable,affirm,countryeconomy.com
+Egypt,Fitch,2015-06-19,B,,affirm,countryeconomy.com
+Egypt,Fitch,2015-12-18,B,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2016-05-30,B,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2016-07-22,B,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2016-12-15,B,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2017-06-22,B,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2018-08-06,B,Positive,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2019-11-25,B+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Fitch,2020-07-01,B+,Stable,affirm,theglobaleconomy.com (month-precision)
+Egypt,Fitch,2021-03-01,B+,Stable,affirm,theglobaleconomy.com (month-precision)
+Egypt,Fitch,2021-10-01,B+,Stable,affirm,theglobaleconomy.com (month-precision)
+Egypt,Fitch,2022-11-01,B+,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Egypt,Fitch,2024-05-01,B-,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Egypt,Fitch,2024-11-01,B,Stable,upgrade,theglobaleconomy.com (month-precision)
+Egypt,Fitch,2025-02-01,B,Stable,affirm,theglobaleconomy.com (month-precision)
+Egypt,Fitch,2025-04-01,B,Stable,affirm,theglobaleconomy.com (month-precision)
+Egypt,Fitch,2025-10-01,B,Stable,affirm,theglobaleconomy.com (month-precision)
+Egypt,Moody's,1996-10-09,Ba2,Stable,initial,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Moody's,1997-10-01,Ba2,Positive watch,outlook_change,theglobaleconomy.com (month-precision)
+Egypt,Moody's,1997-11-14,Ba1,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Moody's,2013-07-24,Caa1,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Moody's,2016-08-19,B3,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Moody's,2017-08-18,B3,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Moody's,2019-01-01,B3,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Egypt,Moody's,2020-05-11,B2,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Moody's,2021-07-29,B2,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Moody's,2025-02-19,Caa1,Positive,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,Moody's,2026-04-03,Caa1,Positive,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,S&P,1997-01-01,BBB-,Stable,initial,theglobaleconomy.com (month-precision)
+Egypt,S&P,2000-07-01,BBB-,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Egypt,S&P,2001-06-01,BBB-,Negative,affirm,theglobaleconomy.com (month-precision)
+Egypt,S&P,2002-05-01,BB+,Stable,downgrade,theglobaleconomy.com (month-precision)
+Egypt,S&P,2003-08-01,BB+,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Egypt,S&P,2005-03-01,BB+,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Egypt,S&P,2005-11-01,BB+,Stable,affirm,theglobaleconomy.com (month-precision)
+Egypt,S&P,2011-10-01,BB-,Negative,downgrade,theglobaleconomy.com (month-precision)
+Egypt,S&P,2012-06-25,B,Negative watch,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,S&P,2012-08-23,B,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Egypt,S&P,2019-03-01,B,NR,outlook_change,theglobaleconomy.com (month-precision)
+Egypt,S&P,2019-04-01,B,Developing,outlook_change,theglobaleconomy.com (month-precision)
+Egypt,S&P,2019-11-01,B,Developing,affirm,theglobaleconomy.com (month-precision)
+Egypt,S&P,2025-04-01,B-,NR,outlook_change,theglobaleconomy.com (month-precision)
+Egypt,S&P,2026-05-01,B,NR,outlook_change,theglobaleconomy.com (month-precision)
+Greece,Fitch,1995-11-13,BBB-,,initial,countryeconomy.com
+Greece,Fitch,1997-06-04,BBB,,upgrade,countryeconomy.com
+Greece,Fitch,1999-08-10,BBB,Positive,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,Fitch,1999-10-25,BBB+,,upgrade,countryeconomy.com
+Greece,Fitch,2011-10-26,CCC,,affirm,countryeconomy.com
+Greece,Fitch,2011-12-28,CCC,,affirm,countryeconomy.com
+Greece,Fitch,2013-03-01,CCC,,affirm,countryeconomy.com
+Greece,Fitch,2013-03-26,CCC,,affirm,countryeconomy.com
+Greece,Fitch,2013-06-07,B-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,Fitch,2013-06-24,B-,Stable,affirm,countryeconomy.com
+Greece,Fitch,2013-07-29,B-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,Fitch,2013-08-30,B-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,Fitch,2013-10-01,B-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,Fitch,2013-11-28,B-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,Fitch,2013-12-05,B-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,Fitch,2013-12-27,B-,Stable,affirm,countryeconomy.com
+Greece,Fitch,2014-01-24,B-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,Fitch,2014-01-31,B-,Stable,affirm,countryeconomy.com
+Greece,Fitch,2014-02-26,B-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,Fitch,2014-03-28,B-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,Fitch,2014-04-02,B-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,Fitch,2014-04-11,B-,Stable,affirm,countryeconomy.com
+Greece,Fitch,2014-04-15,B-,Stable,affirm,countryeconomy.com
+Greece,Fitch,2014-05-06,B-,Stable,affirm,countryeconomy.com
+Greece,Fitch,2014-06-10,B,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,Fitch,2014-06-17,B,Stable,affirm,countryeconomy.com
+Greece,Fitch,2014-07-17,B,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,Fitch,2014-08-04,B,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,Fitch,2014-08-12,B,Stable,affirm,countryeconomy.com
+Greece,Fitch,2014-08-19,B,Stable,affirm,countryeconomy.com
+Greece,Fitch,2014-09-03,B,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,Fitch,2014-09-16,B,Stable,affirm,countryeconomy.com
+Greece,Fitch,2014-10-15,B,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,Fitch,2014-11-21,B,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,Fitch,2015-05-15,CCC,,affirm,countryeconomy.com
+Greece,Fitch,2015-11-13,CCC,,affirm,countryeconomy.com
+Greece,Fitch,2016-03-11,CCC,,affirm,countryeconomy.com
+Greece,Fitch,2016-07-22,CCC,,affirm,countryeconomy.com
+Greece,Fitch,2016-09-02,CCC,,affirm,countryeconomy.com
+Greece,Fitch,2017-02-24,CCC,,affirm,countryeconomy.com
+Greece,Fitch,2019-02-08,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,Fitch,2019-08-02,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,Fitch,2020-04-23,BB,,affirm,countryeconomy.com
+Greece,Fitch,2020-07-01,BB,Stable,affirm,theglobaleconomy.com (month-precision)
+Greece,Fitch,2021-01-01,BB,Stable,affirm,theglobaleconomy.com (month-precision)
+Greece,Fitch,2021-07-01,BB,Stable,affirm,theglobaleconomy.com (month-precision)
+Greece,Fitch,2022-01-01,BB,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Greece,Fitch,2022-07-01,BB,Positive,affirm,theglobaleconomy.com (month-precision)
+Greece,Fitch,2022-10-01,BB,Positive,affirm,theglobaleconomy.com (month-precision)
+Greece,Fitch,2023-06-01,BB+,Stable,affirm,theglobaleconomy.com (month-precision)
+Greece,Fitch,2024-11-01,BBB-,Stable,affirm,theglobaleconomy.com (month-precision)
+Greece,Fitch,2025-05-01,BBB-,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Greece,Fitch,2025-11-01,BBB,Stable,upgrade,theglobaleconomy.com (month-precision)
+Greece,Fitch,2026-05-01,BBB,Stable,affirm,theglobaleconomy.com (month-precision)
+Greece,Moody's,1990-07-19,Baa1,Stable,initial,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,Moody's,1994-05-24,Baa3,,downgrade,countryeconomy.com
+Greece,Moody's,1996-11-01,Baa3,Positive watch,outlook_change,theglobaleconomy.com (month-precision)
+Greece,Moody's,1996-12-23,Baa1,,upgrade,countryeconomy.com
+Greece,Moody's,1998-02-01,Baa1,Negative watch,outlook_change,theglobaleconomy.com (month-precision)
+Greece,Moody's,1999-07-14,A2,,upgrade,countryeconomy.com
+Greece,Moody's,2016-10-14,Caa3,Stable,affirm,countryeconomy.com
+Greece,Moody's,2022-09-16,Ba3,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Greece,S&P,1989-06-01,BBB,Stable,initial,theglobaleconomy.com (month-precision)
+Greece,S&P,1990-03-01,BBB,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Greece,S&P,1990-07-01,BBB-,Stable,downgrade,theglobaleconomy.com (month-precision)
+Greece,S&P,1993-01-01,BBB-,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Greece,S&P,1994-03-01,BBB-,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Greece,S&P,1997-03-01,BBB-,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Greece,S&P,1998-11-01,BBB,Positive,upgrade,theglobaleconomy.com (month-precision)
+Greece,S&P,1999-11-01,A-,Positive,upgrade,theglobaleconomy.com (month-precision)
+Greece,S&P,2001-03-01,A,Positive,upgrade,theglobaleconomy.com (month-precision)
+Greece,S&P,2003-10-01,A+,Stable,upgrade,theglobaleconomy.com (month-precision)
+Greece,S&P,2004-09-01,A+,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Greece,S&P,2004-11-01,A,Stable,downgrade,theglobaleconomy.com (month-precision)
+Greece,S&P,2005-11-01,A,Stable,affirm,theglobaleconomy.com (month-precision)
+Greece,S&P,2009-01-01,A,Negative watch,outlook_change,theglobaleconomy.com (month-precision)
+Greece,S&P,2009-01-01,A-,Stable,downgrade,theglobaleconomy.com (month-precision)
+Greece,S&P,2009-12-01,BBB+,Negative watch,downgrade,theglobaleconomy.com (month-precision)
+Greece,S&P,2009-12-01,A-,Negative watch,upgrade,theglobaleconomy.com (month-precision)
+Greece,S&P,2010-03-01,BBB+,Negative,downgrade,theglobaleconomy.com (month-precision)
+Greece,S&P,2010-04-01,BB+,Negative,downgrade,theglobaleconomy.com (month-precision)
+Greece,S&P,2010-12-01,BB+,Negative watch,outlook_change,theglobaleconomy.com (month-precision)
+Greece,S&P,2011-03-01,BB-,Negative watch,downgrade,theglobaleconomy.com (month-precision)
+Greece,S&P,2011-05-01,B,Negative watch,downgrade,theglobaleconomy.com (month-precision)
+Greece,S&P,2011-06-01,CCC,Negative,downgrade,theglobaleconomy.com (month-precision)
+Greece,S&P,2015-01-01,B,Negative watch,outlook_change,theglobaleconomy.com (month-precision)
+Italy,Fitch,1994-08-10,AA,,initial,countryeconomy.com
+Italy,Fitch,1995-02-23,AA-,,downgrade,countryeconomy.com
+Italy,Fitch,1995-10-26,AA-,,affirm,countryeconomy.com
+Italy,Fitch,1998-07-14,AA-,,affirm,countryeconomy.com
+Italy,Fitch,2011-11-10,A+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2011-12-29,A+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2012-02-28,A-,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2012-04-11,A-,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2012-05-11,A-,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2012-05-30,A-,Negative,affirm,countryeconomy.com
+Italy,Fitch,2012-07-27,A-,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2012-08-13,A-,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2013-05-15,BBB+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2013-05-29,BBB+,Negative,affirm,countryeconomy.com
+Italy,Fitch,2013-06-26,BBB+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2013-07-10,BBB+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2013-07-30,BBB+,Negative,affirm,countryeconomy.com
+Italy,Fitch,2013-09-26,BBB+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2013-10-11,BBB+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2013-10-25,BBB+,Negative,affirm,countryeconomy.com
+Italy,Fitch,2013-10-29,BBB+,Negative,affirm,countryeconomy.com
+Italy,Fitch,2013-11-12,BBB+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2013-11-27,BBB+,Negative,affirm,countryeconomy.com
+Italy,Fitch,2013-12-11,BBB+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2013-12-27,BBB+,Negative,affirm,countryeconomy.com
+Italy,Fitch,2014-01-13,BBB+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2014-01-21,BBB+,Negative,affirm,countryeconomy.com
+Italy,Fitch,2014-01-30,BBB+,Negative,affirm,countryeconomy.com
+Italy,Fitch,2014-02-12,BBB+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2014-02-27,BBB+,Negative,affirm,countryeconomy.com
+Italy,Fitch,2014-03-13,BBB+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2014-03-28,BBB+,Negative,affirm,countryeconomy.com
+Italy,Fitch,2014-04-04,BBB+,Negative,affirm,countryeconomy.com
+Italy,Fitch,2014-04-11,BBB+,Negative,affirm,countryeconomy.com
+Italy,Fitch,2014-04-28,BBB+,Stable,affirm,countryeconomy.com
+Italy,Fitch,2014-05-13,BBB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2014-05-28,BBB+,Stable,affirm,countryeconomy.com
+Italy,Fitch,2014-06-12,BBB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2014-06-27,BBB+,Stable,affirm,countryeconomy.com
+Italy,Fitch,2014-07-10,BBB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2014-07-29,BBB+,Stable,affirm,countryeconomy.com
+Italy,Fitch,2014-08-12,BBB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2014-08-28,BBB+,Stable,affirm,countryeconomy.com
+Italy,Fitch,2014-09-10,BBB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2014-09-26,BBB+,Stable,affirm,countryeconomy.com
+Italy,Fitch,2014-10-14,BBB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2014-10-24,BBB+,Stable,affirm,countryeconomy.com
+Italy,Fitch,2015-04-24,BBB+,,affirm,countryeconomy.com
+Italy,Fitch,2015-10-23,BBB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2016-04-22,BBB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2016-07-22,BBB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2017-10-20,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2018-03-16,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2019-02-22,BBB,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2019-08-09,BBB,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2020-02-07,BBB,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Fitch,2020-07-01,BBB-,Stable,affirm,theglobaleconomy.com (month-precision)
+Italy,Fitch,2020-12-01,BBB-,Stable,affirm,theglobaleconomy.com (month-precision)
+Italy,Fitch,2021-06-01,BBB-,Stable,affirm,theglobaleconomy.com (month-precision)
+Italy,Fitch,2022-06-01,BBB,Stable,affirm,theglobaleconomy.com (month-precision)
+Italy,Fitch,2023-05-01,BBB,Stable,affirm,theglobaleconomy.com (month-precision)
+Italy,Fitch,2023-11-01,BBB,Stable,affirm,theglobaleconomy.com (month-precision)
+Italy,Fitch,2024-05-01,BBB,Stable,affirm,theglobaleconomy.com (month-precision)
+Italy,Fitch,2024-10-01,BBB,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Italy,Fitch,2025-04-01,BBB,Positive,affirm,theglobaleconomy.com (month-precision)
+Italy,Fitch,2025-09-01,BBB+,Stable,upgrade,theglobaleconomy.com (month-precision)
+Italy,Fitch,2026-03-01,BBB+,Stable,affirm,theglobaleconomy.com (month-precision)
+Italy,Moody's,1986-10-10,Aaa,Stable,initial,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Moody's,1991-07-01,Aa1,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Moody's,1992-08-13,Aa3,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Moody's,1993-02-01,Aa3,Negative watch,outlook_change,theglobaleconomy.com (month-precision)
+Italy,Moody's,1993-05-05,A1,,downgrade,countryeconomy.com
+Italy,Moody's,1996-05-01,A1,Positive watch,outlook_change,theglobaleconomy.com (month-precision)
+Italy,Moody's,1996-07-03,Aa3,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Moody's,2013-04-26,Baa2,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Moody's,2017-10-06,Baa2,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,Moody's,2020-11-06,Baa3,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,S&P,1989-06-01,AA+,Positive,initial,theglobaleconomy.com (month-precision)
+Italy,S&P,1991-05-01,AA+,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Italy,S&P,1992-05-01,AA+,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Italy,S&P,1993-03-01,AA+,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Italy,S&P,1993-03-01,AA,Stable,downgrade,theglobaleconomy.com (month-precision)
+Italy,S&P,1995-02-01,AA,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Italy,S&P,1996-05-01,AA,Negative,affirm,theglobaleconomy.com (month-precision)
+Italy,S&P,1998-05-01,AA,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Italy,S&P,2003-01-01,AA,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Italy,S&P,2004-07-01,AA-,Stable,downgrade,theglobaleconomy.com (month-precision)
+Italy,S&P,2005-08-01,AA-,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Italy,S&P,2005-11-01,AA-,Negative,affirm,theglobaleconomy.com (month-precision)
+Italy,S&P,2006-10-01,A+,Stable,downgrade,theglobaleconomy.com (month-precision)
+Italy,S&P,2011-05-01,A+,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Italy,S&P,2011-12-05,A,Negative watch,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Italy,S&P,2026-01-30,BBB+,Positive,outlook_change,countryeconomy.com
+Italy,S&P,2026-02-01,BBB+,Positive,affirm,theglobaleconomy.com (month-precision)
+Nigeria,Fitch,2008-05-23,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Nigeria,Fitch,2011-01-21,BB-,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Nigeria,Fitch,2012-02-23,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Nigeria,Fitch,2012-10-19,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Nigeria,Fitch,2013-07-05,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Nigeria,Fitch,2013-07-11,BB-,Stable,affirm,countryeconomy.com
+Nigeria,Fitch,2013-10-16,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Nigeria,Fitch,2014-04-11,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Nigeria,Fitch,2014-10-03,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Nigeria,Fitch,2015-03-30,BB-,,affirm,countryeconomy.com
+Nigeria,Fitch,2016-07-22,B+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Nigeria,Fitch,2017-08-31,B+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Nigeria,Fitch,2018-05-17,B+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Nigeria,Fitch,2019-06-07,B+,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Nigeria,Fitch,2020-09-01,B,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Nigeria,Fitch,2021-03-01,B,Stable,affirm,theglobaleconomy.com (month-precision)
+Nigeria,Fitch,2022-03-01,B,Stable,affirm,theglobaleconomy.com (month-precision)
+Nigeria,Fitch,2023-05-01,B-,Stable,affirm,theglobaleconomy.com (month-precision)
+Nigeria,Fitch,2023-11-01,B-,Stable,affirm,theglobaleconomy.com (month-precision)
+Nigeria,Fitch,2024-05-01,B-,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Nigeria,Fitch,2024-11-01,B-,Positive,affirm,theglobaleconomy.com (month-precision)
+Nigeria,Fitch,2025-04-01,B,Stable,upgrade,theglobaleconomy.com (month-precision)
+Nigeria,Fitch,2025-10-01,B,Stable,affirm,theglobaleconomy.com (month-precision)
+Nigeria,Fitch,2026-04-01,B,Stable,affirm,theglobaleconomy.com (month-precision)
+Nigeria,Moody's,2012-11-01,Ba3,Stable,initial,theglobaleconomy.com (month-precision)
+Nigeria,Moody's,2015-12-01,Ba3,Stable,affirm,theglobaleconomy.com (month-precision)
+Nigeria,Moody's,2016-03-01,Ba3,Negative watch,outlook_change,theglobaleconomy.com (month-precision)
+Nigeria,Moody's,2016-04-01,B1,Stable,downgrade,theglobaleconomy.com (month-precision)
+Nigeria,Moody's,2016-12-01,B1,Stable,affirm,theglobaleconomy.com (month-precision)
+Nigeria,Moody's,2017-11-01,B2,Stable,downgrade,theglobaleconomy.com (month-precision)
+Nigeria,Moody's,2020-04-01,B2,Negative,upgrade,theglobaleconomy.com (month-precision)
+Nigeria,Moody's,2021-11-01,B2,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Nigeria,Moody's,2022-11-01,B3,Under Review,downgrade,theglobaleconomy.com (month-precision)
+Nigeria,Moody's,2023-02-01,Caa1,Stable,downgrade,theglobaleconomy.com (month-precision)
+Nigeria,Moody's,2023-12-01,Caa1,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Nigeria,Moody's,2024-02-01,Caa3,Stable,downgrade,theglobaleconomy.com (month-precision)
+Nigeria,Moody's,2024-06-01,Caa1,Positive,upgrade,theglobaleconomy.com (month-precision)
+Nigeria,Moody's,2025-05-01,B3,Stable,upgrade,theglobaleconomy.com (month-precision)
+Nigeria,S&P,2006-02-01,BB-,Stable,initial,theglobaleconomy.com (month-precision)
+Nigeria,S&P,2009-03-01,BB-,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Nigeria,S&P,2014-03-27,BB-,Negative watch,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Nigeria,S&P,2015-02-01,BB-,Negative watch,affirm,theglobaleconomy.com (month-precision)
+Nigeria,S&P,2025-11-01,B-,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Nigeria,S&P,2026-05-15,B,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Pakistan,Fitch,2016-04-12,B,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Pakistan,Fitch,2016-07-22,B,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Pakistan,Fitch,2017-02-06,B,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Pakistan,Fitch,2019-06-14,B-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Pakistan,Fitch,2020-01-13,B-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Pakistan,Fitch,2020-08-01,B-,Stable,affirm,theglobaleconomy.com (month-precision)
+Pakistan,Fitch,2021-06-01,B-,Stable,affirm,theglobaleconomy.com (month-precision)
+Pakistan,Fitch,2022-02-01,B-,Stable,affirm,theglobaleconomy.com (month-precision)
+Pakistan,Fitch,2022-07-01,B-,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Pakistan,Fitch,2023-07-01,CCC,NR,upgrade,theglobaleconomy.com (month-precision)
+Pakistan,Fitch,2023-12-01,CCC,NR,affirm,theglobaleconomy.com (month-precision)
+Pakistan,Fitch,2024-07-01,CCC+,NR,upgrade,theglobaleconomy.com (month-precision)
+Pakistan,Fitch,2025-04-01,B-,Stable,upgrade,theglobaleconomy.com (month-precision)
+Pakistan,Fitch,2026-01-01,B-,Stable,affirm,theglobaleconomy.com (month-precision)
+Pakistan,Fitch,2026-04-01,B-,Stable,affirm,theglobaleconomy.com (month-precision)
+Pakistan,Moody's,1994-11-23,Ba3,,initial,countryeconomy.com
+Pakistan,Moody's,1995-07-11,B1,,downgrade,countryeconomy.com
+Pakistan,Moody's,1996-11-06,B2,,downgrade,countryeconomy.com
+Pakistan,Moody's,1998-05-28,B3,,downgrade,countryeconomy.com
+Pakistan,Moody's,1998-10-23,Caa1,,downgrade,countryeconomy.com
+Pakistan,Moody's,2001-10-01,Caa1,Stable,affirm,theglobaleconomy.com (month-precision)
+Pakistan,Moody's,2017-07-11,B3,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Pakistan,Moody's,2022-05-01,B3,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Pakistan,S&P,1994-11-01,B+,Positive,initial,theglobaleconomy.com (month-precision)
+Pakistan,S&P,1995-08-01,B+,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Pakistan,S&P,1997-01-01,B+,Stable,affirm,theglobaleconomy.com (month-precision)
+Pakistan,S&P,1998-01-01,B+,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Pakistan,S&P,1998-05-01,B+,Negative watch,outlook_change,theglobaleconomy.com (month-precision)
+Pakistan,S&P,1998-06-01,B-,Negative watch,downgrade,theglobaleconomy.com (month-precision)
+Pakistan,S&P,1998-07-01,CCC,Negative watch,downgrade,theglobaleconomy.com (month-precision)
+Pakistan,S&P,1998-10-01,CCC-,Negative,downgrade,theglobaleconomy.com (month-precision)
+Pakistan,S&P,1998-12-01,CC,Negative,downgrade,theglobaleconomy.com (month-precision)
+Pakistan,S&P,1999-12-01,B-,Stable,upgrade,theglobaleconomy.com (month-precision)
+Pakistan,S&P,2002-12-01,B,Stable,upgrade,theglobaleconomy.com (month-precision)
+Pakistan,S&P,2003-12-01,B,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Pakistan,S&P,2004-11-01,B+,Stable,upgrade,theglobaleconomy.com (month-precision)
+Pakistan,S&P,2005-11-01,B+,Stable,affirm,theglobaleconomy.com (month-precision)
+Pakistan,S&P,2005-12-01,B+,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Pakistan,S&P,2006-12-01,B+,Positive,affirm,theglobaleconomy.com (month-precision)
+Pakistan,S&P,2007-07-01,B+,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Pakistan,S&P,2007-11-01,B+,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Pakistan,S&P,2008-05-01,B,Negative,downgrade,theglobaleconomy.com (month-precision)
+Pakistan,S&P,2008-10-01,CCC+,Negative,downgrade,theglobaleconomy.com (month-precision)
+Pakistan,S&P,2008-11-01,CCC,Developing,downgrade,theglobaleconomy.com (month-precision)
+Pakistan,S&P,2008-12-01,CCC+,Developing,upgrade,theglobaleconomy.com (month-precision)
+Pakistan,S&P,2012-07-01,B-,Stable,affirm,theglobaleconomy.com (month-precision)
+Pakistan,S&P,2026-07-01,B,Stable,upgrade,theglobaleconomy.com (month-precision)
+Portugal,Fitch,1994-08-10,AA-,,initial,countryeconomy.com
+Portugal,Fitch,1995-10-26,AA-,,affirm,countryeconomy.com
+Portugal,Fitch,1998-06-04,AA,,upgrade,countryeconomy.com
+Portugal,Fitch,1998-07-14,AA,,affirm,countryeconomy.com
+Portugal,Fitch,2011-12-06,BB+,Negative,affirm,countryeconomy.com
+Portugal,Fitch,2012-02-21,BB+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Portugal,Fitch,2012-05-11,BB+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Portugal,Fitch,2012-11-12,BB+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Portugal,Fitch,2013-08-09,BB+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Portugal,Fitch,2013-10-23,BB+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Portugal,Fitch,2014-04-11,BB+,,affirm,countryeconomy.com
+Portugal,Fitch,2014-07-08,BB+,,affirm,countryeconomy.com
+Portugal,Fitch,2014-10-10,BB+,,affirm,countryeconomy.com
+Portugal,Fitch,2015-03-27,BB+,,affirm,countryeconomy.com
+Portugal,Fitch,2015-09-25,BB+,,affirm,countryeconomy.com
+Portugal,Fitch,2016-07-22,BB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Portugal,Fitch,2016-08-19,BB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Portugal,Fitch,2017-02-03,BB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Portugal,Fitch,2018-06-01,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Portugal,Fitch,2018-11-30,BBB,,affirm,countryeconomy.com
+Portugal,Fitch,2019-05-24,BBB,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Portugal,Fitch,2019-11-22,BBB,Positive,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Portugal,Fitch,2020-04-17,BBB,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Portugal,Fitch,2020-05-22,BBB,,affirm,countryeconomy.com
+Portugal,Fitch,2020-11-01,BBB,Stable,affirm,theglobaleconomy.com (month-precision)
+Portugal,Fitch,2021-05-01,BBB,Stable,affirm,theglobaleconomy.com (month-precision)
+Portugal,Fitch,2021-11-01,BBB,Stable,affirm,theglobaleconomy.com (month-precision)
+Portugal,Fitch,2022-05-01,BBB,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Portugal,Fitch,2023-04-01,BBB+,Stable,affirm,theglobaleconomy.com (month-precision)
+Portugal,Fitch,2024-03-01,A-,Stable,affirm,theglobaleconomy.com (month-precision)
+Portugal,Fitch,2024-09-01,A-,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Portugal,Fitch,2025-03-01,A-,Positive,affirm,theglobaleconomy.com (month-precision)
+Portugal,Fitch,2025-09-01,A,Stable,upgrade,theglobaleconomy.com (month-precision)
+Portugal,Fitch,2026-03-01,A,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Portugal,Moody's,1986-11-18,A1,Stable,initial,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Portugal,Moody's,1997-02-10,Aa3,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Portugal,Moody's,1998-05-04,Aa2,Stable,upgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Portugal,Moody's,2013-03-27,Ba3,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Portugal,Moody's,2025-11-14,A3,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Portugal,S&P,1989-06-01,A,Positive,initial,theglobaleconomy.com (month-precision)
+Portugal,S&P,1991-10-01,A+,Stable,upgrade,theglobaleconomy.com (month-precision)
+Portugal,S&P,1993-05-01,AA-,Stable,upgrade,theglobaleconomy.com (month-precision)
+Portugal,S&P,1997-10-01,AA-,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Portugal,S&P,1998-05-01,AA-,Positive,affirm,theglobaleconomy.com (month-precision)
+Portugal,S&P,1998-12-01,AA,Stable,upgrade,theglobaleconomy.com (month-precision)
+Portugal,S&P,2004-10-01,AA,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Portugal,S&P,2005-06-01,AA-,Stable,downgrade,theglobaleconomy.com (month-precision)
+Portugal,S&P,2005-11-01,AA-,Stable,affirm,theglobaleconomy.com (month-precision)
+Portugal,S&P,2009-01-01,A+,Stable,downgrade,theglobaleconomy.com (month-precision)
+Portugal,S&P,2009-01-01,AA-,Negative watch,upgrade,theglobaleconomy.com (month-precision)
+Portugal,S&P,2009-12-01,A+,Negative,downgrade,theglobaleconomy.com (month-precision)
+Portugal,S&P,2010-04-01,A-,Negative,downgrade,theglobaleconomy.com (month-precision)
+Portugal,S&P,2010-11-01,A-,Negative watch,outlook_change,theglobaleconomy.com (month-precision)
+Portugal,S&P,2011-03-01,BBB,Negative watch,downgrade,theglobaleconomy.com (month-precision)
+Portugal,S&P,2011-12-05,BBB-,Negative watch,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Portugal,S&P,2013-07-01,BB,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Portugal,S&P,2014-01-17,BB,Negative,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Portugal,S&P,2025-02-01,A,Positive,upgrade,theglobaleconomy.com (month-precision)
+Portugal,S&P,2026-02-27,A+,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,1994-09-22,BB,,initial,countryeconomy.com
+South Africa,Fitch,1995-10-26,BB,,affirm,countryeconomy.com
+South Africa,Fitch,1996-06-05,BB,,affirm,countryeconomy.com
+South Africa,Fitch,1998-02-17,BB,Positive,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,1998-05-28,BB,,affirm,countryeconomy.com
+South Africa,Fitch,2011-05-20,BBB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2011-11-23,BBB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2011-12-09,BBB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2012-02-24,BBB+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2012-04-26,BBB+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2012-05-25,BBB+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2012-07-11,BBB+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2012-08-17,BBB+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2013-03-28,BBB,Stable,affirm,countryeconomy.com
+South Africa,Fitch,2013-05-28,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2013-06-27,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2013-07-11,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2013-07-29,BBB,Stable,affirm,countryeconomy.com
+South Africa,Fitch,2013-09-11,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2013-09-30,BBB,Stable,affirm,countryeconomy.com
+South Africa,Fitch,2013-10-14,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2013-10-30,BBB,Stable,affirm,countryeconomy.com
+South Africa,Fitch,2013-12-03,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2013-12-18,BBB,Stable,affirm,countryeconomy.com
+South Africa,Fitch,2013-12-30,BBB,Stable,affirm,countryeconomy.com
+South Africa,Fitch,2014-01-09,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2014-01-23,BBB,Stable,affirm,countryeconomy.com
+South Africa,Fitch,2014-01-31,BBB,Stable,affirm,countryeconomy.com
+South Africa,Fitch,2014-03-05,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2014-03-10,BBB,Stable,affirm,countryeconomy.com
+South Africa,Fitch,2014-03-28,BBB,Stable,affirm,countryeconomy.com
+South Africa,Fitch,2014-04-04,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2014-04-11,BBB,Stable,affirm,countryeconomy.com
+South Africa,Fitch,2014-04-28,BBB,Stable,affirm,countryeconomy.com
+South Africa,Fitch,2014-05-09,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2014-05-21,BBB,Stable,affirm,countryeconomy.com
+South Africa,Fitch,2014-05-28,BBB,Stable,affirm,countryeconomy.com
+South Africa,Fitch,2014-06-04,BBB,Stable,affirm,countryeconomy.com
+South Africa,Fitch,2014-06-27,BBB,Negative,affirm,countryeconomy.com
+South Africa,Fitch,2014-07-07,BBB,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2014-07-31,BBB,Negative,affirm,countryeconomy.com
+South Africa,Fitch,2014-08-06,BBB,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2014-08-22,BBB,Negative,affirm,countryeconomy.com
+South Africa,Fitch,2014-09-05,BBB,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2014-09-10,BBB,Negative,affirm,countryeconomy.com
+South Africa,Fitch,2014-09-23,BBB,Negative,affirm,countryeconomy.com
+South Africa,Fitch,2014-09-29,BBB,Negative,affirm,countryeconomy.com
+South Africa,Fitch,2014-12-12,BBB,,affirm,countryeconomy.com
+South Africa,Fitch,2015-06-05,BBB,,affirm,countryeconomy.com
+South Africa,Fitch,2016-06-08,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2016-07-22,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2017-06-01,BB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2017-11-23,BB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2018-06-15,BB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2018-12-06,BB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2019-12-18,BB+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Fitch,2021-05-01,BB-,Negative,affirm,theglobaleconomy.com (month-precision)
+South Africa,Fitch,2021-12-01,BB-,Stable,outlook_change,theglobaleconomy.com (month-precision)
+South Africa,Fitch,2022-07-01,BB-,Stable,affirm,theglobaleconomy.com (month-precision)
+South Africa,Fitch,2023-07-01,BB-,Stable,affirm,theglobaleconomy.com (month-precision)
+South Africa,Fitch,2024-01-01,BB-,Stable,affirm,theglobaleconomy.com (month-precision)
+South Africa,Fitch,2024-09-01,BB-,Stable,affirm,theglobaleconomy.com (month-precision)
+South Africa,Fitch,2025-09-01,BB-,Stable,affirm,theglobaleconomy.com (month-precision)
+South Africa,Fitch,2026-06-01,BB,Stable,upgrade,theglobaleconomy.com (month-precision)
+South Africa,Moody's,1994-10-03,Baa3,Stable,initial,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Moody's,1998-07-01,Baa3,Negative watch,outlook_change,theglobaleconomy.com (month-precision)
+South Africa,Moody's,1998-10-01,Baa3,Stable,outlook_change,theglobaleconomy.com (month-precision)
+South Africa,Moody's,2001-10-01,Baa3,Positive watch,outlook_change,theglobaleconomy.com (month-precision)
+South Africa,Moody's,2013-07-17,Baa1,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Moody's,2024-12-03,Ba2,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,Moody's,2026-05-22,Ba2,Positive,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,S&P,1994-10-01,BB,Stable,initial,theglobaleconomy.com (month-precision)
+South Africa,S&P,1995-11-01,BB+,Stable,upgrade,theglobaleconomy.com (month-precision)
+South Africa,S&P,1998-03-01,BB+,Stable,affirm,theglobaleconomy.com (month-precision)
+South Africa,S&P,2000-02-01,BBB-,Stable,upgrade,theglobaleconomy.com (month-precision)
+South Africa,S&P,2002-11-01,BBB-,Positive,outlook_change,theglobaleconomy.com (month-precision)
+South Africa,S&P,2003-05-01,BBB,Stable,upgrade,theglobaleconomy.com (month-precision)
+South Africa,S&P,2005-11-01,BBB+,Stable,affirm,theglobaleconomy.com (month-precision)
+South Africa,S&P,2008-11-01,BBB+,Negative,outlook_change,theglobaleconomy.com (month-precision)
+South Africa,S&P,2011-01-25,BBB+,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+South Africa,S&P,2016-12-01,BBB-,Negative,affirm,theglobaleconomy.com (month-precision)
+South Africa,S&P,2019-09-01,BB,Developing,outlook_change,theglobaleconomy.com (month-precision)
+South Africa,S&P,2022-05-01,BB-,Negative,outlook_change,theglobaleconomy.com (month-precision)
+South Africa,S&P,2025-12-01,BB,NR,outlook_change,theglobaleconomy.com (month-precision)
+Spain,Fitch,1994-08-10,AA,,initial,countryeconomy.com
+Spain,Fitch,1995-10-26,AA,,affirm,countryeconomy.com
+Spain,Fitch,1998-07-14,AA,,affirm,countryeconomy.com
+Spain,Fitch,1999-09-01,AA+,,upgrade,countryeconomy.com
+Spain,Fitch,2011-11-18,AA-,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2011-12-16,AA-,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2012-02-21,A,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2012-06-28,BBB,Negative,affirm,countryeconomy.com
+Spain,Fitch,2013-03-07,BBB,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2013-03-25,BBB,Negative,affirm,countryeconomy.com
+Spain,Fitch,2013-05-21,BBB,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2013-07-29,BBB,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2013-09-26,BBB,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2013-10-01,BBB,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2013-10-17,BBB,Negative,affirm,countryeconomy.com
+Spain,Fitch,2013-12-16,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2014-01-24,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2014-01-31,BBB,Stable,affirm,countryeconomy.com
+Spain,Fitch,2014-02-14,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2014-02-26,BBB,Stable,affirm,countryeconomy.com
+Spain,Fitch,2014-03-28,BBB,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2014-05-22,BBB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2014-07-10,BBB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2014-07-30,BBB+,Stable,affirm,countryeconomy.com
+Spain,Fitch,2014-08-04,BBB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2014-08-29,BBB+,Stable,affirm,countryeconomy.com
+Spain,Fitch,2014-09-04,BBB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2014-09-24,BBB+,Stable,affirm,countryeconomy.com
+Spain,Fitch,2014-10-14,BBB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2014-10-24,BBB+,Stable,affirm,countryeconomy.com
+Spain,Fitch,2015-04-24,BBB+,,affirm,countryeconomy.com
+Spain,Fitch,2015-10-23,BBB+,,affirm,countryeconomy.com
+Spain,Fitch,2016-01-29,BBB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2016-07-22,BBB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2016-07-29,BBB+,Stable,affirm,countryeconomy.com
+Spain,Fitch,2017-01-27,BBB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2018-07-13,A-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2019-01-11,A-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2019-06-21,A-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2019-12-13,A-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Fitch,2020-06-01,A-,Stable,affirm,theglobaleconomy.com (month-precision)
+Spain,Fitch,2020-12-01,A-,Stable,affirm,theglobaleconomy.com (month-precision)
+Spain,Fitch,2021-06-01,A-,Stable,affirm,theglobaleconomy.com (month-precision)
+Spain,Fitch,2021-12-01,A-,Stable,affirm,theglobaleconomy.com (month-precision)
+Spain,Fitch,2022-06-01,A-,Stable,affirm,theglobaleconomy.com (month-precision)
+Spain,Fitch,2023-05-01,A-,Stable,affirm,theglobaleconomy.com (month-precision)
+Spain,Fitch,2023-11-01,A-,Stable,affirm,theglobaleconomy.com (month-precision)
+Spain,Fitch,2024-05-01,A-,Stable,affirm,theglobaleconomy.com (month-precision)
+Spain,Fitch,2024-11-01,A-,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Spain,Fitch,2025-04-01,A-,Positive,affirm,theglobaleconomy.com (month-precision)
+Spain,Fitch,2025-09-01,A,Stable,upgrade,theglobaleconomy.com (month-precision)
+Spain,Fitch,2026-03-01,A,Stable,affirm,theglobaleconomy.com (month-precision)
+Spain,Moody's,1988-02-03,Aa2,Stable,initial,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Moody's,2001-09-01,Aa2,Positive watch,outlook_change,theglobaleconomy.com (month-precision)
+Spain,Moody's,2020-09-18,Baa1,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,Moody's,2022-07-15,Baa1,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Spain,S&P,1989-06-01,AA,Positive,initial,theglobaleconomy.com (month-precision)
+Spain,S&P,1992-12-01,AA,Positive,affirm,theglobaleconomy.com (month-precision)
+Spain,S&P,1996-02-01,AA,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Spain,S&P,1998-05-01,AA,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Spain,S&P,1999-03-01,AA+,Stable,upgrade,theglobaleconomy.com (month-precision)
+Spain,S&P,2003-07-01,AA+,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Spain,S&P,2004-12-01,AAA,Stable,upgrade,theglobaleconomy.com (month-precision)
+Spain,S&P,2005-11-01,AAA,Stable,affirm,theglobaleconomy.com (month-precision)
+Spain,S&P,2009-01-01,AA+,Stable,downgrade,theglobaleconomy.com (month-precision)
+Spain,S&P,2009-01-01,AAA,Negative watch,upgrade,theglobaleconomy.com (month-precision)
+Spain,S&P,2009-12-01,AA+,Negative,downgrade,theglobaleconomy.com (month-precision)
+Spain,S&P,2011-12-05,AA-,Negative watch,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2011-07-22,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2011-10-28,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2012-01-11,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2012-05-04,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2012-05-22,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2012-07-18,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2012-08-17,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2013-03-07,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2013-06-07,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2013-06-24,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2013-07-15,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2013-07-29,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2013-08-30,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2013-10-01,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2013-10-14,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2013-10-25,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2013-11-29,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2013-12-05,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2013-12-13,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2013-12-27,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2014-01-16,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2014-01-24,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2014-01-31,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2014-03-05,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2014-03-28,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2014-04-02,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2014-04-11,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2014-04-14,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2014-04-29,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2014-05-09,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2014-05-30,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2014-06-06,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2014-06-12,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2014-06-26,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2014-07-18,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2014-07-25,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2014-08-07,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2014-08-13,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2014-08-29,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2014-09-09,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2014-09-19,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2014-09-23,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2014-09-30,BB-,Stable,affirm,countryeconomy.com
+Sri Lanka,Fitch,2015-04-22,BB-,,affirm,countryeconomy.com
+Sri Lanka,Fitch,2016-07-22,B+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2018-02-06,B+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2019-03-01,B,Stable,affirm,theglobaleconomy.com (month-precision)
+Sri Lanka,Fitch,2019-06-01,B,Stable,affirm,theglobaleconomy.com (month-precision)
+Sri Lanka,Fitch,2019-09-27,B,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Sri Lanka,Fitch,2020-12-01,CCC,NR,outlook_change,theglobaleconomy.com (month-precision)
+Sri Lanka,Fitch,2021-06-01,CCC,NR,affirm,theglobaleconomy.com (month-precision)
+Sri Lanka,Fitch,2024-12-01,CCC,NR,upgrade,theglobaleconomy.com (month-precision)
+Sri Lanka,Fitch,2025-10-01,CCC+,NR,upgrade,theglobaleconomy.com (month-precision)
+Sri Lanka,Moody's,2010-10-04,B1,,affirm,countryeconomy.com
+Sri Lanka,Moody's,2011-07-21,B1,,affirm,countryeconomy.com (provisional rating)
+Sri Lanka,Moody's,2012-07-17,B1,,affirm,countryeconomy.com (provisional rating)
+Sri Lanka,Moody's,2014-01-06,B1,,affirm,countryeconomy.com (provisional rating)
+Sri Lanka,Moody's,2014-04-07,B1,,affirm,countryeconomy.com (provisional rating)
+Sri Lanka,Moody's,2015-05-28,B1,,affirm,countryeconomy.com (provisional rating)
+Sri Lanka,Moody's,2015-10-28,B1,,affirm,countryeconomy.com (provisional rating)
+Sri Lanka,Moody's,2016-07-11,B1,,affirm,countryeconomy.com (provisional rating)
+Sri Lanka,Moody's,2017-12-12,B1,Negative,affirm,countryeconomy.com
+Sri Lanka,Moody's,2018-07-26,B1,Negative,affirm,countryeconomy.com
+Sri Lanka,Moody's,2019-03-01,B2,Stable,affirm,theglobaleconomy.com (month-precision)
+Sri Lanka,S&P,2005-12-01,B+,Stable,initial,theglobaleconomy.com (month-precision)
+Sri Lanka,S&P,2006-04-01,B+,Stable,affirm,theglobaleconomy.com (month-precision)
+Sri Lanka,S&P,2006-04-01,B+,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Sri Lanka,S&P,2007-08-01,B+,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Sri Lanka,S&P,2008-02-01,B+,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Sri Lanka,S&P,2008-12-01,B,Stable,downgrade,theglobaleconomy.com (month-precision)
+Sri Lanka,S&P,2009-05-01,B,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Sri Lanka,S&P,2009-08-01,B,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Sri Lanka,S&P,2009-10-01,B,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Sri Lanka,S&P,2019-03-01,B,NR,outlook_change,theglobaleconomy.com (month-precision)
+Sri Lanka,S&P,2019-06-01,B,Developing,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,Fitch,1994-08-10,B,,initial,countryeconomy.com
+Turkey,Fitch,1995-09-26,BB-,,upgrade,countryeconomy.com
+Turkey,Fitch,1995-10-26,BB-,,affirm,countryeconomy.com
+Turkey,Fitch,1996-07-29,BB-,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,1996-12-20,B+,,downgrade,countryeconomy.com
+Turkey,Fitch,2007-12-12,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2011-05-20,BB+,,affirm,countryeconomy.com
+Turkey,Fitch,2011-12-20,BB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2012-01-24,BB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2012-02-24,BB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2012-03-26,BB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2012-08-01,BB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2013-03-25,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2013-05-01,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2013-05-28,BBB-,Stable,affirm,countryeconomy.com
+Turkey,Fitch,2013-07-11,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2013-08-30,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2013-10-24,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2013-11-28,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2013-12-03,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2014-01-02,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2014-01-24,BBB-,Stable,affirm,countryeconomy.com
+Turkey,Fitch,2014-01-31,BBB-,Stable,affirm,countryeconomy.com
+Turkey,Fitch,2014-02-13,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2014-02-17,BBB-,Stable,affirm,countryeconomy.com
+Turkey,Fitch,2014-03-05,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2014-04-04,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2014-04-10,BBB-,Stable,affirm,countryeconomy.com
+Turkey,Fitch,2014-05-28,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2014-06-04,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2014-06-27,BBB-,Stable,affirm,countryeconomy.com
+Turkey,Fitch,2014-07-31,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2014-08-13,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2014-10-03,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2015-03-20,BBB-,,affirm,countryeconomy.com
+Turkey,Fitch,2015-09-18,BBB-,,affirm,countryeconomy.com
+Turkey,Fitch,2016-02-26,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2016-07-22,BBB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2017-07-21,BB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2018-01-19,BB+,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2018-12-14,BB,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2019-05-03,BB,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2019-11-01,BB-,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2020-02-21,BB-,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Fitch,2020-08-01,BB-,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,Fitch,2021-02-01,BB-,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,Fitch,2021-08-01,BB-,Stable,affirm,theglobaleconomy.com (month-precision)
+Turkey,Fitch,2023-03-01,B,Negative,affirm,theglobaleconomy.com (month-precision)
+Turkey,Fitch,2023-09-01,B,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,Fitch,2024-03-01,B+,Positive,upgrade,theglobaleconomy.com (month-precision)
+Turkey,Fitch,2024-09-01,BB-,Stable,upgrade,theglobaleconomy.com (month-precision)
+Turkey,Fitch,2025-01-01,BB-,Stable,affirm,theglobaleconomy.com (month-precision)
+Turkey,Fitch,2025-07-01,BB-,Stable,affirm,theglobaleconomy.com (month-precision)
+Turkey,Fitch,2026-01-01,BB-,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,Fitch,2026-04-01,BB-,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,Fitch,2026-07-01,BB-,Stable,affirm,theglobaleconomy.com (month-precision)
+Turkey,Moody's,1992-05-05,Baa3,Stable,initial,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Moody's,1994-01-13,Ba1,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Moody's,1994-06-02,Ba3,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Moody's,1997-01-01,Ba3,Negative watch,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,Moody's,1997-03-13,B1,Stable,downgrade,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Moody's,2000-07-01,B1,Positive watch,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,Moody's,2000-12-21,B1,Stable,outlook_change,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,Moody's,2004-09-30,B1,Stable,affirm,countryeconomy.com
+Turkey,Moody's,2015-12-04,Baa3,Negative,affirm,"countryeconomy.com (conflict resolved: High confidence, directly confirmed: multiple sources (Reuters/Business Standard, Sept 2016) confirm Moody's downgraded Turkey from Baa3 to Ba1 in September 2016, post-coup, explicitly from Baa3 -- inconsistent with GE's Ba3 claim for Dec 2015.)"
+Turkey,Moody's,2017-05-01,Ba1,Negative,affirm,theglobaleconomy.com (month-precision)
+Turkey,Moody's,2021-12-03,B2,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Turkey,S&P,1992-05-01,BBB,Stable,initial,theglobaleconomy.com (month-precision)
+Turkey,S&P,1993-05-01,BBB,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,1994-01-01,BBB-,Negative,downgrade,theglobaleconomy.com (month-precision)
+Turkey,S&P,1994-04-01,B+,Negative watch,downgrade,theglobaleconomy.com (month-precision)
+Turkey,S&P,1994-04-01,BB,Negative watch,upgrade,theglobaleconomy.com (month-precision)
+Turkey,S&P,1994-08-01,B+,Stable,downgrade,theglobaleconomy.com (month-precision)
+Turkey,S&P,1995-07-01,B+,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,1995-10-01,B+,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,1996-07-01,B+,Negative watch,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,1996-12-01,B,Stable,downgrade,theglobaleconomy.com (month-precision)
+Turkey,S&P,1998-08-01,B,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,1999-01-01,B,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,1999-12-01,B,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,2000-04-01,B+,Positive,upgrade,theglobaleconomy.com (month-precision)
+Turkey,S&P,2000-12-01,B+,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,2001-02-01,B+,Negative watch,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,2001-02-01,B,Negative watch,downgrade,theglobaleconomy.com (month-precision)
+Turkey,S&P,2001-04-01,B-,Stable,downgrade,theglobaleconomy.com (month-precision)
+Turkey,S&P,2001-04-01,B-,Negative watch,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,2001-07-01,B-,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,2001-11-01,B-,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,2002-01-01,B-,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,2002-06-01,B-,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,2002-07-01,B-,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,2002-11-01,B-,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,2003-07-01,B,Stable,upgrade,theglobaleconomy.com (month-precision)
+Turkey,S&P,2003-10-01,B+,Stable,upgrade,theglobaleconomy.com (month-precision)
+Turkey,S&P,2004-03-01,B+,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,2004-08-01,BB-,Stable,upgrade,theglobaleconomy.com (month-precision)
+Turkey,S&P,2005-11-01,BB-,Stable,affirm,theglobaleconomy.com (month-precision)
+Turkey,S&P,2006-01-01,BB-,Positive,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,2006-06-01,BB-,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,2008-04-01,BB-,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,2008-07-01,BB-,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,2008-11-01,BB-,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,2009-09-01,BB-,Stable,outlook_change,theglobaleconomy.com (month-precision)
+Turkey,S&P,2011-09-01,BB,Positive,affirm,theglobaleconomy.com (month-precision)
+Turkey,S&P,2015-05-01,BB+,Negative,affirm,theglobaleconomy.com (month-precision)
+Zambia,Fitch,2013-02-22,B+,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Zambia,Fitch,2014-03-21,B,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Zambia,Fitch,2014-04-08,B,Stable,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Zambia,Fitch,2014-09-19,B,,affirm,countryeconomy.com
+Zambia,Fitch,2015-03-13,B,,affirm,countryeconomy.com
+Zambia,Fitch,2015-08-21,B,,affirm,countryeconomy.com
+Zambia,Fitch,2016-07-22,B,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Zambia,Fitch,2017-02-20,B,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Zambia,Fitch,2017-11-27,B,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Zambia,Fitch,2018-07-26,B,Negative,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Zambia,Fitch,2019-12-20,CCC,Developing,affirm,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision))
+Zambia,Fitch,2023-12-01,CCC+,NR,upgrade,theglobaleconomy.com (month-precision)
+Zambia,Fitch,2024-12-01,RD,NR,downgrade,theglobaleconomy.com (month-precision)
+Zambia,Fitch,2025-11-01,B-,Stable,upgrade,theglobaleconomy.com (month-precision)
+Zambia,Moody's,2012-11-01,B1,Stable,initial,theglobaleconomy.com (month-precision)
+Zambia,Moody's,2015-05-01,B1,Negative,outlook_change,theglobaleconomy.com (month-precision)
+Zambia,Moody's,2015-09-01,B2,Stable,downgrade,theglobaleconomy.com (month-precision)
+Zambia,Moody's,2016-04-01,B3,Negative,downgrade,theglobaleconomy.com (month-precision)
+Zambia,Moody's,2018-01-01,B3,Negative,affirm,theglobaleconomy.com (month-precision)
+Zambia,Moody's,2018-07-01,Caa1,Stable,downgrade,theglobaleconomy.com (month-precision)
+Zambia,Moody's,2019-05-01,Caa2,Negative,downgrade,theglobaleconomy.com (month-precision)
+Zambia,Moody's,2020-09-01,CCC-,Negative,upgrade,theglobaleconomy.com (month-precision)
+Zambia,Moody's,2022-11-01,Ca,Stable,downgrade,theglobaleconomy.com (month-precision)
+Zambia,Moody's,2025-04-01,Caa2,Positive,upgrade,theglobaleconomy.com (month-precision)

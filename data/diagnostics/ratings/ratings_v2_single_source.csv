@@ -1,0 +1,297 @@
+country,agency,rating_type,n_rows,n_single_source,single_source_share
+Australia,Fitch,FC_LT,6,1,0.167
+Australia,Fitch,LC_LT,2,0,0.0
+Australia,Moodys,FC_LT,2,1,0.5
+Australia,Moodys,LC_LT,1,1,1.0
+Australia,SP,FC_LT,8,2,0.25
+Australia,SP,LC_LT,1,1,1.0
+Australia,SP,unspecified,1,1,1.0
+Austria,Fitch,FC_LT,9,4,0.444
+Austria,Fitch,LC_LT,3,1,0.333
+Austria,Moodys,FC_LT,7,4,0.571
+Austria,Moodys,LC_LT,2,2,1.0
+Austria,SP,FC_LT,9,1,0.111
+Austria,SP,LC_LT,2,2,1.0
+Belgium,Fitch,FC_LT,13,5,0.385
+Belgium,Fitch,LC_LT,7,2,0.286
+Belgium,Moodys,FC_LT,9,8,0.889
+Belgium,Moodys,LC_LT,2,2,1.0
+Belgium,SP,FC_LT,5,0,0.0
+Belgium,SP,LC_LT,3,3,1.0
+Belgium,SP,unspecified,2,2,1.0
+Brazil,Fitch,FC_LT,27,7,0.259
+Brazil,Fitch,LC_LT,21,4,0.19
+Brazil,Moodys,FC_LT,25,19,0.76
+Brazil,Moodys,LC_LT,13,13,1.0
+Brazil,SP,FC_LT,15,0,0.0
+Brazil,SP,LC_LT,7,7,1.0
+Brazil,SP,unspecified,12,12,1.0
+Canada,Fitch,FC_LT,5,0,0.0
+Canada,Fitch,LC_LT,3,1,0.333
+Canada,Moodys,FC_LT,4,1,0.25
+Canada,Moodys,LC_LT,2,2,1.0
+Canada,SP,FC_LT,2,0,0.0
+Canada,SP,LC_LT,1,1,1.0
+Canada,SP,unspecified,1,1,1.0
+Chile,Fitch,FC_LT,11,0,0.0
+Chile,Fitch,LC_LT,8,2,0.25
+Chile,Moodys,FC_LT,12,8,0.667
+Chile,Moodys,LC_LT,4,4,1.0
+Chile,SP,FC_LT,9,0,0.0
+Chile,SP,LC_LT,5,5,1.0
+Chile,SP,unspecified,4,4,1.0
+China,Fitch,FC_LT,8,2,0.25
+China,Fitch,LC_LT,6,1,0.167
+China,Moodys,FC_LT,13,9,0.692
+China,Moodys,LC_LT,3,3,1.0
+China,SP,FC_LT,3,0,0.0
+China,SP,LC_LT,2,2,1.0
+China,SP,unspecified,7,7,1.0
+Colombia,Fitch,FC_LT,19,5,0.263
+Colombia,Fitch,LC_LT,13,4,0.308
+Colombia,Moodys,FC_LT,16,10,0.625
+Colombia,Moodys,LC_LT,7,7,1.0
+Colombia,SP,FC_LT,9,1,0.111
+Colombia,SP,LC_LT,4,4,1.0
+Colombia,SP,unspecified,8,8,1.0
+Czech Republic,Fitch,FC_LT,11,2,0.182
+Czech Republic,Fitch,LC_LT,8,2,0.25
+Czech Republic,Moodys,FC_LT,9,5,0.556
+Czech Republic,Moodys,LC_LT,2,2,1.0
+Czech Republic,SP,FC_LT,3,0,0.0
+Czech Republic,SP,LC_LT,1,1,1.0
+Czech Republic,SP,unspecified,2,2,1.0
+Egypt,Fitch,FC_LT,21,12,0.571
+Egypt,Fitch,LC_LT,18,7,0.389
+Egypt,Moodys,FC_LT,22,14,0.636
+Egypt,Moodys,LC_LT,13,13,1.0
+Egypt,SP,FC_LT,18,0,0.0
+Egypt,SP,LC_LT,9,9,1.0
+Egypt,SP,unspecified,7,7,1.0
+Finland,Fitch,FC_LT,8,2,0.25
+Finland,Fitch,LC_LT,3,1,0.333
+Finland,Moodys,FC_LT,4,2,0.5
+Finland,Moodys,LC_LT,2,2,1.0
+Finland,SP,FC_LT,7,1,0.143
+Finland,SP,LC_LT,2,2,1.0
+Finland,SP,unspecified,3,3,1.0
+France,Fitch,FC_LT,9,5,0.556
+France,Fitch,LC_LT,5,3,0.6
+France,Moodys,FC_LT,10,6,0.6
+France,Moodys,LC_LT,4,4,1.0
+France,SP,FC_LT,10,2,0.2
+France,SP,LC_LT,5,5,1.0
+France,SP,unspecified,2,2,1.0
+Germany,Fitch,FC_LT,5,3,0.6
+Germany,Fitch,LC_LT,2,0,0.0
+Germany,Moodys,FC_LT,4,2,0.5
+Germany,Moodys,LC_LT,1,1,1.0
+Germany,SP,FC_LT,4,1,0.25
+Germany,SP,LC_LT,1,1,1.0
+Greece,Fitch,FC_LT,40,24,0.6
+Greece,Fitch,LC_LT,32,14,0.438
+Greece,Moodys,FC_LT,31,28,0.903
+Greece,Moodys,LC_LT,19,19,1.0
+Greece,SP,FC_LT,25,2,0.08
+Greece,SP,LC_LT,19,19,1.0
+Greece,SP,unspecified,18,18,1.0
+Hungary,Fitch,FC_LT,20,6,0.3
+Hungary,Fitch,LC_LT,15,2,0.133
+Hungary,Moodys,FC_LT,19,16,0.842
+Hungary,Moodys,LC_LT,8,8,1.0
+Hungary,SP,FC_LT,14,0,0.0
+Hungary,SP,LC_LT,7,7,1.0
+Hungary,SP,unspecified,11,11,1.0
+India,Fitch,FC_LT,10,3,0.3
+India,Fitch,LC_LT,7,0,0.0
+India,Moodys,FC_LT,9,4,0.444
+India,Moodys,LC_LT,5,5,1.0
+India,SP,FC_LT,5,0,0.0
+India,SP,LC_LT,2,2,1.0
+India,SP,unspecified,9,9,1.0
+Indonesia,Fitch,FC_LT,21,6,0.286
+Indonesia,Fitch,LC_LT,16,2,0.125
+Indonesia,Moodys,FC_LT,18,13,0.722
+Indonesia,Moodys,LC_LT,8,8,1.0
+Indonesia,SP,FC_LT,8,0,0.0
+Indonesia,SP,LC_LT,3,3,1.0
+Indonesia,SP,unspecified,17,17,1.0
+Italy,Fitch,FC_LT,17,10,0.588
+Italy,Fitch,LC_LT,12,6,0.5
+Italy,Moodys,FC_LT,16,13,0.812
+Italy,Moodys,LC_LT,9,9,1.0
+Italy,SP,FC_LT,11,1,0.091
+Italy,SP,LC_LT,6,6,1.0
+Italy,SP,unspecified,7,7,1.0
+Japan,Fitch,FC_LT,13,2,0.154
+Japan,Fitch,LC_LT,10,2,0.2
+Japan,Moodys,FC_LT,11,10,0.909
+Japan,Moodys,LC_LT,9,9,1.0
+Japan,SP,FC_LT,5,0,0.0
+Japan,SP,LC_LT,2,2,1.0
+Japan,SP,unspecified,9,9,1.0
+Kazakhstan,Fitch,FC_LT,19,2,0.105
+Kazakhstan,Fitch,LC_LT,19,3,0.158
+Kazakhstan,Moodys,FC_LT,19,11,0.579
+Kazakhstan,Moodys,LC_LT,7,7,1.0
+Kazakhstan,SP,FC_LT,9,0,0.0
+Kazakhstan,SP,LC_LT,3,3,1.0
+Kazakhstan,SP,unspecified,11,11,1.0
+Kenya,Fitch,FC_LT,9,3,0.333
+Kenya,Fitch,LC_LT,5,2,0.4
+Kenya,Moodys,FC_LT,6,6,1.0
+Kenya,SP,FC_LT,8,0,0.0
+Kenya,SP,LC_LT,4,4,1.0
+Kenya,SP,unspecified,4,4,1.0
+Malaysia,Fitch,FC_LT,13,0,0.0
+Malaysia,Fitch,LC_LT,11,2,0.182
+Malaysia,Moodys,FC_LT,10,5,0.5
+Malaysia,Moodys,LC_LT,1,1,1.0
+Malaysia,SP,FC_LT,7,1,0.143
+Malaysia,SP,LC_LT,1,1,1.0
+Malaysia,SP,unspecified,4,4,1.0
+Mexico,Fitch,FC_LT,18,6,0.333
+Mexico,Fitch,LC_LT,14,4,0.286
+Mexico,Moodys,FC_LT,12,6,0.5
+Mexico,Moodys,LC_LT,5,5,1.0
+Mexico,SP,FC_LT,9,1,0.111
+Mexico,SP,LC_LT,4,4,1.0
+Mexico,SP,unspecified,7,7,1.0
+Morocco,Fitch,FC_LT,3,0,0.0
+Morocco,Fitch,LC_LT,3,2,0.667
+Morocco,Moodys,FC_LT,8,2,0.25
+Morocco,Moodys,LC_LT,1,1,1.0
+Morocco,SP,FC_LT,9,0,0.0
+Morocco,SP,LC_LT,3,3,1.0
+Morocco,SP,unspecified,7,7,1.0
+Netherlands,Fitch,FC_LT,4,1,0.25
+Netherlands,Fitch,LC_LT,2,0,0.0
+Netherlands,Moodys,FC_LT,4,2,0.5
+Netherlands,Moodys,LC_LT,1,1,1.0
+Netherlands,SP,FC_LT,7,1,0.143
+Netherlands,SP,LC_LT,3,3,1.0
+Nigeria,Fitch,FC_LT,11,4,0.364
+Nigeria,Fitch,LC_LT,7,4,0.571
+Nigeria,Moodys,FC_LT,5,5,1.0
+Nigeria,SP,FC_LT,12,1,0.083
+Nigeria,SP,LC_LT,5,5,1.0
+Nigeria,SP,unspecified,3,3,1.0
+Norway,Fitch,FC_LT,2,0,0.0
+Norway,Fitch,LC_LT,2,0,0.0
+Norway,Moodys,FC_LT,1,0,0.0
+Norway,Moodys,LC_LT,1,1,1.0
+Norway,SP,FC_LT,1,0,0.0
+Norway,SP,LC_LT,1,1,1.0
+Pakistan,Fitch,FC_LT,7,4,0.571
+Pakistan,Fitch,LC_LT,4,4,1.0
+Pakistan,Moodys,FC_LT,26,17,0.654
+Pakistan,Moodys,LC_LT,12,12,1.0
+Pakistan,SP,FC_LT,7,0,0.0
+Pakistan,SP,LC_LT,5,5,1.0
+Pakistan,SP,unspecified,11,11,1.0
+Peru,Fitch,FC_LT,21,6,0.286
+Peru,Fitch,LC_LT,16,4,0.25
+Peru,Moodys,FC_LT,15,10,0.667
+Peru,Moodys,LC_LT,4,4,1.0
+Peru,SP,FC_LT,8,1,0.125
+Peru,SP,LC_LT,4,4,1.0
+Peru,SP,unspecified,13,13,1.0
+Philippines,Fitch,FC_LT,19,4,0.211
+Philippines,Fitch,LC_LT,14,3,0.214
+Philippines,Moodys,FC_LT,18,15,0.833
+Philippines,Moodys,LC_LT,8,8,1.0
+Philippines,SP,FC_LT,9,0,0.0
+Philippines,SP,LC_LT,5,5,1.0
+Philippines,SP,unspecified,8,8,1.0
+Poland,Fitch,FC_LT,9,2,0.222
+Poland,Fitch,LC_LT,4,1,0.25
+Poland,Moodys,FC_LT,6,4,0.667
+Poland,Moodys,LC_LT,1,1,1.0
+Poland,SP,FC_LT,8,0,0.0
+Poland,SP,LC_LT,3,3,1.0
+Poland,SP,unspecified,8,8,1.0
+Portugal,Fitch,FC_LT,18,10,0.556
+Portugal,Fitch,LC_LT,12,3,0.25
+Portugal,Moodys,FC_LT,19,17,0.895
+Portugal,Moodys,LC_LT,11,11,1.0
+Portugal,SP,FC_LT,17,2,0.118
+Portugal,SP,LC_LT,8,8,1.0
+Portugal,SP,unspecified,13,13,1.0
+Romania,Fitch,FC_LT,17,2,0.118
+Romania,Fitch,LC_LT,16,1,0.062
+Romania,Moodys,FC_LT,17,12,0.706
+Romania,Moodys,LC_LT,6,6,1.0
+Romania,SP,FC_LT,8,1,0.125
+Romania,SP,LC_LT,3,3,1.0
+Romania,SP,unspecified,13,13,1.0
+South Africa,Fitch,FC_LT,24,9,0.375
+South Africa,Fitch,LC_LT,18,6,0.333
+South Africa,Moodys,FC_LT,21,16,0.762
+South Africa,Moodys,LC_LT,8,8,1.0
+South Africa,SP,FC_LT,14,1,0.071
+South Africa,SP,LC_LT,8,8,1.0
+South Africa,SP,unspecified,5,5,1.0
+Spain,Fitch,FC_LT,12,5,0.417
+Spain,Fitch,LC_LT,10,5,0.5
+Spain,Moodys,FC_LT,18,15,0.833
+Spain,Moodys,LC_LT,10,10,1.0
+Spain,SP,FC_LT,15,1,0.067
+Spain,SP,LC_LT,10,10,1.0
+Spain,SP,unspecified,7,7,1.0
+Sri Lanka,Fitch,FC_LT,17,5,0.294
+Sri Lanka,Fitch,LC_LT,11,4,0.364
+Sri Lanka,Moodys,FC_LT,12,6,0.5
+Sri Lanka,SP,FC_LT,16,2,0.125
+Sri Lanka,SP,LC_LT,11,11,1.0
+Sri Lanka,SP,unspecified,8,8,1.0
+Sweden,Fitch,FC_LT,5,0,0.0
+Sweden,Fitch,LC_LT,4,0,0.0
+Sweden,Moodys,FC_LT,2,0,0.0
+Sweden,Moodys,LC_LT,1,1,1.0
+Sweden,SP,FC_LT,3,0,0.0
+Sweden,SP,LC_LT,1,1,1.0
+Sweden,SP,unspecified,1,1,1.0
+Switzerland,Fitch,FC_LT,2,1,0.5
+Switzerland,Fitch,LC_LT,2,0,0.0
+Switzerland,Moodys,FC_LT,1,0,0.0
+Switzerland,Moodys,LC_LT,1,1,1.0
+Switzerland,SP,FC_LT,1,0,0.0
+Switzerland,SP,LC_LT,1,1,1.0
+Thailand,Fitch,FC_LT,15,2,0.133
+Thailand,Fitch,LC_LT,13,1,0.077
+Thailand,Moodys,FC_LT,9,4,0.444
+Thailand,Moodys,LC_LT,1,1,1.0
+Thailand,SP,FC_LT,7,0,0.0
+Thailand,SP,LC_LT,1,1,1.0
+Thailand,SP,unspecified,3,3,1.0
+Turkey,Fitch,FC_LT,35,19,0.543
+Turkey,Fitch,LC_LT,24,6,0.25
+Turkey,Moodys,FC_LT,22,20,0.909
+Turkey,Moodys,LC_LT,15,15,1.0
+Turkey,SP,FC_LT,17,0,0.0
+Turkey,SP,LC_LT,10,10,1.0
+Turkey,SP,unspecified,23,23,1.0
+United Kingdom,Fitch,FC_LT,13,9,0.692
+United Kingdom,Fitch,LC_LT,5,3,0.6
+United Kingdom,Moodys,FC_LT,10,6,0.6
+United Kingdom,Moodys,LC_LT,4,4,1.0
+United Kingdom,SP,FC_LT,9,0,0.0
+United Kingdom,SP,LC_LT,2,2,1.0
+United Kingdom,SP,unspecified,2,2,1.0
+United States,Fitch,FC_LT,11,8,0.727
+United States,Fitch,LC_LT,2,0,0.0
+United States,Moodys,FC_LT,7,5,0.714
+United States,Moodys,LC_LT,2,2,1.0
+United States,SP,FC_LT,2,0,0.0
+United States,SP,LC_LT,1,1,1.0
+United States,SP,unspecified,2,2,1.0
+Vietnam,Fitch,FC_LT,15,12,0.8
+Vietnam,Fitch,LC_LT,8,8,1.0
+Vietnam,Moodys,FC_LT,7,7,1.0
+Vietnam,SP,FC_LT,3,0,0.0
+Vietnam,SP,unspecified,3,3,1.0
+Zambia,Fitch,FC_LT,10,4,0.4
+Zambia,Fitch,LC_LT,5,4,0.8
+Zambia,Moodys,FC_LT,6,6,1.0
+Zambia,SP,FC_LT,12,0,0.0
+Zambia,SP,LC_LT,7,7,1.0

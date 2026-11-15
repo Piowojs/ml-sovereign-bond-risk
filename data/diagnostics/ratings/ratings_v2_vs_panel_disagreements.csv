@@ -1,0 +1,4 @@
+country,agency,old_date,old_rating,v2_date,v2_rating,date_diff_days,old_source,v2_sources,both_rest_on_countryeconomy
+Nigeria,Moody's,2019-12-01,B3,2019-12-04,B2,3,theglobaleconomy.com (month-precision),fxempire,False
+Sri Lanka,S&P,2007-01-23,B+,2007-01-23,A,0,countryeconomy.com,countryeconomy,True
+Zambia,Moody's,2020-04-01,Ca-,2020-04-03,Ca,2,theglobaleconomy.com (month-precision),fxempire,False

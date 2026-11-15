@@ -1,0 +1,613 @@
+country,agency,old_date,old_rating,v2_date,v2_rating,date_diff_days,old_source,v2_sources,both_rest_on_countryeconomy,match_kind
+Brazil,Fitch,2000-02-22,B+,2000-02-22,B+,0,countryeconomy.com,"countryeconomy,fitch_table_2011",False,matched_exact
+Brazil,Fitch,2000-05-19,BB-,2000-05-19,BB-,0,countryeconomy.com,"countryeconomy,fitch_table_2011",False,matched_exact
+Brazil,Fitch,2000-09-21,BB-,2000-09-21,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Brazil,Fitch,2001-07-17,BB-,2001-07-17,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Brazil,Fitch,2002-06-20,B+,2002-06-20,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Brazil,Fitch,2002-08-01,B+,2002-08-01,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Brazil,Fitch,2002-10-21,B,2002-10-21,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Brazil,Fitch,2003-03-10,B,2003-03-10,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Brazil,Fitch,2003-06-03,B,2003-06-03,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Brazil,Fitch,2003-11-06,B+,2003-11-06,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Brazil,Fitch,2004-09-28,BB-,2004-09-28,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Brazil,Fitch,2005-10-11,BB-,2005-10-11,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Brazil,Fitch,2006-06-28,BB,2006-06-28,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Brazil,Fitch,2007-02-05,BB,2007-02-05,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Brazil,Fitch,2007-05-09,BB+,2007-05-09,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Brazil,Fitch,2008-05-29,BBB-,2008-05-29,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Brazil,Fitch,2010-06-28,BBB-,2010-06-28,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Brazil,Fitch,2011-04-04,BBB,2011-04-04,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Brazil,Fitch,2015-10-15,BBB-,2015-10-15,BBB-,0,countryeconomy.com,countryeconomy,True,matched_exact
+Brazil,Fitch,2015-12-16,BB+,2015-12-16,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Brazil,Fitch,2016-05-05,BB,2016-05-05,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Brazil,Fitch,2018-02-23,BB-,2018-02-23,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Brazil,Fitch,2020-05-05,BB-,2020-05-05,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Brazil,Moody's,2000-10-16,B1,2000-10-16,B1,0,countryeconomy.com,countryeconomy,True,matched_exact
+Brazil,Moody's,2002-08-12,B2,2002-08-12,B2,0,countryeconomy.com,countryeconomy,True,matched_exact
+Brazil,Moody's,2003-11-15,B2,2003-11-15,B2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Brazil,Moody's,2004-09-09,B1,2004-09-09,B1,0,countryeconomy.com,countryeconomy,True,matched_exact
+Brazil,Moody's,2005-01-12,B1,2005-01-12,B1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Brazil,Moody's,2005-10-12,Ba3,2005-10-12,Ba3,0,countryeconomy.com,countryeconomy,True,matched_exact
+Brazil,Moody's,2006-08-01,Ba3,2006-08-01,Ba3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Brazil,Moody's,2006-08-31,Ba2,2006-08-31,Ba2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Brazil,Moody's,2007-05-24,Ba2,2007-05-24,Ba2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Brazil,Moody's,2007-08-23,Ba1,2007-08-23,Ba1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Brazil,Moody's,2009-07-06,Ba1,2009-07-06,Ba1,0,countryeconomy.com,countryeconomy,True,matched_exact
+Brazil,Moody's,2009-09-22,Baa3,2009-09-22,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Brazil,Moody's,2011-06-20,Baa2,2011-06-20,Baa2,0,countryeconomy.com,countryeconomy,True,matched_exact
+Brazil,Moody's,2013-10-02,Baa2,2013-10-02,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Brazil,Moody's,2014-09-09,Baa2,2014-09-09,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Brazil,Moody's,2015-08-11,Baa3,2015-08-11,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Brazil,Moody's,2015-12-09,Baa3,2015-12-09,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Brazil,Moody's,2016-02-24,Ba2,2016-02-24,Ba2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Brazil,Moody's,2017-03-15,Ba2,2017-03-15,Ba2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Brazil,Moody's,2017-05-26,Ba2,2017-05-26,Ba2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Brazil,Moody's,2018-04-09,Ba2,2018-04-09,Ba2,0,"countryeconomy.com (conflict resolved: High confidence, directly confirmed: Moody's affirmed Brazil at Ba2 and changed the outlook to stable from negative on 2018-04-09 (reported by Itau BBA; independently listed in Trading Economics' Brazil rating history as 'Moody's Ba2 Stable Apr 09 2018'). Corroborating: Brazil's National Treasury described Moody's May 2024 outlook change as its first move since 2018, 'when it shifted the outlook from negative to stable.' GE's 'Negative' appears to be a stale carry-forward of Moody's prior outlook (Ba2/Negative, May 2017) rather than a cross-agency mix-up.)","countryeconomy,fxempire",False,matched_exact
+Brazil,Moody's,2024-05-01,Ba2,2024-05-01,Ba2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Brazil,Moody's,2024-10-01,Ba1,2024-10-01,Ba1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Brazil,Moody's,2025-05-30,Ba1,2025-05-30,Ba1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Brazil,S&P,2008-04-30,BBB-,2008-04-30,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Brazil,S&P,2011-05-23,BBB-,2011-05-23,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Brazil,S&P,2011-11-17,BBB,2011-11-17,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Brazil,S&P,2013-06-06,BBB,2013-06-06,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Brazil,S&P,2014-03-24,BBB-,2014-03-24,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Brazil,S&P,2015-07-28,BBB-,2015-07-28,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Brazil,S&P,2015-09-09,BB+,2015-09-09,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Brazil,S&P,2016-02-17,BB,2016-02-17,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Brazil,S&P,2017-08-15,BB,2017-08-15,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Brazil,S&P,2018-01-11,BB-,2018-01-11,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Brazil,S&P,2019-12-11,BB-,2019-12-11,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Brazil,S&P,2020-04-06,BB-,2020-04-06,BB-,0,countryeconomy.com,"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Brazil,S&P,2023-06-14,BB-,2023-06-14,BB-,0,countryeconomy.com,"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Brazil,S&P,2023-12-19,BB,2023-12-19,BB,0,countryeconomy.com,"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Colombia,Fitch,2000-03-17,BB+,2000-03-17,BB+,0,countryeconomy.com,"countryeconomy,fitch_table_2011",False,matched_exact
+Colombia,Fitch,2000-09-21,BB+,2000-09-21,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Colombia,Fitch,2000-10-24,BB+,2000-10-24,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Colombia,Fitch,2002-01-10,BB,2002-01-10,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Colombia,Fitch,2002-08-29,BB,2002-08-29,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Colombia,Fitch,2004-05-03,BB,2004-05-03,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Colombia,Fitch,2006-06-05,BB,2006-06-05,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Colombia,Fitch,2007-06-21,BB+,2007-06-21,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Colombia,Fitch,2010-10-21,BB+,2010-10-21,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Colombia,Fitch,2011-06-22,BBB-,2011-06-22,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Colombia,Fitch,2013-12-10,BBB,2013-12-10,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Colombia,Fitch,2016-07-22,BBB,2016-07-22,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Colombia,Fitch,2017-03-10,BBB,2017-03-10,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Colombia,Fitch,2019-05-23,BBB,2019-05-23,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Colombia,Fitch,2020-04-01,BBB-,2020-04-01,BBB-,0,countryeconomy.com,"countryeconomy,fxempire",False,matched_exact
+Colombia,Fitch,2021-07-01,BB+,2021-07-01,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Colombia,Moody's,2003-11-15,Ba2,2003-11-15,Ba2,0,countryeconomy.com,countryeconomy,True,matched_exact
+Colombia,Moody's,2006-03-09,Ba2,2006-03-09,Ba2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Colombia,Moody's,2006-06-29,Ba2,2006-06-29,Ba2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Colombia,Moody's,2007-06-25,Ba2,2007-06-25,Ba2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Colombia,Moody's,2008-06-19,Ba1,2008-06-19,Ba1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Colombia,Moody's,2010-09-09,Ba1,2010-09-09,Ba1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Colombia,Moody's,2011-05-31,Baa3,2011-05-31,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Colombia,Moody's,2013-07-08,Baa3,2013-07-08,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Colombia,Moody's,2014-07-28,Baa2,2014-07-28,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Colombia,Moody's,2018-02-22,Baa2,2018-02-22,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Colombia,Moody's,2019-05-23,Baa2,2019-05-23,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Colombia,Moody's,2020-12-03,Baa2,2020-12-03,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Colombia,Moody's,2021-10-06,Baa2,2021-10-06,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Colombia,Moody's,2024-06-27,Baa2,2024-06-27,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Colombia,Moody's,2025-06-26,Baa3,2025-06-26,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Colombia,S&P,2011-03-16,BBB-,2011-03-16,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Colombia,S&P,2012-08-15,BBB-,2012-08-15,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Colombia,S&P,2013-04-24,BBB,2013-04-24,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Colombia,S&P,2016-02-16,BBB,2016-02-16,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Colombia,S&P,2017-12-11,BBB-,2017-12-11,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Colombia,S&P,2020-03-26,BBB-,2020-03-26,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Colombia,S&P,2021-05-19,BB+,2021-05-19,BB+,0,countryeconomy.com,"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Colombia,S&P,2024-01-18,BB+,2024-01-18,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Colombia,S&P,2025-06-26,BB,2025-06-26,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Egypt,Fitch,2000-09-21,BBB-,2000-09-21,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Egypt,Fitch,2002-01-22,BBB-,2002-01-22,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Egypt,Fitch,2002-08-21,BB+,2002-08-21,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Egypt,Fitch,2007-06-18,BB+,2007-06-18,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Egypt,Fitch,2008-08-18,BB+,2008-08-18,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Egypt,Fitch,2011-01-28,BB+,2011-01-28,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Egypt,Fitch,2011-02-03,BB,2011-02-03,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Egypt,Fitch,2011-06-28,BB,2011-06-28,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Egypt,Fitch,2011-12-30,BB-,2011-12-30,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Egypt,Fitch,2012-07-11,B+,2012-07-11,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Egypt,Fitch,2013-03-06,B,2013-03-06,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Egypt,Fitch,2013-07-05,B-,2013-07-05,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Egypt,Fitch,2014-01-03,B-,2014-01-03,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Egypt,Fitch,2014-12-19,B,2014-12-19,B,0,countryeconomy.com,countryeconomy,True,matched_exact
+Egypt,Fitch,2018-01-16,B,2018-01-16,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Egypt,Fitch,2019-03-21,B+,2019-03-21,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Egypt,Fitch,2023-05-05,B,2023-05-05,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Egypt,Fitch,2023-11-01,B-,2023-11-03,B-,2,theglobaleconomy.com (month-precision),fxempire,False,matched_1_3d
+Egypt,Moody's,2003-11-15,Ba1,2003-11-15,Ba1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Egypt,Moody's,2008-06-23,Ba1,2008-06-23,Ba1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Egypt,Moody's,2009-08-19,Ba1,2009-08-19,Ba1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Egypt,Moody's,2011-01-31,Ba2,2011-01-31,Ba2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Egypt,Moody's,2011-03-16,Ba3,2011-03-16,Ba3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Egypt,Moody's,2011-10-27,B1,2011-10-27,B1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Egypt,Moody's,2011-12-21,B2,2011-12-21,B2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Egypt,Moody's,2012-09-12,B2,2012-09-12,B2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Egypt,Moody's,2013-01-18,B2,2013-01-18,B2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Egypt,Moody's,2013-02-12,B3,2013-02-12,B3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Egypt,Moody's,2013-03-21,Caa1,2013-03-21,Caa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Egypt,Moody's,2014-10-20,Caa1,2014-10-20,Caa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Egypt,Moody's,2015-04-07,B3,2015-04-07,B3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Egypt,Moody's,2018-08-28,B3,2018-08-28,B3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Egypt,Moody's,2019-04-17,B2,2019-04-17,B2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Egypt,Moody's,2022-05-26,B2,2022-05-26,B2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Egypt,Moody's,2023-02-07,B3,2023-02-07,B3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Egypt,Moody's,2023-05-09,B3,2023-05-09,B3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Egypt,Moody's,2023-10-05,Caa1,2023-10-05,Caa1,0,countryeconomy.com,"countryeconomy,fxempire",False,matched_exact
+Egypt,Moody's,2024-01-18,Caa1,2024-01-18,Caa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Egypt,Moody's,2024-03-07,Caa1,2024-03-07,Caa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Egypt,S&P,2011-02-01,BB,2011-02-01,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Egypt,S&P,2011-03-10,BB,2011-03-10,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Egypt,S&P,2011-11-24,B+,2011-11-24,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Egypt,S&P,2012-02-10,B,2012-02-10,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Egypt,S&P,2012-12-24,B-,2012-12-24,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Egypt,S&P,2013-05-09,CCC+,2013-05-09,CCC+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Egypt,S&P,2013-11-15,B-,2013-11-15,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Egypt,S&P,2015-05-15,B-,2015-05-15,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Egypt,S&P,2015-11-13,B-,2015-11-13,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Egypt,S&P,2016-05-13,B-,2016-05-13,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Egypt,S&P,2016-11-11,B-,2016-11-11,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Egypt,S&P,2017-11-10,B-,2017-11-10,B-,0,countryeconomy.com,"countryeconomy,tradingeconomics",False,matched_exact
+Egypt,S&P,2018-05-11,B,2018-05-11,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Egypt,S&P,2023-04-21,B,2023-04-21,B,0,countryeconomy.com,"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Egypt,S&P,2023-10-20,B-,2023-10-20,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Egypt,S&P,2024-03-18,B-,2024-03-18,B-,0,countryeconomy.com,"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Egypt,S&P,2025-04-11,B-,2025-04-11,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Egypt,S&P,2025-10-10,B,2025-10-10,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Greece,Fitch,2000-03-13,BBB+,2000-03-13,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Fitch,2000-07-27,A-,2000-07-27,A-,0,countryeconomy.com,"countryeconomy,fitch_table_2011",False,matched_exact
+Greece,Fitch,2000-09-21,A-,2000-09-21,A-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Greece,Fitch,2001-06-20,A,2001-06-20,A,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Greece,Fitch,2002-10-23,A,2002-10-23,A,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Greece,Fitch,2003-10-20,A+,2003-10-20,A+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Greece,Fitch,2004-09-28,A+,2004-09-28,A+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Fitch,2004-12-16,A,2004-12-16,A,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Greece,Fitch,2007-03-05,A,2007-03-05,A,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Greece,Fitch,2008-10-20,A,2008-10-20,A,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Greece,Fitch,2009-05-12,A,2009-05-12,A,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Greece,Fitch,2009-10-22,A-,2009-10-22,A-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Greece,Fitch,2009-12-08,BBB+,2009-12-08,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Greece,Fitch,2010-04-09,BBB-,2010-04-09,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Greece,Fitch,2010-12-21,BBB-,2010-12-21,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Fitch,2011-01-14,BB+,2011-01-14,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Greece,Fitch,2011-05-20,B+,2011-05-20,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Fitch,2011-07-13,CCC,2011-07-13,CCC,0,countryeconomy.com,"countryeconomy,fitch_table_2011",False,matched_exact
+Greece,Fitch,2012-02-22,C,2012-02-22,C,0,countryeconomy.com,countryeconomy,True,matched_exact
+Greece,Fitch,2012-03-09,RD,2012-03-09,RD,0,countryeconomy.com (default designation; theglobaleconomy.com omits this event),countryeconomy,True,matched_exact
+Greece,Fitch,2012-03-14,B-,2012-03-14,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Fitch,2012-05-17,CCC,2012-05-17,CCC,0,countryeconomy.com,countryeconomy,True,matched_exact
+Greece,Fitch,2013-05-14,B-,2013-05-14,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Fitch,2014-05-23,B,2014-05-23,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Fitch,2015-03-27,CCC,2015-03-27,CCC,0,countryeconomy.com,countryeconomy,True,matched_exact
+Greece,Fitch,2015-06-30,CC,2015-06-30,CC,0,countryeconomy.com,countryeconomy,True,matched_exact
+Greece,Fitch,2015-08-18,CCC,2015-08-18,CCC,0,countryeconomy.com,countryeconomy,True,matched_exact
+Greece,Fitch,2017-08-18,B-,2017-08-18,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Fitch,2018-02-16,B,2018-02-16,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Fitch,2018-08-10,BB-,2018-08-10,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Fitch,2020-01-24,BB,2020-01-24,BB,0,countryeconomy.com,countryeconomy,True,matched_exact
+Greece,Fitch,2023-01-27,BB+,2023-01-27,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Greece,Fitch,2023-12-01,BBB-,2023-12-01,BBB-,0,theglobaleconomy.com (month-precision),fxempire,False,matched_exact
+Greece,Moody's,2002-11-04,A1,2002-11-04,A1,0,countryeconomy.com,countryeconomy,True,matched_exact
+Greece,Moody's,2003-11-15,A1,2003-11-15,A1,0,countryeconomy.com,countryeconomy,True,matched_exact
+Greece,Moody's,2007-01-11,A1,2007-01-11,A1,0,countryeconomy.com,countryeconomy,True,matched_exact
+Greece,Moody's,2009-02-25,A1,2009-02-25,A1,0,countryeconomy.com,countryeconomy,True,matched_exact
+Greece,Moody's,2009-10-29,A1,2009-10-29,A1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Moody's,2009-12-22,A2,2009-12-22,A2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Moody's,2010-04-22,A3,2010-04-22,A3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Moody's,2010-06-14,Ba1,2010-06-14,Ba1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Moody's,2010-12-16,Ba1,2010-12-16,Ba1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Moody's,2011-03-07,B1,2011-03-07,B1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Moody's,2011-05-09,B1,2011-05-09,B1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Moody's,2011-06-01,Caa1,2011-06-01,Caa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Moody's,2011-07-25,Ca,2011-07-25,Ca,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Moody's,2012-03-02,C,2012-03-02,C,0,countryeconomy.com,countryeconomy,True,matched_exact
+Greece,Moody's,2013-11-29,Caa3,2013-11-29,Caa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Moody's,2014-08-01,Caa1,2014-08-01,Caa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Moody's,2015-02-06,Caa1,2015-02-06,Caa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Moody's,2015-04-29,Caa2,2015-04-29,Caa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Moody's,2015-07-01,Caa3,2015-07-01,Caa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Moody's,2015-09-25,Caa3,2015-09-25,Caa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Moody's,2017-06-23,Caa2,2017-06-23,Caa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Moody's,2018-02-21,B3,2018-02-21,B3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Moody's,2019-03-01,B1,2019-03-01,B1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Moody's,2020-11-06,Ba3,2020-11-06,Ba3,0,countryeconomy.com,"countryeconomy,fxempire",False,matched_exact
+Greece,Moody's,2023-03-17,Ba3,2023-03-17,Ba3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Greece,Moody's,2023-09-15,Ba1,2023-09-15,Ba1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Greece,Moody's,2024-09-13,Ba1,2024-09-13,Ba1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,Moody's,2025-03-14,Baa3,2025-03-14,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,S&P,2011-07-27,CC,2011-07-27,CC,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Greece,S&P,2012-02-27,SD,2012-02-27,SD,0,countryeconomy.com (default designation; theglobaleconomy.com omits this event),"countryeconomy,tradingeconomics",False,matched_exact
+Greece,S&P,2012-05-02,CCC,2012-05-02,CCC,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Greece,S&P,2012-08-07,CCC,2012-08-07,CCC,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Greece,S&P,2012-12-05,SD,2012-12-05,SD,0,countryeconomy.com (default designation; theglobaleconomy.com omits this event),"countryeconomy,tradingeconomics",False,matched_exact
+Greece,S&P,2012-12-18,B-,2012-12-18,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Greece,S&P,2014-09-12,B,2014-09-12,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,S&P,2015-02-06,B-,2015-02-06,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Greece,S&P,2015-04-15,CCC+,2015-04-15,CCC+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Greece,S&P,2015-06-10,CCC,2015-06-10,CCC,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Greece,S&P,2015-06-29,CCC-,2015-06-29,CCC-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Greece,S&P,2015-07-21,CCC+,2015-07-21,CCC+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Greece,S&P,2016-01-22,B-,2016-01-22,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Greece,S&P,2017-07-21,B-,2017-07-21,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Greece,S&P,2018-01-19,B,2018-01-19,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Greece,S&P,2018-06-25,B+,2018-06-25,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Greece,S&P,2018-07-20,B+,2018-07-20,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Greece,S&P,2019-10-25,BB-,2019-10-25,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Greece,S&P,2020-04-24,BB-,2020-04-24,BB-,0,countryeconomy.com,"countryeconomy,tradingeconomics",False,matched_exact
+Greece,S&P,2021-04-23,BB,2021-04-23,BB,0,"countryeconomy.com (conflict resolved: User cross-checked against the original screenshot; CE's BB/Positive confirmed correct, GE's BB-/Stable was wrong)","countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Greece,S&P,2022-04-22,BB+,2022-04-22,BB+,0,countryeconomy.com,"countryeconomy,tradingeconomics",False,matched_exact
+Greece,S&P,2023-04-21,BB+,2023-04-21,BB+,0,countryeconomy.com,"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Greece,S&P,2023-10-20,BBB-,2023-10-20,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Greece,S&P,2024-04-19,BBB-,2024-04-19,BBB-,0,countryeconomy.com,"countryeconomy,tradingeconomics",False,matched_exact
+Greece,S&P,2025-04-18,BBB,2025-04-18,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Italy,Fitch,2000-09-21,AA-,2000-09-21,AA-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Italy,Fitch,2002-06-17,AA,2002-06-17,AA,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Italy,Fitch,2005-06-29,AA,2005-06-29,AA,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Italy,Fitch,2006-05-25,AA,2006-05-25,AA,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Italy,Fitch,2006-10-19,AA-,2006-10-19,AA-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Italy,Fitch,2011-10-12,A+,2011-10-12,A+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Italy,Fitch,2012-01-27,A-,2012-01-27,A-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Italy,Fitch,2013-03-08,BBB+,2013-03-08,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Italy,Fitch,2014-04-25,BBB+,2014-04-25,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Italy,Fitch,2016-10-21,BBB+,2016-10-21,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Italy,Fitch,2017-04-21,BBB,2017-04-21,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Italy,Fitch,2018-08-31,BBB,2018-08-31,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Italy,Fitch,2020-04-28,BBB-,2020-04-28,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Italy,Fitch,2021-12-03,BBB,2021-12-03,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Italy,Moody's,2002-05-15,Aa2,2002-05-15,Aa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Italy,Moody's,2003-11-15,Aa2,2003-11-15,Aa2,0,countryeconomy.com,countryeconomy,True,matched_exact
+Italy,Moody's,2011-06-17,Aa2,2011-06-17,Aa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Italy,Moody's,2011-10-04,A2,2011-10-04,A2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Italy,Moody's,2012-02-13,A3,2012-02-13,A3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Italy,Moody's,2012-07-13,Baa2,2012-07-13,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Italy,Moody's,2014-02-14,Baa2,2014-02-14,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Italy,Moody's,2016-12-07,Baa2,2016-12-07,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Italy,Moody's,2018-05-25,Baa2,2018-05-25,Baa2,0,countryeconomy.com,countryeconomy,True,matched_exact
+Italy,Moody's,2018-10-19,Baa3,2018-10-19,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Italy,Moody's,2022-08-05,Baa3,2022-08-05,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Italy,Moody's,2023-11-17,Baa3,2023-11-17,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Italy,Moody's,2025-05-23,Baa3,2025-05-23,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Italy,Moody's,2025-11-21,Baa2,2025-11-21,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Italy,S&P,2011-09-19,A,2011-09-19,A,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Italy,S&P,2012-01-13,BBB+,2012-01-13,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Italy,S&P,2013-07-09,BBB,2013-07-09,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Italy,S&P,2014-12-05,BBB-,2014-12-05,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Italy,S&P,2017-10-27,BBB,2017-10-27,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Italy,S&P,2018-10-26,BBB,2018-10-26,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Italy,S&P,2020-10-23,BBB,2020-10-23,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Italy,S&P,2021-10-22,BBB,2021-10-22,BBB,0,countryeconomy.com,"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Italy,S&P,2022-07-26,BBB,2022-07-26,BBB,0,countryeconomy.com,"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Italy,S&P,2025-04-11,BBB+,2025-04-11,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Nigeria,Fitch,2006-01-30,BB-,2006-01-30,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Nigeria,Fitch,2010-10-22,BB-,2010-10-22,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Nigeria,Fitch,2011-10-21,BB-,2011-10-21,BB-,0,countryeconomy.com,countryeconomy,True,matched_exact
+Nigeria,Fitch,2015-09-25,BB-,2015-09-25,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Nigeria,Fitch,2016-06-23,B+,2016-06-23,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Nigeria,Fitch,2017-01-25,B+,2017-01-25,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Nigeria,Fitch,2018-11-02,B+,2018-11-02,B+,0,countryeconomy.com,"countryeconomy,fxempire",False,matched_exact
+Nigeria,Fitch,2019-12-19,B+,2019-12-19,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Nigeria,Fitch,2020-04-06,B,2020-04-06,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Nigeria,Fitch,2022-11-11,B-,2022-11-11,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Nigeria,S&P,2009-08-21,B+,2009-08-21,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Nigeria,S&P,2011-12-29,B+,2011-12-29,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Nigeria,S&P,2012-11-07,BB-,2012-11-07,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Nigeria,S&P,2014-03-21,BB-,2014-03-21,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Nigeria,S&P,2015-03-20,B+,2015-03-20,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Nigeria,S&P,2016-03-18,B+,2016-03-18,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Nigeria,S&P,2016-09-16,B,2016-09-16,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Nigeria,S&P,2020-02-28,B,2020-02-28,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Nigeria,S&P,2020-03-26,B-,2020-03-26,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Nigeria,S&P,2023-02-03,B-,2023-02-03,B-,0,countryeconomy.com,"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Nigeria,S&P,2023-08-04,B-,2023-08-04,B-,0,countryeconomy.com,"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Nigeria,S&P,2025-11-14,B-,2025-11-14,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Pakistan,Fitch,2015-09-15,B,2015-09-15,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Pakistan,Fitch,2018-01-25,B,2018-01-25,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Pakistan,Fitch,2018-12-14,B-,2018-12-14,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Pakistan,Fitch,2022-10-21,CCC+,2022-10-21,CCC+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Pakistan,Fitch,2023-02-14,CCC-,2023-02-14,CCC-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Pakistan,Moody's,2002-02-13,B3,2002-02-13,B3,0,countryeconomy.com,countryeconomy,True,matched_exact
+Pakistan,Moody's,2003-10-20,B2,2003-10-20,B2,0,countryeconomy.com,countryeconomy,True,matched_exact
+Pakistan,Moody's,2003-11-15,B2,2003-11-15,B2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Pakistan,Moody's,2005-01-20,B2,2005-01-20,B2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Pakistan,Moody's,2006-11-08,B2,2006-11-08,B2,0,countryeconomy.com,countryeconomy,True,matched_exact
+Pakistan,Moody's,2006-11-22,B1,2006-11-22,B1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Pakistan,Moody's,2007-11-05,B1,2007-11-05,B1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Pakistan,Moody's,2008-05-21,B2,2008-05-21,B2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Pakistan,Moody's,2008-09-23,B2,2008-09-23,B2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Pakistan,Moody's,2008-10-28,B3,2008-10-28,B3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Pakistan,Moody's,2008-12-12,B3,2008-12-12,B3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Pakistan,Moody's,2009-08-17,B3,2009-08-17,B3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Pakistan,Moody's,2012-07-13,Caa1,2012-07-13,Caa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Pakistan,Moody's,2014-07-14,Caa1,2014-07-14,Caa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Pakistan,Moody's,2015-03-25,Caa1,2015-03-25,Caa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Pakistan,Moody's,2015-06-11,B3,2015-06-11,B3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Pakistan,Moody's,2018-06-20,B3,2018-06-20,B3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Pakistan,Moody's,2019-12-02,B3,2019-12-02,B3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Pakistan,Moody's,2020-05-14,B3,2020-05-14,B3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Pakistan,Moody's,2020-08-08,B3,2020-08-08,B3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Pakistan,Moody's,2022-06-02,B3,2022-06-02,B3,0,countryeconomy.com,"countryeconomy,fxempire",False,matched_exact
+Pakistan,Moody's,2022-10-06,Caa1,2022-10-06,Caa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Pakistan,Moody's,2023-02-28,Caa3,2023-02-28,Caa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Pakistan,Moody's,2024-08-28,Caa2,2024-08-28,Caa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Pakistan,Moody's,2025-08-13,Caa1,2025-08-13,Caa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Pakistan,S&P,2009-08-24,B-,2009-08-24,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Pakistan,S&P,2015-05-05,B-,2015-05-05,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Pakistan,S&P,2016-10-31,B,2016-10-31,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Pakistan,S&P,2019-02-04,B-,2019-02-04,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Pakistan,S&P,2022-07-28,B-,2022-07-28,B-,0,countryeconomy.com,"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Pakistan,S&P,2022-12-22,CCC+,2022-12-22,CCC+,0,countryeconomy.com,"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Pakistan,S&P,2025-07-24,B-,2025-07-24,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Portugal,Fitch,2000-09-21,AA,2000-09-21,AA,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Portugal,Fitch,2005-06-29,AA,2005-06-29,AA,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Portugal,Fitch,2007-05-01,AA,2007-05-01,AA,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Portugal,Fitch,2009-09-03,AA,2009-09-03,AA,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Portugal,Fitch,2010-03-24,AA-,2010-03-24,AA-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Portugal,Fitch,2010-12-23,A+,2010-12-23,A+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Portugal,Fitch,2011-03-24,A-,2011-03-24,A-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Fitch,2011-04-01,BBB-,2011-04-01,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Fitch,2011-10-07,BBB-,2011-10-07,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Fitch,2011-11-24,BB+,2011-11-24,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Fitch,2016-03-04,BB+,2016-03-04,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Fitch,2017-06-16,BB+,2017-06-16,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Fitch,2017-12-15,BBB,2017-12-15,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Fitch,2022-10-28,BBB+,2022-10-28,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Portugal,Fitch,2023-10-01,A-,2023-09-29,A-,2,theglobaleconomy.com (month-precision),fxempire,False,matched_1_3d
+Portugal,Moody's,2003-11-15,Aa2,2003-11-15,Aa2,0,countryeconomy.com,countryeconomy,True,matched_exact
+Portugal,Moody's,2009-10-29,Aa2,2009-10-29,Aa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Moody's,2010-05-05,Aa2,2010-05-05,Aa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Moody's,2010-07-13,A1,2010-07-13,A1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Moody's,2010-12-21,A1,2010-12-21,A1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Moody's,2011-03-15,A3,2011-03-15,A3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Moody's,2011-04-05,Baa1,2011-04-05,Baa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Moody's,2011-07-05,Ba2,2011-07-05,Ba2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Moody's,2012-02-13,Ba3,2012-02-13,Ba3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Moody's,2013-11-08,Ba3,2013-11-08,Ba3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Moody's,2014-05-09,Ba2,2014-05-09,Ba2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Moody's,2014-07-25,Ba1,2014-07-25,Ba1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Moody's,2017-09-01,Ba1,2017-09-01,Ba1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Moody's,2018-10-12,Baa3,2018-10-12,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Moody's,2019-08-09,Baa3,2019-08-09,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Moody's,2021-09-17,Baa2,2021-09-17,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Portugal,Moody's,2023-05-19,Baa2,2023-05-19,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,Moody's,2023-11-17,A3,2023-11-17,A3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Portugal,S&P,2011-03-29,BBB-,2011-03-29,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Portugal,S&P,2012-01-13,BB,2012-01-13,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Portugal,S&P,2013-03-06,BB,2013-03-06,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Portugal,S&P,2013-09-18,BB,2013-09-18,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Portugal,S&P,2014-05-09,BB,2014-05-09,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Portugal,S&P,2015-03-20,BB,2015-03-20,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Portugal,S&P,2015-09-18,BB+,2015-09-18,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Portugal,S&P,2017-09-15,BBB-,2017-09-15,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Portugal,S&P,2018-09-14,BBB-,2018-09-14,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Portugal,S&P,2019-03-15,BBB,2019-03-15,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Portugal,S&P,2019-09-13,BBB,2019-09-13,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Portugal,S&P,2020-04-24,BBB,2020-04-24,BBB,0,countryeconomy.com,"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Portugal,S&P,2022-09-09,BBB+,2022-09-09,BBB+,0,countryeconomy.com,"countryeconomy,tradingeconomics",False,matched_exact
+Portugal,S&P,2023-09-08,BBB+,2023-09-08,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Portugal,S&P,2024-03-01,A-,2024-03-01,A-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Portugal,S&P,2025-08-29,A+,2025-08-29,A+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+South Africa,Fitch,2000-05-19,BB+,2000-05-19,BB+,0,countryeconomy.com,"countryeconomy,fitch_table_2011",False,matched_exact
+South Africa,Fitch,2000-06-27,BBB-,2000-06-27,BBB-,0,countryeconomy.com,"countryeconomy,fitch_table_2011",False,matched_exact
+South Africa,Fitch,2000-09-21,BBB-,2000-09-21,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+South Africa,Fitch,2002-08-20,BBB-,2002-08-20,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+South Africa,Fitch,2003-03-11,BBB-,2003-03-11,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Fitch,2003-05-02,BBB,2003-05-02,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+South Africa,Fitch,2004-10-21,BBB,2004-10-21,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+South Africa,Fitch,2005-08-25,BBB+,2005-08-25,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+South Africa,Fitch,2007-07-25,BBB+,2007-07-25,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+South Africa,Fitch,2008-06-17,BBB+,2008-06-17,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+South Africa,Fitch,2008-11-09,BBB+,2008-11-09,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+South Africa,Fitch,2011-01-17,BBB+,2011-01-17,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+South Africa,Fitch,2012-01-24,BBB+,2012-01-24,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Fitch,2013-03-08,BBB,2013-03-08,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Fitch,2014-06-13,BBB,2014-06-13,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Fitch,2015-12-04,BBB-,2015-12-04,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Fitch,2016-11-25,BBB-,2016-11-25,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Fitch,2017-04-07,BB+,2017-04-07,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Fitch,2019-07-26,BB+,2019-07-26,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+South Africa,Fitch,2020-04-03,BB,2020-04-03,BB,0,countryeconomy.com,"countryeconomy,fxempire",False,matched_exact
+South Africa,Fitch,2020-11-20,BB-,2020-11-20,BB-,0,"countryeconomy.com (conflict resolved: High confidence, directly confirmed: Fitch's own release was titled 'Fitch Downgrades South Africa to ''BB-''; Outlook Negative' (20 Nov 2020), independently corroborated by South Africa's National Treasury media statement of 21 Nov 2020. GE's 'Stable' is likely cross-contamination from S&P's own BB- affirmation with a Stable outlook in the same November 2020 multi-agency round -- Fitch and Moody's both moved with Negative outlooks that round while S&P held Stable.)","countryeconomy,fxempire",False,matched_exact
+South Africa,Moody's,2001-11-29,Baa2,2001-11-29,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Moody's,2003-11-15,Baa2,2003-11-15,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Moody's,2004-10-14,Baa2,2004-10-14,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Moody's,2005-01-11,Baa1,2005-01-11,Baa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Moody's,2007-06-05,Baa1,2007-06-05,Baa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Moody's,2009-07-16,A3,2009-07-16,A3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Moody's,2011-11-09,A3,2011-11-09,A3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Moody's,2012-09-27,Baa1,2012-09-27,Baa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Moody's,2014-11-06,Baa2,2014-11-06,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Moody's,2015-12-15,Baa2,2015-12-15,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Moody's,2016-03-08,Baa2,2016-03-08,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Moody's,2016-05-06,Baa2,2016-05-06,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Moody's,2017-04-03,Baa2,2017-04-03,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Moody's,2017-06-09,Baa3,2017-06-09,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Moody's,2017-11-24,Baa3,2017-11-24,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,Moody's,2018-03-23,Baa3,2018-03-23,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+South Africa,Moody's,2019-11-01,Baa3,2019-11-01,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+South Africa,Moody's,2020-03-27,Ba1,2020-03-27,Ba1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+South Africa,Moody's,2020-11-20,Ba2,2020-11-20,Ba2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+South Africa,Moody's,2022-04-01,Ba2,2022-04-01,Ba2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+South Africa,S&P,2005-08-01,BBB+,2005-08-01,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+South Africa,S&P,2012-03-28,BBB+,2012-03-28,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+South Africa,S&P,2012-10-12,BBB,2012-10-12,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+South Africa,S&P,2014-06-13,BBB-,2014-06-13,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+South Africa,S&P,2015-12-04,BBB-,2015-12-04,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+South Africa,S&P,2017-04-03,BB+,2017-04-03,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+South Africa,S&P,2017-11-24,BB,2017-11-24,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+South Africa,S&P,2019-11-22,BB,2019-11-22,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+South Africa,S&P,2020-04-29,BB-,2020-04-29,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+South Africa,S&P,2023-03-08,BB-,2023-03-08,BB-,0,countryeconomy.com,"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+South Africa,S&P,2024-11-15,BB-,2024-11-15,BB-,0,countryeconomy.com,"countryeconomy,tradingeconomics",False,matched_exact
+South Africa,S&P,2025-11-14,BB,2025-11-14,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Spain,Fitch,2000-09-21,AA+,2000-09-21,AA+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Spain,Fitch,2003-12-10,AAA,2003-12-10,AAA,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Spain,Fitch,2010-05-28,AA+,2010-05-28,AA+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Spain,Fitch,2011-03-04,AA+,2011-03-04,AA+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Spain,Fitch,2011-10-07,AA-,2011-10-07,AA-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Spain,Fitch,2012-01-27,A,2012-01-27,A,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Spain,Fitch,2012-06-07,BBB,2012-06-07,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Spain,Fitch,2013-11-01,BBB,2013-11-01,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Spain,Fitch,2014-04-25,BBB+,2014-04-25,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Spain,Fitch,2017-07-21,BBB+,2017-07-21,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Spain,Fitch,2018-01-19,A-,2018-01-19,A-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Spain,Moody's,2001-12-13,Aaa,2001-12-13,Aaa,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Spain,Moody's,2003-11-15,Aaa,2003-11-15,Aaa,0,countryeconomy.com,countryeconomy,True,matched_exact
+Spain,Moody's,2010-06-30,Aaa,2010-06-30,Aaa,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Spain,Moody's,2010-09-30,Aa1,2010-09-30,Aa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Spain,Moody's,2010-12-15,Aa1,2010-12-15,Aa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Spain,Moody's,2011-03-10,Aa2,2011-03-10,Aa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Spain,Moody's,2011-07-29,Aa2,2011-07-29,Aa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Spain,Moody's,2011-10-18,A1,2011-10-18,A1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Spain,Moody's,2012-02-13,A3,2012-02-13,A3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Spain,Moody's,2012-06-13,Baa3,2012-06-13,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Spain,Moody's,2012-10-16,Baa3,2012-10-16,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Spain,Moody's,2013-12-04,Baa3,2013-12-04,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Spain,Moody's,2014-02-21,Baa2,2014-02-21,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Spain,Moody's,2016-02-19,Baa2,2016-02-19,Baa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Spain,Moody's,2018-04-13,Baa1,2018-04-13,Baa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Spain,Moody's,2024-03-15,Baa1,2024-03-15,Baa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Spain,Moody's,2025-09-26,A3,2025-09-26,A3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Spain,S&P,2010-04-28,AA,2010-04-28,AA,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Spain,S&P,2011-10-13,AA-,2011-10-13,AA-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Spain,S&P,2012-01-13,A,2012-01-13,A,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Spain,S&P,2012-04-26,BBB+,2012-04-26,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Spain,S&P,2012-10-10,BBB-,2012-10-10,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Spain,S&P,2013-11-29,BBB-,2013-11-29,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Spain,S&P,2014-05-23,BBB,2014-05-23,BBB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Spain,S&P,2015-10-02,BBB+,2015-10-02,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Spain,S&P,2017-03-31,BBB+,2017-03-31,BBB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Spain,S&P,2018-03-23,A-,2018-03-23,A-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Spain,S&P,2019-09-20,A,2019-09-20,A,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Spain,S&P,2020-09-18,A,2020-09-18,A,0,countryeconomy.com,"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Spain,S&P,2022-03-18,A,2022-03-18,A,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Spain,S&P,2025-09-12,A+,2025-09-12,A+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Sri Lanka,Fitch,2005-12-08,BB-,2005-12-08,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Sri Lanka,Fitch,2006-04-27,BB-,2006-04-27,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Sri Lanka,Fitch,2008-04-02,B+,2008-04-02,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Sri Lanka,Fitch,2009-02-27,B+,2009-02-27,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Sri Lanka,Fitch,2009-10-09,B+,2009-10-09,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Sri Lanka,Fitch,2010-09-21,B+,2010-09-21,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Sri Lanka,Fitch,2011-07-18,BB-,2011-07-18,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Sri Lanka,Fitch,2016-02-29,B+,2016-02-29,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Sri Lanka,Fitch,2017-02-09,B+,2017-02-09,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Sri Lanka,Fitch,2018-12-03,B,2018-12-03,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Sri Lanka,Fitch,2019-12-18,B,2019-12-18,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Sri Lanka,Fitch,2020-04-24,B-,2020-04-24,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Sri Lanka,Fitch,2020-11-27,CCC,2020-11-27,CCC,0,countryeconomy.com,"countryeconomy,fxempire",False,matched_exact
+Sri Lanka,Fitch,2021-12-17,CC,2021-12-17,CC,0,countryeconomy.com,"countryeconomy,fxempire",False,matched_exact
+Sri Lanka,Fitch,2022-04-13,C,2022-04-13,C,0,countryeconomy.com,countryeconomy,True,matched_exact
+Sri Lanka,Fitch,2022-05-19,RD,2022-05-19,RD,0,countryeconomy.com (default designation; theglobaleconomy.com omits this event),"countryeconomy,fxempire",False,matched_exact
+Sri Lanka,Moody's,2010-09-22,B1,2010-09-22,B1,0,countryeconomy.com,countryeconomy,True,matched_exact
+Sri Lanka,Moody's,2011-07-18,B1,2011-07-18,B1,0,countryeconomy.com,countryeconomy,True,matched_exact
+Sri Lanka,Moody's,2013-07-02,B1,2013-07-02,B1,0,countryeconomy.com,countryeconomy,True,matched_exact
+Sri Lanka,Moody's,2016-06-20,B1,2016-06-20,B1,0,countryeconomy.com,countryeconomy,True,matched_exact
+Sri Lanka,Moody's,2018-11-20,B2,2018-11-20,B2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Sri Lanka,Moody's,2020-04-17,B2,2020-04-17,B2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Sri Lanka,Moody's,2020-09-28,Caa1,2020-09-28,Caa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Sri Lanka,Moody's,2021-07-19,Caa1,2021-07-19,Caa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Sri Lanka,Moody's,2021-10-28,Caa2,2021-10-28,Caa2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Sri Lanka,Moody's,2022-04-18,Ca,2022-04-18,Ca,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Sri Lanka,Moody's,2024-11-28,Ca,2024-11-28,Ca,0,countryeconomy.com,"countryeconomy,fxempire",False,matched_exact
+Sri Lanka,Moody's,2024-12-23,Caa1,2024-12-23,Caa1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Sri Lanka,S&P,2010-09-14,B+,2010-09-14,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Sri Lanka,S&P,2011-07-19,B+,2011-07-19,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Sri Lanka,S&P,2011-07-20,B+,2011-07-20,B+,0,countryeconomy.com,countryeconomy,True,matched_exact
+Sri Lanka,S&P,2012-02-29,B+,2012-02-29,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Sri Lanka,S&P,2016-03-10,B+,2016-03-10,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Sri Lanka,S&P,2017-11-20,B+,2017-11-20,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Sri Lanka,S&P,2018-12-04,B,2018-12-04,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Sri Lanka,S&P,2020-01-14,B,2020-01-14,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Sri Lanka,S&P,2020-05-20,B-,2020-05-20,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Sri Lanka,S&P,2020-12-11,CCC+,2020-12-11,CCC+,0,countryeconomy.com,"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Sri Lanka,S&P,2022-01-12,CCC,2022-01-12,CCC,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Sri Lanka,S&P,2022-04-13,CC,2022-04-13,CC,0,countryeconomy.com,"countryeconomy,tradingeconomics",False,matched_exact
+Sri Lanka,S&P,2022-04-25,SD,2022-04-25,SD,0,countryeconomy.com (default designation; theglobaleconomy.com omits this event),"countryeconomy,tradingeconomics",False,matched_exact
+Sri Lanka,S&P,2025-09-19,CCC+,2025-09-19,CCC+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Turkey,Fitch,2000-04-10,B+,2000-04-10,B+,0,countryeconomy.com,countryeconomy,True,matched_exact
+Turkey,Fitch,2000-04-27,BB-,2000-04-27,BB-,0,countryeconomy.com,"countryeconomy,fitch_table_2011",False,matched_exact
+Turkey,Fitch,2000-09-21,BB-,2000-09-21,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Turkey,Fitch,2001-02-22,BB-,2001-02-22,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Turkey,Fitch,2001-04-02,B+,2001-04-02,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Turkey,Fitch,2001-08-02,B,2001-08-02,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Turkey,Fitch,2002-02-05,B,2002-02-05,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Turkey,Fitch,2003-03-25,B-,2003-03-25,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Turkey,Fitch,2003-08-06,B-,2003-08-06,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Turkey,Fitch,2003-09-25,B,2003-09-25,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Turkey,Fitch,2004-02-09,B+,2004-02-09,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Turkey,Fitch,2004-08-25,B+,2004-08-25,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Turkey,Fitch,2005-01-13,BB-,2005-01-13,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Turkey,Fitch,2005-12-06,BB-,2005-12-06,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Turkey,Fitch,2007-05-09,BB-,2007-05-09,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Turkey,Fitch,2009-10-27,BB-,2009-10-27,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Turkey,Fitch,2009-12-03,BB+,2009-12-03,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Turkey,Fitch,2010-11-24,BB+,2010-11-24,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Turkey,Fitch,2011-11-23,BB+,2011-11-23,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Turkey,Fitch,2013-02-26,BBB-,2013-02-26,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Turkey,Fitch,2016-08-19,BBB-,2016-08-19,BBB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Turkey,Fitch,2017-01-27,BB+,2017-01-27,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Turkey,Fitch,2018-07-13,BB,2018-07-13,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Turkey,Fitch,2019-07-12,BB-,2019-07-12,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Turkey,Fitch,2021-12-01,BB-,2021-12-02,BB-,1,theglobaleconomy.com (month-precision),fxempire,False,matched_1_3d
+Turkey,Fitch,2022-02-11,B+,2022-02-11,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Turkey,Fitch,2022-07-08,B,2022-07-08,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Turkey,Moody's,2003-11-15,B1,2003-11-15,B1,0,countryeconomy.com,countryeconomy,True,matched_exact
+Turkey,Moody's,2005-02-11,B1,2005-02-11,B1,0,"countryeconomy.com (conflict resolved: Moderate-good confidence, trajectory-inferred: dated bracketing points confirm Moody's held Turkey at Ba3 in Nov 1999 and at B1 by Nov 2008, consistent with a downgrade during/after Turkey's 2001 financial crisis persisting through the mid-2000s. No source found dated specifically to Feb 2005 -- inference from the surrounding trajectory, not a direct primary-source confirmation.)",countryeconomy,True,matched_exact
+Turkey,Moody's,2005-12-14,Ba3,2005-12-14,Ba3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Turkey,Moody's,2009-09-18,Ba3,2009-09-18,Ba3,0,countryeconomy.com,countryeconomy,True,matched_exact
+Turkey,Moody's,2010-01-08,Ba2,2010-01-08,Ba2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Turkey,Moody's,2010-10-05,Ba2,2010-10-05,Ba2,0,countryeconomy.com,countryeconomy,True,matched_exact
+Turkey,Moody's,2012-06-20,Ba1,2012-06-20,Ba1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Turkey,Moody's,2013-05-16,Baa3,2013-05-16,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Turkey,Moody's,2014-04-11,Baa3,2014-04-11,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Turkey,Moody's,2016-07-18,Baa3,2016-07-18,Baa3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Turkey,Moody's,2016-09-23,Ba1,2016-09-23,Ba1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Turkey,Moody's,2017-03-17,Ba1,2017-03-17,Ba1,0,countryeconomy.com,countryeconomy,True,matched_exact
+Turkey,Moody's,2018-03-07,Ba2,2018-03-07,Ba2,0,countryeconomy.com,countryeconomy,True,matched_exact
+Turkey,Moody's,2018-06-01,Ba2,2018-06-01,Ba2,0,countryeconomy.com,countryeconomy,True,matched_exact
+Turkey,Moody's,2018-08-17,Ba3,2018-08-17,Ba3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Turkey,Moody's,2019-06-14,B1,2019-06-14,B1,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Turkey,Moody's,2020-09-11,B2,2020-09-11,B2,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Turkey,Moody's,2022-08-12,B3,2022-08-12,B3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Turkey,Moody's,2024-01-12,B3,2024-01-12,B3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Turkey,Moody's,2024-07-19,B1,2024-07-19,B1,0,countryeconomy.com,countryeconomy,True,matched_exact
+Turkey,Moody's,2025-07-25,Ba3,2025-07-25,Ba3,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Turkey,S&P,2010-02-19,BB,2010-02-19,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Turkey,S&P,2012-05-01,BB,2012-05-01,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Turkey,S&P,2013-03-27,BB+,2013-03-27,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Turkey,S&P,2014-02-07,BB+,2014-02-07,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Turkey,S&P,2016-05-06,BB+,2016-05-06,BB+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Turkey,S&P,2016-07-20,BB,2016-07-20,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Turkey,S&P,2016-11-04,BB,2016-11-04,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Turkey,S&P,2017-01-27,BB,2017-01-27,BB,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Turkey,S&P,2018-05-01,BB-,2018-05-01,BB-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Turkey,S&P,2018-08-17,B+,2018-08-17,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Turkey,S&P,2021-12-10,B+,2021-12-10,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Turkey,S&P,2022-09-30,B,2022-09-30,B,0,countryeconomy.com,"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Turkey,S&P,2023-03-31,B,2023-03-31,B,0,countryeconomy.com,"countryeconomy,tradingeconomics",False,matched_exact
+Turkey,S&P,2023-09-29,B,2023-09-29,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Turkey,S&P,2023-11-30,B,2023-11-30,B,0,countryeconomy.com,"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Turkey,S&P,2024-05-03,B+,2024-05-03,B+,0,countryeconomy.com,"countryeconomy,tradingeconomics",False,matched_exact
+Turkey,S&P,2024-11-01,BB-,2024-11-01,BB-,0,countryeconomy.com,"countryeconomy,tradingeconomics",False,matched_exact
+Zambia,Fitch,2011-03-02,B+,2011-03-02,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fitch_table_2011",False,matched_exact
+Zambia,Fitch,2012-03-01,B+,2012-03-01,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Zambia,Fitch,2013-10-28,B,2013-10-28,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Zambia,Fitch,2016-02-24,B,2016-02-24,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),countryeconomy,True,matched_exact
+Zambia,Fitch,2018-10-11,B-,2018-10-11,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Zambia,Fitch,2019-06-27,CCC,2019-06-27,CCC,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Zambia,Fitch,2020-04-16,CC,2020-04-16,CC,0,countryeconomy.com,"countryeconomy,fxempire",False,matched_exact
+Zambia,Fitch,2020-09-24,C,2020-09-24,C,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire",False,matched_exact
+Zambia,Fitch,2020-11-18,RD,2020-11-18,RD,0,countryeconomy.com (default designation; theglobaleconomy.com omits this event),"countryeconomy,fxempire",False,matched_exact
+Zambia,S&P,2011-03-22,B+,2011-03-22,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Zambia,S&P,2013-10-25,B+,2013-10-25,B+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Zambia,S&P,2015-07-01,B,2015-07-01,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Zambia,S&P,2016-03-18,B,2016-03-18,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,tradingeconomics",False,matched_exact
+Zambia,S&P,2017-08-25,B,2017-08-25,B,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Zambia,S&P,2018-08-24,B-,2018-08-24,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Zambia,S&P,2019-02-22,B-,2019-02-22,B-,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Zambia,S&P,2019-08-23,CCC+,2019-08-23,CCC+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Zambia,S&P,2020-02-21,CCC,2020-02-21,CCC,0,countryeconomy.com,"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Zambia,S&P,2020-10-21,SD,2020-10-21,SD,0,countryeconomy.com (default designation; theglobaleconomy.com omits this event),"countryeconomy,fxempire,tradingeconomics",False,matched_exact
+Zambia,S&P,2025-11-21,CCC+,2025-11-21,CCC+,0,countryeconomy.com (confirmed by theglobaleconomy.com (month-precision)),"countryeconomy,fxempire,tradingeconomics",False,matched_exact

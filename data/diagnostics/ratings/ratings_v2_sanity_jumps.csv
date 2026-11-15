@@ -1,0 +1,16 @@
+country,agency,rating_type,from_date,from_rating,to_date,to_rating,notches,flagged_by_collector
+Portugal,SP,unspecified,2013-09-18,BB,2025-02-28,A,-6,True
+Greece,SP,FC_LT,2012-12-05,SD,2012-12-18,B-,-6,True
+Greece,SP,LC_LT,2012-12-05,SD,2012-12-18,B-,-6,True
+Greece,Fitch,FC_LT,2012-03-09,RD,2012-03-14,B-,-6,True
+Greece,Fitch,LC_LT,2012-03-09,RD,2012-03-14,B-,-6,True
+Indonesia,SP,unspecified,2000-01-01,CCC+,2000-04-17,SD,5,False
+Indonesia,SP,unspecified,2000-04-17,SD,2000-10-02,B-,-6,True
+Indonesia,SP,unspecified,2002-04-22,SD,2002-09-05,CCC+,-5,True
+Zambia,SP,FC_LT,2020-10-21,SD,2025-11-21,CCC+,-5,True
+Zambia,Fitch,FC_LT,2020-11-18,RD,2025-11-28,B-,-6,True
+Sri Lanka,SP,FC_LT,2007-01-23,A,2010-09-14,B+,8,True
+Sri Lanka,SP,FC_LT,2022-04-25,SD,2025-09-19,CCC+,-5,True
+Sri Lanka,SP,LC_LT,2007-01-23,A,2010-09-14,BB-,7,True
+Sri Lanka,SP,LC_LT,2023-09-19,SD,2023-09-25,CCC+,-5,True
+Sri Lanka,Fitch,FC_LT,2022-05-19,RD,2024-12-20,CCC+,-5,True
