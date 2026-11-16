@@ -1,4 +1,4 @@
-# Stage 1 repair and H1 test: pre-registration (v0.3 draft)
+# Stage 1 repair and H1 test: pre-registration (v0.4 draft)
 
 Status: draft for review. Becomes binding when committed. Must be committed
 before any lead/lag, return or portfolio outcome is computed on repaired
@@ -84,9 +84,19 @@ repaired feature space.
   excluded even if the source test passes overall.
 - Every panel row used must pass the ratings sanity checker.
 - Conflicting dates for the same action: the earliest date is used.
-- Coverage gaps: an event is excluded from the primary set if any part of
-  its preceding 4 quarters falls in a documented coverage gap for the
-  agency that issued it.
+- Coverage gaps: an event is excluded from the primary set if its event
+  quarter or any of its preceding 4 quarters falls in a documented
+  coverage gap for ANY of the three agencies for that country. Reason: a
+  downgrade missing from one agency's series can make a later downgrade
+  by another agency look initial when it is not. Chosen on event counts
+  only (88 initial events in 36 countries survive in the 2026-11-15
+  data); no score or outcome was involved.
+- Panel used for the test: `data/raw/ratings_v2/` (FC_LT rows plus
+  qualifying S&P unspecified rows), with the existing corrections file
+  applied and verified second-pass actions added. The gap map is
+  recomputed after the second pass. The resulting panel and gap map are
+  frozen in a dated commit before section 5 is run. The earlier
+  13-country panel serves as a cross-check only.
 
 ### 5.2 Events
 - Downgrade: a decrease in the letter rating by any of the three agencies.
