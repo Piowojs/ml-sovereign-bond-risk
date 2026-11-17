@@ -1,0 +1,31 @@
+{
+  "v2_rows":2610,
+  "v2_rows_after_corrections":2605,
+  "second_pass":{
+    "rows_in_file":271,
+    "dropped_LC_LT":33,
+    "dropped_after_2025_12_31":4,
+    "identical_rows_collapsed":0,
+    "kept_FC_rows":234
+  },
+  "anchors_added":3,
+  "unspecified_only_rows_dropped_nonqualifying":0,
+  "qualifying_countries":37,
+  "panel_rows":1775,
+  "panel_rows_by_provenance":{
+    "v2":1538,
+    "second_pass+v2":208,
+    "second_pass":26,
+    "second_pass_resolution":3
+  },
+  "conflicts_total":1,
+  "conflicts_by_resolution":{
+    "v2_internal_kept_FC_LT_label":1
+  },
+  "probable_duplicate_pairs":27,
+  "jumps_gt4_notches":9,
+  "removal_verdicts":{
+    "OK":4,
+    "FLAG_NO_STARTING_ACTION":1
+  }
+}

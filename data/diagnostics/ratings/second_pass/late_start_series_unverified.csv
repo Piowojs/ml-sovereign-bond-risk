@@ -1,0 +1,15 @@
+iso3,agency,first_row_date,first_row_rating,first_row_action,provenance,blocks_initial_event_2005_plus
+KEN,Fitch,2007-12-12,B+,new,v2,True
+KEN,Moodys,2012-11-08,B1,new,v2,True
+LKA,Moodys,2010-09-22,B1,new,v2,True
+NGA,Moodys,2017-11-07,B2,new,v2,True
+PAK,Fitch,2015-09-15,B,new,v2,True
+VNM,Moodys,2012-09-28,B2,new,v2,True
+ZMB,Moodys,2016-04-19,B3,new,v2,True
+KEN,SP,2006-09-08,B+,new,second_pass+v2,False
+LKA,Fitch,2005-12-08,BB-,new,v2,False
+MAR,Fitch,2007-04-19,BBB-,new,v2,False
+NGA,Fitch,2006-01-30,BB-,new,v2,False
+NGA,SP,2006-02-06,BB-,new,second_pass+v2,False
+ZMB,Fitch,2011-03-02,B+,new,v2,False
+ZMB,SP,2011-03-22,B+,new,v2,False

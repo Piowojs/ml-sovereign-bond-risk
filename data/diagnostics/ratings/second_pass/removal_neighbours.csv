@@ -1,0 +1,6 @@
+iso3,agency,class,removed_date,removed_rating,before_date,before_rating,before_src,after_date,after_rating,after_src,verdict,why
+GRC,SP,FC,2014-12-12,B,2014-09-12,B,v2,2015-01-28,B,v2,OK,
+PRT,Fitch,FC,2011-10-07,BBB-,2011-04-01,BBB-,second_pass,2011-11-24,BB+,v2,OK,
+PHL,SP,LC,2009-08-17,BBB+,2006-02-09,BB+,second_pass,2013-05-02,BBB-,v2,OK,
+LKA,SP,FC,2007-01-23,A,2006-04-26,B+,second_pass,2007-08-08,B+,second_pass,OK,
+LKA,SP,LC,2007-01-23,A,,,,2007-08-08,BB-,second_pass,FLAG_NO_STARTING_ACTION,"series has no row before the removed date; its first remaining row is not an initial rating -- flagged, not patched"

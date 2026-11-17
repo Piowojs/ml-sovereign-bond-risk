@@ -740,11 +740,9 @@ yet for a country just means it's absent from the output, not an error.
     185 / 88 / 36. The cost is concentrated in 2000 (wiped out) and
     the 2008 + 2011-2012 crisis years; from ~2016 the rules are nearly
     identical. Even the strict rule keeps 88 initial events across 36
-    countries. **The pre-registration's gap rule is under review
-    pending the second collection pass** — the rule choice mainly
-    moves crisis-era events, exactly where H1's signal is expected,
-    so it must be settled (in a dated pre-registration amendment)
-    before any outcome is computed.
+    countries. (The gap rule was settled afterwards: pre-registration
+    v0.4 fixes the strict any-agency rule, now including the event
+    quarter — see the second-pass entry below.)
   - `data/diagnostics/ratings/second_pass_targets.csv` (137 rows):
     the prioritized work list for that second collection pass — stale
     Fitch tables (20), MISSING ACTION SUSPECTED cases (6), multi-notch
@@ -753,6 +751,48 @@ yet for a country just means it's absent from the output, not an error.
     2007-01-23 problems, and 42 undated latest-rating hint rows.
     Priority = rule-(iii)-excluded events overlapping the target span;
     Greece's S&P/Fitch 2011-2014 spans top the list.
+  - **Second pass ingested (2026-11-17).** The user-side second
+    collection pass (137 targets) is stored untouched, local-only, in
+    `data/raw/ratings_v2_second_pass/` (`second_pass_actions.csv`,
+    `second_pass_resolution.csv`, `second_pass_unresolved.md`). Build
+    chain, all counts-only (no label regenerated, no score computed):
+    `data/interim/_corrections_v2.csv` (TRACKED, 9 rows each with an
+    evidence URL: remove_row / correct_date / correct_rating; every row
+    must match exactly one v2 row or the build stops) ->
+    `diagnostics/build_h1_candidate_panel.py` -> **candidate panel
+    `data/interim/ratings_h1_candidate.csv` (1,775 rows, 44 countries;
+    STATUS: CANDIDATE, NOT FROZEN** — `panel_status` column on every
+    row; it is frozen only in a later dated commit before pre-registration
+    §5 runs) -> `diagnostics/second_pass_event_survival.py`. Panel rule:
+    v2 FC_LT + qualifying S&P unspecified rows (pre-registration §5.1
+    tests re-run on the corrected frame: 37 of 38 qualify; Sri Lanka
+    fails continuity only because its removed 2007-01-23 row carried the
+    test's note), corrections applied, second-pass FC rows added (LC
+    dropped, nothing after 2025-12-31). Dedupe key (iso3, agency, date)
+    with S&P FC_LT and unspecified sharing a key; same rating merges into
+    one FC_LT row with all sources, a different rating is a conflict (second-pass agency/official row
+    wins and must exist as a correct_rating row; Vietnam S&P 2010-12-23
+    was the one case), same rating within 3 days is only listed (27
+    pairs). **Coverage-gap definition (v0.4 §5.1): a country x agency x
+    year cell is complete when the LETTER-RATING path is established,
+    even if the outlook path is unverified; an event is excluded if its
+    event quarter or any of its 4 preceding quarters has an incomplete
+    cell for ANY of the three agencies.** A >= 3-notch step is not a gap
+    when a resolved/partly_resolved second-pass window covers it; stale-
+    Fitch cutoffs are lifted for resolved/partly_resolved rows (8 of 20),
+    the 12 unresolved Fitch rows keep theirs. Result under the v0.4
+    window, like for like: initial events surviving **88 -> 93** (36
+    countries; events dated 2005+: 79 -> 84), collapsed surviving 179 ->
+    192. The main remaining blocker is NOT S&P: Moody's/Fitch series that
+    start late with a bare `new` row (KEN, LKA, NGA, VNM, ZMB Moody's;
+    PAK, KEN Fitch) block 10 events and were never targeted by the
+    second pass; plus Moody's Italy 2011 (1). The S&P Jul-2021 table
+    returned HTTP 403, so the requested cross-check was NOT done (a proxy
+    against the second pass's own transcription is in the summary).
+    Manual checklist (weekday-inferred dates incl. Colombia Fitch
+    2025-12-16, the 12 unresolved Fitch rows, late-start series) and all
+    numbers: `data/diagnostics/ratings/summary.md` section (g); outputs in
+    `data/diagnostics/ratings/second_pass/`.
 
 ## Stage 1 feature matrix (country x quarter — settled facts)
 `src/stage1_clustering/build_feature_matrix.py` builds two wide, country x
@@ -1369,7 +1409,7 @@ untouched by the spec and still open as listed.
   artifact in "Stage 1 clustering" above.
   - **DESIGN DECISION MADE (2026-11-15, pre-registered):** the Stage 1
     repair is adopted via **`docs/stage1_h1_preregistration.md`** (DRAFT
-    v0.3, committed; its §3 — spread feature / tier ranking — remains
+    v0.4, committed; its §3 — spread feature / tier ranking — remains
     PROVISIONAL pending the licence-test session). **Variant (c)
     (within-date cross-sectional z-scoring of the 8 country features,
     globals dropped) is the primary specification; variant (b) (raw
