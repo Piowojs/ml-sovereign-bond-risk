@@ -741,8 +741,9 @@ yet for a country just means it's absent from the output, not an error.
     the 2008 + 2011-2012 crisis years; from ~2016 the rules are nearly
     identical. Even the strict rule keeps 88 initial events across 36
     countries. (The gap rule was settled afterwards: pre-registration
-    v0.4 fixes the strict any-agency rule, now including the event
-    quarter — see the second-pass entry below.)
+    v0.4 fixed the strict any-agency rule, now including the event
+    quarter; v0.5 refines the gap definition — see the second-pass entry
+    below.)
   - `data/diagnostics/ratings/second_pass_targets.csv` (137 rows):
     the prioritized work list for that second collection pass — stale
     Fitch tables (20), MISSING ACTION SUSPECTED cases (6), multi-notch
@@ -792,7 +793,18 @@ yet for a country just means it's absent from the output, not an error.
     Manual checklist (weekday-inferred dates incl. Colombia Fitch
     2025-12-16, the 12 unresolved Fitch rows, late-start series) and all
     numbers: `data/diagnostics/ratings/summary.md` section (g); outputs in
-    `data/diagnostics/ratings/second_pass/`.
+    `data/diagnostics/ratings/second_pass/`. **v0.5 (2026-11-17) changes
+    to the panel rules, NOT yet implemented in the scripts (the numbers
+    above were computed under v0.4):** a "not rated" period before an
+    agency's first rating is not a gap only if a source states the first
+    row is the initial rating (otherwise a late-start series is a gap —
+    this matches how the scripts treat the late-start Moody's/Fitch
+    series today, and the "first-ever ratings are not a gap" sensitivity
+    row is not the rule); same agency + same rating within 3 days is one
+    action; for a same-date conflict the agency/official row wins and, if
+    neither is agency/official, the event is excluded; freeze targets are
+    `data/processed/ratings_h1_panel.csv` and
+    `data/processed/ratings_h1_gap_map.csv`.
 
 ## Stage 1 feature matrix (country x quarter — settled facts)
 `src/stage1_clustering/build_feature_matrix.py` builds two wide, country x
@@ -1409,14 +1421,24 @@ untouched by the spec and still open as listed.
   artifact in "Stage 1 clustering" above.
   - **DESIGN DECISION MADE (2026-11-15, pre-registered):** the Stage 1
     repair is adopted via **`docs/stage1_h1_preregistration.md`** (DRAFT
-    v0.4, committed; its §3 — spread feature / tier ranking — remains
-    PROVISIONAL pending the licence-test session). **Variant (c)
+    v0.5, committed 2026-11-17; its §3 — spread feature / tier ranking —
+    remains PROVISIONAL pending the licence-test session). **Variant (c)
     (within-date cross-sectional z-scoring of the 8 country features,
     globals dropped) is the primary specification; variant (b) (raw
-    country features, globals dropped) is the robustness
-    specification.** The choice was made on structural criteria only —
-    no lead/lag, return, or portfolio outcome had been computed for (b)
-    or (c). Labels are NOT regenerated for downstream use until the
+    country features, globals dropped) is the robustness specification;
+    variant (c-f), added in v0.5, is variant (c) with the market-based
+    feature (the spread / local-yield feature defined in §3) removed
+    from the clustering features — the fundamentals-only score, used
+    only for supporting check 7 (ratings respond to market spreads, so a
+    lead in a score containing a market feature may be partly by
+    construction). Cluster orientation in (c-f) uses the same ranking
+    variable as (c) (direction only; the score itself comes from
+    distances in the fundamentals-only space). Verdict rule addition: if
+    the primary test rejects and check 7 does not, the thesis says the
+    lead may be driven by the market feature and does not claim that
+    fundamentals anticipate downgrades.** The choice was made on
+    structural criteria only — no lead/lag, return, or portfolio outcome
+    had been computed for (b), (c) or (c-f). Labels are NOT regenerated for downstream use until the
     pre-registration's §3 is confirmed (its §6 order of operations is
     binding); the H1 final test protocol (events, windows, tests,
     verdict rule) lives in that document and must not be re-derived
